@@ -61,7 +61,7 @@ const Hero = () => {
                     </div>
 
                         <p className={"text-white-50 md:text-xl relative z-10 pointer-events-none "}>
-                            Hi, I'm Ken, a developer in Philippines with a passion max.
+                            Hi, I'm Ken — a passionate developer from the Philippines.
                         </p>
 
                         <Button className={"md:w-80 md:h-16 w-60 h-12"}
