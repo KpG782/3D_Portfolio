@@ -29,10 +29,10 @@ const words = [
 ];
 
 const counterItems = [
-  { value: 15, suffix: "+", label: "Years of Experience" },
-  { value: 200, suffix: "+", label: "Satisfied Clients" },
-  { value: 108, suffix: "+", label: "Completed Projects" },
-  { value: 90, suffix: "%", label: "Client Retention Rate" },
+  { value: 4, suffix: "+", label: "Years of Learning & Coding" },
+  { value: 20, suffix: "+", label: "Personal & Academic Projects" },
+  { value: 8, suffix: "+", label: "Tech Stacks Explored" },
+  { value: 4, suffix: "", label: "Team Projects Collaborated" },
 ];
 
 const logoIconsList = [
@@ -147,45 +147,45 @@ const techStackIcons = [
 ];
 
 //use strong action words, optimized, achieved, developed, then bring tangible metrics and achievable result(eg improved front pacing app perfoamce, load spped)
-
 const expCards = [
   {
-    review: "Adrian brought creativity and technical expertise to the team, significantly improving our frontend performance. His work has been invaluable in delivering faster experiences.",
+    review: "Ken began his development journey with solid fundamentals in HTML, Bootstrap, JavaScript, and PHP. His curiosity and persistence laid the foundation for his current growth as a modern web developer.",
     imgPath: "/images/exp1.png",
     logoPath: "/images/logo1.png",
-    title: "Frontend Developer",
-    date: "January 2023 - Present",
+    title: "Junior Web Developer",
+    date: "2021 - 2023",
     responsibilities: [
-      "Developed and maintained user-facing features for the Hostinger website.",
-      "Collaborated closely with UI/UX designers to ensure seamless user experiences.",
-      "Optimized web applications for maximum speed and scalability.",
+      "Built static and dynamic websites using HTML, CSS (Bootstrap), JS, and PHP.",
+      "Explored database management using MySQL in academic projects.",
+      "Created school-level web systems with login/authentication and CRUD operations.",
     ],
   },
   {
-    review: "Ken's contributions to Docker's web applications have been outstanding. He approaches challenges with a problem-solving mindset.",
+    review: "Ken's venture into mobile app development showed great potential. His use of Flutter with Firebase transformed ideas into visually engaging, cross-platform mobile experiences.",
     imgPath: "/images/exp2.png",
     logoPath: "/images/logo2.png",
-    title: "Full Stack Developer",
-    date: "June 2020 - December 2024",
+    title: "Flutter Developer",
+    date: "2024 - 2025",
     responsibilities: [
-      "Led the development of PHP web applications, focusing on scalability.",
-      "Worked with backend engineers to integrate APIs seamlessly with the frontend.",
-      "Contributed to open-source projects that were used with the Docker ecosystem.",
+      "Developed mobile apps using Flutter and Firebase for authentication and real-time data.",
+      "Led UI implementation in the CampusCare guidance counseling app.",
+      "Collaborated with teammates on cross-functional features in mobile app projects.",
     ],
   },
   {
-    review: "Adrian’s work on Appwrite’s mobile app brought a high level of quality and efficiency. He delivered solutions that enhanced our mobile experience & meet our product goals.",
-    imgPath: "/images/exp3.png",
+    review: "Ken’s transition into React development demonstrates his adaptability and modern mindset. He now builds web apps with cleaner architecture, reusable components, and optimized performance.",
+    imgPath: "/images/exp34.svg",
     logoPath: "/images/logo3.png",
-    title: "React Native Developer",
-    date: "March 2019 - May 2020",
+    title: "React Developer",
+    date: "2025 - Present",
     responsibilities: [
-      "Built cross-platform mobile apps using React Native, integrating with Appwrite's backend services.",
-      "Improved app performance and user experience through code optimization and testing.",
-      "Coordinated with the product team to implement features based on feedback.",
+      "Created dynamic and interactive UIs using React and TailwindCSS.",
+      "Implemented RESTful APIs and routing using React Router.",
+      "Currently building personal projects and team-based applications using React Native Expo.",
     ],
   },
 ];
+
 
 const expLogos = [
   {
@@ -201,51 +201,51 @@ const expLogos = [
     imgPath: "/images/logo3.png",
   },
 ];
-
 const testimonials = [
   {
-    name: "Esther Howard",
-    mentions: "@estherhoward",
+    name: "Mark Siazon",
+    mentions: "@marksiazon",
     review:
-      "I can’t say enough good things about Adrian. He was able to take our complex project requirements and turn them into a seamless, functional website. His problem-solving abilities are outstanding.",
+        "Ken showed real grit during our early web dev days. He always explored new tools beyond what was taught, and made sure we understood what we were building. His curiosity is contagious.",
     imgPath: "/images/client1.png",
   },
   {
-    name: "Wade Warren",
-    mentions: "@wadewarren",
+    name: "Timothy Forte",
+    mentions: "@timothyforte",
     review:
-      "Working with Adrian was a fantastic experience. He transformed our outdated website into a modern, user-friendly platform. His attention to detail and commitment to quality are unmatched. Highly recommend him for any web dev projects.",
-    imgPath: "/images/client3.png",
-  },
-  {
-    name: "Guy Hawkins",
-    mentions: "@guyhawkins",
-    review:
-      "Collaborating with Adrian was an absolute pleasure. His professionalism, promptness, and dedication to delivering exceptional results were evident throughout our project. Adrian's enthusiasm for every facet of development truly stands out. If you're seeking to elevate your website and elevate your brand, Adrian is the ideal partner.",
+        "When we transitioned to Flutter, Ken was the one who led the charge. He learned the framework fast and even taught us the basics. It’s rare to have a teammate that dedicated.",
     imgPath: "/images/client2.png",
   },
   {
-    name: "Marvin McKinney",
-    mentions: "@marvinmckinney",
+    name: "Jam Villarosa",
+    mentions: "@jamvillarosa",
     review:
-      "Adrian was a pleasure to work with. He turned our outdated website into a fresh, intuitive platform that’s both modern and easy to navigate. Fantastic work overall.",
-    imgPath: "/images/client5.png",
+        "Ken’s progress in React is seriously impressive. He doesn’t just learn tools—he builds things. He’s the kind of teammate who levels up the whole group by sharing what he knows.",
+    imgPath: "/images/client3.png",
   },
   {
-    name: "Floyd Miles",
-    mentions: "@floydmiles",
+    name: "Lanz Corpuz",
+    mentions: "@lanzcorpuz",
     review:
-      "Adrian’s expertise in web development is truly impressive. He delivered a robust and scalable solution for our e-commerce site, and our online sales have significantly increased since the launch. He’s a true professional!",
+        "Ken naturally took the lead in most of our projects. Even under pressure, he kept the team organized and focused. He made sure everyone had a role and felt valued.",
     imgPath: "/images/client4.png",
   },
   {
-    name: "Albert Flores",
-    mentions: "@albertflores",
+    name: "Brian Ashley Papa",
+    mentions: "@brianashley",
     review:
-      "Adrian was a pleasure to work with. He understood our requirements perfectly and delivered a website that exceeded our expectations. His skills in both frontend and backend dev are top-notch.",
+        "You can tell Ken isn’t in this just to pass subjects—he’s here to grow. His willingness to explore new tech and take feedback makes him stand out as a leader.",
+    imgPath: "/images/client5.png",
+  },
+  {
+    name: "Mars Maguddayao",
+    mentions: "@marsmaguddayao",
+    review:
+        "Ken is detail-oriented and driven. Whether it’s frontend polish or code clarity, he’ll always push for better. His calm leadership made our collabs smoother and more productive.",
     imgPath: "/images/client6.png",
   },
 ];
+
 
 const socialImgs = [
   {

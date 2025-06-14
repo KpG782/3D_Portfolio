@@ -46,12 +46,12 @@ const ShowcaseSection = () => {
                     {/*LEFT*/}
                     <div className={"first-project-wrapper"} ref={project1Ref}>
                         <div className={"image-wrapper"}>
-                            <img src={"/images/project1.png"} alt={"Ryde"}/>
+                            <img src={"/images/project1.png"} alt={"CampusCare"}/>
                         </div>
                         <div className={"text-content"}>
-                            <h2>On-Demand Rides Made Simple with a Powerful, User-Friendly App Called Ryde</h2>
+                            <h2>CampusCare – Your Student Wellness Partner</h2>
                             <p className={"text-white-50 md:text-xl"}>
-                                An app built with React Native, Expo, & Tailwind CSS for a fast, user-friendly experience.
+                                A mobile-first guidance counseling platform built using Flutter and Firebase, designed to help students book appointments, chat with counselors, and access wellness tools.
                             </p>
                         </div>
                     </div>
@@ -61,17 +61,17 @@ const ShowcaseSection = () => {
                         {/*1st right*/}
                         <div className={"project"} ref={project2Ref}>
                             <div className={"image-wrapper bg-[#ffefdb]"}>
-                                <img src={"/images/project2.png"} alt={"Library Management System"}/>
+                                <img src={"/images/project2.png"} alt={"Hotel Reservation System"}/>
                             </div>
-                            <h2>Library Management Platform</h2>
+                            <h2>Hotel Booking & Reservation System</h2>
                         </div>
 
                         {/*2nd right*/}
                         <div className={"project"} ref={project3Ref}>
                             <div className={"image-wrapper bg-[#ffe7eb]"}>
-                                <img src={"/images/project3.png"} alt={"Eatery Foods"}/>
+                                <img src={"/images/project3.png"} alt={"Admin Web"}/>
                             </div>
-                            <h2>YC Directory - Eatery Web Browser</h2>
+                            <h2>CampusCare Admin Dashboard</h2>
                         </div>
 
                     </div>
