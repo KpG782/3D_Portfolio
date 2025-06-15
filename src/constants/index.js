@@ -204,45 +204,45 @@ const expLogos = [
 const testimonials = [
   {
     name: "Mark Siazon",
-    mentions: "@marksiazon",
+    mentions: "msiazon.k12043276@umak.edu.ph ",
     review:
         "Ken showed real grit during our early web dev days. He always explored new tools beyond what was taught, and made sure we understood what we were building. His curiosity is contagious.",
-    imgPath: "/images/client1.png",
+    imgPath: "/images/client11.png",
   },
   {
     name: "Timothy Forte",
-    mentions: "@timothyforte",
+    mentions: "tforte.a62241031@umak.edu.ph ",
     review:
         "When we transitioned to Flutter, Ken was the one who led the charge. He learned the framework fast and even taught us the basics. It’s rare to have a teammate that dedicated.",
-    imgPath: "/images/client2.png",
+    imgPath: "/images/client22.png",
   },
   {
     name: "Jam Villarosa",
-    mentions: "@jamvillarosa",
+    mentions: "jvillarosa.a12240987@umak.edu.ph",
     review:
         "Ken’s progress in React is seriously impressive. He doesn’t just learn tools—he builds things. He’s the kind of teammate who levels up the whole group by sharing what he knows.",
-    imgPath: "/images/client3.png",
+    imgPath: "/images/client33.png",
   },
   {
     name: "Lanz Corpuz",
-    mentions: "@lanzcorpuz",
+    mentions: "lcorpuz.a12241569@umak.edu.ph ",
     review:
         "Ken naturally took the lead in most of our projects. Even under pressure, he kept the team organized and focused. He made sure everyone had a role and felt valued.",
-    imgPath: "/images/client4.png",
+    imgPath: "/images/client44.png",
   },
   {
     name: "Brian Ashley Papa",
-    mentions: "@brianashley",
+    mentions: "bpapa.a12034938@umak.edu.ph ",
     review:
         "You can tell Ken isn’t in this just to pass subjects—he’s here to grow. His willingness to explore new tech and take feedback makes him stand out as a leader.",
-    imgPath: "/images/client5.png",
+    imgPath: "/images/client55.png",
   },
   {
     name: "Mars Maguddayao",
-    mentions: "@marsmaguddayao",
+    mentions: "lmaguddayao.a12240891@umak.edu.ph",
     review:
         "Ken is detail-oriented and driven. Whether it’s frontend polish or code clarity, he’ll always push for better. His calm leadership made our collabs smoother and more productive.",
-    imgPath: "/images/client6.png",
+    imgPath: "/images/client66.png",
   },
 ];
 
@@ -267,6 +267,11 @@ const socialImgs = [
     name: "linkedin",
     imgPath: "/images/linkedin.png",
     url: "https://www.linkedin.com/in/ken-patrick-garcia-ba5430285/"
+  },
+  {
+    name: "dev",
+    imgPath: "/images/dev.png",
+    url: "https://dev.to/kpg782"
   },
 ];
 
