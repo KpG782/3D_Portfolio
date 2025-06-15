@@ -150,8 +150,8 @@ const techStackIcons = [
 const expCards = [
   {
     review: "Ken began his development journey with solid fundamentals in HTML, Bootstrap, JavaScript, and PHP. His curiosity and persistence laid the foundation for his current growth as a modern web developer.",
-    imgPath: "/images/exp1.png",
-    logoPath: "/images/logo1.png",
+    imgPath: "/images/exp11.png",
+    logoPath: "/images/logo1.svg",
     title: "Junior Web Developer",
     date: "2021 - 2023",
     responsibilities: [
