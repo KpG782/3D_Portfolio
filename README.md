@@ -92,5 +92,5 @@ You're free to use, modify, and distribute it for personal or commercial use. Ju
 
 ## ✨ Author
 
-Developed by **Canthoughts,**  
+Developed by **Ken Garcia,**  
 🔗 GitHub: [@KpG782](https://github.com/KpG782)
