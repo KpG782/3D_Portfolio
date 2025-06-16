@@ -132,7 +132,7 @@ const Contact = () => {
                                         <div className={"bg-circle"}/>
                                             <p className={"text"}>{loading? 'Sending...' : 'Send Message'}</p>
                                         <div className={"arrow-wrapper"}>
-                                            <img src="/images/arrow-down.svg" alt="arrow" />
+                                            <img src="/images/arrow-down.svg" alt="arrow" className="w-4 h-4 sm:w-5 sm:h-5 md:w-6 md:h-6"/>
                                         </div>
                                     </div>
                                 </button>

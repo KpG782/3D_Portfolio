@@ -66,10 +66,14 @@ const ShowcaseSection = () => {
                             <h2>Hotel Booking & Reservation System</h2>
                         </div>
 
-                        {/*2nd right*/}
-                        <div className={"project"} ref={project3Ref}>
-                            <div className={"image-wrapper bg-[#ffe7eb]"}>
-                                <img src={"/images/project3.png"} alt={"Admin Web"}/>
+                        {/* 2nd right */}
+                        <div className="project" ref={project3Ref}>
+                            <div className="image-wrapper bg-[#ffe7eb] w-full h-auto">
+                                <img
+                                    src="/images/project33.png"
+                                    alt="Admin Web"
+                                    className="w-full h-auto object-contain sm:object-cover"
+                                />
                             </div>
                             <h2>CampusCare Admin Dashboard</h2>
                         </div>

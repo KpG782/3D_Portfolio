@@ -1,3 +1,5 @@
+import { FaCode, FaLaptopCode, FaLayerGroup, FaUsers } from "react-icons/fa";
+
 const navLinks = [
   {
     name: "Work",
@@ -29,10 +31,10 @@ const words = [
 ];
 
 const counterItems = [
-  { value: 4, suffix: "+", label: "Years of Learning & Coding" },
-  { value: 20, suffix: "+", label: "Personal & Academic Projects" },
-  { value: 8, suffix: "+", label: "Tech Stacks Explored" },
-  { value: 4, suffix: "", label: "Team Projects Collaborated" },
+  { value: 4, suffix: "+", label: "Years of Learning & Coding", icon: "code" },
+  { value: 20, suffix: "+", label: "Personal & Academic Projects", icon: "laptop" },
+  { value: 8, suffix: "+", label: "Tech Stacks Explored", icon: "layers" },
+  { value: 4, suffix: "", label: "Team Projects Collaborated", icon: "users" },
 ];
 
 const logoIconsList = [
@@ -174,7 +176,7 @@ const expCards = [
   },
   {
     review: "Ken’s transition into React development demonstrates his adaptability and modern mindset. He now builds web apps with cleaner architecture, reusable components, and optimized performance.",
-    imgPath: "/images/exp34.svg",
+    imgPath: "/images/exp3.png",
     logoPath: "/images/logo3.png",
     title: "React Developer",
     date: "2025 - Present",
@@ -207,42 +209,42 @@ const testimonials = [
     mentions: "msiazon.k12043276@umak.edu.ph ",
     review:
         "Ken showed real grit during our early web dev days. He always explored new tools beyond what was taught, and made sure we understood what we were building. His curiosity is contagious.",
-    imgPath: "/images/client11.png",
+    imgPath: "/images/client1.png",
   },
   {
     name: "Timothy Forte",
     mentions: "tforte.a62241031@umak.edu.ph ",
     review:
         "When we transitioned to Flutter, Ken was the one who led the charge. He learned the framework fast and even taught us the basics. It’s rare to have a teammate that dedicated.",
-    imgPath: "/images/client22.png",
+    imgPath: "/images/client2.png",
   },
   {
     name: "Jam Villarosa",
     mentions: "jvillarosa.a12240987@umak.edu.ph",
     review:
         "Ken’s progress in React is seriously impressive. He doesn’t just learn tools—he builds things. He’s the kind of teammate who levels up the whole group by sharing what he knows.",
-    imgPath: "/images/client33.png",
+    imgPath: "/images/client3.png",
   },
   {
     name: "Lanz Corpuz",
     mentions: "lcorpuz.a12241569@umak.edu.ph ",
     review:
         "Ken naturally took the lead in most of our projects. Even under pressure, he kept the team organized and focused. He made sure everyone had a role and felt valued.",
-    imgPath: "/images/client44.png",
+    imgPath: "/images/client4.png",
   },
   {
     name: "Brian Ashley Papa",
     mentions: "bpapa.a12034938@umak.edu.ph ",
     review:
         "You can tell Ken isn’t in this just to pass subjects—he’s here to grow. His willingness to explore new tech and take feedback makes him stand out as a leader.",
-    imgPath: "/images/client55.png",
+    imgPath: "/images/client5.png",
   },
   {
     name: "Mars Maguddayao",
     mentions: "lmaguddayao.a12240891@umak.edu.ph",
     review:
         "Ken is detail-oriented and driven. Whether it’s frontend polish or code clarity, he’ll always push for better. His calm leadership made our collabs smoother and more productive.",
-    imgPath: "/images/client66.png",
+    imgPath: "/images/client6.png",
   },
 ];
 
