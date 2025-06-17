@@ -24,14 +24,31 @@ This project brings your developer profile to life with smooth animations and re
 
 ## 📁 Project Structure
 
-src/
-├── assets/ # 3D models, textures, images
-├── components/ # Reusable React components
-├── App.jsx # Main App component
-├── main.jsx # Entry point
-public/ # Static files
-.eslintrc.cjs # ESLint config
-vite.config.js # Vite config
+```
+FINAL-PORTFOLIO/
+├── .idea/                   # 💡 IDE settings (WebStorm, etc.)
+├── node_modules/            # 📦 Project dependencies
+├── public/                  # 🌐 Static files
+│   ├── images/              # 📸 Public images
+│   ├── models/              # 🧱 Public 3D models
+│   └── vite.svg             # ⚡ Vite logo
+├── src/                     # 📂 Source code
+│   ├── components/          # 🧩 Reusable components
+│   │   ├── HeroModels/      # 💫 3D hero section models
+│   │   ├── Models/          # 🎨 Other 3D models
+│   │   ├── AnimatedCounter.jsx
+│   │   ├── Button.jsx
+│   │   ├── ContactExperience.jsx
+│   │   ├── GlowCard.jsx
+│   │   ├── NavBar.jsx
+│   │   └── TitleHeader.jsx
+│   ├── constants/           # 📌 Static data and configs
+│   ├── public/              # 🗂 Internal assets (non-static)
+│   └── sections/            # 📄 Page sections or layout blocks
+├── vite.config.js           # ⚙️ Vite configuration
+├── package.json             # 📃 Project metadata and scripts
+└── README.md                # 📘 Project documentation
+```
 
 
 ---
