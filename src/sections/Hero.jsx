@@ -64,17 +64,9 @@ const Hero = () => {
                             Hi, I'm Ken — a passionate developer from the Philippines.
                         </p>
 
-                    <button
-                            className="md:w-80 md:h-16 w-60 h-12"
-                            id="counter">
-                        <div className={"cta-button group"}>
-                            <div className={"bg-circle"}/>
-                                <p className={"text"}>See My Work</p>
-                            <div className={"arrow-wrapper"}>
-                                <img src="/images/arrow-down.svg" alt="arrow" className="w-4 h-4 sm:w-5 sm:h-5 md:w-6 md:h-6"/>
-                            </div>
-                        </div>
-                    </button>
+                        <Button className={"md:w-80 md:h-16 w-60 h-12"}
+                        id={"button"}
+                        text={"See my Work"}/>
 
                 </div>
             </header>
