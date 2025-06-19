@@ -261,6 +261,11 @@ const socialImgs = [
     url: "https://www.facebook.com/kenpatrickgarcia123/"
   },
   {
+    name: "dev",
+    imgPath: "/images/dev.png",
+    url: "https://dev.to/kpg782"
+  },
+  {
     name: "github",
     imgPath: "/images/github1.png",
     url: "https://github.com/KpG782"
@@ -270,11 +275,7 @@ const socialImgs = [
     imgPath: "/images/linkedin.png",
     url: "https://www.linkedin.com/in/ken-patrick-garcia-ba5430285/"
   },
-  {
-    name: "dev",
-    imgPath: "/images/dev.png",
-    url: "https://dev.to/kpg782"
-  },
+
 ];
 
 export {
