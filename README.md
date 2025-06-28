@@ -91,6 +91,16 @@ If you're planning to migrate to TypeScript, consider integrating the following:
 
 ---
 
+## Screenshots
+
+![image](https://github.com/user-attachments/assets/45fc30f8-2e70-49f9-99fd-337628204c16)
+![image](https://github.com/user-attachments/assets/65addde2-d50c-420a-b329-3790adc6c8a6)
+![image](https://github.com/user-attachments/assets/00314cb0-69b0-4671-bf72-c439fa9a3f77)
+
+
+
+---
+
 ## 📚 Tutorial Reference
 
 This 3D portfolio project was inspired by an excellent YouTube tutorial created by **JavaScript Mastery**.  
