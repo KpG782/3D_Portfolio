@@ -1,44 +1,74 @@
-import React, {useRef} from 'react'
+import React, { useRef } from "react";
 
-const GlowCard = ({card, children, index}) => {
-    const cardRefs = useRef([]);
+const GlowCard = ({ card, children, index }) => {
+  const cardRef = useRef(null);
 
-    const handleMouseMove = (index) => (e) => {
-        const card = cardRefs.current[index];
-        if(!card) return;
+  const handleMouseMove = (e) => {
+    const card = cardRef.current;
+    if (!card) return;
 
-        //get the mouse position relative card
-        const rect = card.getBoundingClientRect();
-        const mouseX = e.clientX - rect.left - rect.width / 2;
-        const mouseY = e.clientY - rect.top - rect.height / 2;
+    // Get the mouse position relative to card
+    const rect = card.getBoundingClientRect();
+    const mouseX = e.clientX - rect.left - rect.width / 2;
+    const mouseY = e.clientY - rect.top - rect.height / 2;
 
-        //calc the angle from the center of the card
-        let angle = Math.atan2(mouseY, mouseX) * (180/Math.PI);
+    // Calculate the angle from the center of the card
+    let angle = Math.atan2(mouseY, mouseX) * (180 / Math.PI);
+    angle = (angle + 360) % 360;
 
-        angle = (angle + 360) % 360;
+    card.style.setProperty("--start", angle + 60);
+  };
 
-        card.style.setProperty('--start', angle + 60)
-    }
+  const handleMouseLeave = () => {
+    const card = cardRef.current;
+    if (!card) return;
+    // Reset glow effect when mouse leaves
+    card.style.setProperty("--start", 0);
+  };
 
-    return (
-        <div ref={(el) =>(cardRefs.current[index] = el)} onMouseMove={handleMouseMove(index)} className={"card card-border timeline-card rounded-xl p-10 mb-5 break-inside-avoid-column"}>
+  return (
+    <div
+      ref={cardRef}
+      onMouseMove={handleMouseMove}
+      onMouseLeave={handleMouseLeave}
+      className="card card-border timeline-card rounded-xl p-6 sm:p-8 md:p-10 mb-5 break-inside-avoid-column transition-all duration-300 hover:scale-[1.02] focus-within:scale-[1.02] focus-within:outline focus-within:outline-2 focus-within:outline-offset-2 focus-within:outline-blue-500"
+      role="article"
+      aria-label={`Review card ${index + 1}`}
+    >
+      {/* Glow effect */}
+      <div className="glow pointer-events-none" aria-hidden="true" />
 
-            <div className={"glow"}>
-            </div>
+      {/* Star rating */}
+      <div
+        className="flex items-center gap-1 mb-4 sm:mb-5"
+        role="img"
+        aria-label="5 star rating"
+      >
+        {Array.from({ length: 5 }, (_, i) => (
+          <img
+            src="/images/star.png"
+            key={i}
+            alt=""
+            className="w-4 h-4 sm:w-5 sm:h-5"
+            loading="lazy"
+          />
+        ))}
+        <span className="sr-only">5 out of 5 stars</span>
+      </div>
 
-
-            <div className={"flex items-center gap-1 mb-5"}>
-                {Array.from({length: 5}, (_,i) => (
-                    <img src="/images/star.png" key={i} alt={"star"}/>
-                ))}
-            </div>
-            <div className={"mb-5"}>
-                <p className={"text-white-50 text-lg"}>
-                    {card.review}
-                </p>
-            </div>
-            {children}
+      {/* Review text */}
+      {card.review && (
+        <div className="mb-4 sm:mb-5">
+          <p className="text-white-50 text-base sm:text-lg leading-relaxed">
+            {card.review}
+          </p>
         </div>
-    )
-}
-export default GlowCard
+      )}
+
+      {/* Children content */}
+      {children}
+    </div>
+  );
+};
+
+export default GlowCard;

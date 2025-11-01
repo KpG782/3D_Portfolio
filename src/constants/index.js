@@ -32,7 +32,12 @@ const words = [
 
 const counterItems = [
   { value: 4, suffix: "+", label: "Years of Learning & Coding", icon: "code" },
-  { value: 20, suffix: "+", label: "Personal & Academic Projects", icon: "laptop" },
+  {
+    value: 20,
+    suffix: "+",
+    label: "Personal & Academic Projects",
+    icon: "laptop",
+  },
   { value: 8, suffix: "+", label: "Tech Stacks Explored", icon: "layers" },
   { value: 4, suffix: "", label: "Team Projects Collaborated", icon: "users" },
 ];
@@ -116,29 +121,28 @@ const techStackImgs = [
 
 const techStackIcons = [
   {
-    name: "React Developer",
+    name: "Full-stack Developer",
     modelPath: "/models/react_logo-transformed.glb",
     scale: 1,
     rotation: [0, 0, 0],
   },
   {
-    name: "Flutter Developer",
+    name: "Mobile Developer",
     modelPath: "/models/Flutter.glb",
     scale: 26,
     rotation: [0, 0, 0],
   },
   {
-    name: "Backend Developer",
-    modelPath: "/models/elephpant1.glb",
-    scale: .3,
+    name: "AI/ML Engineer",
+    modelPath: "/models/python-transformed.glb",
+    scale: 0.8,
     rotation: [0, 0, 0],
   },
   {
-    name: "Interactive Developer",
-    modelPath: "/models/three.js-transformed.glb",
-    scale: 0.05,
+    name: "Cloud Engineer",
+    modelPath: "/models/docker.glb",
+    scale: 1.2,
     rotation: [0, 0, 0],
-
   },
   {
     name: "Project Manager",
@@ -151,7 +155,8 @@ const techStackIcons = [
 //use strong action words, optimized, achieved, developed, then bring tangible metrics and achievable result(eg improved front pacing app perfoamce, load spped)
 const expCards = [
   {
-    review: "Ken began his development journey with solid fundamentals in HTML, Bootstrap, JavaScript, and PHP. His curiosity and persistence laid the foundation for his current growth as a modern web developer.",
+    review:
+      "Ken began his development journey with solid fundamentals in HTML, Bootstrap, JavaScript, and PHP. His curiosity and persistence laid the foundation for his current growth as a modern web developer.",
     imgPath: "/images/exp11.png",
     logoPath: "/images/logo1.svg",
     title: "Junior Web Developer",
@@ -163,7 +168,8 @@ const expCards = [
     ],
   },
   {
-    review: "Ken's venture into mobile app development showed great potential. His use of Flutter with Firebase transformed ideas into visually engaging, cross-platform mobile experiences.",
+    review:
+      "Ken's venture into mobile app development showed great potential. His use of Flutter with Firebase transformed ideas into visually engaging, cross-platform mobile experiences.",
     imgPath: "/images/exp2.png",
     logoPath: "/images/logo2.png",
     title: "Flutter Developer",
@@ -175,7 +181,8 @@ const expCards = [
     ],
   },
   {
-    review: "Ken’s transition into React development demonstrates his adaptability and modern mindset. He now builds web apps with cleaner architecture, reusable components, and optimized performance.",
+    review:
+      "Ken’s transition into React development demonstrates his adaptability and modern mindset. He now builds web apps with cleaner architecture, reusable components, and optimized performance.",
     imgPath: "/images/exp3.png",
     logoPath: "/images/logo3.png",
     title: "React Developer",
@@ -187,7 +194,6 @@ const expCards = [
     ],
   },
 ];
-
 
 const expLogos = [
   {
@@ -208,46 +214,45 @@ const testimonials = [
     name: "Mark Siazon",
     mentions: "msiazon.k12043276@umak.edu.ph ",
     review:
-        "Ken showed real grit during our early web dev days. He always explored new tools beyond what was taught, and made sure we understood what we were building. His curiosity is contagious.",
+      "Ken showed real grit during our early web dev days. He always explored new tools beyond what was taught, and made sure we understood what we were building. His curiosity is contagious.",
     imgPath: "/images/client1.png",
   },
   {
     name: "Timothy Forte",
     mentions: "tforte.a62241031@umak.edu.ph ",
     review:
-        "When we transitioned to Flutter, Ken was the one who led the charge. He learned the framework fast and even taught us the basics. It’s rare to have a teammate that dedicated.",
+      "When we transitioned to Flutter, Ken was the one who led the charge. He learned the framework fast and even taught us the basics. It’s rare to have a teammate that dedicated.",
     imgPath: "/images/client2.png",
   },
   {
     name: "Jam Villarosa",
     mentions: "jvillarosa.a12240987@umak.edu.ph",
     review:
-        "Ken’s progress in React is seriously impressive. He doesn’t just learn tools—he builds things. He’s the kind of teammate who levels up the whole group by sharing what he knows.",
+      "Ken’s progress in React is seriously impressive. He doesn’t just learn tools—he builds things. He’s the kind of teammate who levels up the whole group by sharing what he knows.",
     imgPath: "/images/client3.png",
   },
   {
     name: "Lanz Corpuz",
     mentions: "lcorpuz.a12241569@umak.edu.ph ",
     review:
-        "Ken naturally took the lead in most of our projects. Even under pressure, he kept the team organized and focused. He made sure everyone had a role and felt valued.",
+      "Ken naturally took the lead in most of our projects. Even under pressure, he kept the team organized and focused. He made sure everyone had a role and felt valued.",
     imgPath: "/images/client4.png",
   },
   {
     name: "Brian Ashley Papa",
     mentions: "bpapa.a12034938@umak.edu.ph ",
     review:
-        "You can tell Ken isn’t in this just to pass subjects—he’s here to grow. His willingness to explore new tech and take feedback makes him stand out as a leader.",
+      "You can tell Ken isn’t in this just to pass subjects—he’s here to grow. His willingness to explore new tech and take feedback makes him stand out as a leader.",
     imgPath: "/images/client5.png",
   },
   {
     name: "Mars Maguddayao",
     mentions: "lmaguddayao.a12240891@umak.edu.ph",
     review:
-        "Ken is detail-oriented and driven. Whether it’s frontend polish or code clarity, he’ll always push for better. His calm leadership made our collabs smoother and more productive.",
+      "Ken is detail-oriented and driven. Whether it’s frontend polish or code clarity, he’ll always push for better. His calm leadership made our collabs smoother and more productive.",
     imgPath: "/images/client6.png",
   },
 ];
-
 
 const socialImgs = [
   {
@@ -258,24 +263,23 @@ const socialImgs = [
   {
     name: "fb",
     imgPath: "/images/fb.png",
-    url: "https://www.facebook.com/kenpatrickgarcia123/"
+    url: "https://www.facebook.com/kenpatrickgarcia123/",
   },
   {
     name: "dev",
     imgPath: "/images/dev.png",
-    url: "https://dev.to/kpg782"
+    url: "https://dev.to/kpg782",
   },
   {
     name: "github",
     imgPath: "/images/github1.png",
-    url: "https://github.com/KpG782"
+    url: "https://github.com/KpG782",
   },
   {
     name: "linkedin",
     imgPath: "/images/linkedin.png",
-    url: "https://www.linkedin.com/in/ken-patrick-garcia-ba5430285/"
+    url: "https://www.linkedin.com/in/ken-patrick-garcia-ba5430285/",
   },
-
 ];
 
 export {
