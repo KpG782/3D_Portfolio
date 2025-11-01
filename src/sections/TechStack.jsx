@@ -5,6 +5,7 @@ import TechIcon from "../components/Models/TechLogos/TechIcon.jsx";
 import { useGSAP } from "@gsap/react";
 import { gsap } from "gsap";
 
+
 const TechStack = () => {
   useGSAP(() => {
     gsap.fromTo(
