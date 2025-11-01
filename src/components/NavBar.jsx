@@ -247,7 +247,7 @@ const NavBar = () => {
             </a>
 
             <a
-              href="https://facebook.com/kenpatrick.garcia"
+              href="https://facebook.com/kenpatrickgarcia123"
               target="_blank"
               rel="noopener noreferrer"
               className="p-3 bg-white/5 backdrop-blur-sm border border-white/10 rounded-lg hover:bg-white/10 hover:border-white/30 transition-all duration-300"
