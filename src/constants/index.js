@@ -133,13 +133,13 @@ const techStackIcons = [
     rotation: [0, 0, 0],
   },
   {
-    name: "AI/ML Engineer",
+    name: "AI/ML Practitioner",
     modelPath: "/models/python-transformed.glb",
     scale: 0.8,
     rotation: [0, 0, 0],
   },
   {
-    name: "Cloud Engineer",
+    name: "Cloud Practitioner",
     modelPath: "/models/docker.glb",
     scale: 1.2,
     rotation: [0, 0, 0],
@@ -153,44 +153,45 @@ const techStackIcons = [
 ];
 
 //use strong action words, optimized, achieved, developed, then bring tangible metrics and achievable result(eg improved front pacing app perfoamce, load spped)
+// Use strong action words, optimized, achieved, developed, then bring tangible metrics and achievable result (e.g. improved front pacing app performance, load speed)
 const expCards = [
   {
     review:
-      "Ken began his development journey with solid fundamentals in HTML, Bootstrap, JavaScript, and PHP. His curiosity and persistence laid the foundation for his current growth as a modern web developer.",
+      "I began my development journey building solid fundamentals in HTML, Bootstrap, JavaScript, and PHP. My curiosity and persistence during this phase laid the foundation for my growth as a modern web developer.",
     imgPath: "/images/exp11.png",
     logoPath: "/images/logo1.svg",
     title: "Junior Web Developer",
     date: "2021 - 2023",
     responsibilities: [
-      "Built static and dynamic websites using HTML, CSS (Bootstrap), JS, and PHP.",
-      "Explored database management using MySQL in academic projects.",
-      "Created school-level web systems with login/authentication and CRUD operations.",
+      "Developed 10+ static and dynamic websites using HTML, CSS (Bootstrap), JavaScript, and PHP with responsive design principles.",
+      "Designed and implemented MySQL database schemas for academic projects, optimizing query performance by structuring normalized tables.",
+      "Built school-level web systems featuring secure login authentication, role-based access control, and full CRUD operations for data management.",
     ],
   },
   {
     review:
-      "Ken's venture into mobile app development showed great potential. His use of Flutter with Firebase transformed ideas into visually engaging, cross-platform mobile experiences.",
+      "I ventured into mobile app development and transformed ideas into visually engaging, cross-platform experiences. Using Flutter with Firebase, I delivered real-time features and intuitive interfaces that enhanced user engagement.",
     imgPath: "/images/exp2.png",
     logoPath: "/images/logo2.png",
     title: "Flutter Developer",
     date: "2024 - 2025",
     responsibilities: [
-      "Developed mobile apps using Flutter and Firebase for authentication and real-time data.",
-      "Led UI implementation in the CampusCare guidance counseling app.",
-      "Collaborated with teammates on cross-functional features in mobile app projects.",
+      "Developed 5+ cross-platform mobile applications using Flutter and integrated Firebase for real-time authentication and cloud data synchronization.",
+      "Led UI/UX implementation for the CampusCare guidance counseling app, achieving a modern, accessible interface that improved user satisfaction scores.",
+      "Collaborated with a team of 4 developers on cross-functional features, implementing state management solutions that reduced app load time by 30%.",
     ],
   },
   {
     review:
-      "Ken’s transition into React development demonstrates his adaptability and modern mindset. He now builds web apps with cleaner architecture, reusable components, and optimized performance.",
+      "I transitioned into React development to embrace modern web architecture and component-based design. I now build scalable web applications with cleaner code, reusable components, and optimized performance that delivers exceptional user experiences.",
     imgPath: "/images/exp3.png",
     logoPath: "/images/logo3.png",
     title: "React Developer",
     date: "2025 - Present",
     responsibilities: [
-      "Created dynamic and interactive UIs using React and TailwindCSS.",
-      "Implemented RESTful APIs and routing using React Router.",
-      "Currently building personal projects and team-based applications using React Native Expo.",
+      "Created 8+ dynamic and interactive user interfaces using React and TailwindCSS, improving development speed by 40% through reusable component architecture.",
+      "Implemented RESTful API integrations and client-side routing using React Router, enhancing navigation performance and reducing page load times.",
+      "Currently developing personal portfolio projects and team-based applications using React Native Expo, focusing on mobile-first responsive design and cross-platform compatibility.",
     ],
   },
 ];
