@@ -127,7 +127,7 @@ const techStackIcons = [
     rotation: [0, 0, 0],
   },
   {
-    name: "Mobile Developer",
+    name: "Cross-Platform Developer",
     modelPath: "/models/Flutter.glb",
     scale: 26,
     rotation: [0, 0, 0],
@@ -194,6 +194,20 @@ const expCards = [
       "Currently developing personal portfolio projects and team-based applications using React Native Expo, focusing on mobile-first responsive design and cross-platform compatibility.",
     ],
   },
+  {
+    review:
+      "I evolved into a full-stack software engineer, combining frontend expertise with robust backend development. I architect end-to-end solutions using modern frameworks and cloud technologies, delivering scalable applications that solve real-world problems.",
+    imgPath: "/images/exp4.png",
+    logoPath: "/images/logo4.png",
+    title: "Software Engineer",
+    date: "2025 - Present",
+    responsibilities: [
+      "Architected and deployed full-stack web/mobile applications using React, Node.js, Kotlin, and Flutter implementing RESTful APIs and microservices architecture.",
+      "Integrated cloud services (AWS/Firebase) for scalable hosting, authentication, and real-time data synchronization across multiple platforms.",
+      "Implemented CI/CD pipelines using Git, Docker, and automated testing frameworks, reducing deployment time by 50% and improving code quality.",
+      "Led technical decision-making for system architecture, database design, and technology stack selection in academic and personal projects.",
+    ],
+  },
 ];
 
 const expLogos = [
@@ -208,6 +222,10 @@ const expLogos = [
   {
     name: "logo3",
     imgPath: "/images/logo3.png",
+  },
+  {
+    name: "logo4",
+    imgPath: "/images/logo4.png",
   },
 ];
 const testimonials = [
