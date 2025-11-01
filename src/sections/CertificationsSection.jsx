@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useRef, useEffect } from "react";
 import { certifications } from "../constants/certifications.js";
 import TitleHeader from "../components/TitleHeader.jsx";
 
@@ -21,7 +21,6 @@ const CertificationModal = ({ cert, isOpen, onClose, isHoverMode }) => {
     };
   }, [isOpen, onClose, isHoverMode]);
 
-  // Auto-close after 2 seconds in hover mode
   React.useEffect(() => {
     let autoCloseTimeout;
     if (isOpen && isHoverMode) {
@@ -57,7 +56,6 @@ const CertificationModal = ({ cert, isOpen, onClose, isHoverMode }) => {
         onClick={(e) => e.stopPropagation()}
         style={{ animation: "slideUp 0.3s ease-out" }}
       >
-        {/* Close Button */}
         <button
           onClick={onClose}
           className="absolute top-3 right-3 z-10 text-gray-400 hover:text-white text-2xl w-8 h-8 flex items-center justify-center rounded-lg hover:bg-white/10 transition-all focus:outline-none focus:ring-2 focus:ring-blue-500"
@@ -66,7 +64,6 @@ const CertificationModal = ({ cert, isOpen, onClose, isHoverMode }) => {
           ×
         </button>
 
-        {/* Certificate Image */}
         <div className="w-full h-full flex items-center justify-center p-6 bg-gray-800/50 min-h-[60vh]">
           <img
             src={cert.imagePath}
@@ -75,7 +72,6 @@ const CertificationModal = ({ cert, isOpen, onClose, isHoverMode }) => {
           />
         </div>
 
-        {/* Certificate Name and Action */}
         <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-gray-900 via-gray-900/95 to-transparent p-4">
           <div className="flex flex-col sm:flex-row items-center justify-between gap-3">
             <h2
@@ -108,7 +104,6 @@ const CertificationModal = ({ cert, isOpen, onClose, isHoverMode }) => {
           </div>
         </div>
 
-        {/* Hover Mode Indicator */}
         {isHoverMode && (
           <div className="absolute top-3 left-3 bg-blue-500/90 text-white text-xs px-2.5 py-1 rounded-full font-semibold flex items-center gap-1.5">
             <svg
@@ -136,36 +131,40 @@ const CertificationsSection = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [isHoverMode, setIsHoverMode] = useState(false);
   const [hoverTimeoutId, setHoverTimeoutId] = useState(null);
+  const [isDragging, setIsDragging] = useState(false);
+  const [isUserInteracting, setIsUserInteracting] = useState(false);
+  const scrollContainerRef = useRef(null);
+  const animationRef = useRef(null);
 
   const handleCertClick = (cert) => {
-    // Clear any pending hover timeout
+    if (isDragging) return;
+
     if (hoverTimeoutId) {
       clearTimeout(hoverTimeoutId);
       setHoverTimeoutId(null);
     }
     setSelectedCert(cert);
     setIsModalOpen(true);
-    setIsHoverMode(false); // Click mode - stays open
+    setIsHoverMode(false);
   };
 
   const handleCertHover = (cert) => {
-    // Clear any existing timeout
+    if (isDragging) return;
+
     if (hoverTimeoutId) {
       clearTimeout(hoverTimeoutId);
     }
 
-    // Set a delay before opening modal on hover (500ms)
     const timeoutId = setTimeout(() => {
       setSelectedCert(cert);
       setIsModalOpen(true);
-      setIsHoverMode(true); // Hover mode - closes automatically after 2s
+      setIsHoverMode(true);
     }, 500);
 
     setHoverTimeoutId(timeoutId);
   };
 
   const handleCertLeave = () => {
-    // Clear timeout if user leaves before modal opens
     if (hoverTimeoutId) {
       clearTimeout(hoverTimeoutId);
       setHoverTimeoutId(null);
@@ -178,10 +177,58 @@ const CertificationsSection = () => {
     setTimeout(() => setSelectedCert(null), 300);
   };
 
+  // Infinite scroll logic
+  useEffect(() => {
+    const container = scrollContainerRef.current;
+    if (!container) return;
+
+    const scroll = () => {
+      if (isUserInteracting) return;
+
+      // Get the width of one set of certifications
+      const scrollWidth = container.scrollWidth / 2;
+
+      // Auto-scroll
+      container.scrollLeft += 1;
+
+      // Reset when reaching halfway point (seamless loop)
+      if (container.scrollLeft >= scrollWidth) {
+        container.scrollLeft = 0;
+      }
+
+      animationRef.current = requestAnimationFrame(scroll);
+    };
+
+    animationRef.current = requestAnimationFrame(scroll);
+
+    return () => {
+      if (animationRef.current) {
+        cancelAnimationFrame(animationRef.current);
+      }
+    };
+  }, [isUserInteracting]);
+
+  // Handle user interaction
+  const handleInteractionStart = () => {
+    setIsUserInteracting(true);
+    setIsDragging(false);
+  };
+
+  const handleInteractionMove = () => {
+    setIsDragging(true);
+  };
+
+  const handleInteractionEnd = () => {
+    setTimeout(() => {
+      setIsDragging(false);
+      setIsUserInteracting(false);
+    }, 100);
+  };
+
   const CertificationCard = ({ cert }) => {
     return (
       <div
-        className="flex-none marquee-item cursor-pointer group relative"
+        className="flex-none cursor-pointer group relative select-none"
         onClick={() => handleCertClick(cert)}
         onMouseEnter={() => handleCertHover(cert)}
         onMouseLeave={handleCertLeave}
@@ -195,18 +242,16 @@ const CertificationsSection = () => {
         role="button"
         aria-label={`View ${cert.name}`}
       >
-        {/* Certificate aspect ratio: width wider than height (landscape) */}
         <div className="relative overflow-hidden rounded-xl border-2 border-gray-700 group-hover:border-blue-500/50 transition-all duration-300 bg-gradient-to-br from-gray-900 to-gray-800 shadow-lg group-hover:shadow-2xl group-hover:shadow-blue-500/20 w-96 h-72">
           <img
             src={cert.imagePath}
             alt={cert.name}
-            className="w-full h-full object-contain p-4 group-hover:scale-105 transition-transform duration-500"
+            className="w-full h-full object-contain p-4 group-hover:scale-105 transition-transform duration-500 pointer-events-none"
+            draggable="false"
           />
 
-          {/* Hover Overlay */}
           <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
 
-          {/* Hover Info */}
           <div className="absolute bottom-0 left-0 right-0 p-4 bg-gradient-to-t from-black/90 via-black/70 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300">
             <p className="text-white text-sm sm:text-base font-semibold text-center line-clamp-2 mb-2">
               {cert.name}
@@ -257,37 +302,43 @@ const CertificationsSection = () => {
           }
         }
         
-        /* Infinite loop marquee animation */
-        .marquee {
-          position: relative;
-          overflow: hidden;
-          --gap: 3rem;
+        .scroll-container {
+          overflow-x: auto;
+          overflow-y: hidden;
+          cursor: grab;
+          -webkit-overflow-scrolling: touch;
+          scrollbar-width: none;
+          -ms-overflow-style: none;
         }
         
-        .marquee-box {
-          display: flex;
-          gap: var(--gap);
-          animation: scroll 40s linear infinite;
-          will-change: transform;
+        .scroll-container::-webkit-scrollbar {
+          display: none;
         }
         
-        .marquee:hover .marquee-box {
-          animation-play-state: paused;
+        .scroll-container:active {
+          cursor: grabbing;
         }
         
-        @keyframes scroll {
-          0% {
-            transform: translateX(0);
-          }
-          100% {
-            transform: translateX(-50%);
-          }
+        .gradient-edge-left {
+          position: absolute;
+          left: 0;
+          top: 0;
+          bottom: 0;
+          width: 100px;
+          background: linear-gradient(to right, black, transparent);
+          pointer-events: none;
+          z-index: 10;
         }
         
-        @media (max-width: 768px) {
-          .marquee-box {
-            animation: scroll 30s linear infinite;
-          }
+        .gradient-edge-right {
+          position: absolute;
+          right: 0;
+          top: 0;
+          bottom: 0;
+          width: 100px;
+          background: linear-gradient(to left, black, transparent);
+          pointer-events: none;
+          z-index: 10;
         }
       `}</style>
 
@@ -301,15 +352,22 @@ const CertificationsSection = () => {
             sub={"Professional Credentials & Recognition"}
           />
 
-          {/* Horizontal Scrolling Section */}
           <div className="relative mt-8 md:mt-12">
-            {/* Gradient Edges */}
-            <div className="gradient-edge" />
-            <div className="gradient-edge" />
+            <div className="gradient-edge-left" />
+            <div className="gradient-edge-right" />
 
-            {/* Marquee Animation - Infinite loop */}
-            <div className="marquee h-72">
-              <div className="marquee-box">
+            <div
+              ref={scrollContainerRef}
+              className="scroll-container h-72"
+              onMouseDown={handleInteractionStart}
+              onMouseMove={handleInteractionMove}
+              onMouseUp={handleInteractionEnd}
+              onMouseLeave={handleInteractionEnd}
+              onTouchStart={handleInteractionStart}
+              onTouchMove={handleInteractionMove}
+              onTouchEnd={handleInteractionEnd}
+            >
+              <div className="flex gap-12 w-max">
                 {certifications.map((cert) => (
                   <CertificationCard key={cert.id} cert={cert} />
                 ))}
@@ -320,18 +378,16 @@ const CertificationsSection = () => {
             </div>
           </div>
 
-          {/* Hint text */}
           <div className="text-center mt-6">
             <p className="text-gray-400 text-sm">
-              <span className="text-blue-400">Hover</span> to quick preview
-              (auto-closes in 2s) •{" "}
-              <span className="text-purple-400">Click</span> to lock view and
-              access credential
+              <span className="text-blue-400">Auto-scrolling</span> • Drag to
+              control • <span className="text-purple-400">Hover</span> to
+              preview • <span className="text-green-400">Click</span> to lock
+              view
             </p>
           </div>
         </div>
 
-        {/* Modal */}
         <CertificationModal
           cert={selectedCert}
           isOpen={isModalOpen}

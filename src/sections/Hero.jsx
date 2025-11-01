@@ -57,6 +57,11 @@ const Hero = () => {
       stroke: true,
     },
     {
+      href: "https://www.frontendmentor.io/profile/KpG782",
+      label: "Frontend Mentor",
+      path: "M12.1706 1.2719C12.0668 1.15036 11.9331 1.15036 11.8293 1.2719L1.52945 12.5856C1.42561 12.7072 1.42561 12.8556 1.52945 12.9771L11.8293 24.2908C11.9331 24.4124 12.0668 24.4124 12.1706 24.2908L22.4705 12.9771C22.5743 12.8556 22.5743 12.7072 22.4705 12.5856L12.1706 1.2719Z M12 3.40678L20.7988 12.7814L12 22.156L3.20115 12.7814L12 3.40678Z M12 8.72542L6.83789 12.7814L12 16.8374L17.162 12.7814L12 8.72542Z",
+    },
+    {
       href: "https://www.facebook.com/kenpatrickgarcia123",
       label: "Facebook",
       path: "M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z",
@@ -66,7 +71,7 @@ const Hero = () => {
   return (
     <section
       id="hero"
-      className="relative overflow-hidden min-h-screen bg-black text-white pt-20 md:pt-24 lg:pt-24"
+      className="relative overflow-hidden min-h-screen bg-black text-white pt-20 md:pt-24 lg:pt-20"
     >
       {/* Background Effects */}
       <div className="absolute top-0 left-0 z-10 w-auto max-w-md md:max-w-lg lg:max-w-xl pointer-events-none">
