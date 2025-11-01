@@ -66,7 +66,7 @@ const Hero = () => {
   return (
     <section
       id="hero"
-      className="relative overflow-hidden min-h-screen bg-black text-white"
+      className="relative overflow-hidden min-h-screen bg-black text-white pt-20 md:pt-24 lg:pt-24"
     >
       {/* Background Effects */}
       <div className="absolute top-0 left-0 z-10 w-auto max-w-md md:max-w-lg lg:max-w-xl pointer-events-none">
