@@ -46,8 +46,13 @@ const VideoModal = ({ isOpen, onClose }) => {
 
 // 3D Model Component
 function KenModel(props) {
-  const { scene } = useGLTF("/models/ken3d.glb");
+  const { scene } = useGLTF("/models/ken3d-optimized.glb");
   const modelRef = useRef();
+
+  // Notify parent when loaded
+  React.useEffect(() => {
+    if (props.onLoad) props.onLoad();
+  }, [props]);
 
   // Subtle rotation animation
   useFrame((state, delta) => {
@@ -60,10 +65,11 @@ function KenModel(props) {
 }
 
 // Preload the model
-useGLTF.preload("/models/ken3d.glb");
+useGLTF.preload("/models/ken3d-optimized.glb");
 
 const Hero = () => {
   const [isVideoOpen, setIsVideoOpen] = useState(false);
+  const [modelLoaded, setModelLoaded] = useState(false);
 
   useGSAP(() => {
     const animateElement = (selector, from, delay = 0, stagger = 0) => {
@@ -154,11 +160,25 @@ const Hero = () => {
             <div className="relative group">
               <div className="absolute -inset-4 bg-gradient-to-r from-blue-500 via-purple-600 to-pink-500 rounded-full blur-2xl opacity-75 group-hover:opacity-100 transition duration-500 animate-pulse" />
               <div className="relative w-56 h-56 sm:w-64 sm:h-64 md:w-72 md:h-72 lg:w-80 lg:h-80 rounded-full overflow-hidden border-4 border-white/20 shadow-2xl bg-gradient-to-br from-gray-900 to-black">
+                
+                {/* Loading Overlay */}
+                {!modelLoaded && (
+                  <div className="absolute inset-0 flex flex-col items-center justify-center z-10 bg-gray-900/50 backdrop-blur-sm">
+                    <div className="w-12 h-12 border-4 border-blue-500 border-t-transparent rounded-full animate-spin mb-3"></div>
+                    <p className="text-white text-sm font-medium">Loading 3D Model...</p>
+                  </div>
+                )}
+
                 <Canvas
                   camera={{ position: [0, 0, 4.5], fov: 50 }}
                   className="w-full h-full"
                 >
-                  <Suspense fallback={null}>
+                  <Suspense fallback={
+                    <mesh>
+                      <sphereGeometry args={[1, 32, 32]} />
+                      <meshStandardMaterial color="#4a5568" wireframe />
+                    </mesh>
+                  }>
                     {/* Lighting */}
                     <ambientLight intensity={1.2} />
                     <directionalLight position={[5, 5, 5]} intensity={1.5} castShadow />
@@ -174,7 +194,11 @@ const Hero = () => {
                     />
 
                     {/* 3D Model */}
-                    <KenModel scale={3.5} position={[0, -0.5, 0]} />
+                    <KenModel 
+                      scale={3.5} 
+                      position={[0, -0.5, 0]} 
+                      onLoad={() => setModelLoaded(true)}
+                    />
 
                     {/* Controls */}
                     <OrbitControls
