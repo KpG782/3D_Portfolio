@@ -122,6 +122,21 @@ const VideoModal = ({ isOpen, onClose }) => {
               allowFullScreen
             />
           </div>
+
+          {/* Minimize Hint/Indicator */}
+          <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/80 to-transparent p-6">
+            <div className="flex items-center justify-center gap-3 text-white/80 animate-pulse">
+              <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6" />
+              </svg>
+              <p className="text-sm font-medium">
+                💡 <span className="text-blue-400">Tip:</span> Click minimize (—) to continue browsing while listening
+              </p>
+              <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M20 12H4" />
+              </svg>
+            </div>
+          </div>
         </div>
       </div>
     );
