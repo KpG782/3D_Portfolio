@@ -7,38 +7,191 @@ import { OrbitControls, useGLTF } from "@react-three/drei";
 
 // Video Modal Component
 const VideoModal = ({ isOpen, onClose }) => {
+  const [isMinimized, setIsMinimized] = useState(false);
+  const [position, setPosition] = useState({ x: 20, y: 20 });
+  const [isDragging, setIsDragging] = useState(false);
+  const [dragOffset, setDragOffset] = useState({ x: 0, y: 0 });
+  const videoRef = useRef(null);
+
+  // Handle drag start
+  const handleMouseDown = (e) => {
+    if (!isMinimized) return; // Only draggable when minimized
+    
+    if (videoRef.current) {
+      const rect = videoRef.current.getBoundingClientRect();
+      setIsDragging(true);
+      setDragOffset({
+        x: e.clientX - rect.left,
+        y: e.clientY - rect.top,
+      });
+    }
+  };
+
+  // Add global mouse event listeners
+  React.useEffect(() => {
+    // Handle dragging
+    const handleMouseMove = (e) => {
+      if (!isDragging) return;
+      
+      const newX = e.clientX - dragOffset.x;
+      const newY = e.clientY - dragOffset.y;
+      
+      // Keep within viewport bounds
+      const maxX = window.innerWidth - 400;
+      const maxY = window.innerHeight - 250;
+      
+      setPosition({
+        x: Math.max(20, Math.min(newX, maxX)),
+        y: Math.max(20, Math.min(newY, maxY)),
+      });
+    };
+
+    // Handle drag end
+    const handleMouseUp = () => {
+      setIsDragging(false);
+    };
+
+    if (isDragging) {
+      document.addEventListener('mousemove', handleMouseMove);
+      document.addEventListener('mouseup', handleMouseUp);
+    }
+    
+    return () => {
+      document.removeEventListener('mousemove', handleMouseMove);
+      document.removeEventListener('mouseup', handleMouseUp);
+    };
+  }, [isDragging, dragOffset]);
+
+  // Reset position when toggling minimize
+  React.useEffect(() => {
+    if (isMinimized) {
+      setPosition({ x: window.innerWidth - 420, y: window.innerHeight - 270 });
+    }
+  }, [isMinimized]);
+
+  // Early return AFTER all hooks
   if (!isOpen) return null;
 
+  // Fullscreen Modal
+  if (!isMinimized) {
+    return (
+      <div
+        className="fixed inset-0 bg-black/90 backdrop-blur-sm flex items-center justify-center z-[9999] p-4 animate-fadeIn"
+        onClick={onClose}
+      >
+        <div
+          className="relative w-full max-w-4xl bg-gray-900 rounded-2xl overflow-hidden shadow-2xl border border-white/10"
+          onClick={(e) => e.stopPropagation()}
+        >
+          {/* Header with controls */}
+          <div className="absolute top-0 left-0 right-0 z-10 bg-gradient-to-b from-black/80 to-transparent p-4 flex justify-between items-center">
+            <h3 className="text-white font-semibold">Ken's Introduction</h3>
+            <div className="flex gap-2">
+              {/* Minimize Button */}
+              <button
+                onClick={() => setIsMinimized(true)}
+                className="bg-white/10 hover:bg-white/20 text-white rounded-full p-2 transition-all duration-300"
+                aria-label="Minimize video"
+                title="Minimize"
+              >
+                <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M20 12H4" />
+                </svg>
+              </button>
+              {/* Close Button */}
+              <button
+                onClick={onClose}
+                className="bg-white/10 hover:bg-white/20 text-white rounded-full p-2 transition-all duration-300"
+                aria-label="Close video"
+                title="Close"
+              >
+                <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+                </svg>
+              </button>
+            </div>
+          </div>
+
+          {/* Video Container */}
+          <div className="relative w-full" style={{ paddingBottom: "56.25%" }}>
+            <iframe
+              className="absolute top-0 left-0 w-full h-full"
+              src="https://www.youtube.com/embed/nze_7ezndes?autoplay=1"
+              title="Ken Patrick Garcia - Introduction"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+              allowFullScreen
+            />
+          </div>
+        </div>
+      </div>
+    );
+  }
+
+  // Minimized Floating Player (PiP)
   return (
     <div
-      className="fixed inset-0 bg-black/90 backdrop-blur-sm flex items-center justify-center z-[9999] p-4 animate-fadeIn"
-      onClick={onClose}
+      ref={videoRef}
+      className="fixed z-[9999] shadow-2xl rounded-xl overflow-hidden border-2 border-white/20 transition-all duration-300 hover:border-white/40"
+      style={{
+        left: `${position.x}px`,
+        top: `${position.y}px`,
+        width: '400px',
+        cursor: isDragging ? 'grabbing' : 'grab',
+      }}
+      onMouseDown={handleMouseDown}
     >
-      <div
-        className="relative w-full max-w-4xl bg-gray-900 rounded-2xl overflow-hidden shadow-2xl border border-white/10"
-        onClick={(e) => e.stopPropagation()}
-      >
-        {/* Close Button */}
-        <button
-          onClick={onClose}
-          className="absolute top-4 right-4 z-10 bg-white/10 hover:bg-white/20 text-white rounded-full p-2 transition-all duration-300"
-          aria-label="Close video"
-        >
-          <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
-          </svg>
-        </button>
-
-        {/* Video Container */}
-        <div className="relative w-full" style={{ paddingBottom: "56.25%" }}>
-          <iframe
-            className="absolute top-0 left-0 w-full h-full"
-            src="https://www.youtube.com/embed/nze_7ezndes?autoplay=1"
-            title="Ken Patrick Garcia - Introduction"
-            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-            allowFullScreen
-          />
+      {/* Draggable Header */}
+      <div className="bg-gradient-to-r from-gray-900 to-gray-800 px-3 py-2 flex justify-between items-center border-b border-white/10">
+        <div className="flex items-center gap-2">
+          <div className="w-2 h-2 rounded-full bg-red-500 animate-pulse"></div>
+          <span className="text-white text-sm font-medium">Ken's Introduction</span>
         </div>
+        <div className="flex gap-1">
+          {/* Maximize Button */}
+          <button
+            onClick={(e) => {
+              e.stopPropagation();
+              setIsMinimized(false);
+            }}
+            className="bg-white/10 hover:bg-white/20 text-white rounded p-1.5 transition-all duration-200"
+            aria-label="Maximize video"
+            title="Maximize"
+          >
+            <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 8V4m0 0h4M4 4l5 5m11-1V4m0 0h-4m4 0l-5 5M4 16v4m0 0h4m-4 0l5-5m11 5l-5-5m5 5v-4m0 4h-4" />
+            </svg>
+          </button>
+          {/* Close Button */}
+          <button
+            onClick={(e) => {
+              e.stopPropagation();
+              onClose();
+            }}
+            className="bg-white/10 hover:bg-red-500/50 text-white rounded p-1.5 transition-all duration-200"
+            aria-label="Close video"
+            title="Close"
+          >
+            <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+            </svg>
+          </button>
+        </div>
+      </div>
+
+      {/* Video Player */}
+      <div className="relative w-full bg-black" style={{ paddingBottom: "56.25%" }}>
+        <iframe
+          className="absolute top-0 left-0 w-full h-full pointer-events-auto"
+          src="https://www.youtube.com/embed/nze_7ezndes?autoplay=1&controls=1"
+          title="Ken Patrick Garcia - Introduction"
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+          allowFullScreen
+        />
+      </div>
+
+      {/* Drag Hint */}
+      <div className="absolute bottom-2 right-2 bg-black/50 text-white text-xs px-2 py-1 rounded pointer-events-none">
+        Drag to move
       </div>
     </div>
   );
@@ -240,9 +393,9 @@ const Hero = () => {
                 Shaping
                 <span className="slide inline-block">
                   <span className="wrapper inline-flex items-center flex-wrap">
-                    {words.map((word) => (
+                    {words.map((word, index) => (
                       <span
-                        key={word.text}
+                        key={`${word.text}-${index}`}
                         className="flex items-center gap-1 md:gap-2 lg:gap-3 pb-2 ml-2 md:ml-3"
                       >
                         <img
