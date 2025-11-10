@@ -1,9 +1,70 @@
-import React from "react";
+import React, { Suspense, useRef, useState } from "react";
 import { words } from "../constants/index.js";
 import { useGSAP } from "@gsap/react";
 import gsap from "gsap";
+import { Canvas, useFrame } from "@react-three/fiber";
+import { OrbitControls, useGLTF } from "@react-three/drei";
+
+// Video Modal Component
+const VideoModal = ({ isOpen, onClose }) => {
+  if (!isOpen) return null;
+
+  return (
+    <div
+      className="fixed inset-0 bg-black/90 backdrop-blur-sm flex items-center justify-center z-[9999] p-4 animate-fadeIn"
+      onClick={onClose}
+    >
+      <div
+        className="relative w-full max-w-4xl bg-gray-900 rounded-2xl overflow-hidden shadow-2xl border border-white/10"
+        onClick={(e) => e.stopPropagation()}
+      >
+        {/* Close Button */}
+        <button
+          onClick={onClose}
+          className="absolute top-4 right-4 z-10 bg-white/10 hover:bg-white/20 text-white rounded-full p-2 transition-all duration-300"
+          aria-label="Close video"
+        >
+          <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+          </svg>
+        </button>
+
+        {/* Video Container */}
+        <div className="relative w-full" style={{ paddingBottom: "56.25%" }}>
+          <iframe
+            className="absolute top-0 left-0 w-full h-full"
+            src="https://www.youtube.com/embed/nze_7ezndes?autoplay=1"
+            title="Ken Patrick Garcia - Introduction"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+            allowFullScreen
+          />
+        </div>
+      </div>
+    </div>
+  );
+};
+
+// 3D Model Component
+function KenModel(props) {
+  const { scene } = useGLTF("/models/ken3d.glb");
+  const modelRef = useRef();
+
+  // Subtle rotation animation
+  useFrame((state, delta) => {
+    if (modelRef.current) {
+      modelRef.current.rotation.y += delta * 0.15;
+    }
+  });
+
+  return <primitive ref={modelRef} object={scene} {...props} />;
+}
+
+// Preload the model
+useGLTF.preload("/models/ken3d.glb");
 
 const Hero = () => {
+  const [isVideoOpen, setIsVideoOpen] = useState(false);
+
   useGSAP(() => {
     const animateElement = (selector, from, delay = 0, stagger = 0) => {
       gsap.fromTo(selector, from, {
@@ -85,19 +146,65 @@ const Hero = () => {
       <div className="absolute inset-0 bg-[linear-gradient(rgba(255,255,255,0.02)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.02)_1px,transparent_1px)] bg-[size:50px_50px] pointer-events-none" />
 
       <div className="flex flex-col md:flex-row items-center justify-center min-h-screen px-5 md:px-10 lg:px-20 gap-8 md:gap-12">
-        {/* Profile Image - Top on mobile, Right on tablet/desktop */}
+        {/* Profile Images - Top on mobile, Right on tablet/desktop */}
         <figure className="w-full md:w-1/2 flex items-center justify-center md:order-2">
-          <div className="hero-profile relative group">
-            <div className="absolute -inset-4 bg-gradient-to-r from-blue-500 via-purple-600 to-pink-500 rounded-full blur-2xl opacity-75 group-hover:opacity-100 transition duration-500 animate-pulse" />
-            <img
-              src="/images/ken.jpg"
-              alt="Ken Patrick Garcia"
-              className="relative w-64 h-64 sm:w-72 sm:h-72 md:w-80 md:h-80 lg:w-96 lg:h-96 xl:w-[28rem] xl:h-[28rem] rounded-full object-cover border-4 border-white/20 shadow-2xl"
-            />
-            <div className="absolute -bottom-4 left-1/2 transform -translate-x-1/2 bg-gradient-to-r from-green-400 to-blue-500 text-white text-sm font-bold px-5 py-2 rounded-full shadow-lg flex items-center gap-2 whitespace-nowrap">
-              <span className="w-3 h-3 bg-white rounded-full animate-pulse" />
-              Available for Work
+          <div className="hero-profile relative flex flex-col md:flex-row items-center gap-6 md:gap-8">
+            
+            {/* 3D Model */}
+            <div className="relative group">
+              <div className="absolute -inset-4 bg-gradient-to-r from-blue-500 via-purple-600 to-pink-500 rounded-full blur-2xl opacity-75 group-hover:opacity-100 transition duration-500 animate-pulse" />
+              <div className="relative w-56 h-56 sm:w-64 sm:h-64 md:w-72 md:h-72 lg:w-80 lg:h-80 rounded-full overflow-hidden border-4 border-white/20 shadow-2xl bg-gradient-to-br from-gray-900 to-black">
+                <Canvas
+                  camera={{ position: [0, 0, 4.5], fov: 50 }}
+                  className="w-full h-full"
+                >
+                  <Suspense fallback={null}>
+                    {/* Lighting */}
+                    <ambientLight intensity={1.2} />
+                    <directionalLight position={[5, 5, 5]} intensity={1.5} castShadow />
+                    <directionalLight position={[-5, 5, 5]} intensity={0.8} />
+                    <pointLight position={[0, 5, 3]} intensity={1} />
+                    <hemisphereLight intensity={0.5} groundColor="#000000" />
+                    <spotLight
+                      position={[0, 8, 5]}
+                      angle={0.5}
+                      penumbra={0.8}
+                      intensity={1.2}
+                      castShadow
+                    />
+
+                    {/* 3D Model */}
+                    <KenModel scale={3.5} position={[0, -0.5, 0]} />
+
+                    {/* Controls */}
+                    <OrbitControls
+                      enableZoom={false}
+                      enablePan={false}
+                      maxPolarAngle={Math.PI / 2}
+                      minPolarAngle={Math.PI / 2}
+                    />
+                  </Suspense>
+                </Canvas>
+              </div>
+              <div className="absolute -bottom-3 left-1/2 transform -translate-x-1/2 bg-gradient-to-r from-blue-500 to-purple-600 text-white text-xs font-bold px-4 py-1.5 rounded-full shadow-lg whitespace-nowrap">
+                3D Model
+              </div>
             </div>
+
+            {/* Real Picture */}
+            <div className="relative group">
+              <div className="absolute -inset-4 bg-gradient-to-r from-pink-500 via-red-500 to-orange-500 rounded-full blur-2xl opacity-75 group-hover:opacity-100 transition duration-500 animate-pulse" />
+              <img
+                src="/images/2x2.jpg"
+                alt="Ken Patrick Garcia"
+                className="relative w-56 h-56 sm:w-64 sm:h-64 md:w-72 md:h-72 lg:w-80 lg:h-80 rounded-full object-cover border-4 border-white/20 shadow-2xl"
+              />
+              <div className="absolute -bottom-3 left-1/2 transform -translate-x-1/2 bg-gradient-to-r from-green-400 to-blue-500 text-white text-xs font-bold px-4 py-1.5 rounded-full shadow-lg flex items-center gap-2 whitespace-nowrap">
+                <span className="w-2.5 h-2.5 bg-white rounded-full animate-pulse" />
+                Available for Work
+              </div>
+            </div>
+
           </div>
         </figure>
 
@@ -154,6 +261,19 @@ const Hero = () => {
                 className="w-full sm:w-auto h-12 md:h-14 lg:h-16 px-6 md:px-8 bg-white text-black font-bold rounded-lg hover:bg-white/90 transition-all duration-300 shadow-lg text-sm md:text-base"
               >
                 See my Work
+              </button>
+              <button
+                onClick={() => setIsVideoOpen(true)}
+                className="w-full sm:w-auto h-12 md:h-14 lg:h-16 px-6 md:px-8 bg-gradient-to-r from-red-500 to-red-600 text-white font-bold rounded-lg hover:from-red-600 hover:to-red-700 transition-all duration-300 shadow-lg flex items-center justify-center gap-2 group text-sm md:text-base"
+              >
+                <svg
+                  className="w-5 h-5 md:w-6 md:h-6 group-hover:scale-110 transition-transform"
+                  fill="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path d="M10 16.5l6-4.5-6-4.5v9zM12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8z" />
+                </svg>
+                Watch Introduction
               </button>
               <button
                 onClick={handleDownloadCV}
@@ -249,6 +369,9 @@ const Hero = () => {
           </div>
         </header>
       </div>
+
+      {/* Video Modal */}
+      <VideoModal isOpen={isVideoOpen} onClose={() => setIsVideoOpen(false)} />
     </section>
   );
 };
