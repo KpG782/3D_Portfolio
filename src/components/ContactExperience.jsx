@@ -1,38 +1,61 @@
-import React from 'react'
+import React, { Suspense, useState } from 'react'
 import {Canvas} from "@react-three/fiber";
-import {Computer} from "./Models/Computer-optimized.jsx";
 import {OrbitControls} from "@react-three/drei";
+import {Room} from "./HeroModels/Room.jsx";
+import HeroLights from "./HeroModels/HeroLights.jsx";
+import Particles from "./HeroModels/Patricles.jsx";
 
 const ContactExperience = () => {
+    const [isLoading, setIsLoading] = useState(true);
+
     return (
-        <Canvas shadows camera={{position: [0, 3, 7], fov: 45}}>
-            <ambientLight intensity={0.5} color={"#fff436"}/>
-            <directionalLight position={[5, 5, 3]} intensity={2.5} color={"#ffd9b3"}/>
+        <div className="relative w-full h-full">
+            {/* Loading Overlay */}
+            {isLoading && (
+                <div className="absolute inset-0 flex flex-col items-center justify-center z-10 bg-gradient-to-br from-gray-900/80 via-gray-800/80 to-black/80 backdrop-blur-sm">
+                    <div className="w-16 h-16 border-4 border-blue-500 border-t-transparent rounded-full animate-spin mb-4"></div>
+                    <p className="text-white text-sm font-medium">Loading 3D Room...</p>
+                </div>
+            )}
 
-            <directionalLight
-                position={[5,9,1]}
-                castShadow
-                intensity={2.5}
-                color={"#ffd9b3"}
-            />
+            <Canvas shadows camera={{position: [0, 0, 15], fov: 45}}>
+                <Suspense fallback={null}>
+                    {/* Lights */}
+                    <HeroLights/>
+                    
+                    {/* Sparkles/Particles */}
+                    <Particles count={100}/>
 
-            <OrbitControls
-                enableZoom={false}
-                minPolarAngle={Math.PI /5}
-                maxPolarAngle={Math.PI / 2}
-            />
+                    <OrbitControls
+                        enableZoom={true}          // ✅ Allow zooming in/out
+                        enablePan={true}           // ✅ Allow panning (X/Y dragging)
+                        enableRotate={true}        // ✅ Allow rotation
+                        zoomSpeed={0.6}            // Smooth zoom speed
+                        panSpeed={0.5}             // Controlled pan speed
+                        rotateSpeed={0.4}          // Smooth rotation speed
+                        minDistance={8}            // Minimum zoom - prevent getting too close
+                        maxDistance={20}           // Maximum zoom - keep room visible
+                        minPolarAngle={Math.PI / 6}   // Limit top view (30°)
+                        maxPolarAngle={Math.PI / 2.2} // Limit bottom view (≈82°)
+                        minAzimuthAngle={-Math.PI / 3} // Limit left rotation (-60°)
+                        maxAzimuthAngle={Math.PI / 3}  // Limit right rotation (+60°)
+                        enableDamping={true}       // Smooth damping (inertia)
+                        dampingFactor={0.08}       // Moderate damping
+                        maxTargetRadius={5}        // Limit pan distance from center
+                    />
 
-            <group scale={0.03} position={[0, -1.5, -2]} castShadow>
-                <Computer />
-            </group>
-
-            <group scale={[1,1,1]}>
-                <mesh receiveShadow position={[0, -1.5, 0]} rotation={[-Math.PI /2, 0,0]}>
-                    <planeGeometry args={[30,30]}/>
-                    <meshStandardMaterial color={"#a46b2d"}/>
-                </mesh>
-            </group>
-        </Canvas>
+                    {/* Room with Desktop */}
+                    <group 
+                        scale={1} 
+                        position={[0, -3.5, 0]} 
+                        rotation={[0, -Math.PI / 4, 0]}
+                        onPointerOver={() => setIsLoading(false)}
+                    >
+                        <Room />
+                    </group>
+                </Suspense>
+            </Canvas>
+        </div>
     )
 }
 export default ContactExperience
