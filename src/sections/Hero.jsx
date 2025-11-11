@@ -16,7 +16,7 @@ const VideoModal = ({ isOpen, onClose }) => {
   // Handle drag start
   const handleMouseDown = (e) => {
     if (!isMinimized) return; // Only draggable when minimized
-    
+
     if (videoRef.current) {
       const rect = videoRef.current.getBoundingClientRect();
       setIsDragging(true);
@@ -32,14 +32,14 @@ const VideoModal = ({ isOpen, onClose }) => {
     // Handle dragging
     const handleMouseMove = (e) => {
       if (!isDragging) return;
-      
+
       const newX = e.clientX - dragOffset.x;
       const newY = e.clientY - dragOffset.y;
-      
+
       // Keep within viewport bounds
       const maxX = window.innerWidth - 400;
       const maxY = window.innerHeight - 250;
-      
+
       setPosition({
         x: Math.max(20, Math.min(newX, maxX)),
         y: Math.max(20, Math.min(newY, maxY)),
@@ -52,13 +52,13 @@ const VideoModal = ({ isOpen, onClose }) => {
     };
 
     if (isDragging) {
-      document.addEventListener('mousemove', handleMouseMove);
-      document.addEventListener('mouseup', handleMouseUp);
+      document.addEventListener("mousemove", handleMouseMove);
+      document.addEventListener("mouseup", handleMouseUp);
     }
-    
+
     return () => {
-      document.removeEventListener('mousemove', handleMouseMove);
-      document.removeEventListener('mouseup', handleMouseUp);
+      document.removeEventListener("mousemove", handleMouseMove);
+      document.removeEventListener("mouseup", handleMouseUp);
     };
   }, [isDragging, dragOffset]);
 
@@ -94,8 +94,18 @@ const VideoModal = ({ isOpen, onClose }) => {
                 aria-label="Minimize video"
                 title="Minimize"
               >
-                <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M20 12H4" />
+                <svg
+                  className="w-5 h-5"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth={2}
+                    d="M20 12H4"
+                  />
                 </svg>
               </button>
               {/* Close Button */}
@@ -105,8 +115,18 @@ const VideoModal = ({ isOpen, onClose }) => {
                 aria-label="Close video"
                 title="Close"
               >
-                <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+                <svg
+                  className="w-5 h-5"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth={2}
+                    d="M6 18L18 6M6 6l12 12"
+                  />
                 </svg>
               </button>
             </div>
@@ -126,14 +146,35 @@ const VideoModal = ({ isOpen, onClose }) => {
           {/* Minimize Hint/Indicator */}
           <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/80 to-transparent p-6">
             <div className="flex items-center justify-center gap-3 text-white/80 animate-pulse">
-              <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6" />
+              <svg
+                className="w-5 h-5"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth={2}
+                  d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6"
+                />
               </svg>
               <p className="text-sm font-medium">
-                💡 <span className="text-blue-400">Tip:</span> Click minimize (—) to continue browsing while listening
+                💡 <span className="text-blue-400">Tip:</span> Click minimize
+                (—) to continue browsing while listening
               </p>
-              <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M20 12H4" />
+              <svg
+                className="w-5 h-5"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth={2}
+                  d="M20 12H4"
+                />
               </svg>
             </div>
           </div>
@@ -150,8 +191,8 @@ const VideoModal = ({ isOpen, onClose }) => {
       style={{
         left: `${position.x}px`,
         top: `${position.y}px`,
-        width: '400px',
-        cursor: isDragging ? 'grabbing' : 'grab',
+        width: "400px",
+        cursor: isDragging ? "grabbing" : "grab",
       }}
       onMouseDown={handleMouseDown}
     >
@@ -159,7 +200,9 @@ const VideoModal = ({ isOpen, onClose }) => {
       <div className="bg-gradient-to-r from-gray-900 to-gray-800 px-3 py-2 flex justify-between items-center border-b border-white/10">
         <div className="flex items-center gap-2">
           <div className="w-2 h-2 rounded-full bg-red-500 animate-pulse"></div>
-          <span className="text-white text-sm font-medium">Ken's Introduction</span>
+          <span className="text-white text-sm font-medium">
+            Ken's Introduction
+          </span>
         </div>
         <div className="flex gap-1">
           {/* Maximize Button */}
@@ -172,8 +215,18 @@ const VideoModal = ({ isOpen, onClose }) => {
             aria-label="Maximize video"
             title="Maximize"
           >
-            <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 8V4m0 0h4M4 4l5 5m11-1V4m0 0h-4m4 0l-5 5M4 16v4m0 0h4m-4 0l5-5m11 5l-5-5m5 5v-4m0 4h-4" />
+            <svg
+              className="w-4 h-4"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth={2}
+                d="M4 8V4m0 0h4M4 4l5 5m11-1V4m0 0h-4m4 0l-5 5M4 16v4m0 0h4m-4 0l5-5m11 5l-5-5m5 5v-4m0 4h-4"
+              />
             </svg>
           </button>
           {/* Close Button */}
@@ -186,15 +239,28 @@ const VideoModal = ({ isOpen, onClose }) => {
             aria-label="Close video"
             title="Close"
           >
-            <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+            <svg
+              className="w-4 h-4"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth={2}
+                d="M6 18L18 6M6 6l12 12"
+              />
             </svg>
           </button>
         </div>
       </div>
 
       {/* Video Player */}
-      <div className="relative w-full bg-black" style={{ paddingBottom: "56.25%" }}>
+      <div
+        className="relative w-full bg-black"
+        style={{ paddingBottom: "56.25%" }}
+      >
         <iframe
           className="absolute top-0 left-0 w-full h-full pointer-events-auto"
           src="https://www.youtube.com/embed/nze_7ezndes?autoplay=1&controls=1"
@@ -262,12 +328,24 @@ const Hero = () => {
   });
 
   const handleDownloadCV = () => {
-    const link = document.createElement("a");
-    link.href = "/resume/Ken_Patrick_Garcia_Resume.pdf";
-    link.download = "Ken_Patrick_Garcia_Resume.pdf";
-    document.body.appendChild(link);
-    link.click();
-    document.body.removeChild(link);
+    // Scroll to contact section
+    const contactSection = document.getElementById("contact");
+    if (contactSection) {
+      contactSection.scrollIntoView({ behavior: "smooth" });
+      
+      // Wait for scroll to complete, then pre-fill the message field
+      setTimeout(() => {
+        const messageField = document.getElementById("message");
+        if (messageField) {
+          messageField.value = "Hi Ken,\n\nI would like to request a copy of your resume for review.\n\nThank you!";
+          messageField.focus();
+          
+          // Trigger the onChange event to update the form state
+          const event = new Event('input', { bubbles: true });
+          messageField.dispatchEvent(event);
+        }
+      }, 1000); // Wait 1 second for smooth scroll to finish
+    }
   };
 
   const scrollToWork = () => {
@@ -323,17 +401,17 @@ const Hero = () => {
         {/* Profile Images - Top on mobile, Right on tablet/desktop */}
         <figure className="w-full md:w-1/2 flex items-center justify-center md:order-2">
           <div className="hero-profile relative flex flex-col md:flex-row items-center gap-6 md:gap-8">
-            
             {/* 3D Model */}
             <div className="relative group">
               <div className="absolute -inset-4 bg-gradient-to-r from-blue-500 via-purple-600 to-pink-500 rounded-full blur-2xl opacity-75 group-hover:opacity-100 transition duration-500 animate-pulse" />
               <div className="relative w-56 h-56 sm:w-64 sm:h-64 md:w-72 md:h-72 lg:w-80 lg:h-80 rounded-full overflow-hidden border-4 border-white/20 shadow-2xl bg-gradient-to-br from-gray-900 to-black">
-                
                 {/* Loading Overlay */}
                 {!modelLoaded && (
                   <div className="absolute inset-0 flex flex-col items-center justify-center z-10 bg-gray-900/50 backdrop-blur-sm">
                     <div className="w-12 h-12 border-4 border-blue-500 border-t-transparent rounded-full animate-spin mb-3"></div>
-                    <p className="text-white text-sm font-medium">Loading 3D Model...</p>
+                    <p className="text-white text-sm font-medium">
+                      Loading 3D Model...
+                    </p>
                   </div>
                 )}
 
@@ -341,15 +419,21 @@ const Hero = () => {
                   camera={{ position: [0, 0, 4.5], fov: 50 }}
                   className="w-full h-full"
                 >
-                  <Suspense fallback={
-                    <mesh>
-                      <sphereGeometry args={[1, 32, 32]} />
-                      <meshStandardMaterial color="#4a5568" wireframe />
-                    </mesh>
-                  }>
+                  <Suspense
+                    fallback={
+                      <mesh>
+                        <sphereGeometry args={[1, 32, 32]} />
+                        <meshStandardMaterial color="#4a5568" wireframe />
+                      </mesh>
+                    }
+                  >
                     {/* Lighting */}
                     <ambientLight intensity={1.2} />
-                    <directionalLight position={[5, 5, 5]} intensity={1.5} castShadow />
+                    <directionalLight
+                      position={[5, 5, 5]}
+                      intensity={1.5}
+                      castShadow
+                    />
                     <directionalLight position={[-5, 5, 5]} intensity={0.8} />
                     <pointLight position={[0, 5, 3]} intensity={1} />
                     <hemisphereLight intensity={0.5} groundColor="#000000" />
@@ -362,9 +446,9 @@ const Hero = () => {
                     />
 
                     {/* 3D Model */}
-                    <KenModel 
-                      scale={3.5} 
-                      position={[0, -0.5, 0]} 
+                    <KenModel
+                      scale={3.5}
+                      position={[0, -0.5, 0]}
                       onLoad={() => setModelLoaded(true)}
                     />
 
@@ -396,7 +480,6 @@ const Hero = () => {
                 Available for Work
               </div>
             </div>
-
           </div>
         </figure>
 
