@@ -756,38 +756,31 @@ const Hero = () => {
               ))}
             </div>
 
-            {/* Quick Stats */}
+            {/* Quick Stats - Recruiter Focused */}
             <div className="pt-4 md:pt-6 border-t border-white/10">
-              <div className="grid grid-cols-3 gap-4 md:gap-6 max-w-md">
+              <div className="flex flex-wrap gap-4 md:gap-6">
                 {[
                   {
-                    num: "20+",
-                    label: "Projects",
+                    text: "Award Winning Developer",
                     color: "text-blue-500",
                   },
                   {
-                    num: "3+",
-                    label: "Years Exp",
+                    text: "Open to Developer Roles",
                     color: "text-purple-500",
                   },
                   {
-                    num: "15+",
-                    label: "Tech Stack",
-                    color: "text-pink-500",
+                    text: "Remote Ready",
+                    color: "text-green-500",
                   },
                 ].map((stat) => (
                   <div
-                    key={stat.label}
-                    className="hero-quick-stat text-center group hover:scale-110 transition-transform duration-300 cursor-pointer"
+                    key={stat.text}
+                    className="hero-quick-stat group hover:scale-105 transition-transform duration-300 cursor-pointer"
                   >
                     <div
-                      className={`text-2xl sm:text-3xl md:text-4xl font-bold ${stat.color}`}
+                      className={`text-sm sm:text-base md:text-lg font-semibold ${stat.color}`}
                     >
-                      {stat.num}
-                    </div>
-                    <div className="text-xs sm:text-sm mt-1"
-                      style={theme === 'light' ? { color: '#6b7280' } : { color: '#9ca3af' }}>
-                      {stat.label}
+                      {stat.text}
                     </div>
                   </div>
                 ))}
