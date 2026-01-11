@@ -2,10 +2,14 @@ import React from 'react';
 import TitleHeader from "../components/TitleHeader.jsx";
 import { testimonials } from "../constants/index.js";
 import GlowCard from "../components/GlowCard.jsx";
+import { useTheme } from "../contexts/ThemeContext.jsx";
 
 const Testimonials = () => {
+    const { theme } = useTheme();
+    
     return (
-        <section id="testimonials" className="section-padding flex-center">
+        <section id="testimonials" className="section-padding flex-center"
+            style={theme === 'light' ? { backgroundColor: '#f9fafb' } : {}}>
             <div className="w-full h-full md:px-10 px-5">
                 <TitleHeader
                     title="What People Say About Me?"
@@ -22,8 +26,14 @@ const Testimonials = () => {
                                     className="w-12 h-12 object-cover rounded-full shrink-0"
                                 />
                                 <div className="min-w-0">
-                                    <p className="font-bold text-white text-sm sm:text-base">{name}</p>
-                                    <p className="text-white-50 text-xs sm:text-sm truncate">{mentions}</p>
+                                    <p className="font-bold text-sm sm:text-base"
+                                        style={theme === 'light' ? { color: '#111827' } : { color: '#fff' }}>
+                                        {name}
+                                    </p>
+                                    <p className="text-xs sm:text-sm truncate"
+                                        style={theme === 'light' ? { color: '#6b7280' } : { color: 'rgba(255, 255, 255, 0.5)' }}>
+                                        {mentions}
+                                    </p>
                                 </div>
                             </div>
                         </GlowCard>

@@ -1,17 +1,296 @@
-import React, { useRef, useState } from "react";
+import React, { useRef, useState, useEffect } from "react";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { useGSAP } from "@gsap/react";
 import { PROJECTS } from "../constants/data.js";
 import TitleHeader from "../components/TitleHeader.jsx";
+import { useTheme } from "../contexts/ThemeContext.jsx";
 
 gsap.registerPlugin(ScrollTrigger);
 
+// Chatbot Constellation Background Component
+const ChatbotConstellationBackground = ({ theme }) => {
+  const canvasRef = useRef(null);
+  const mouseRef = useRef({ x: -1000, y: -1000, isActive: false });
+
+  useEffect(() => {
+    const canvas = canvasRef.current;
+    if (!canvas) return;
+
+    const ctx = canvas.getContext('2d');
+    let animationFrameId;
+    let bubbles = [];
+
+    // Chat snippets for bubbles
+    const chatTexts = ['Hello', 'AI', 'GPT', 'RAG', 'LLM', 'Fine-tune', 'NLP', 'ML', '💬', '🤖', '✨'];
+
+    // Set canvas size
+    const resizeCanvas = () => {
+      canvas.width = canvas.offsetWidth;
+      canvas.height = canvas.offsetHeight;
+    };
+    resizeCanvas();
+    window.addEventListener('resize', resizeCanvas);
+
+    // Mouse tracking
+    let lastMouseUpdate = 0;
+    const handleMouseMove = (e) => {
+      const rect = canvas.getBoundingClientRect();
+      const now = Date.now();
+      if (now - lastMouseUpdate > 16) {
+        mouseRef.current = {
+          x: e.clientX - rect.left,
+          y: e.clientY - rect.top,
+          isActive: true
+        };
+        lastMouseUpdate = now;
+      }
+    };
+
+    const handleMouseLeave = () => {
+      mouseRef.current.isActive = false;
+    };
+
+    canvas.addEventListener('mousemove', handleMouseMove);
+    canvas.addEventListener('mouseleave', handleMouseLeave);
+
+    // Chat Bubble class
+    class ChatBubble {
+      constructor() {
+        this.x = Math.random() * canvas.width;
+        this.y = Math.random() * canvas.height;
+        this.z = Math.random() * 300 + 100; // Depth
+        this.vx = (Math.random() - 0.5) * 0.3;
+        this.vy = (Math.random() - 0.5) * 0.3;
+        this.vz = (Math.random() - 0.5) * 0.15;
+        this.baseRadius = Math.random() * 20 + 15;
+        this.radius = this.baseRadius;
+        this.text = chatTexts[Math.floor(Math.random() * chatTexts.length)];
+        this.pulsePhase = Math.random() * Math.PI * 2;
+        this.typingPhase = Math.random() * Math.PI * 2;
+        this.energy = 0;
+        this.rotation = Math.random() * Math.PI * 2;
+        this.rotationSpeed = (Math.random() - 0.5) * 0.02;
+      }
+
+      update() {
+        // Mouse interaction - elastic repulsion
+        if (mouseRef.current.isActive) {
+          const dx = this.x - mouseRef.current.x;
+          const dy = this.y - mouseRef.current.y;
+          const distance = Math.sqrt(dx * dx + dy * dy);
+          const maxDistance = 120;
+
+          if (distance < maxDistance) {
+            const force = (1 - distance / maxDistance) * 3;
+            this.vx += (dx / distance) * force * 0.15;
+            this.vy += (dy / distance) * force * 0.15;
+            this.energy = Math.max(this.energy, force * 4);
+          }
+        }
+
+        // Chain reaction - ripple effect to connected bubbles
+        if (this.energy > 0.1) {
+          bubbles.forEach(other => {
+            if (other !== this) {
+              const dx = this.x - other.x;
+              const dy = this.y - other.y;
+              const distance = Math.sqrt(dx * dx + dy * dy);
+              
+              if (distance < 150) {
+                const energyTransfer = this.energy * 0.4 * (1 - distance / 150);
+                other.vx += (dx / distance) * energyTransfer * 0.08;
+                other.vy += (dy / distance) * energyTransfer * 0.08;
+                other.energy = Math.max(other.energy, energyTransfer * 0.6);
+              }
+            }
+          });
+          this.energy *= 0.9; // Faster decay for snappier feel
+        }
+
+        // Update position
+        this.x += this.vx;
+        this.y += this.vy;
+        this.z += this.vz;
+
+        // Bounce off edges with padding
+        const padding = this.radius;
+        if (this.x < padding || this.x > canvas.width - padding) this.vx *= -0.8;
+        if (this.y < padding || this.y > canvas.height - padding) this.vy *= -0.8;
+        if (this.z < 100 || this.z > 400) this.vz *= -1;
+
+        // Apply damping (elastic feel)
+        this.vx *= 0.96;
+        this.vy *= 0.96;
+        this.vz *= 0.98;
+
+        // Update animations
+        this.pulsePhase += 0.03;
+        this.typingPhase += 0.08;
+        this.rotation += this.rotationSpeed;
+
+        // Calculate size based on depth
+        const scale = 250 / this.z;
+        this.radius = this.baseRadius * scale * (1 + this.energy * 0.15);
+      }
+
+      draw() {
+        const pulse = Math.sin(this.pulsePhase) * 0.1 + 1;
+        const typingDots = Math.floor((Math.sin(this.typingPhase) + 1) * 1.5);
+
+        ctx.save();
+        ctx.translate(this.x, this.y);
+        ctx.rotate(this.rotation * 0.3);
+
+        // Bubble shadow
+        ctx.beginPath();
+        ctx.ellipse(2, 2, this.radius * pulse, this.radius * pulse * 0.9, 0, 0, Math.PI * 2);
+        ctx.fillStyle = 'rgba(0, 0, 0, 0.1)';
+        ctx.fill();
+
+        // Bubble body with gradient
+        const gradient = ctx.createRadialGradient(
+          -this.radius * 0.3, -this.radius * 0.3, 0,
+          0, 0, this.radius * pulse
+        );
+        
+        if (theme === 'light') {
+          gradient.addColorStop(0, 'rgba(96, 165, 250, 0.85)');
+          gradient.addColorStop(1, 'rgba(59, 130, 246, 0.7)');
+        } else {
+          gradient.addColorStop(0, 'rgba(147, 197, 253, 0.7)');
+          gradient.addColorStop(1, 'rgba(96, 165, 250, 0.5)');
+        }
+
+        ctx.beginPath();
+        ctx.ellipse(0, 0, this.radius * pulse, this.radius * pulse * 0.9, 0, 0, Math.PI * 2);
+        ctx.fillStyle = gradient;
+        ctx.fill();
+
+        // Bubble border
+        ctx.strokeStyle = theme === 'light' ? 'rgba(59, 130, 246, 0.5)' : 'rgba(147, 197, 253, 0.4)';
+        ctx.lineWidth = 2;
+        ctx.stroke();
+
+        // Energy glow
+        if (this.energy > 0.1) {
+          ctx.shadowBlur = 20 * this.energy;
+          ctx.shadowColor = theme === 'light' ? 'rgba(59, 130, 246, 0.8)' : 'rgba(147, 197, 253, 0.8)';
+          ctx.stroke();
+        }
+        ctx.shadowBlur = 0;
+
+        // Bubble tail (speech bubble pointer)
+        ctx.beginPath();
+        ctx.moveTo(this.radius * 0.6, this.radius * 0.7);
+        ctx.lineTo(this.radius * 0.8, this.radius * 1.2);
+        ctx.lineTo(this.radius * 0.3, this.radius * 0.9);
+        ctx.closePath();
+        ctx.fillStyle = gradient;
+        ctx.fill();
+        ctx.strokeStyle = theme === 'light' ? 'rgba(59, 130, 246, 0.5)' : 'rgba(147, 197, 253, 0.4)';
+        ctx.stroke();
+
+        // Text or typing indicator
+        const depthOpacity = (400 - this.z) / 300;
+        if (this.energy > 0.5 || Math.random() > 0.7) {
+          // Typing indicator (three dots)
+          ctx.fillStyle = theme === 'light' ? 'rgba(255, 255, 255, 0.9)' : 'rgba(255, 255, 255, 0.8)';
+          const dotSpacing = 6;
+          for (let i = 0; i < 3; i++) {
+            if (i < typingDots) {
+              ctx.beginPath();
+              ctx.arc((i - 1) * dotSpacing, 0, 2, 0, Math.PI * 2);
+              ctx.fill();
+            }
+          }
+        } else {
+          // Text content
+          ctx.fillStyle = theme === 'light' 
+            ? `rgba(255, 255, 255, ${0.95 * depthOpacity})` 
+            : `rgba(255, 255, 255, ${0.9 * depthOpacity})`;
+          ctx.font = `bold ${Math.max(10, this.radius * 0.4)}px Arial`;
+          ctx.textAlign = 'center';
+          ctx.textBaseline = 'middle';
+          ctx.fillText(this.text, 0, 0);
+        }
+
+        ctx.restore();
+      }
+    }
+
+    // Initialize bubbles
+    const bubbleCount = Math.min(Math.floor((canvas.width * canvas.height) / 25000), 40);
+    for (let i = 0; i < bubbleCount; i++) {
+      bubbles.push(new ChatBubble());
+    }
+
+    // Animation loop
+    const animate = () => {
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+      // Sort bubbles by depth
+      bubbles.sort((a, b) => b.z - a.z);
+
+      // Update and draw bubbles
+      bubbles.forEach(bubble => {
+        bubble.update();
+        bubble.draw();
+      });
+
+      // Draw conversation threads (curved lines between nearby bubbles)
+      bubbles.forEach((b1, i) => {
+        bubbles.slice(i + 1).forEach(b2 => {
+          const dx = b1.x - b2.x;
+          const dy = b1.y - b2.y;
+          const dz = Math.abs(b1.z - b2.z);
+          const distance = Math.sqrt(dx * dx + dy * dy);
+
+          if (distance < 180 && dz < 80) {
+            const avgDepth = (b1.z + b2.z) / 2;
+            const depthOpacity = (400 - avgDepth) / 300;
+            const opacity = ((1 - distance / 180) * 0.3) * depthOpacity;
+
+            // Curved line (Bezier curve)
+            ctx.beginPath();
+            ctx.moveTo(b1.x, b1.y);
+            const midX = (b1.x + b2.x) / 2 + (Math.random() - 0.5) * 30;
+            const midY = (b1.y + b2.y) / 2 + (Math.random() - 0.5) * 30;
+            ctx.quadraticCurveTo(midX, midY, b2.x, b2.y);
+            
+            ctx.strokeStyle = theme === 'light' 
+              ? `rgba(59, 130, 246, ${opacity})` 
+              : `rgba(147, 197, 253, ${opacity * 0.7})`;
+            ctx.lineWidth = 1.5;
+            ctx.stroke();
+          }
+        });
+      });
+
+      animationFrameId = requestAnimationFrame(animate);
+    };
+
+    animate();
+
+    return () => {
+      window.removeEventListener('resize', resizeCanvas);
+      canvas.removeEventListener('mousemove', handleMouseMove);
+      canvas.removeEventListener('mouseleave', handleMouseLeave);
+      cancelAnimationFrame(animationFrameId);
+    };
+  }, [theme]);
+
+  return (
+    <canvas
+      ref={canvasRef}
+      className="absolute inset-0 pointer-events-auto w-full h-full"
+      style={{ opacity: theme === 'light' ? 0.5 : 0.4 }}
+    />
+  );
+};
+
 const TABS = [
-  { label: "Full Stack Applications" },
-  { label: "Client Projects" },
-  { label: "Frontend Development" },
-  { label: "Other Projects" },
+  { label: "Featured Projects" },
 ];
 
 const ProjectModal = ({ project, isOpen, onClose }) => {
@@ -175,9 +454,9 @@ const ProjectModal = ({ project, isOpen, onClose }) => {
                 target="_blank"
                 rel="noopener noreferrer"
                 className="flex-1 sm:flex-none bg-gradient-to-r from-blue-500 to-purple-600 text-white px-6 py-3 rounded-lg hover:from-blue-600 hover:to-purple-700 transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-blue-500 text-sm font-semibold shadow-lg hover:shadow-blue-500/50 text-center"
-                aria-label={`View live demo of ${project.title}`}
+                aria-label={`View ${project.title}`}
               >
-                View Live Demo
+                View Project
               </a>
             )}
           </div>
@@ -188,6 +467,7 @@ const ProjectModal = ({ project, isOpen, onClose }) => {
 };
 
 const ShowcaseSection = () => {
+  const { theme } = useTheme();
   const sectionRef = useRef(null);
   const cardRefs = useRef([]);
   const [activeTab, setActiveTab] = useState(0);
@@ -257,6 +537,28 @@ const ShowcaseSection = () => {
             transform: translateY(0);
           }
         }
+        @keyframes shimmer {
+          0% { background-position: -200% 0; }
+          100% { background-position: 200% 0; }
+        }
+        @keyframes pulse-glow {
+          0%, 100% { 
+            box-shadow: 0 0 20px rgba(59, 130, 246, 0.3);
+            transform: scale(1);
+          }
+          50% { 
+            box-shadow: 0 0 50px rgba(59, 130, 246, 0.6), 0 0 80px rgba(59, 130, 246, 0.3);
+            transform: scale(1.02);
+          }
+        }
+        @keyframes gradientShift {
+          0%, 100% {
+            background-position: 0% 50%;
+          }
+          50% {
+            background-position: 100% 50%;
+          }
+        }
         .animate-fadeIn {
           animation: fadeIn 0.2s ease-out;
         }
@@ -269,43 +571,40 @@ const ShowcaseSection = () => {
           -webkit-box-orient: vertical;
           overflow: hidden;
         }
+        .award-shimmer {
+          background: linear-gradient(
+            110deg,
+            transparent 25%,
+            rgba(59, 130, 246, 0.2) 50%,
+            transparent 75%
+          );
+          background-size: 200% 100%;
+          animation: shimmer 3s ease-in-out infinite;
+        }
+        .award-card-hover:hover {
+          animation: pulse-glow 2s ease-in-out infinite;
+        }
       `}</style>
 
       <section
         id="work"
         ref={sectionRef}
-        className="py-12 sm:py-16 lg:py-24 px-4 sm:px-6 lg:px-8 bg-black overflow-hidden"
+        className="py-12 sm:py-16 lg:py-24 px-4 sm:px-6 lg:px-8 overflow-hidden relative"
+        style={theme === 'light' ? { backgroundColor: '#f9fafb' } : { backgroundColor: '#000' }}
         aria-labelledby="work-heading"
       >
-        <div className="max-w-7xl mx-auto py-2">
+        {/* Chatbot Constellation Background */}
+        <ChatbotConstellationBackground theme={theme} />
+
+        <div className="max-w-7xl mx-auto py-2 relative z-10">
           <TitleHeader
-            title={"Featured Projects"}
+            title={"Award-Winning Projects"}
             sub={"My Work & Portfolio"}
           />
 
-          {/* Tabs without Icons */}
-          <div className="flex flex-wrap justify-center mt-4 mb-8 sm:mb-12 gap-2 sm:gap-3">
-            {TABS.map((tab, idx) => (
-              <button
-                key={tab.label}
-                className={`px-4 py-2.5 sm:px-5 sm:py-3 lg:px-6 lg:py-3.5 rounded-xl font-semibold transition-all duration-300 text-xs sm:text-sm lg:text-base focus:outline-none focus:ring-2 focus:ring-blue-500 ${
-                  activeTab === idx
-                    ? "bg-gradient-to-r from-blue-500 to-purple-600 text-white shadow-lg shadow-blue-500/50 scale-105"
-                    : "bg-white/5 backdrop-blur-sm text-gray-300 hover:bg-white/10 hover:text-white border border-gray-700 hover:border-gray-600"
-                }`}
-                onClick={() => setActiveTab(idx)}
-                role="tab"
-                aria-selected={activeTab === idx}
-                aria-controls={`tabpanel-${idx}`}
-              >
-                {tab.label}
-              </button>
-            ))}
-          </div>
-
           {/* Cards Grid */}
           <div
-            className="grid grid-cols-1 lg:grid-cols-2 gap-4 sm:gap-6 lg:gap-8"
+            className="grid grid-cols-1 lg:grid-cols-2 gap-4 sm:gap-6 lg:gap-8 mt-8 sm:mt-12"
             role="tabpanel"
             id={`tabpanel-${activeTab}`}
             aria-labelledby={`tab-${activeTab}`}
@@ -313,7 +612,14 @@ const ShowcaseSection = () => {
             {PROJECTS[activeTab].map((project, idx) => (
               <article
                 key={project.title}
-                className="group bg-gradient-to-br from-gray-900 to-gray-800 rounded-xl sm:rounded-2xl shadow-xl hover:shadow-2xl hover:shadow-blue-500/20 transition-all duration-500 cursor-pointer transform hover:-translate-y-2 focus:outline-none focus:ring-2 focus:ring-blue-500 border border-gray-700 hover:border-blue-500/50 overflow-hidden"
+                className="group rounded-xl sm:rounded-2xl shadow-xl hover:shadow-2xl hover:shadow-blue-500/30 transition-all duration-500 cursor-pointer transform hover:-translate-y-2 focus:outline-none focus:ring-2 focus:ring-blue-500 overflow-hidden relative award-card-hover"
+                style={theme === 'light' ? {
+                  background: 'linear-gradient(to bottom right, #ffffff, #f3f4f6)',
+                  border: '1px solid #d1d5db'
+                } : {
+                  background: 'linear-gradient(to bottom right, #1f2937, #111827)',
+                  border: '1px solid #374151'
+                }}
                 ref={(el) => (cardRefs.current[idx] = el)}
                 onClick={() => handleCardClick(project)}
                 onKeyDown={(e) => handleKeyDown(e, project)}
@@ -321,6 +627,8 @@ const ShowcaseSection = () => {
                 role="button"
                 aria-label={`View details for ${project.title}`}
               >
+                {/* Blue Shimmer Effect on Hover */}
+                <div className="absolute inset-0 award-shimmer opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none" />
                 <div className="flex flex-col sm:flex-row h-auto sm:h-56 lg:h-64 xl:h-72">
                   {/* Image Section */}
                   <div className="relative w-full sm:w-2/5 h-48 sm:h-full overflow-hidden flex-shrink-0">
@@ -331,8 +639,8 @@ const ShowcaseSection = () => {
                       loading="lazy"
                     />
                     <div className="absolute inset-0 bg-gradient-to-t from-gray-900 via-transparent to-transparent opacity-60" />
-                    <div className="absolute top-3 left-3">
-                      <span className="text-xs font-bold text-white bg-gradient-to-r from-blue-500 to-purple-600 px-3 py-1.5 rounded-full shadow-lg backdrop-blur-sm">
+                    <div className="absolute top-3 left-3 z-10">
+                      <span className="inline-block text-xs font-bold text-white bg-gradient-to-r from-blue-500 to-purple-600 px-3 py-1.5 rounded-full shadow-lg backdrop-blur-sm border border-blue-400/30">
                         {project.category}
                       </span>
                     </div>
@@ -342,14 +650,16 @@ const ShowcaseSection = () => {
                   <div className="w-full sm:w-3/5 p-4 sm:p-5 lg:p-6 flex flex-col justify-between">
                     <div className="flex-1 space-y-3">
                       {/* Title */}
-                      <h3 className="text-base sm:text-lg lg:text-xl font-bold text-white leading-tight group-hover:text-blue-400 transition-colors">
+                      <h3 className="text-base sm:text-lg lg:text-xl font-bold leading-tight group-hover:text-blue-400 transition-colors"
+                        style={theme === 'light' ? { color: '#111827' } : { color: '#fff' }}>
                         <span className="line-clamp-2 break-words">
                           {project.title}
                         </span>
                       </h3>
 
                       {/* Description */}
-                      <p className="text-gray-400 text-xs sm:text-sm leading-relaxed line-clamp-2">
+                      <p className="text-xs sm:text-sm leading-relaxed line-clamp-2"
+                        style={theme === 'light' ? { color: '#6b7280' } : { color: '#9ca3af' }}>
                         {project.desc}
                       </p>
 
@@ -358,7 +668,16 @@ const ShowcaseSection = () => {
                         {project.techStack.slice(0, 3).map((tech, techIdx) => (
                           <span
                             key={techIdx}
-                            className="text-xs bg-white/5 backdrop-blur-sm border border-gray-700 text-gray-300 px-2.5 py-1 rounded-md font-medium hover:bg-white/10 transition-colors"
+                            className="text-xs backdrop-blur-sm px-2.5 py-1 rounded-md font-medium transition-colors"
+                            style={theme === 'light' ? {
+                              backgroundColor: '#e5e7eb',
+                              border: '1px solid #d1d5db',
+                              color: '#374151'
+                            } : {
+                              backgroundColor: 'rgba(255, 255, 255, 0.05)',
+                              border: '1px solid #374151',
+                              color: '#d1d5db'
+                            }}
                           >
                             {tech}
                           </span>
@@ -372,8 +691,10 @@ const ShowcaseSection = () => {
                     </div>
 
                     {/* Action Buttons */}
-                    <div className="flex items-center justify-between mt-4 pt-3 border-t border-gray-700/50">
-                      <span className="text-xs sm:text-sm font-medium text-gray-400 group-hover:text-blue-400 transition-colors hidden sm:flex">
+                    <div className="flex items-center justify-between mt-4 pt-3"
+                      style={theme === 'light' ? { borderTop: '1px solid #e5e7eb' } : { borderTop: '1px solid rgba(55, 65, 81, 0.5)' }}>
+                      <span className="text-xs sm:text-sm font-medium group-hover:text-blue-400 transition-colors hidden sm:flex"
+                        style={theme === 'light' ? { color: '#6b7280' } : { color: '#9ca3af' }}>
                         Click to view details →
                       </span>
                       <div className="flex gap-2 w-full sm:w-auto">
@@ -396,9 +717,9 @@ const ShowcaseSection = () => {
                             rel="noopener noreferrer"
                             className="flex-1 sm:flex-none bg-gradient-to-r from-blue-500 to-purple-600 text-white hover:from-blue-600 hover:to-purple-700 transition-all duration-300 px-3 py-2 rounded-lg text-xs font-bold focus:outline-none focus:ring-2 focus:ring-blue-500 shadow-lg hover:shadow-blue-500/50 transform hover:scale-105 text-center"
                             onClick={(e) => e.stopPropagation()}
-                            aria-label={`View live demo of ${project.title}`}
+                            aria-label={`View ${project.title}`}
                           >
-                            Live →
+                            View →
                           </a>
                         )}
                       </div>

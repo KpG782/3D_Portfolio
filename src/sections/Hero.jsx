@@ -1,7 +1,221 @@
-import React, { useRef, useState } from "react";
+import React, { useRef, useState, useEffect } from "react";
 import { words } from "../constants/index.js";
 import { useGSAP } from "@gsap/react";
 import gsap from "gsap";
+import { useTheme } from "../contexts/ThemeContext.jsx";
+
+// Neural Network Background Component
+const NeuralNetworkBackground = ({ theme }) => {
+  const canvasRef = useRef(null);
+  const mouseRef = useRef({ x: -1000, y: -1000, isActive: false });
+
+  useEffect(() => {
+    const canvas = canvasRef.current;
+    if (!canvas) return;
+
+    const ctx = canvas.getContext('2d');
+    let animationFrameId;
+    let particles = [];
+
+    // Set canvas size
+    const resizeCanvas = () => {
+      canvas.width = window.innerWidth;
+      canvas.height = window.innerHeight;
+    };
+    resizeCanvas();
+    window.addEventListener('resize', resizeCanvas);
+
+    // Mouse tracking with throttling for performance
+    let lastMouseUpdate = 0;
+    const handleMouseMove = (e) => {
+      const now = Date.now();
+      if (now - lastMouseUpdate > 16) { // ~60fps throttle
+        mouseRef.current = {
+          x: e.clientX,
+          y: e.clientY,
+          isActive: true
+        };
+        lastMouseUpdate = now;
+      }
+    };
+
+    const handleMouseLeave = () => {
+      mouseRef.current.isActive = false;
+    };
+
+    canvas.addEventListener('mousemove', handleMouseMove);
+    canvas.addEventListener('mouseleave', handleMouseLeave);
+
+    // Enhanced Particle class with 3D depth and chain reaction
+    class Particle {
+      constructor() {
+        this.x = Math.random() * canvas.width;
+        this.y = Math.random() * canvas.height;
+        this.z = Math.random() * 500 + 100; // Depth for 3D effect
+        this.vx = (Math.random() - 0.5) * 0.5;
+        this.vy = (Math.random() - 0.5) * 0.5;
+        this.vz = (Math.random() - 0.5) * 0.2;
+        this.baseRadius = Math.random() * 2 + 1;
+        this.radius = this.baseRadius;
+        this.baseX = this.x;
+        this.baseY = this.y;
+        this.energy = 0; // For chain reaction effect
+      }
+
+      update() {
+        // Mouse interaction - repulsion with chain reaction
+        if (mouseRef.current.isActive) {
+          const dx = this.x - mouseRef.current.x;
+          const dy = this.y - mouseRef.current.y;
+          const distance = Math.sqrt(dx * dx + dy * dy);
+          const maxDistance = 150;
+
+          if (distance < maxDistance) {
+            const force = (1 - distance / maxDistance) * 2;
+            this.vx += (dx / distance) * force * 0.1;
+            this.vy += (dy / distance) * force * 0.1;
+            this.energy = Math.max(this.energy, force * 5); // Build energy
+          }
+        }
+
+        // Chain reaction - spread energy to nearby particles
+        if (this.energy > 0.1) {
+          particles.forEach(other => {
+            if (other !== this) {
+              const dx = this.x - other.x;
+              const dy = this.y - other.y;
+              const distance = Math.sqrt(dx * dx + dy * dy);
+              
+              if (distance < 100) {
+                const energyTransfer = this.energy * 0.3 * (1 - distance / 100);
+                other.vx += (dx / distance) * energyTransfer * 0.05;
+                other.vy += (dy / distance) * energyTransfer * 0.05;
+                other.energy = Math.max(other.energy, energyTransfer * 0.7);
+              }
+            }
+          });
+          this.energy *= 0.92; // Decay energy
+        }
+
+        // Update position
+        this.x += this.vx;
+        this.y += this.vy;
+        this.z += this.vz;
+
+        // Bounce off edges
+        if (this.x < 0 || this.x > canvas.width) this.vx *= -1;
+        if (this.y < 0 || this.y > canvas.height) this.vy *= -1;
+        if (this.z < 100 || this.z > 600) this.vz *= -1;
+
+        // Apply damping for smooth movement
+        this.vx *= 0.98;
+        this.vy *= 0.98;
+        this.vz *= 0.98;
+
+        // Calculate size based on depth (3D perspective)
+        const scale = 300 / this.z;
+        this.radius = this.baseRadius * scale * (1 + this.energy * 0.2);
+      }
+
+      draw() {
+        ctx.beginPath();
+        ctx.arc(this.x, this.y, this.radius, 0, Math.PI * 2);
+        
+        // Color intensity based on depth and energy
+        const depthOpacity = (600 - this.z) / 500;
+        const baseColor = theme === 'light' ? '37, 99, 235' : '147, 197, 253';
+        const opacity = (theme === 'light' ? 0.8 : 0.5) * depthOpacity * (1 + this.energy * 0.5);
+        
+        ctx.fillStyle = `rgba(${baseColor}, ${opacity})`;
+        ctx.fill();
+
+        // Add glow effect based on energy
+        if (this.energy > 0.1) {
+          ctx.shadowBlur = 15 * this.energy;
+          ctx.shadowColor = theme === 'light' ? 'rgba(59, 130, 246, 0.8)' : 'rgba(147, 197, 253, 0.8)';
+          ctx.fill();
+        }
+        ctx.shadowBlur = 0;
+      }
+    }
+
+    // Initialize particles
+    const particleCount = Math.min(Math.floor((canvas.width * canvas.height) / 10000), 150);
+    for (let i = 0; i < particleCount; i++) {
+      particles.push(new Particle());
+    }
+    
+    // Add extra particles clustered in the center for denser interaction area
+    const centerParticles = 30;
+    for (let i = 0; i < centerParticles; i++) {
+      const p = new Particle();
+      // Bias towards center (within 60% of screen)
+      p.x = canvas.width * 0.2 + Math.random() * canvas.width * 0.6;
+      p.y = canvas.height * 0.2 + Math.random() * canvas.height * 0.6;
+      particles.push(p);
+    }
+
+    // Animation loop with performance optimization
+    const animate = () => {
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+      // Sort particles by depth for proper layering
+      particles.sort((a, b) => b.z - a.z);
+
+      // Update and draw particles
+      particles.forEach(particle => {
+        particle.update();
+        particle.draw();
+      });
+
+      // Draw connections with depth-based opacity
+      particles.forEach((p1, i) => {
+        particles.slice(i + 1).forEach(p2 => {
+          const dx = p1.x - p2.x;
+          const dy = p1.y - p2.y;
+          const dz = Math.abs(p1.z - p2.z);
+          const distance = Math.sqrt(dx * dx + dy * dy);
+
+          // Only connect particles at similar depths and close distance
+          if (distance < 180 && dz < 150) {
+            ctx.beginPath();
+            ctx.moveTo(p1.x, p1.y);
+            ctx.lineTo(p2.x, p2.y);
+            
+            const avgDepth = (p1.z + p2.z) / 2;
+            const depthOpacity = (600 - avgDepth) / 500;
+            const opacity = ((1 - distance / 180) * 0.5) * depthOpacity;
+            
+            ctx.strokeStyle = theme === 'light' 
+              ? `rgba(37, 99, 235, ${opacity})` 
+              : `rgba(147, 197, 253, ${opacity * 0.6})`;
+            ctx.lineWidth = 1;
+            ctx.stroke();
+          }
+        });
+      });
+
+      animationFrameId = requestAnimationFrame(animate);
+    };
+
+    animate();
+
+    return () => {
+      window.removeEventListener('resize', resizeCanvas);
+      canvas.removeEventListener('mousemove', handleMouseMove);
+      canvas.removeEventListener('mouseleave', handleMouseLeave);
+      cancelAnimationFrame(animationFrameId);
+    };
+  }, [theme]);
+
+  return (
+    <canvas
+      ref={canvasRef}
+      className="absolute inset-0 pointer-events-auto"
+      style={{ opacity: theme === 'light' ? 0.6 : 0.5 }}
+    />
+  );
+};
 
 // Video Modal Component
 const VideoModal = ({ isOpen, onClose }) => {
@@ -277,6 +491,7 @@ const VideoModal = ({ isOpen, onClose }) => {
 };
 
 const Hero = () => {
+  const { theme } = useTheme();
   const [isVideoOpen, setIsVideoOpen] = useState(false);
 
   useGSAP(() => {
@@ -358,18 +573,20 @@ const Hero = () => {
   return (
     <section
       id="hero"
-      className="relative overflow-hidden min-h-screen bg-black text-white pt-20 md:pt-24 lg:pt-20"
+      className="relative overflow-hidden min-h-screen pt-20 md:pt-24 lg:pt-20"
+      style={theme === 'light' ? { backgroundColor: '#ffffff', color: '#000' } : { backgroundColor: '#000', color: '#fff' }}
     >
+      {/* Neural Network Background */}
+      <NeuralNetworkBackground theme={theme} />
+      
       {/* Background Effects */}
-      <div className="absolute top-0 left-0 z-10 w-auto max-w-md md:max-w-lg lg:max-w-xl pointer-events-none">
+      <div className="absolute top-0 left-0 z-10 w-auto max-w-md md:max-w-lg lg:max-w-xl pointer-events-none opacity-20">
         <img
           src="/images/bg.png"
           alt="background"
-          className="w-full h-auto opacity-80"
+          className="w-full h-auto"
         />
       </div>
-      <div className="absolute inset-0 bg-gradient-to-br from-blue-500/5 via-purple-500/5 to-pink-500/5 animate-pulse pointer-events-none" />
-      <div className="absolute inset-0 bg-[linear-gradient(rgba(255,255,255,0.02)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.02)_1px,transparent_1px)] bg-[size:50px_50px] pointer-events-none" />
 
       <div className="flex flex-col md:flex-row items-center justify-center min-h-screen px-5 md:px-10 lg:px-20 gap-8 md:gap-12">
         {/* Profile Image - Top on mobile, Right on tablet/desktop */}
@@ -382,7 +599,7 @@ const Hero = () => {
                 alt="Ken Patrick Garcia"
                 className="w-56 h-56 sm:w-64 sm:h-64 md:w-72 md:h-72 lg:w-80 lg:h-80 rounded-full object-cover border-4 border-white/20 shadow-2xl"
               />
-              <div className="absolute -bottom-3 left-1/2 transform -translate-x-1/2 bg-gradient-to-r from-green-400 to-blue-500 text-white text-xs font-bold px-4 py-1.5 rounded-full shadow-lg flex items-center gap-2 whitespace-nowrap">
+              <div className="absolute -bottom-3 left-1/2 transform -translate-x-1/2 bg-blue-600 text-white text-xs font-bold px-4 py-1.5 rounded-full shadow-lg flex items-center gap-2 whitespace-nowrap">
                 <span className="w-2.5 h-2.5 bg-white rounded-full animate-pulse" />
                 Available for Work
               </div>
@@ -408,7 +625,7 @@ const Hero = () => {
                           alt={word.text}
                           className="w-6 h-6 sm:w-8 sm:h-8 md:w-10 md:h-10 lg:w-12 lg:h-12 p-1 md:p-2 rounded-full bg-white/10 backdrop-blur-sm border border-white/20"
                         />
-                        <span className="bg-gradient-to-r from-blue-400 to-purple-500 bg-clip-text text-transparent">
+                        <span className="text-blue-500">
                           {word.text}
                         </span>
                       </span>
@@ -421,32 +638,48 @@ const Hero = () => {
               </h1>
               <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-bold leading-tight">
                 that Deliver{" "}
-                <span className="bg-gradient-to-r from-blue-400 to-purple-500 bg-clip-text text-transparent">
+                <span className="text-blue-500">
                   Results
                 </span>
               </h1>
             </div>
 
-            <p className="hero-description text-gray-400 text-base sm:text-lg md:text-xl max-w-2xl">
+            <p className="hero-description text-base sm:text-lg md:text-xl max-w-2xl"
+              style={theme === 'light' ? { color: '#4b5563' } : { color: '#9ca3af' }}>
               Hi, I'm{" "}
-              <span className="text-white font-semibold">
+              <span className="font-semibold"
+                style={theme === 'light' ? { color: '#000' } : { color: '#fff' }}>
                 Ken Patrick Garcia
               </span>{" "}
-              — a passionate Full-Stack Developer from the Philippines 🇵🇭,
-              crafting innovative solutions with modern technologies.
+              — an AI Full Stack Engineer from the Philippines 🇵🇭,
+              building intelligent systems that combine cutting-edge AI with full-stack development.
             </p>
 
             {/* CTA Buttons */}
             <div className="hero-buttons flex flex-col sm:flex-row gap-3 sm:gap-4">
               <button
                 onClick={scrollToWork}
-                className="w-full sm:w-auto h-12 md:h-14 lg:h-16 px-6 md:px-8 bg-white text-black font-bold rounded-lg hover:bg-white/90 transition-all duration-300 shadow-lg text-sm md:text-base"
+                className="w-full sm:w-auto h-12 md:h-14 lg:h-16 px-6 md:px-8 font-bold rounded-lg transition-all duration-300 shadow-lg text-sm md:text-base"
+                style={theme === 'light' ? {
+                  backgroundColor: '#3b82f6',
+                  color: '#ffffff'
+                } : {
+                  backgroundColor: '#ffffff',
+                  color: '#000000'
+                }}
               >
                 See my Work
               </button>
               <button
                 onClick={() => setIsVideoOpen(true)}
-                className="w-full sm:w-auto h-12 md:h-14 lg:h-16 px-6 md:px-8 bg-gradient-to-r from-red-500 to-red-600 text-white font-bold rounded-lg hover:from-red-600 hover:to-red-700 transition-all duration-300 shadow-lg flex items-center justify-center gap-2 group text-sm md:text-base"
+                className="w-full sm:w-auto h-12 md:h-14 lg:h-16 px-6 md:px-8 font-bold rounded-lg transition-all duration-300 shadow-lg flex items-center justify-center gap-2 group text-sm md:text-base"
+                style={theme === 'light' ? {
+                  backgroundColor: '#dc2626',
+                  color: '#ffffff'
+                } : {
+                  backgroundColor: '#dc2626',
+                  color: '#ffffff'
+                }}
               >
                 <svg
                   className="w-5 h-5 md:w-6 md:h-6 group-hover:scale-110 transition-transform"
@@ -459,7 +692,17 @@ const Hero = () => {
               </button>
               <button
                 onClick={handleDownloadCV}
-                className="w-full sm:w-auto h-12 md:h-14 lg:h-16 px-6 md:px-8 bg-white/5 backdrop-blur-sm border-2 border-white/20 text-white font-bold rounded-lg hover:bg-white/10 hover:border-white/40 transition-all duration-300 shadow-lg flex items-center justify-center gap-2 group text-sm md:text-base"
+                className="w-full sm:w-auto h-12 md:h-14 lg:h-16 px-6 md:px-8 font-bold rounded-lg transition-all duration-300 shadow-lg flex items-center justify-center gap-2 group text-sm md:text-base"
+                style={theme === 'light' ? {
+                  backgroundColor: 'transparent',
+                  border: '2px solid #3b82f6',
+                  color: '#3b82f6'
+                } : {
+                  backgroundColor: 'rgba(255, 255, 255, 0.05)',
+                  backdropFilter: 'blur(10px)',
+                  border: '2px solid rgba(255, 255, 255, 0.2)',
+                  color: '#ffffff'
+                }}
               >
                 <svg
                   className="w-4 h-4 md:w-5 md:h-5 group-hover:translate-y-1 transition-transform"
@@ -494,7 +737,8 @@ const Hero = () => {
                   aria-label={social.label}
                 >
                   <svg
-                    className="w-5 h-5 md:w-6 md:h-6 text-gray-400 group-hover:text-white transition-colors"
+                    className="w-5 h-5 md:w-6 md:h-6 transition-colors"
+                    style={theme === 'light' ? { color: '#6b7280' } : { color: '#9ca3af' }}
                     fill={social.stroke ? "none" : "currentColor"}
                     stroke={social.stroke ? "currentColor" : undefined}
                     viewBox="0 0 24 24"
@@ -519,17 +763,17 @@ const Hero = () => {
                   {
                     num: "20+",
                     label: "Projects",
-                    colors: "from-blue-400 to-purple-500",
+                    color: "text-blue-500",
                   },
                   {
                     num: "3+",
                     label: "Years Exp",
-                    colors: "from-purple-400 to-pink-500",
+                    color: "text-purple-500",
                   },
                   {
                     num: "15+",
                     label: "Tech Stack",
-                    colors: "from-pink-400 to-red-500",
+                    color: "text-pink-500",
                   },
                 ].map((stat) => (
                   <div
@@ -537,11 +781,12 @@ const Hero = () => {
                     className="hero-quick-stat text-center group hover:scale-110 transition-transform duration-300 cursor-pointer"
                   >
                     <div
-                      className={`text-2xl sm:text-3xl md:text-4xl font-bold bg-gradient-to-r ${stat.colors} bg-clip-text text-transparent`}
+                      className={`text-2xl sm:text-3xl md:text-4xl font-bold ${stat.color}`}
                     >
                       {stat.num}
                     </div>
-                    <div className="text-gray-400 text-xs sm:text-sm mt-1">
+                    <div className="text-xs sm:text-sm mt-1"
+                      style={theme === 'light' ? { color: '#6b7280' } : { color: '#9ca3af' }}>
                       {stat.label}
                     </div>
                   </div>
