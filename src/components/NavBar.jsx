@@ -1,7 +1,10 @@
 import React, { useEffect, useState } from "react";
 import { navLinks } from "../constants/index.js";
+import ThemeToggle from "./ThemeToggle.jsx";
+import { useTheme } from "../contexts/ThemeContext.jsx";
 
 const NavBar = () => {
+  const { theme } = useTheme();
   const [scrolled, setScrolled] = useState(false);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
@@ -55,10 +58,18 @@ const NavBar = () => {
 
   return (
     <>
-      <header className={`navbar ${scrolled ? "scrolled" : "not-scrolled"}`}>
+      <header 
+        className={`navbar ${scrolled ? "scrolled" : "not-scrolled"}`} 
+        style={theme === 'light' ? { backgroundColor: 'white', color: '#000' } : {}}
+      >
         <div className="inner">
           {/* Logo */}
-          <a className="logo" href="#hero" onClick={handleNavClick}>
+          <a 
+            className="logo" 
+            href="#hero" 
+            onClick={handleNavClick} 
+            style={theme === 'light' ? { color: '#000' } : {}}
+          >
             Ken | Garcia
           </a>
 
@@ -67,7 +78,7 @@ const NavBar = () => {
             <ul>
               {navLinks.map(({ link, name }) => (
                 <li key={name} className="group">
-                  <a href={link}>
+                  <a href={link} style={theme === 'light' ? { color: '#000' } : {}}>
                     <span>{name}</span>
                     <span className="underline" />
                   </a>
@@ -77,59 +88,73 @@ const NavBar = () => {
           </nav>
 
           {/* Desktop Contact Button - Hidden on mobile/tablet */}
-          <a href="#contact" className="contact-btn group hidden lg:flex">
-            <div className="inner">
-              <span>Contact Me</span>
-            </div>
-          </a>
+          <div className="hidden lg:flex items-center gap-3">
+            <ThemeToggle />
+            <a href="#contact" className="contact-btn group">
+              <div className="inner">
+                <span>Contact Me</span>
+              </div>
+            </a>
+          </div>
 
-          {/* Mobile/Tablet Hamburger Menu */}
-          <button
-            className="hamburger lg:hidden relative w-10 h-10 flex flex-col items-center justify-center gap-1.5 z-50"
-            onClick={toggleMenu}
-            aria-label="Toggle menu"
-            aria-expanded={isMenuOpen}
-          >
-            <span
-              className={`block w-6 h-0.5 bg-white transition-all duration-300 ${
-                isMenuOpen ? "rotate-45 translate-y-2" : ""
-              }`}
-            />
-            <span
-              className={`block w-6 h-0.5 bg-white transition-all duration-300 ${
-                isMenuOpen ? "opacity-0" : ""
-              }`}
-            />
-            <span
-              className={`block w-6 h-0.5 bg-white transition-all duration-300 ${
-                isMenuOpen ? "-rotate-45 -translate-y-2" : ""
-              }`}
-            />
-          </button>
+          {/* Mobile/Tablet Controls */}
+          <div className="lg:hidden flex items-center gap-3">
+            <ThemeToggle />
+            <button
+              className="hamburger relative w-10 h-10 flex flex-col items-center justify-center gap-1.5 z-50"
+              onClick={toggleMenu}
+              aria-label="Toggle menu"
+              aria-expanded={isMenuOpen}
+            >
+              <span
+                className={`block w-6 h-0.5 transition-all duration-300 ${
+                  isMenuOpen ? "rotate-45 translate-y-2 bg-white" : (theme === 'light' ? "bg-black" : "bg-[var(--text-primary)]")
+                }`}
+              />
+              <span
+                className={`block w-6 h-0.5 transition-all duration-300 ${
+                  isMenuOpen ? "opacity-0 bg-white" : (theme === 'light' ? "bg-black" : "bg-[var(--text-primary)]")
+                }`}
+              />
+              <span
+                className={`block w-6 h-0.5 transition-all duration-300 ${
+                  isMenuOpen ? "-rotate-45 -translate-y-2 bg-white" : (theme === 'light' ? "bg-black" : "bg-[var(--text-primary)]")
+                }`}
+              />
+            </button>
+          </div>
         </div>
       </header>
 
       {/* Mobile/Tablet Menu Overlay */}
       <div
-        className={`fixed inset-0 bg-black/80 backdrop-blur-sm z-40 transition-opacity duration-300 lg:hidden ${
+        className={`fixed inset-0 backdrop-blur-sm z-40 transition-opacity duration-300 lg:hidden ${
           isMenuOpen
             ? "opacity-100 pointer-events-auto"
             : "opacity-0 pointer-events-none"
         }`}
+        style={{
+          backgroundColor: 'rgba(0, 0, 0, 0.8)'
+        }}
         onClick={() => setIsMenuOpen(false)}
       />
 
       {/* Mobile/Tablet Side Menu */}
       <nav
-        className={`mobile-menu fixed top-0 right-0 h-full w-full sm:w-80 bg-black border-l border-white/10 z-50 transform transition-transform duration-300 ease-in-out lg:hidden ${
+        className={`mobile-menu fixed top-0 right-0 h-full w-full sm:w-80 border-l z-50 transform transition-transform duration-300 ease-in-out lg:hidden ${
           isMenuOpen ? "translate-x-0" : "translate-x-full"
         }`}
+        style={{
+          backgroundColor: 'var(--bg-secondary)',
+          borderColor: 'var(--border-primary)'
+        }}
       >
         <div className="flex flex-col h-full p-8 pt-24">
           {/* Mobile Logo */}
           <div className="mb-8">
             <a
-              className="text-2xl font-bold text-white"
+              className="text-2xl font-bold"
+              style={{ color: 'var(--text-primary)' }}
               href="#hero"
               onClick={handleNavClick}
             >
@@ -152,10 +177,14 @@ const NavBar = () => {
                 <a
                   href={link}
                   onClick={handleNavClick}
-                  className="flex items-center gap-3 text-xl text-white-50 hover:text-white transition-colors duration-300 group"
+                  className="flex items-center gap-3 text-xl transition-colors duration-300 group"
+                  style={{ color: 'var(--text-secondary)' }}
                 >
-                  <span className="w-0 h-0.5 bg-white group-hover:w-8 transition-all duration-300" />
-                  <span>{name}</span>
+                  <span 
+                    className="w-0 h-0.5 group-hover:w-8 transition-all duration-300"
+                    style={{ backgroundColor: 'var(--text-primary)' }}
+                  />
+                  <span className="group-hover:[color:var(--text-primary)]">{name}</span>
                 </a>
               </li>
             ))}
@@ -183,8 +212,9 @@ const NavBar = () => {
 
           {/* Social Links in Mobile Menu */}
           <div
-            className="flex justify-center gap-4 mt-6 pt-6 border-t border-white/10"
+            className="flex justify-center gap-4 mt-6 pt-6"
             style={{
+              borderTop: '1px solid var(--border-primary)',
               animation: isMenuOpen
                 ? "slideInRight 0.3s ease-out 0.6s both"
                 : "none",
@@ -194,11 +224,16 @@ const NavBar = () => {
               href="https://github.com/KpG782"
               target="_blank"
               rel="noopener noreferrer"
-              className="p-3 bg-white/5 backdrop-blur-sm border border-white/10 rounded-lg hover:bg-white/10 hover:border-white/30 transition-all duration-300"
+              className="p-3 backdrop-blur-sm rounded-lg transition-all duration-300"
+              style={{
+                backgroundColor: 'var(--bg-card)',
+                border: '1px solid var(--border-primary)'
+              }}
               aria-label="GitHub"
             >
               <svg
-                className="w-5 h-5 text-white-50 hover:text-white transition-colors"
+                className="w-5 h-5 transition-colors"
+                style={{ color: 'var(--text-secondary)' }}
                 fill="currentColor"
                 viewBox="0 0 24 24"
               >
@@ -214,11 +249,16 @@ const NavBar = () => {
               href="https://www.linkedin.com/in/kenpatrickgarcia123"
               target="_blank"
               rel="noopener noreferrer"
-              className="p-3 bg-white/5 backdrop-blur-sm border border-white/10 rounded-lg hover:bg-white/10 hover:border-white/30 transition-all duration-300"
+              className="p-3 backdrop-blur-sm rounded-lg transition-all duration-300"
+              style={{
+                backgroundColor: 'var(--bg-card)',
+                border: '1px solid var(--border-primary)'
+              }}
               aria-label="LinkedIn"
             >
               <svg
-                className="w-5 h-5 text-white-50 hover:text-white transition-colors"
+                className="w-5 h-5 transition-colors"
+                style={{ color: 'var(--text-secondary)' }}
                 fill="currentColor"
                 viewBox="0 0 24 24"
               >
@@ -228,11 +268,16 @@ const NavBar = () => {
 
             <a
               href="mailto:kenpatrickgarcia123@gmail.com"
-              className="p-3 bg-white/5 backdrop-blur-sm border border-white/10 rounded-lg hover:bg-white/10 hover:border-white/30 transition-all duration-300"
+              className="p-3 backdrop-blur-sm rounded-lg transition-all duration-300"
+              style={{
+                backgroundColor: 'var(--bg-card)',
+                border: '1px solid var(--border-primary)'
+              }}
               aria-label="Email"
             >
               <svg
-                className="w-5 h-5 text-white-50 hover:text-white transition-colors"
+                className="w-5 h-5 transition-colors"
+                style={{ color: 'var(--text-secondary)' }}
                 fill="none"
                 stroke="currentColor"
                 viewBox="0 0 24 24"
@@ -250,11 +295,16 @@ const NavBar = () => {
               href="https://facebook.com/kenpatrickgarcia123"
               target="_blank"
               rel="noopener noreferrer"
-              className="p-3 bg-white/5 backdrop-blur-sm border border-white/10 rounded-lg hover:bg-white/10 hover:border-white/30 transition-all duration-300"
+              className="p-3 backdrop-blur-sm rounded-lg transition-all duration-300"
+              style={{
+                backgroundColor: 'var(--bg-card)',
+                border: '1px solid var(--border-primary)'
+              }}
               aria-label="Facebook"
             >
               <svg
-                className="w-5 h-5 text-white-50 hover:text-white transition-colors"
+                className="w-5 h-5 transition-colors"
+                style={{ color: 'var(--text-secondary)' }}
                 fill="currentColor"
                 viewBox="0 0 24 24"
               >
