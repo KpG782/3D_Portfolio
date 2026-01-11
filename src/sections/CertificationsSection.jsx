@@ -1,6 +1,7 @@
 import React, { useState, useRef, useEffect } from "react";
 import { certifications } from "../constants/certifications.js";
 import TitleHeader from "../components/TitleHeader.jsx";
+import { useTheme } from "../contexts/ThemeContext.jsx";
 
 const CertificationModal = ({ cert, isOpen, onClose, isHoverMode }) => {
   if (!isOpen || !cert) return null;
@@ -127,6 +128,7 @@ const CertificationModal = ({ cert, isOpen, onClose, isHoverMode }) => {
 };
 
 const CertificationsSection = () => {
+  const { theme } = useTheme();
   const [selectedCert, setSelectedCert] = useState(null);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [isHoverMode, setIsHoverMode] = useState(false);
@@ -242,7 +244,14 @@ const CertificationsSection = () => {
         role="button"
         aria-label={`View ${cert.name}`}
       >
-        <div className="relative overflow-hidden rounded-xl border-2 border-gray-700 group-hover:border-blue-500/50 transition-all duration-300 bg-gradient-to-br from-gray-900 to-gray-800 shadow-lg group-hover:shadow-2xl group-hover:shadow-blue-500/20 w-96 h-72">
+        <div className="relative overflow-hidden rounded-xl border-2 transition-all duration-300 shadow-lg group-hover:shadow-2xl group-hover:shadow-blue-500/20 w-96 h-72"
+          style={theme === 'light' ? {
+            background: 'linear-gradient(to bottom right, #ffffff, #f3f4f6)',
+            borderColor: '#d1d5db'
+          } : {
+            background: 'linear-gradient(to bottom right, #1f2937, #111827)',
+            borderColor: '#374151'
+          }}>
           <img
             src={cert.imagePath}
             alt={cert.name}
@@ -325,7 +334,6 @@ const CertificationsSection = () => {
           top: 0;
           bottom: 0;
           width: 100px;
-          background: linear-gradient(to right, black, transparent);
           pointer-events: none;
           z-index: 10;
         }
@@ -336,7 +344,6 @@ const CertificationsSection = () => {
           top: 0;
           bottom: 0;
           width: 100px;
-          background: linear-gradient(to left, black, transparent);
           pointer-events: none;
           z-index: 10;
         }
@@ -344,7 +351,8 @@ const CertificationsSection = () => {
 
       <section
         id="certifications"
-        className="bg-black overflow-hidden py-10 md:py-16"
+        className="overflow-hidden py-10 md:py-16"
+        style={theme === 'light' ? { backgroundColor: '#ffffff' } : { backgroundColor: '#000' }}
       >
         <div className="w-full h-full md:px-10 px-5">
           <TitleHeader
@@ -353,8 +361,12 @@ const CertificationsSection = () => {
           />
 
           <div className="relative mt-8 md:mt-12">
-            <div className="gradient-edge-left" />
-            <div className="gradient-edge-right" />
+            <div className="gradient-edge-left" style={{
+              background: theme === 'light' ? 'linear-gradient(to right, #ffffff, transparent)' : 'linear-gradient(to right, black, transparent)'
+            }} />
+            <div className="gradient-edge-right" style={{
+              background: theme === 'light' ? 'linear-gradient(to left, #ffffff, transparent)' : 'linear-gradient(to left, black, transparent)'
+            }} />
 
             <div
               ref={scrollContainerRef}
@@ -379,7 +391,7 @@ const CertificationsSection = () => {
           </div>
 
           <div className="text-center mt-6">
-            <p className="text-gray-400 text-sm">
+            <p className="text-sm" style={theme === 'light' ? { color: '#6b7280' } : { color: '#9ca3af' }}>
               <span className="text-blue-400">Auto-scrolling</span> • Drag to
               control • <span className="text-purple-400">Hover</span> to
               preview • <span className="text-green-400">Click</span> to lock

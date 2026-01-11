@@ -5,10 +5,13 @@ import GlowCard from "../components/GlowCard.jsx";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { useGSAP } from "@gsap/react";
+import { useTheme } from "../contexts/ThemeContext.jsx";
 
 gsap.registerPlugin(ScrollTrigger);
 
 const ExperienceSection = () => {
+  const { theme } = useTheme();
+  
   useGSAP(() => {
     gsap.utils.toArray(".timeline-card").forEach((card) => {
       gsap.from(card, {
@@ -57,6 +60,7 @@ const ExperienceSection = () => {
     <section
       id="experience"
       className={"w-full md:mt-40 mt-20 section-padding xl:px-0"}
+      style={theme === 'light' ? { backgroundColor: '#ffffff' } : {}}
     >
       <div className={"w-full h-full md:px-20 px-5"}>
         <TitleHeader
@@ -101,17 +105,23 @@ const ExperienceSection = () => {
                         />
                       </div>
                       <div>
-                        <h1 className={"font-semibold text-3xl"}>
+                        <h1 className={"font-semibold text-3xl"}
+                          style={theme === 'light' ? { color: '#111827' } : { color: '#fff' }}>
                           {card.title}
                         </h1>
-                        <p className={"my-5 text-white-50"}>📅 {card.date}</p>
-                        <p className={"text-[#839cb5] italic"}>
+                        <p className={"my-5"}
+                          style={theme === 'light' ? { color: '#6b7280' } : { color: 'rgba(255, 255, 255, 0.5)' }}>
+                          📅 {card.date}
+                        </p>
+                        <p className={"italic"}
+                          style={theme === 'light' ? { color: '#3b82f6' } : { color: '#839cb5' }}>
                           Responsibilities
                         </p>
                         <ul
                           className={
-                            "list-disc ms-5 mt-5 flex flex-col gap-5 text-white"
+                            "list-disc ms-5 mt-5 flex flex-col gap-5"
                           }
+                          style={theme === 'light' ? { color: '#374151' } : { color: '#fff' }}
                         >
                           {card.responsibilities.map((responsibility) => (
                             <li key={responsibility} className={"text-lg"}>
