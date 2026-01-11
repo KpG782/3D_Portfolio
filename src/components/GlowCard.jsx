@@ -59,7 +59,7 @@ const GlowCard = ({ card, children, index }) => {
       {/* Review text */}
       {card.review && (
         <div className="mb-4 sm:mb-5">
-          <p className="text-white-50 text-base sm:text-lg leading-relaxed">
+          <p className="text-base sm:text-lg leading-relaxed" style={{ color: 'var(--text-secondary)' }}>
             {card.review}
           </p>
         </div>

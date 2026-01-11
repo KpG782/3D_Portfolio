@@ -1,9 +1,7 @@
-import React, { Suspense, useRef, useState } from "react";
+import React, { useRef, useState } from "react";
 import { words } from "../constants/index.js";
 import { useGSAP } from "@gsap/react";
 import gsap from "gsap";
-import { Canvas, useFrame } from "@react-three/fiber";
-import { OrbitControls, useGLTF } from "@react-three/drei";
 
 // Video Modal Component
 const VideoModal = ({ isOpen, onClose }) => {
@@ -278,32 +276,8 @@ const VideoModal = ({ isOpen, onClose }) => {
   );
 };
 
-// 3D Model Component
-function KenModel(props) {
-  const { scene } = useGLTF("/models/ken3d-optimized.glb");
-  const modelRef = useRef();
-
-  // Notify parent when loaded
-  React.useEffect(() => {
-    if (props.onLoad) props.onLoad();
-  }, [props]);
-
-  // Subtle rotation animation
-  useFrame((state, delta) => {
-    if (modelRef.current) {
-      modelRef.current.rotation.y += delta * 0.15;
-    }
-  });
-
-  return <primitive ref={modelRef} object={scene} {...props} />;
-}
-
-// Preload the model
-useGLTF.preload("/models/ken3d-optimized.glb");
-
 const Hero = () => {
   const [isVideoOpen, setIsVideoOpen] = useState(false);
-  const [modelLoaded, setModelLoaded] = useState(false);
 
   useGSAP(() => {
     const animateElement = (selector, from, delay = 0, stagger = 0) => {
@@ -398,82 +372,15 @@ const Hero = () => {
       <div className="absolute inset-0 bg-[linear-gradient(rgba(255,255,255,0.02)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.02)_1px,transparent_1px)] bg-[size:50px_50px] pointer-events-none" />
 
       <div className="flex flex-col md:flex-row items-center justify-center min-h-screen px-5 md:px-10 lg:px-20 gap-8 md:gap-12">
-        {/* Profile Images - Top on mobile, Right on tablet/desktop */}
+        {/* Profile Image - Top on mobile, Right on tablet/desktop */}
         <figure className="w-full md:w-1/2 flex items-center justify-center md:order-2">
-          <div className="hero-profile relative flex flex-col md:flex-row items-center gap-6 md:gap-8">
-            {/* 3D Model */}
-            <div className="relative group">
-              <div className="absolute -inset-4 bg-gradient-to-r from-blue-500 via-purple-600 to-pink-500 rounded-full blur-2xl opacity-75 group-hover:opacity-100 transition duration-500 animate-pulse" />
-              <div className="relative w-56 h-56 sm:w-64 sm:h-64 md:w-72 md:h-72 lg:w-80 lg:h-80 rounded-full overflow-hidden border-4 border-white/20 shadow-2xl bg-gradient-to-br from-gray-900 to-black">
-                {/* Loading Overlay */}
-                {!modelLoaded && (
-                  <div className="absolute inset-0 flex flex-col items-center justify-center z-10 bg-gray-900/50 backdrop-blur-sm">
-                    <div className="w-12 h-12 border-4 border-blue-500 border-t-transparent rounded-full animate-spin mb-3"></div>
-                    <p className="text-white text-sm font-medium">
-                      Loading 3D Model...
-                    </p>
-                  </div>
-                )}
-
-                <Canvas
-                  camera={{ position: [0, 0, 4.5], fov: 50 }}
-                  className="w-full h-full"
-                >
-                  <Suspense
-                    fallback={
-                      <mesh>
-                        <sphereGeometry args={[1, 32, 32]} />
-                        <meshStandardMaterial color="#4a5568" wireframe />
-                      </mesh>
-                    }
-                  >
-                    {/* Lighting */}
-                    <ambientLight intensity={1.2} />
-                    <directionalLight
-                      position={[5, 5, 5]}
-                      intensity={1.5}
-                      castShadow
-                    />
-                    <directionalLight position={[-5, 5, 5]} intensity={0.8} />
-                    <pointLight position={[0, 5, 3]} intensity={1} />
-                    <hemisphereLight intensity={0.5} groundColor="#000000" />
-                    <spotLight
-                      position={[0, 8, 5]}
-                      angle={0.5}
-                      penumbra={0.8}
-                      intensity={1.2}
-                      castShadow
-                    />
-
-                    {/* 3D Model */}
-                    <KenModel
-                      scale={3.5}
-                      position={[0, -0.5, 0]}
-                      onLoad={() => setModelLoaded(true)}
-                    />
-
-                    {/* Controls */}
-                    <OrbitControls
-                      enableZoom={false}
-                      enablePan={false}
-                      maxPolarAngle={Math.PI / 2}
-                      minPolarAngle={Math.PI / 2}
-                    />
-                  </Suspense>
-                </Canvas>
-              </div>
-              <div className="absolute -bottom-3 left-1/2 transform -translate-x-1/2 bg-gradient-to-r from-blue-500 to-purple-600 text-white text-xs font-bold px-4 py-1.5 rounded-full shadow-lg whitespace-nowrap">
-                3D Model
-              </div>
-            </div>
-
-            {/* Real Picture */}
-            <div className="relative group">
-              <div className="absolute -inset-4 bg-gradient-to-r from-pink-500 via-red-500 to-orange-500 rounded-full blur-2xl opacity-75 group-hover:opacity-100 transition duration-500 animate-pulse" />
+          <div className="hero-profile relative">
+            {/* Profile Picture */}
+            <div className="relative">
               <img
                 src="/images/2x2.jpg"
                 alt="Ken Patrick Garcia"
-                className="relative w-56 h-56 sm:w-64 sm:h-64 md:w-72 md:h-72 lg:w-80 lg:h-80 rounded-full object-cover border-4 border-white/20 shadow-2xl"
+                className="w-56 h-56 sm:w-64 sm:h-64 md:w-72 md:h-72 lg:w-80 lg:h-80 rounded-full object-cover border-4 border-white/20 shadow-2xl"
               />
               <div className="absolute -bottom-3 left-1/2 transform -translate-x-1/2 bg-gradient-to-r from-green-400 to-blue-500 text-white text-xs font-bold px-4 py-1.5 rounded-full shadow-lg flex items-center gap-2 whitespace-nowrap">
                 <span className="w-2.5 h-2.5 bg-white rounded-full animate-pulse" />

@@ -117,20 +117,12 @@ const Contact = () => {
                   ></textarea>
                 </div>
 
-                <button type={"submit"} disabled={loading}>
-                  <div className={"cta-button group"}>
-                    <div className={"bg-circle"} />
-                    <p className={"text"}>
-                      {loading ? "Sending..." : "Send Message"}
-                    </p>
-                    <div className={"arrow-wrapper"}>
-                      <img
-                        src="/images/arrow-down.svg"
-                        alt="arrow"
-                        className="w-4 h-4 sm:w-5 sm:h-5 md:w-6 md:h-6"
-                      />
-                    </div>
-                  </div>
+                <button 
+                  type="submit" 
+                  disabled={loading}
+                  className="w-full px-6 py-3 bg-blue-600 hover:bg-blue-700 text-white font-semibold rounded-lg transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed shadow-lg hover:shadow-xl"
+                >
+                  {loading ? "Sending..." : "Send Message"}
                 </button>
               </form>
             </div>
@@ -140,7 +132,7 @@ const Contact = () => {
           <div className={"xl:col-span-7 min-h-96"}>
             <div
               className={
-                "w-full h-full bg-gradient-to-br from-gray-900 via-gray-800 to-black hover:cursor-grab rounded-3xl overflow-hidden border border-white/10"
+                "w-full h-full hover:cursor-grab rounded-3xl overflow-hidden card-border"
               }
             >
               <ContactExperience />
@@ -152,7 +144,10 @@ const Contact = () => {
       {/*for mpop up*/}
       <AnimatePresence>
         {isModalOpen && (
-          <div className="fixed inset-0 backdrop-blur-sm bg-white/10 flex items-center justify-center z-[9999]">
+          <div 
+            className="fixed inset-0 backdrop-blur-sm flex items-center justify-center z-[9999]"
+            style={{ backgroundColor: 'rgba(0, 0, 0, 0.5)' }}
+          >
             <motion.div
               initial={{ y: 100, opacity: 0 }}
               animate={{ y: 0, opacity: 1 }}
@@ -161,10 +156,22 @@ const Contact = () => {
                 duration: 0.6,
                 ease: [0.25, 1, 0.5, 1],
               }}
-              className="bg-white p-6 rounded-lg shadow-lg w-[90%] max-w-md text-center"
+              className="p-6 rounded-lg w-[90%] max-w-md text-center border-theme-primary"
+              style={{
+                backgroundColor: 'var(--bg-card)',
+                boxShadow: 'var(--shadow-lg)',
+                border: '1px solid var(--border-primary)'
+              }}
             >
-              <h2 className="text-xl font-semibold mb-4">Message Sent!</h2>
-              <p className="text-gray-700"> Thank you for getting in touch!</p>
+              <h2 
+                className="text-xl font-semibold mb-4"
+                style={{ color: 'var(--text-primary)' }}
+              >
+                Message Sent!
+              </h2>
+              <p style={{ color: 'var(--text-secondary)' }}>
+                Thank you for getting in touch!
+              </p>
             </motion.div>
           </div>
         )}

@@ -60,8 +60,8 @@ const ExperienceSection = () => {
     >
       <div className={"w-full h-full md:px-20 px-5"}>
         <TitleHeader
-          title={"Milestones in My Developer Growth"}
-          sub={"My Development Journey"}
+          title={"From Web Dev to AI Engineering"}
+          sub={"My Engineering Journey"}
         />
 
         <div className={"mt-32 relative"}>
@@ -70,8 +70,12 @@ const ExperienceSection = () => {
               <div key={card.title} className={"exp-card-wrapper"}>
                 <div className={"xl:w-2/6"}>
                   <GlowCard index={index} card={card}>
-                    <div>
-                      <img src={card.imgPath} alt={card.title} />
+                    <div style={card.imgPath.includes('exp5') ? { backgroundColor: '#f0f0f0', padding: '20px', borderRadius: '12px' } : {}}>
+                      <img 
+                        src={card.imgPath} 
+                        alt={card.title}
+                        style={card.imgPath.includes('exp5') ? { width: '70%', height: 'auto', margin: '0 auto', display: 'block' } : {}}
+                      />
                     </div>
                   </GlowCard>
                 </div>
@@ -90,7 +94,11 @@ const ExperienceSection = () => {
                       }
                     >
                       <div className={"timeline-logo"}>
-                        <img src={card.logoPath} alt="logo" />
+                        <img 
+                          src={card.logoPath} 
+                          alt="logo"
+                          style={card.logoPath.includes('python') || card.logoPath.includes('node') ? { width: '60%', height: 'auto' } : {}}
+                        />
                       </div>
                       <div>
                         <h1 className={"font-semibold text-3xl"}>
