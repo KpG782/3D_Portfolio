@@ -1,39 +1,49 @@
-import React, { useRef, useState, useEffect } from "react";
+import React, { memo, useRef, useState, useEffect } from "react";
 import { words } from "../constants/index.js";
 import { useGSAP } from "@gsap/react";
 import gsap from "gsap";
 import { useTheme } from "../contexts/ThemeContext.jsx";
 
 // Neural Network Background Component
-const NeuralNetworkBackground = ({ theme }) => {
+const NeuralNetworkBackground = memo(({ theme }) => {
   const canvasRef = useRef(null);
+  const sectionRef = useRef(null);
   const mouseRef = useRef({ x: -1000, y: -1000, isActive: false });
 
   useEffect(() => {
     const canvas = canvasRef.current;
-    if (!canvas) return;
+    const section = sectionRef.current;
+    if (!canvas || !section) return;
 
-    const ctx = canvas.getContext('2d');
+    const ctx = canvas.getContext("2d");
     let animationFrameId;
     let particles = [];
+    let lastFrameTime = 0;
+    let isDocumentVisible = document.visibilityState === "visible";
+    let isSectionVisible = true;
+    const prefersReducedMotion = window.matchMedia(
+      "(prefers-reduced-motion: reduce)"
+    ).matches;
+    const isMobile = window.matchMedia("(max-width: 767px)").matches;
+    const maxConnectionDistance = isMobile ? 120 : 160;
+    const maxConnectionDistanceSq = maxConnectionDistance * maxConnectionDistance;
+    const maxDepthDistance = isMobile ? 110 : 140;
 
-    // Set canvas size
     const resizeCanvas = () => {
       canvas.width = window.innerWidth;
       canvas.height = window.innerHeight;
     };
     resizeCanvas();
-    window.addEventListener('resize', resizeCanvas);
+    window.addEventListener("resize", resizeCanvas);
 
-    // Mouse tracking with throttling for performance
     let lastMouseUpdate = 0;
     const handleMouseMove = (e) => {
       const now = Date.now();
-      if (now - lastMouseUpdate > 16) { // ~60fps throttle
+      if (now - lastMouseUpdate > 32) {
         mouseRef.current = {
           x: e.clientX,
           y: e.clientY,
-          isActive: true
+          isActive: true,
         };
         lastMouseUpdate = now;
       }
@@ -43,8 +53,21 @@ const NeuralNetworkBackground = ({ theme }) => {
       mouseRef.current.isActive = false;
     };
 
-    canvas.addEventListener('mousemove', handleMouseMove);
-    canvas.addEventListener('mouseleave', handleMouseLeave);
+    const handleVisibilityChange = () => {
+      isDocumentVisible = document.visibilityState === "visible";
+    };
+
+    const sectionObserver = new IntersectionObserver(
+      ([entry]) => {
+        isSectionVisible = entry.isIntersecting;
+      },
+      { threshold: 0.05 }
+    );
+    sectionObserver.observe(section);
+
+    canvas.addEventListener("mousemove", handleMouseMove, { passive: true });
+    canvas.addEventListener("mouseleave", handleMouseLeave);
+    document.addEventListener("visibilitychange", handleVisibilityChange);
 
     // Enhanced Particle class with 3D depth and chain reaction
     class Particle {
@@ -67,10 +90,12 @@ const NeuralNetworkBackground = ({ theme }) => {
         if (mouseRef.current.isActive) {
           const dx = this.x - mouseRef.current.x;
           const dy = this.y - mouseRef.current.y;
-          const distance = Math.sqrt(dx * dx + dy * dy);
+          const distanceSq = dx * dx + dy * dy;
           const maxDistance = 150;
+          const maxDistanceSq = maxDistance * maxDistance;
 
-          if (distance < maxDistance) {
+          if (distanceSq < maxDistanceSq && distanceSq > 0) {
+            const distance = Math.sqrt(distanceSq);
             const force = (1 - distance / maxDistance) * 2;
             this.vx += (dx / distance) * force * 0.1;
             this.vy += (dy / distance) * force * 0.1;
@@ -80,20 +105,20 @@ const NeuralNetworkBackground = ({ theme }) => {
 
         // Chain reaction - spread energy to nearby particles
         if (this.energy > 0.1) {
-          particles.forEach(other => {
-            if (other !== this) {
-              const dx = this.x - other.x;
-              const dy = this.y - other.y;
-              const distance = Math.sqrt(dx * dx + dy * dy);
-              
-              if (distance < 100) {
-                const energyTransfer = this.energy * 0.3 * (1 - distance / 100);
-                other.vx += (dx / distance) * energyTransfer * 0.05;
-                other.vy += (dy / distance) * energyTransfer * 0.05;
-                other.energy = Math.max(other.energy, energyTransfer * 0.7);
-              }
+          for (const other of particles) {
+            if (other === this) continue;
+            const dx = this.x - other.x;
+            const dy = this.y - other.y;
+            const distanceSq = dx * dx + dy * dy;
+
+            if (distanceSq < 10000 && distanceSq > 0) {
+              const distance = Math.sqrt(distanceSq);
+              const energyTransfer = this.energy * 0.3 * (1 - distance / 100);
+              other.vx += (dx / distance) * energyTransfer * 0.05;
+              other.vy += (dy / distance) * energyTransfer * 0.05;
+              other.energy = Math.max(other.energy, energyTransfer * 0.7);
             }
-          });
+          }
           this.energy *= 0.92; // Decay energy
         }
 
@@ -139,52 +164,64 @@ const NeuralNetworkBackground = ({ theme }) => {
       }
     }
 
-    // Initialize particles
-    const particleCount = Math.min(Math.floor((canvas.width * canvas.height) / 10000), 150);
+    const particleCount = prefersReducedMotion
+      ? 10
+      : Math.min(
+          Math.floor((window.innerWidth * window.innerHeight) / (isMobile ? 28000 : 24000)),
+          isMobile ? 26 : 42
+        );
     for (let i = 0; i < particleCount; i++) {
       particles.push(new Particle());
     }
     
-    // Add extra particles clustered in the center for denser interaction area
-    const centerParticles = 30;
+    const centerParticles = prefersReducedMotion ? 0 : isMobile ? 4 : 6;
     for (let i = 0; i < centerParticles; i++) {
       const p = new Particle();
-      // Bias towards center (within 60% of screen)
       p.x = canvas.width * 0.2 + Math.random() * canvas.width * 0.6;
       p.y = canvas.height * 0.2 + Math.random() * canvas.height * 0.6;
       particles.push(p);
     }
 
-    // Animation loop with performance optimization
-    const animate = () => {
+    const animate = (timestamp = 0) => {
+      if (!isDocumentVisible || !isSectionVisible) {
+        animationFrameId = requestAnimationFrame(animate);
+        return;
+      }
+
+      if (timestamp - lastFrameTime < 40) {
+        animationFrameId = requestAnimationFrame(animate);
+        return;
+      }
+      lastFrameTime = timestamp;
+
       ctx.clearRect(0, 0, canvas.width, canvas.height);
 
-      // Sort particles by depth for proper layering
-      particles.sort((a, b) => b.z - a.z);
-
       // Update and draw particles
-      particles.forEach(particle => {
+      for (const particle of particles) {
         particle.update();
         particle.draw();
-      });
+      }
 
       // Draw connections with depth-based opacity
-      particles.forEach((p1, i) => {
-        particles.slice(i + 1).forEach(p2 => {
+      for (let i = 0; i < particles.length; i += 1) {
+        const p1 = particles[i];
+        for (let j = i + 1; j < particles.length; j += 1) {
+          const p2 = particles[j];
           const dx = p1.x - p2.x;
           const dy = p1.y - p2.y;
           const dz = Math.abs(p1.z - p2.z);
-          const distance = Math.sqrt(dx * dx + dy * dy);
+          const distanceSq = dx * dx + dy * dy;
 
           // Only connect particles at similar depths and close distance
-          if (distance < 180 && dz < 150) {
+          if (distanceSq < maxConnectionDistanceSq && dz < maxDepthDistance) {
+            const distance = Math.sqrt(distanceSq);
             ctx.beginPath();
             ctx.moveTo(p1.x, p1.y);
             ctx.lineTo(p2.x, p2.y);
             
             const avgDepth = (p1.z + p2.z) / 2;
             const depthOpacity = (600 - avgDepth) / 500;
-            const opacity = ((1 - distance / 180) * 0.5) * depthOpacity;
+            const opacity = ((1 - distance / maxConnectionDistance) * 0.42) * depthOpacity;
             
             ctx.strokeStyle = theme === 'light' 
               ? `rgba(37, 99, 235, ${opacity})` 
@@ -192,30 +229,34 @@ const NeuralNetworkBackground = ({ theme }) => {
             ctx.lineWidth = 1;
             ctx.stroke();
           }
-        });
-      });
+        }
+      }
 
       animationFrameId = requestAnimationFrame(animate);
     };
 
-    animate();
+    animationFrameId = requestAnimationFrame(animate);
 
     return () => {
-      window.removeEventListener('resize', resizeCanvas);
-      canvas.removeEventListener('mousemove', handleMouseMove);
-      canvas.removeEventListener('mouseleave', handleMouseLeave);
+      window.removeEventListener("resize", resizeCanvas);
+      canvas.removeEventListener("mousemove", handleMouseMove);
+      canvas.removeEventListener("mouseleave", handleMouseLeave);
+      document.removeEventListener("visibilitychange", handleVisibilityChange);
+      sectionObserver.disconnect();
       cancelAnimationFrame(animationFrameId);
     };
   }, [theme]);
 
   return (
-    <canvas
-      ref={canvasRef}
-      className="absolute inset-0 pointer-events-auto"
-      style={{ opacity: theme === 'light' ? 0.6 : 0.5 }}
-    />
+    <div ref={sectionRef} className="absolute inset-0">
+      <canvas
+        ref={canvasRef}
+        className="absolute inset-0 pointer-events-auto"
+        style={{ opacity: theme === 'light' ? 0.5 : 0.42 }}
+      />
+    </div>
   );
-};
+});
 
 // Video Modal Component
 const VideoModal = ({ isOpen, onClose }) => {
@@ -493,28 +534,75 @@ const VideoModal = ({ isOpen, onClose }) => {
 const Hero = () => {
   const { theme } = useTheme();
   const [isVideoOpen, setIsVideoOpen] = useState(false);
+  const heroRef = useRef(null);
 
-  useGSAP(() => {
-    const animateElement = (selector, from, delay = 0, stagger = 0) => {
-      gsap.fromTo(selector, from, {
-        y: 0,
-        x: 0,
-        opacity: 1,
-        scale: 1,
-        duration: 0.8,
-        delay,
-        stagger,
-        ease: "power2.out",
+  useGSAP(
+    () => {
+      if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+        gsap.set(
+          [
+            ".hero-profile",
+            ".hero-text h1",
+            ".hero-description",
+            ".hero-buttons",
+            ".hero-social",
+            ".hero-quick-stat",
+          ],
+          {
+            clearProps: "all",
+            opacity: 1,
+            x: 0,
+            y: 0,
+            scale: 1,
+          }
+        );
+        return;
+      }
+
+      const timeline = gsap.timeline({
+        defaults: {
+          duration: 0.65,
+          ease: "power2.out",
+        },
       });
-    };
 
-    animateElement(".hero-text h1", { y: 50, opacity: 0 }, 0, 0.2);
-    animateElement(".hero-profile", { scale: 0.8, opacity: 0 }, 0.5);
-    animateElement(".hero-description", { y: 30, opacity: 0 }, 0.6);
-    animateElement(".hero-buttons", { y: 30, opacity: 0 }, 0.8);
-    animateElement(".hero-social", { x: -30, opacity: 0 }, 1, 0.1);
-    animateElement(".hero-quick-stat", { y: 30, opacity: 0 }, 1.2, 0.15);
-  });
+      timeline
+        .from(".hero-profile", {
+          opacity: 0,
+          scale: 0.92,
+          y: 18,
+        })
+        .from(
+          ".hero-text h1",
+          {
+            opacity: 0,
+            y: 28,
+            stagger: 0.1,
+          },
+          "-=0.35"
+        )
+        .from(
+          ".hero-description, .hero-buttons",
+          {
+            opacity: 0,
+            y: 20,
+            stagger: 0.1,
+          },
+          "-=0.3"
+        )
+        .from(
+          ".hero-social, .hero-quick-stat",
+          {
+            opacity: 0,
+            y: 16,
+            stagger: 0.05,
+            duration: 0.45,
+          },
+          "-=0.2"
+        );
+    },
+    { scope: heroRef }
+  );
 
   const handleDownloadCV = () => {
     // Scroll to contact section
@@ -572,6 +660,7 @@ const Hero = () => {
 
   return (
     <section
+      ref={heroRef}
       id="hero"
       className="relative overflow-hidden min-h-screen pt-20 md:pt-24 lg:pt-20"
       style={theme === 'light' ? { backgroundColor: '#ffffff', color: '#000' } : { backgroundColor: '#000', color: '#fff' }}
@@ -582,9 +671,11 @@ const Hero = () => {
       {/* Background Effects */}
       <div className="absolute top-0 left-0 z-10 w-auto max-w-md md:max-w-lg lg:max-w-xl pointer-events-none opacity-20">
         <img
-          src="/images/bg.png"
+          src="/images/bg.webp"
           alt="background"
           className="w-full h-auto"
+          loading="eager"
+          decoding="async"
         />
       </div>
 
@@ -595,9 +686,12 @@ const Hero = () => {
             {/* Profile Picture */}
             <div className="relative">
               <img
-                src="/images/2x2.jpg"
+                src="/images/2x2.webp"
                 alt="Ken Patrick Garcia"
                 className="w-56 h-56 sm:w-64 sm:h-64 md:w-72 md:h-72 lg:w-80 lg:h-80 rounded-full object-cover border-4 border-white/20 shadow-2xl"
+                loading="eager"
+                fetchPriority="high"
+                decoding="async"
               />
               <div className="absolute -bottom-3 left-1/2 transform -translate-x-1/2 bg-blue-600 text-white text-xs font-bold px-4 py-1.5 rounded-full shadow-lg flex items-center gap-2 whitespace-nowrap">
                 <span className="w-2.5 h-2.5 bg-white rounded-full animate-pulse" />
@@ -653,6 +747,15 @@ const Hero = () => {
               </span>{" "}
               — an AI Full Stack Engineer from the Philippines 🇵🇭,
               building intelligent systems that combine cutting-edge AI with full-stack development.
+            </p>
+
+            <p
+              className="hero-description text-sm sm:text-base md:text-lg max-w-3xl leading-7"
+              style={theme === "light" ? { color: "#374151" } : { color: "#cbd5e1" }}
+            >
+              I build AI-powered full-stack products, React interfaces, Flutter
+              mobile apps, and performance-focused digital experiences for
+              startups, clients, and modern teams.
             </p>
 
             {/* CTA Buttons */}

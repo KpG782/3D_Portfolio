@@ -1,0 +1,33 @@
+# Ken Garcia Portfolio
+
+> Portfolio website of Ken Patrick Garcia, AI Full Stack Engineer.
+
+## Summary
+
+Ken Patrick Garcia builds award-winning full-stack, mobile, and AI-powered software. This site highlights selected projects, experience, certifications, skills, and contact details.
+
+## Primary URL
+
+- https://kenbuilds.tech/
+
+## Key Topics
+
+- AI full-stack engineering
+- React and frontend development
+- Flutter and mobile development
+- Three.js and interactive web experiences
+- Award-winning academic and hackathon projects
+- RAG and intelligent application development
+
+## Profiles
+
+- GitHub: https://github.com/KpG782
+- LinkedIn: https://www.linkedin.com/in/ken-patrick-garcia-ba5430285/
+- DEV: https://dev.to/kpg782
+- Instagram: https://www.instagram.com/sinpayken/
+- Facebook: https://www.facebook.com/kenpatrickgarcia123/
+- Medium: https://medium.com/@kenpatrickgarcia/about
+
+## Contact
+
+- Email: mailto:kenpatrickgarcia123@gmail.com

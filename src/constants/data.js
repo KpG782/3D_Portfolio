@@ -4,7 +4,7 @@ export const PROJECTS = [
     {
       title: "ARS – Auto Repair Response Network Service",
       desc: "🏆 Best Paper Presentation Award Winner (97% score) at the 8th Research Congress. A civic technology solution designed to provide emergency automotive assistance to stranded motorists. This mobile application connects vehicle owners with nearby professional mechanics during roadside emergencies, ensuring rapid response and community safety. Built with Flutter and Firebase using Feature-First Clean Architecture to deliver reliable, life-saving assistance when people need it most.",
-      img: "/images/hero/ars.jpg",
+      img: "/images/hero/ars.webp",
       alt: "ARS - Auto Repair Response Network Service interface",
       link: "https://github.com/KpG782/ARSAPPLICATION",
       demoLink: "https://www.facebook.com/photo/?fbid=865808522861853&set=a.129247269851319",
@@ -52,7 +52,7 @@ export const PROJECTS = [
     {
       title: "FlowFit – AI-Powered Kids Fitness Companion",
       desc: "🏆 CHAMPIONS at C(Old) (St)art Hackathon 2025 by Old.St Labs. A public health solution addressing childhood obesity and sedentary lifestyles in the digital age. This innovative fitness app helps children (7-12 years old) build lifelong healthy habits through an engaging buddy system where kids nurture a whale pet companion that grows as they drink water, exercise, and eat nutritious food. Built with Flutter and WearOS with local AI inference to make wellness accessible, fun, and meaningful for the next generation.",
-      img: "/images/hero/flowfit.jpg",
+      img: "/images/hero/flowfit.webp",
       alt: "FlowFit - AI-powered kids fitness companion with WearOS",
       link: "https://github.com/KpG782",
       demoLink: "https://www.facebook.com/photo/?fbid=122146790480960452&set=pcb.122146791386960452",
@@ -96,7 +96,7 @@ export const PROJECTS = [
     {
       title: "Pacebeats – Smart Music Recommender System",
       desc: "🥈 1st Runner Up at InfoTech Olympics 2025 (University of Makati) for Android App Development: Productivity. A wellness-driven productivity innovation that revolutionizes how users optimize their workflow and mental performance. This cutting-edge application leverages biometric data from Samsung Galaxy Watch 6 to deliver personalized music recommendations based on real-time heart rate and inter-beat intervals, creating the perfect auditory environment for peak productivity. Built with Kotlin and Jetpack Compose, PaceBeats transforms wearable technology into an intelligent productivity companion that adapts to your physiological state.",
-      img: "/images/hero/pacebeats.jpg",
+      img: "/images/hero/pacebeats.webp",
       alt: "Pacebeats - Award-winning smart heart rate monitoring app",
       link: "https://github.com/KpG782",
       demoLink: "https://www.linkedin.com/feed/update/urn:li:activity:7391489789952212992/",
@@ -136,7 +136,7 @@ export const PROJECTS = [
     {
       title: "HerbaLens – AI-Powered Medicinal Plant Recognition",
       desc: "🏅 TOP 10 FINALISTS out of 53 entries at the 2025 DOST-TAPI Regional Invention Contest and Exhibits (ClustRICE) held at Philippine Science High School. A research-driven Android application that bridges traditional Filipino herbal knowledge with modern AI technology to identify medicinal plants and provide detailed botanical information.",
-      img: "/images/hero/herbalens.jpg",
+      img: "/images/hero/herbalens.webp",
       alt: "HerbaLens - AI medicinal plant recognition app",
       link: "https://theherbalenswebsite.web.app/",
       demoLink: "https://www.linkedin.com/feed/update/urn:li:activity:7363929538734510080/",
@@ -175,7 +175,7 @@ export const PROJECTS = [
     {
       title: "LexInSight – AI-Powered Philippine Legal Compliance Assistant",
       desc: "A civic technology solution democratizing access to Philippine legal knowledge and compliance expertise. This intelligent full-stack platform empowers individuals, small businesses, and organizations to navigate complex legal requirements without expensive consultations. By leveraging advanced RAG (Retrieval-Augmented Generation) and conversational AI, LexInSight transforms legal compliance from an intimidating barrier into an accessible resource, promoting justice, transparency, and informed decision-making across Filipino communities. Built to bridge the gap between legal complexity and public understanding.",
-      img: "/images/hero/lexinsight.jpg",
+      img: "/images/hero/lexinsight.webp",
       alt: "LexInSight - AI-powered Philippine legal compliance platform",
       link: "https://github.com/KpG782/lexiph",
       demoLink: "https://github.com/KpG782/lexiph",
@@ -227,7 +227,7 @@ export const PROJECTS = [
     {
       title: "CampusCare – Student Wellness Platform",
       desc: "A mental health innovation addressing the critical student wellness crisis in Philippine universities. This mobile-first platform breaks down barriers to mental health support by providing University of Makati students with immediate access to professional guidance counseling services. With AI-powered mood analysis using DistilBERT, real-time counselor chat, and seamless appointment booking, CampusCare transforms mental health care from reactive to proactive, ensuring students receive timely support during their most vulnerable moments. Built to destigmatize mental health and make wellness resources accessible to every student.",
-      img: "/images/projects/project1/2.png",
+      img: "/images/projects/project1/2.webp",
       alt: "CampusCare - Student wellness platform screenshot",
       link: "https://github.com/KpG782/CampusCare",
       demoLink:
@@ -262,7 +262,7 @@ export const PROJECTS = [
     {
       title: "Pacebeats Landing Page",
       desc: "Modern running app showcase built with Astro and TailwindCSS, featuring heart rate monitoring and pace tracking for runners with Samsung Health SDK integration.",
-      img: "/images/projects/project2/1.jpg",
+      img: "/images/projects/project2/1.webp",
       alt: "Pacebeats landing page - Modern running app showcase",
       link: "https://github.com/KpG782/Pacebeats-landing-page",
       demoLink: "https://pacebeats.top",
@@ -286,7 +286,7 @@ export const PROJECTS = [
     {
       title: "Designers' Cafe Website",
       desc: "Digital showcase for a creative coffee shop in Pembo, Taguig, featuring interactive menu, gallery, and community-focused design atmosphere.",
-      img: "/images/projects/project2/2.png",
+      img: "/images/projects/project2/2.webp",
       alt: "Designers' Cafe website interface",
       link: "https://github.com/KpG782/designers-cafe",
       demoLink: "https://designers-cafe.vercel.app",
@@ -305,7 +305,7 @@ export const PROJECTS = [
     {
       title: "Tugang Cafe Website",
       desc: "Premium coffee shop website with custom cursor animations, ultrawide support, and engaging scroll animations showcasing togetherness and community.",
-      img: "/images/projects/project2/3.png",
+      img: "/images/projects/project2/3.webp",
       alt: "Tugang Cafe website with coffee-themed design",
       link: "https://github.com/KpG782/tugang-cafe",
       demoLink: "https://tugang-cafe.vercel.app",
@@ -329,7 +329,7 @@ export const PROJECTS = [
     {
       title: "Wedding Template Collection 1",
       desc: "Modern, elegant, and accessible wedding website templates featuring countdown timers, RSVP integration, and beautiful storytelling animations.",
-      img: "/images/projects/project2/4.png",
+      img: "/images/projects/project2/4.webp",
       alt: "Wedding template with elegant design and animations",
       link: "https://github.com/KpG782/WeddingTemplate1",
       demoLink: "https://wedding-template2-one.vercel.app",
@@ -348,7 +348,7 @@ export const PROJECTS = [
     {
       title: "Wedding Template Collection 2",
       desc: "Modern, elegant, and accessible wedding website templates featuring countdown timers, RSVP integration, and beautiful storytelling animations.",
-      img: "/images/projects/project2/5.png",
+      img: "/images/projects/project2/5.webp",
       alt: "Wedding template with elegant design and animations",
       link: "https://github.com/KpG782/WeddingTemplate1",
       demoLink: "https://wedding-template2-one.vercel.app",
@@ -367,7 +367,7 @@ export const PROJECTS = [
     {
       title: "JASM Printing Services",
       desc: "Business website for local printing services in Pasig, showcasing apparel printing, ID cards, labels, and event giveaways with responsive design.",
-      img: "/images/projects/project2/6.png",
+      img: "/images/projects/project2/6.webp",
       alt: "JASM Printing Services business website",
       link: "https://github.com/KpG782/JASMPrinting",
       demoLink: "https://jasm-printing.vercel.app",
@@ -392,7 +392,7 @@ export const PROJECTS = [
     {
       title: "Hungry Potter's Tapsilogan",
       desc: "Student-friendly silog restaurant website with responsive menu display, built with Bootstrap 5 and modern CSS for local Filipino dining.",
-      img: "/images/projects/project2/7.png",
+      img: "/images/projects/project2/7.webp",
       alt: "Hungry Potter's restaurant website interface",
       link: "https://github.com/KpG782/HungryPotters",
       demoLink: "https://hungry-potters.vercel.app",
@@ -420,7 +420,7 @@ export const PROJECTS = [
     {
       title: "Interactive Portfolio with Three.js",
       desc: "Showcase of advanced frontend skills with 3D graphics, animations, and modern web technologies. Features immersive 3D scenes and smooth scroll-based interactions.",
-      img: "/images/projects/project1/4.png",
+      img: "/images/projects/project1/4.webp",
       alt: "Interactive 3D portfolio website",
       link: "https://github.com/KpG782/3D_Portfolio",
       demoLink: "https://3-d-portfolio-eight-pi.vercel.app",
@@ -439,7 +439,7 @@ export const PROJECTS = [
     {
       title: "Responsive Landing Page Design",
       desc: "Modern landing page built with cutting-edge frontend technologies, featuring smooth animations, micro-interactions, and pixel-perfect responsive design.",
-      img: "/images/projects/project2/1.jpg",
+      img: "/images/projects/project2/1.webp",
       alt: "Responsive landing page with modern design",
       link: "https://github.com/KpG782/Pacebeats-landing-page",
       demoLink: "https://pacebeats.top",
@@ -458,7 +458,7 @@ export const PROJECTS = [
     {
       title: "Modern UI Components Library",
       desc: "Collection of reusable UI components built with modern CSS and JavaScript, featuring animations, transitions, and interactive elements.",
-      img: "/images/projects/project2/2.png",
+      img: "/images/projects/project2/2.webp",
       alt: "UI components library showcase",
       link: "https://github.com/KpG782/designers-cafe",
       demoLink: "https://designers-cafe.vercel.app",
@@ -480,7 +480,7 @@ export const PROJECTS = [
     {
       title: "Mathematical Algorithms Visualizer",
       desc: "Educational tool for visualizing mathematical sequences and algorithms. Built with Flutter to demonstrate complex mathematical concepts in an interactive way.",
-      img: "/images/projects/project1/6.png",
+      img: "/images/projects/project1/6.webp",
       alt: "Mathematical algorithms visualization",
       link: "https://github.com/KpG782/SeqSense",
       demoLink: "#",
@@ -499,7 +499,7 @@ export const PROJECTS = [
     {
       title: "Movie Database Browser",
       desc: "Cross-platform movie browsing application demonstrating API integration and mobile development skills with React Native.",
-      img: "/images/projects/project1/3.png",
+      img: "/images/projects/project1/3.webp",
       alt: "Movie database browser app",
       link: "https://github.com/KpG782/MovieFlix-React",
       demoLink: "#",
@@ -518,7 +518,7 @@ export const PROJECTS = [
     {
       title: "Custom Cursor & Animation Library",
       desc: "Collection of custom cursors and micro-animations for web projects, demonstrating advanced CSS and JavaScript animation techniques.",
-      img: "/images/projects/project2/3.png",
+      img: "/images/projects/project2/3.webp",
       alt: "Custom cursor animations showcase",
       link: "https://github.com/KpG782/tugang-cafe",
       demoLink: "https://tugang-cafe.vercel.app",
@@ -537,7 +537,7 @@ export const PROJECTS = [
     {
       title: "Bootstrap Component Showcase",
       desc: "Demonstration of Bootstrap 5 capabilities through a complete restaurant website, showcasing responsive components and modern layout techniques.",
-      img: "/images/projects/project2/7.png",
+      img: "/images/projects/project2/7.webp",
       alt: "Bootstrap components showcase",
       link: "https://github.com/KpG782/HungryPotters",
       demoLink: "https://hungry-potters.vercel.app",

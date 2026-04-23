@@ -44,53 +44,53 @@ const counterItems = [
 
 const logoIconsList = [
   {
-    imgPath: "/images/logos/company-logo-1.png",
+    imgPath: "/images/logos/company-logo-1.webp",
   },
   {
-    imgPath: "/images/logos/company-logo-2.png",
+    imgPath: "/images/logos/company-logo-2.webp",
   },
   {
-    imgPath: "/images/logos/company-logo-3.png",
+    imgPath: "/images/logos/company-logo-3.webp",
   },
   {
-    imgPath: "/images/logos/company-logo-4.png",
+    imgPath: "/images/logos/company-logo-4.webp",
   },
   {
-    imgPath: "/images/logos/company-logo-5.png",
+    imgPath: "/images/logos/company-logo-5.webp",
   },
   {
-    imgPath: "/images/logos/company-logo-6.png",
+    imgPath: "/images/logos/company-logo-6.webp",
   },
   {
-    imgPath: "/images/logos/company-logo-7.png",
+    imgPath: "/images/logos/company-logo-7.webp",
   },
   {
-    imgPath: "/images/logos/company-logo-8.png",
+    imgPath: "/images/logos/company-logo-8.webp",
   },
   {
-    imgPath: "/images/logos/company-logo-9.png",
+    imgPath: "/images/logos/company-logo-9.webp",
   },
   {
-    imgPath: "/images/logos/company-logo-10.png",
+    imgPath: "/images/logos/company-logo-10.webp",
   },
   {
-    imgPath: "/images/logos/company-logo-11.png",
+    imgPath: "/images/logos/company-logo-11.webp",
   },
 ];
 
 const abilities = [
   {
-    imgPath: "/images/seo.png",
+    imgPath: "/images/seo.webp",
     title: "Agile Leadership",
     desc: "Coordinating cross-functional tasks efficiently with adaptability and clear project goals.",
   },
   {
-    imgPath: "/images/chat.png",
+    imgPath: "/images/chat.webp",
     title: "UI/UX Precision",
     desc: "Crafting clean and user-friendly interfaces that align with user needs and system goals.",
   },
   {
-    imgPath: "/images/time.png",
+    imgPath: "/images/time.webp",
     title: "Robust Backend Development",
     desc: "Building secure, scalable systems with smooth data handling and reliable performance under pressure.",
   },
@@ -99,7 +99,7 @@ const abilities = [
 const techStackImgs = [
   {
     name: "React Developer",
-    imgPath: "/images/logos/react.png",
+    imgPath: "/images/logos/react.webp",
   },
   {
     name: "Python Developer",
@@ -107,11 +107,11 @@ const techStackImgs = [
   },
   {
     name: "Backend Developer",
-    imgPath: "/images/logos/node.png",
+    imgPath: "/images/logos/node.webp",
   },
   {
     name: "Interactive Developer",
-    imgPath: "/images/logos/three.png",
+    imgPath: "/images/logos/three.webp",
   },
   {
     name: "Project Manager",
@@ -158,7 +158,7 @@ const expCards = [
   {
     review:
       "I began my engineering journey building solid fundamentals in HTML, Bootstrap, JavaScript, and PHP. My curiosity and persistence during this phase laid the foundation for my growth as a modern software engineer.",
-    imgPath: "/images/exp11.png",
+    imgPath: "/images/exp11.webp",
     logoPath: "/images/logo1.svg",
     title: "Junior Web Developer",
     date: "2021 - 2023",
@@ -171,8 +171,8 @@ const expCards = [
   {
     review:
       "I ventured into mobile app engineering, transforming ideas into visually engaging, cross-platform experiences. Using Flutter with Firebase, I delivered real-time features and intuitive interfaces that enhanced user engagement.",
-    imgPath: "/images/exp2.png",
-    logoPath: "/images/logo2.png",
+    imgPath: "/images/exp2.webp",
+    logoPath: "/images/logo2.webp",
     title: "Flutter Mobile Developer",
     date: "2024 - 2025",
     responsibilities: [
@@ -185,8 +185,8 @@ const expCards = [
   {
     review:
       "I transitioned into modern React development to build scalable cross-platform applications. I architect component-based solutions with clean code, reusable patterns, and optimized performance that deliver exceptional user experiences across web and mobile.",
-    imgPath: "/images/exp3.png",
-    logoPath: "/images/logo3.png",
+    imgPath: "/images/exp3.webp",
+    logoPath: "/images/logo3.webp",
     title: "Cross-Platform React Developer",
     date: "Jan 2025 - Jun 2025",
     responsibilities: [
@@ -199,8 +199,8 @@ const expCards = [
   {
     review:
       "I joined Romega Solutions as a Full Stack Developer, building production-grade web and mobile applications. I architected end-to-end solutions combining modern frameworks, cloud technologies, and engineering best practices.",
-    imgPath: "/images/exp4.png",
-    logoPath: "/images/logos/node.png",
+    imgPath: "/images/exp4.webp",
+    logoPath: "/images/logos/node.webp",
     title: "Full Stack Developer (Web & Mobile)",
     date: "Jul 2025 - Dec 2025 | Romega Solutions",
     responsibilities: [
@@ -214,7 +214,7 @@ const expCards = [
   {
     review:
       "Promoted to AI Full Stack Engineer, I now work at the intersection of traditional software engineering and cutting-edge AI technology. I build intelligent systems that automate real business problems using LLM APIs, n8n workflows, and AI-powered solutions.",
-    imgPath: "/images/exp5.png",
+    imgPath: "/images/exp5.webp",
     logoPath: "/images/logos/python.svg",
     title: "AI Full Stack Engineer",
     date: "Jan 2026 - Present | Romega Solutions",
@@ -231,19 +231,19 @@ const expCards = [
 const expLogos = [
   {
     name: "logo1",
-    imgPath: "/images/logo1.png",
+    imgPath: "/images/logo1.webp",
   },
   {
     name: "logo2",
-    imgPath: "/images/logo2.png",
+    imgPath: "/images/logo2.webp",
   },
   {
     name: "logo3",
-    imgPath: "/images/logo3.png",
+    imgPath: "/images/logo3.webp",
   },
   {
     name: "logo4",
-    imgPath: "/images/logo4.png",
+    imgPath: "/images/logo4.webp",
   },
 ];
 const testimonials = [
@@ -252,69 +252,69 @@ const testimonials = [
     mentions: "msiazon.k12043276@umak.edu.ph ",
     review:
       "Ken showed real grit during our early web dev days. He always explored new tools beyond what was taught, and made sure we understood what we were building. His curiosity is contagious.",
-    imgPath: "/images/client1.png",
+    imgPath: "/images/client1.webp",
   },
   {
     name: "Timothy Forte",
     mentions: "tforte.a62241031@umak.edu.ph ",
     review:
       "When we transitioned to Flutter, Ken was the one who led the charge. He learned the framework fast and even taught us the basics. It’s rare to have a teammate that dedicated.",
-    imgPath: "/images/client2.png",
+    imgPath: "/images/client2.webp",
   },
   {
     name: "Jam Villarosa",
     mentions: "jvillarosa.a12240987@umak.edu.ph",
     review:
       "Ken’s progress in React is seriously impressive. He doesn’t just learn tools—he builds things. He’s the kind of teammate who levels up the whole group by sharing what he knows.",
-    imgPath: "/images/client3.png",
+    imgPath: "/images/client3.webp",
   },
   {
     name: "Lanz Corpuz",
     mentions: "lcorpuz.a12241569@umak.edu.ph ",
     review:
       "Ken naturally took the lead in most of our projects. Even under pressure, he kept the team organized and focused. He made sure everyone had a role and felt valued.",
-    imgPath: "/images/client4.png",
+    imgPath: "/images/client4.webp",
   },
   {
     name: "Brian Ashley Papa",
     mentions: "bpapa.a12034938@umak.edu.ph ",
     review:
       "You can tell Ken isn’t in this just to pass subjects—he’s here to grow. His willingness to explore new tech and take feedback makes him stand out as a leader.",
-    imgPath: "/images/client5.png",
+    imgPath: "/images/client5.webp",
   },
   {
     name: "Mars Maguddayao",
     mentions: "lmaguddayao.a12240891@umak.edu.ph",
     review:
       "Ken is detail-oriented and driven. Whether it’s frontend polish or code clarity, he’ll always push for better. His calm leadership made our collabs smoother and more productive.",
-    imgPath: "/images/client6.png",
+    imgPath: "/images/client6.webp",
   },
 ];
 
 const socialImgs = [
   {
     name: "insta",
-    imgPath: "/images/insta.png",
+    imgPath: "/images/insta.webp",
     url: "https://www.instagram.com/sinpayken/",
   },
   {
     name: "fb",
-    imgPath: "/images/fb.png",
+    imgPath: "/images/fb.webp",
     url: "https://www.facebook.com/kenpatrickgarcia123/",
   },
   {
     name: "dev",
-    imgPath: "/images/dev.png",
+    imgPath: "/images/dev.webp",
     url: "https://dev.to/kpg782",
   },
   {
     name: "github",
-    imgPath: "/images/github1.png",
+    imgPath: "/images/github1.webp",
     url: "https://github.com/KpG782",
   },
   {
     name: "linkedin",
-    imgPath: "/images/linkedin.png",
+    imgPath: "/images/linkedin.webp",
     url: "https://www.linkedin.com/in/ken-patrick-garcia-ba5430285/",
   },
 ];
