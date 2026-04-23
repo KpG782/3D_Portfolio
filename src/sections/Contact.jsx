@@ -1,10 +1,9 @@
-import React, { useRef, useState, useEffect } from "react";
+import React, { lazy, Suspense, useRef, useState, useEffect } from "react";
 import TitleHeader from "../components/TitleHeader.jsx";
-import ContactExperience from "../components/ContactExperience.jsx";
 import emailjs from "@emailjs/browser";
-import { ToastContainer } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
 import { motion, AnimatePresence } from "framer-motion";
+
+const ContactExperience = lazy(() => import("../components/ContactExperience.jsx"));
 
 const Contact = () => {
   const formRef = useRef(null);
@@ -59,12 +58,21 @@ const Contact = () => {
   };
 
   return (
-    <section id={"contact"} className={"section-padding flex-center"}>
+    <section className={"section-padding flex-center"}>
       <div className={"w-full h-full md:px-10 px-5"}>
         <TitleHeader
           title={"Get In Touch With Me"}
           sub={"Contact Information"}
         />
+
+        <p
+          className="mt-6 max-w-3xl mx-auto text-center text-sm md:text-base leading-7"
+          style={{ color: "var(--text-secondary)" }}
+        >
+          Available for AI engineering, full-stack product development, React
+          frontend work, Flutter mobile apps, and performance-focused project
+          builds for freelance, contract, and full-time opportunities.
+        </p>
 
         <div className={"mt-16 grid-12-cols"}>
           {/*left side contact form*/}
@@ -135,7 +143,9 @@ const Contact = () => {
                 "w-full h-full hover:cursor-grab rounded-3xl overflow-hidden card-border"
               }
             >
-              <ContactExperience />
+              <Suspense fallback={null}>
+                <ContactExperience />
+              </Suspense>
             </div>
           </div>
         </div>

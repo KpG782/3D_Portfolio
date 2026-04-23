@@ -1,0 +1,33 @@
+<svg width="1200" height="630" viewBox="0 0 1200 630" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="1200" height="630" fill="#050816"/>
+  <circle cx="1028" cy="120" r="180" fill="#1D4ED8" fill-opacity="0.22"/>
+  <circle cx="152" cy="538" r="220" fill="#2563EB" fill-opacity="0.18"/>
+  <circle cx="866" cy="482" r="120" fill="#60A5FA" fill-opacity="0.12"/>
+  <rect x="62" y="62" width="1076" height="506" rx="32" fill="url(#panel)" stroke="url(#stroke)" stroke-width="2"/>
+  <text x="100" y="182" fill="#93C5FD" font-family="Arial, Helvetica, sans-serif" font-size="28" font-weight="700" letter-spacing="4">KENBUILDS.TECH</text>
+  <text x="100" y="292" fill="white" font-family="Arial, Helvetica, sans-serif" font-size="68" font-weight="700">Ken Garcia</text>
+  <text x="100" y="360" fill="#D9ECFF" font-family="Arial, Helvetica, sans-serif" font-size="42" font-weight="500">AI Full Stack Engineer</text>
+  <text x="100" y="432" fill="#9CA3AF" font-family="Arial, Helvetica, sans-serif" font-size="28">Award-winning web, mobile, and AI-powered products</text>
+  <g>
+    <rect x="100" y="474" width="214" height="48" rx="24" fill="#2563EB"/>
+    <text x="140" y="505" fill="white" font-family="Arial, Helvetica, sans-serif" font-size="22" font-weight="700">React • Flutter • AI</text>
+  </g>
+  <g>
+    <rect x="338" y="474" width="166" height="48" rx="24" fill="#0F172A" stroke="#334155"/>
+    <text x="379" y="505" fill="#D9ECFF" font-family="Arial, Helvetica, sans-serif" font-size="22" font-weight="700">Three.js</text>
+  </g>
+  <g>
+    <rect x="528" y="474" width="186" height="48" rx="24" fill="#0F172A" stroke="#334155"/>
+    <text x="569" y="505" fill="#D9ECFF" font-family="Arial, Helvetica, sans-serif" font-size="22" font-weight="700">Full Stack</text>
+  </g>
+  <defs>
+    <linearGradient id="panel" x1="84" y1="88" x2="1094" y2="546" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#0F172A"/>
+      <stop offset="1" stop-color="#020617"/>
+    </linearGradient>
+    <linearGradient id="stroke" x1="62" y1="62" x2="1138" y2="568" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#60A5FA" stop-opacity="0.7"/>
+      <stop offset="1" stop-color="#1E293B" stop-opacity="0.7"/>
+    </linearGradient>
+  </defs>
+</svg>

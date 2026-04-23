@@ -1,10 +1,10 @@
-import React from "react";
+import React, { lazy, Suspense } from "react";
 import TitleHeader from "../components/TitleHeader.jsx";
 import { techStackIcons, techStackImgs } from "../constants/index.js";
-import TechIcon from "../components/Models/TechLogos/TechIcon.jsx";
 import { useGSAP } from "@gsap/react";
 import { gsap } from "gsap";
 
+const TechIcon = lazy(() => import("../components/Models/TechLogos/TechIcon.jsx"));
 
 const TechStack = () => {
   useGSAP(() => {
@@ -44,7 +44,9 @@ const TechStack = () => {
               <div className={"tech-card-animated-bg"} />
               <div className={"tech-card-content"}>
                 <div className={"tech-icon-wrapper"}>
-                  <TechIcon model={icon} />
+                  <Suspense fallback={null}>
+                    <TechIcon model={icon} />
+                  </Suspense>
                 </div>
                 <div className={"padding-x w-full"}>
                   <p>{icon.name}</p>

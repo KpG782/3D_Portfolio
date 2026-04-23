@@ -1,40 +1,51 @@
-import React, { useState, useRef, useEffect } from "react";
+import React, {
+  memo,
+  useCallback,
+  useEffect,
+  useMemo,
+  useRef,
+  useState,
+} from "react";
 import { certifications } from "../constants/certifications.js";
 import TitleHeader from "../components/TitleHeader.jsx";
 import { useTheme } from "../contexts/ThemeContext.jsx";
 
-const CertificationModal = ({ cert, isOpen, onClose, isHoverMode }) => {
-  if (!isOpen || !cert) return null;
+const CertificationModal = memo(function CertificationModal({
+  cert,
+  isOpen,
+  onClose,
+  isHoverMode,
+}) {
+  useEffect(() => {
+    if (!isOpen || !cert) return undefined;
 
-  React.useEffect(() => {
     const handleEscape = (e) => {
       if (e.key === "Escape") onClose();
     };
-    if (isOpen) {
-      document.addEventListener("keydown", handleEscape);
-      if (!isHoverMode) {
-        document.body.style.overflow = "hidden";
-      }
+
+    document.addEventListener("keydown", handleEscape);
+
+    if (!isHoverMode) {
+      document.body.style.overflow = "hidden";
     }
+
     return () => {
       document.removeEventListener("keydown", handleEscape);
       document.body.style.overflow = "unset";
     };
-  }, [isOpen, onClose, isHoverMode]);
+  }, [cert, isHoverMode, isOpen, onClose]);
 
-  React.useEffect(() => {
-    let autoCloseTimeout;
-    if (isOpen && isHoverMode) {
-      autoCloseTimeout = setTimeout(() => {
-        onClose();
-      }, 2000);
-    }
-    return () => {
-      if (autoCloseTimeout) {
-        clearTimeout(autoCloseTimeout);
-      }
-    };
-  }, [isOpen, isHoverMode, onClose]);
+  useEffect(() => {
+    if (!isOpen || !isHoverMode) return undefined;
+
+    const timeoutId = setTimeout(() => {
+      onClose();
+    }, 2000);
+
+    return () => clearTimeout(timeoutId);
+  }, [isHoverMode, isOpen, onClose]);
+
+  if (!isOpen || !cert) return null;
 
   const handleViewCredential = () => {
     if (cert.credentialUrl) {
@@ -45,8 +56,7 @@ const CertificationModal = ({ cert, isOpen, onClose, isHoverMode }) => {
   return (
     <div
       className="fixed inset-0 bg-black/90 backdrop-blur-sm flex items-center justify-center z-[9999] p-4"
-      onClick={isHoverMode ? null : onClose}
-      onMouseLeave={isHoverMode ? onClose : null}
+      onClick={isHoverMode ? undefined : onClose}
       role="dialog"
       aria-modal="true"
       aria-labelledby="cert-modal-title"
@@ -70,6 +80,8 @@ const CertificationModal = ({ cert, isOpen, onClose, isHoverMode }) => {
             src={cert.imagePath}
             alt={cert.name}
             className="max-w-full max-h-[65vh] object-contain rounded-lg shadow-2xl"
+            loading="eager"
+            decoding="async"
           />
         </div>
 
@@ -125,173 +137,284 @@ const CertificationModal = ({ cert, isOpen, onClose, isHoverMode }) => {
       </div>
     </div>
   );
-};
+});
+
+const CertificationCard = memo(function CertificationCard({
+  cert,
+  theme,
+  onClick,
+  onHoverStart,
+  onHoverEnd,
+}) {
+  return (
+    <div
+      className="flex-none cursor-pointer group relative select-none"
+      onClick={() => onClick(cert)}
+      onMouseEnter={() => onHoverStart(cert)}
+      onMouseLeave={onHoverEnd}
+      onFocus={() => onHoverStart(cert)}
+      onBlur={onHoverEnd}
+      onKeyDown={(e) => {
+        if (e.key === "Enter" || e.key === " ") {
+          e.preventDefault();
+          onClick(cert);
+        }
+      }}
+      tabIndex={0}
+      role="button"
+      aria-label={`View ${cert.name}`}
+    >
+      <div
+        className="relative overflow-hidden rounded-xl border-2 transition-all duration-300 shadow-lg group-hover:shadow-2xl group-hover:shadow-blue-500/20 w-96 h-72"
+        style={
+          theme === "light"
+            ? {
+                background: "linear-gradient(to bottom right, #ffffff, #f3f4f6)",
+                borderColor: "#d1d5db",
+              }
+            : {
+                background: "linear-gradient(to bottom right, #1f2937, #111827)",
+                borderColor: "#374151",
+              }
+        }
+      >
+        <img
+          src={cert.imagePath}
+          alt={cert.name}
+          className="w-full h-full object-contain p-4 group-hover:scale-105 transition-transform duration-500 pointer-events-none"
+          draggable="false"
+          loading="lazy"
+          decoding="async"
+        />
+
+        <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+
+        <div className="absolute bottom-0 left-0 right-0 p-4 bg-gradient-to-t from-black/90 via-black/70 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+          <p className="text-white text-sm sm:text-base font-semibold text-center line-clamp-2 mb-2">
+            {cert.name}
+          </p>
+          <div className="flex items-center justify-center gap-2 text-blue-400 text-xs sm:text-sm">
+            <span>Hover to preview • Click to lock</span>
+            <svg
+              className="w-4 h-4"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth={2}
+                d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"
+              />
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth={2}
+                d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"
+              />
+            </svg>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+});
 
 const CertificationsSection = () => {
   const { theme } = useTheme();
   const [selectedCert, setSelectedCert] = useState(null);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [isHoverMode, setIsHoverMode] = useState(false);
-  const [hoverTimeoutId, setHoverTimeoutId] = useState(null);
   const [isDragging, setIsDragging] = useState(false);
-  const [isUserInteracting, setIsUserInteracting] = useState(false);
+  const [isPointerActive, setIsPointerActive] = useState(false);
   const scrollContainerRef = useRef(null);
+  const sectionRef = useRef(null);
   const animationRef = useRef(null);
+  const hoverTimeoutRef = useRef(null);
+  const isVisibleRef = useRef(true);
+  const resumeTimeoutRef = useRef(null);
+  const dragStartXRef = useRef(0);
+  const dragStartScrollLeftRef = useRef(0);
+  const isDraggingRef = useRef(false);
 
-  const handleCertClick = (cert) => {
-    if (isDragging) return;
+  const doubledCertifications = useMemo(
+    () => [...certifications, ...certifications],
+    []
+  );
 
-    if (hoverTimeoutId) {
-      clearTimeout(hoverTimeoutId);
-      setHoverTimeoutId(null);
+  const clearHoverTimeout = useCallback(() => {
+    if (hoverTimeoutRef.current) {
+      clearTimeout(hoverTimeoutRef.current);
+      hoverTimeoutRef.current = null;
     }
-    setSelectedCert(cert);
-    setIsModalOpen(true);
-    setIsHoverMode(false);
-  };
+  }, []);
 
-  const handleCertHover = (cert) => {
-    if (isDragging) return;
-
-    if (hoverTimeoutId) {
-      clearTimeout(hoverTimeoutId);
+  const clearResumeTimeout = useCallback(() => {
+    if (resumeTimeoutRef.current) {
+      clearTimeout(resumeTimeoutRef.current);
+      resumeTimeoutRef.current = null;
     }
+  }, []);
 
-    const timeoutId = setTimeout(() => {
-      setSelectedCert(cert);
-      setIsModalOpen(true);
-      setIsHoverMode(true);
-    }, 500);
+  const scheduleAutoScrollResume = useCallback(() => {
+    clearResumeTimeout();
+    resumeTimeoutRef.current = setTimeout(() => {
+      setIsPointerActive(false);
+      setIsDragging(false);
+      isDraggingRef.current = false;
+    }, 1400);
+  }, [clearResumeTimeout]);
 
-    setHoverTimeoutId(timeoutId);
-  };
-
-  const handleCertLeave = () => {
-    if (hoverTimeoutId) {
-      clearTimeout(hoverTimeoutId);
-      setHoverTimeoutId(null);
-    }
-  };
-
-  const closeModal = () => {
+  const closeModal = useCallback(() => {
+    clearHoverTimeout();
     setIsModalOpen(false);
     setIsHoverMode(false);
-    setTimeout(() => setSelectedCert(null), 300);
-  };
+    window.setTimeout(() => setSelectedCert(null), 180);
+    scheduleAutoScrollResume();
+  }, [clearHoverTimeout, scheduleAutoScrollResume]);
 
-  // Infinite scroll logic
+  const handleCertClick = useCallback(
+    (cert) => {
+      if (isDraggingRef.current) return;
+
+      clearHoverTimeout();
+      setSelectedCert(cert);
+      setIsHoverMode(false);
+      setIsModalOpen(true);
+      setIsPointerActive(true);
+      clearResumeTimeout();
+    },
+    [clearHoverTimeout, clearResumeTimeout]
+  );
+
+  const handleCertHover = useCallback(
+    (cert) => {
+      if (isDraggingRef.current || isModalOpen) return;
+
+      clearHoverTimeout();
+      setIsPointerActive(true);
+      clearResumeTimeout();
+
+      hoverTimeoutRef.current = setTimeout(() => {
+        setSelectedCert(cert);
+        setIsHoverMode(true);
+        setIsModalOpen(true);
+      }, 350);
+    },
+    [clearHoverTimeout, clearResumeTimeout, isModalOpen]
+  );
+
+  const handleCertLeave = useCallback(() => {
+    clearHoverTimeout();
+    if (!isModalOpen) {
+      scheduleAutoScrollResume();
+    }
+  }, [clearHoverTimeout, isModalOpen, scheduleAutoScrollResume]);
+
+  useEffect(() => {
+    const node = sectionRef.current;
+    if (!node) return undefined;
+
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        isVisibleRef.current = entry.isIntersecting;
+      },
+      { threshold: 0.2 }
+    );
+
+    observer.observe(node);
+
+    return () => observer.disconnect();
+  }, []);
+
   useEffect(() => {
     const container = scrollContainerRef.current;
-    if (!container) return;
+    if (!container) return undefined;
 
-    const scroll = () => {
-      if (isUserInteracting) return;
+    let lastTime = 0;
+    const pixelsPerSecond = 26;
 
-      // Get the width of one set of certifications
-      const scrollWidth = container.scrollWidth / 2;
+    const step = (time) => {
+      if (!lastTime) lastTime = time;
+      const delta = time - lastTime;
+      lastTime = time;
 
-      // Auto-scroll
-      container.scrollLeft += 1;
+      const canScroll =
+        !isPointerActive &&
+        !isModalOpen &&
+        isVisibleRef.current &&
+        document.visibilityState === "visible";
 
-      // Reset when reaching halfway point (seamless loop)
-      if (container.scrollLeft >= scrollWidth) {
-        container.scrollLeft = 0;
+      if (canScroll) {
+        const loopWidth = container.scrollWidth / 2;
+        const nextScrollLeft =
+          container.scrollLeft + (pixelsPerSecond * delta) / 1000;
+
+        container.scrollLeft =
+          nextScrollLeft >= loopWidth ? nextScrollLeft - loopWidth : nextScrollLeft;
       }
 
-      animationRef.current = requestAnimationFrame(scroll);
+      animationRef.current = requestAnimationFrame(step);
     };
 
-    animationRef.current = requestAnimationFrame(scroll);
+    animationRef.current = requestAnimationFrame(step);
 
     return () => {
       if (animationRef.current) {
         cancelAnimationFrame(animationRef.current);
       }
     };
-  }, [isUserInteracting]);
+  }, [isModalOpen, isPointerActive]);
 
-  // Handle user interaction
-  const handleInteractionStart = () => {
-    setIsUserInteracting(true);
+  useEffect(() => {
+    certifications.forEach((cert) => {
+      const image = new Image();
+      image.src = cert.imagePath;
+    });
+  }, []);
+
+  useEffect(() => {
+    return () => {
+      clearHoverTimeout();
+      clearResumeTimeout();
+      if (animationRef.current) {
+        cancelAnimationFrame(animationRef.current);
+      }
+    };
+  }, [clearHoverTimeout, clearResumeTimeout]);
+
+  const handlePointerDown = useCallback((clientX) => {
+    const container = scrollContainerRef.current;
+    if (!container) return;
+
+    clearHoverTimeout();
+    clearResumeTimeout();
+    setIsPointerActive(true);
     setIsDragging(false);
-  };
+    isDraggingRef.current = false;
+    dragStartXRef.current = clientX;
+    dragStartScrollLeftRef.current = container.scrollLeft;
+  }, [clearHoverTimeout, clearResumeTimeout]);
 
-  const handleInteractionMove = () => {
-    setIsDragging(true);
-  };
+  const handlePointerMove = useCallback((clientX) => {
+    const container = scrollContainerRef.current;
+    if (!container || !isPointerActive) return;
 
-  const handleInteractionEnd = () => {
-    setTimeout(() => {
-      setIsDragging(false);
-      setIsUserInteracting(false);
-    }, 100);
-  };
+    const delta = clientX - dragStartXRef.current;
+    if (Math.abs(delta) > 6) {
+      isDraggingRef.current = true;
+      setIsDragging(true);
+    }
 
-  const CertificationCard = ({ cert }) => {
-    return (
-      <div
-        className="flex-none cursor-pointer group relative select-none"
-        onClick={() => handleCertClick(cert)}
-        onMouseEnter={() => handleCertHover(cert)}
-        onMouseLeave={handleCertLeave}
-        onKeyDown={(e) => {
-          if (e.key === "Enter" || e.key === " ") {
-            e.preventDefault();
-            handleCertClick(cert);
-          }
-        }}
-        tabIndex={0}
-        role="button"
-        aria-label={`View ${cert.name}`}
-      >
-        <div className="relative overflow-hidden rounded-xl border-2 transition-all duration-300 shadow-lg group-hover:shadow-2xl group-hover:shadow-blue-500/20 w-96 h-72"
-          style={theme === 'light' ? {
-            background: 'linear-gradient(to bottom right, #ffffff, #f3f4f6)',
-            borderColor: '#d1d5db'
-          } : {
-            background: 'linear-gradient(to bottom right, #1f2937, #111827)',
-            borderColor: '#374151'
-          }}>
-          <img
-            src={cert.imagePath}
-            alt={cert.name}
-            className="w-full h-full object-contain p-4 group-hover:scale-105 transition-transform duration-500 pointer-events-none"
-            draggable="false"
-          />
+    if (isDraggingRef.current) {
+      container.scrollLeft = dragStartScrollLeftRef.current - delta;
+    }
+  }, [isPointerActive]);
 
-          <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-
-          <div className="absolute bottom-0 left-0 right-0 p-4 bg-gradient-to-t from-black/90 via-black/70 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-            <p className="text-white text-sm sm:text-base font-semibold text-center line-clamp-2 mb-2">
-              {cert.name}
-            </p>
-            <div className="flex items-center justify-center gap-2 text-blue-400 text-xs sm:text-sm">
-              <span>Hover to preview • Click to lock</span>
-              <svg
-                className="w-4 h-4"
-                fill="none"
-                stroke="currentColor"
-                viewBox="0 0 24 24"
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth={2}
-                  d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"
-                />
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth={2}
-                  d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"
-                />
-              </svg>
-            </div>
-          </div>
-        </div>
-      </div>
-    );
-  };
+  const handlePointerUp = useCallback(() => {
+    scheduleAutoScrollResume();
+  }, [scheduleAutoScrollResume]);
 
   return (
     <>
@@ -301,16 +424,16 @@ const CertificationsSection = () => {
           to { opacity: 1; }
         }
         @keyframes slideUp {
-          from { 
+          from {
             opacity: 0;
             transform: translateY(20px);
           }
-          to { 
+          to {
             opacity: 1;
             transform: translateY(0);
           }
         }
-        
+
         .scroll-container {
           overflow-x: auto;
           overflow-y: hidden;
@@ -318,41 +441,41 @@ const CertificationsSection = () => {
           -webkit-overflow-scrolling: touch;
           scrollbar-width: none;
           -ms-overflow-style: none;
+          scroll-behavior: auto;
         }
-        
+
         .scroll-container::-webkit-scrollbar {
           display: none;
         }
-        
-        .scroll-container:active {
+
+        .scroll-container.is-dragging {
           cursor: grabbing;
         }
-        
-        .gradient-edge-left {
+
+        .gradient-edge-left,
+        .gradient-edge-right {
           position: absolute;
-          left: 0;
           top: 0;
           bottom: 0;
           width: 100px;
           pointer-events: none;
           z-index: 10;
         }
-        
+
+        .gradient-edge-left {
+          left: 0;
+        }
+
         .gradient-edge-right {
-          position: absolute;
           right: 0;
-          top: 0;
-          bottom: 0;
-          width: 100px;
-          pointer-events: none;
-          z-index: 10;
         }
       `}</style>
 
       <section
         id="certifications"
+        ref={sectionRef}
         className="overflow-hidden py-10 md:py-16"
-        style={theme === 'light' ? { backgroundColor: '#ffffff' } : { backgroundColor: '#000' }}
+        style={theme === "light" ? { backgroundColor: "#ffffff" } : { backgroundColor: "#000" }}
       >
         <div className="w-full h-full md:px-10 px-5">
           <TitleHeader
@@ -361,37 +484,63 @@ const CertificationsSection = () => {
           />
 
           <div className="relative mt-8 md:mt-12">
-            <div className="gradient-edge-left" style={{
-              background: theme === 'light' ? 'linear-gradient(to right, #ffffff, transparent)' : 'linear-gradient(to right, black, transparent)'
-            }} />
-            <div className="gradient-edge-right" style={{
-              background: theme === 'light' ? 'linear-gradient(to left, #ffffff, transparent)' : 'linear-gradient(to left, black, transparent)'
-            }} />
+            <div
+              className="gradient-edge-left"
+              style={{
+                background:
+                  theme === "light"
+                    ? "linear-gradient(to right, #ffffff, transparent)"
+                    : "linear-gradient(to right, black, transparent)",
+              }}
+            />
+            <div
+              className="gradient-edge-right"
+              style={{
+                background:
+                  theme === "light"
+                    ? "linear-gradient(to left, #ffffff, transparent)"
+                    : "linear-gradient(to left, black, transparent)",
+              }}
+            />
 
             <div
               ref={scrollContainerRef}
-              className="scroll-container h-72"
-              onMouseDown={handleInteractionStart}
-              onMouseMove={handleInteractionMove}
-              onMouseUp={handleInteractionEnd}
-              onMouseLeave={handleInteractionEnd}
-              onTouchStart={handleInteractionStart}
-              onTouchMove={handleInteractionMove}
-              onTouchEnd={handleInteractionEnd}
+              className={`scroll-container h-72 ${isDragging ? "is-dragging" : ""}`}
+              onMouseEnter={() => {
+                setIsPointerActive(true);
+                clearResumeTimeout();
+              }}
+              onMouseLeave={() => {
+                handleCertLeave();
+                handlePointerUp();
+              }}
+              onMouseDown={(e) => handlePointerDown(e.clientX)}
+              onMouseMove={(e) => handlePointerMove(e.clientX)}
+              onMouseUp={handlePointerUp}
+              onTouchStart={(e) => handlePointerDown(e.touches[0].clientX)}
+              onTouchMove={(e) => handlePointerMove(e.touches[0].clientX)}
+              onTouchEnd={handlePointerUp}
             >
-              <div className="flex gap-12 w-max">
-                {certifications.map((cert) => (
-                  <CertificationCard key={cert.id} cert={cert} />
-                ))}
-                {certifications.map((cert) => (
-                  <CertificationCard key={`${cert.id}-duplicate`} cert={cert} />
+              <div className="flex gap-12 w-max pr-12">
+                {doubledCertifications.map((cert, index) => (
+                  <CertificationCard
+                    key={`${cert.id}-${index}`}
+                    cert={cert}
+                    theme={theme}
+                    onClick={handleCertClick}
+                    onHoverStart={handleCertHover}
+                    onHoverEnd={handleCertLeave}
+                  />
                 ))}
               </div>
             </div>
           </div>
 
           <div className="text-center mt-6">
-            <p className="text-sm" style={theme === 'light' ? { color: '#6b7280' } : { color: '#9ca3af' }}>
+            <p
+              className="text-sm"
+              style={theme === "light" ? { color: "#6b7280" } : { color: "#9ca3af" }}
+            >
               <span className="text-blue-400">Auto-scrolling</span> • Drag to
               control • <span className="text-purple-400">Hover</span> to
               preview • <span className="text-green-400">Click</span> to lock
