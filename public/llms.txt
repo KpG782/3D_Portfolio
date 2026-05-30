@@ -1,23 +1,57 @@
-# Ken Garcia Portfolio
+# Ken Patrick Garcia — AI Full Stack Engineer
 
-> Portfolio website of Ken Patrick Garcia, AI Full Stack Engineer.
+> Ken Patrick Garcia is an award-winning AI Full Stack Engineer from the
+> Philippines who designs and ships AI-powered web and mobile products —
+> combining LLM/RAG systems, React/Next.js frontends, Flutter mobile apps,
+> and Node.js backends into reliable, performant, real-world software.
 
 ## Summary
 
-Ken Patrick Garcia builds award-winning full-stack, mobile, and AI-powered software. This site highlights selected projects, experience, certifications, skills, and contact details.
+Ken builds end-to-end intelligent products: from prompt-engineered LLM and
+RAG pipelines to polished, accessible interfaces and scalable backends. His
+work spans production engineering at Romega Solutions and award-winning
+academic and hackathon projects. This site showcases selected projects,
+professional experience, certifications, the tech stack he works with,
+peer testimonials, and contact details.
 
 ## Primary URL
 
 - https://kenbuilds.tech/
 
+## Role & Positioning
+
+- Title: AI Full Stack Engineer
+- Open to: full-time engineering roles, freelance, and contract work
+- Strengths: AI/LLM integration, RAG, frontend performance, cross-platform
+  mobile, clean architecture, and shipping production software
+- Location: Philippines (remote-ready, global collaboration)
+
 ## Key Topics
 
-- AI full-stack engineering
-- React and frontend development
-- Flutter and mobile development
-- Three.js and interactive web experiences
-- Award-winning academic and hackathon projects
-- RAG and intelligent application development
+- AI full-stack engineering (LLM APIs: OpenAI, Claude, Gemini)
+- RAG (Retrieval-Augmented Generation) and vector databases
+- AI automation workflows (n8n) and intelligent agents
+- React, Next.js, and modern frontend performance
+- Flutter and cross-platform mobile development
+- Node.js, REST/GraphQL APIs, PostgreSQL/MongoDB
+- Three.js / WebGL and interactive 3D web experiences
+- Award-winning academic and hackathon products
+
+## Selected Projects
+
+- ARS — Auto Repair Response Network Service (Best Paper, 8th Research
+  Congress; Flutter + Firebase civic-tech emergency assistance)
+- FlowFit — AI-powered kids' fitness companion (Hackathon Champions 2025;
+  Flutter + WearOS + local AI inference)
+- Pacebeats — Smart music recommender (1st Runner-Up, InfoTech Olympics
+  2025; Kotlin + Jetpack Compose + Samsung Health SDK)
+
+## Why Hire Ken
+
+He pairs strong frontend execution and mobile experience with real AI
+integration and a track record of delivery across production, academic,
+and competition settings. He cares about accessibility, performance, and
+clean, maintainable architecture.
 
 ## Profiles
 

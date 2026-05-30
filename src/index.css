@@ -17,14 +17,22 @@
   --border-primary: #d2d2d7;
   --border-secondary: #e5e5e7;
   
-  --accent-blue: #0071e3;
-  --accent-blue-light: #2997ff;
-  --accent-gradient: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-  
-  --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.08);
-  --shadow-md: 0 4px 16px rgba(0, 0, 0, 0.12);
-  --shadow-lg: 0 8px 32px rgba(0, 0, 0, 0.16);
-  
+  --accent-blue: #4f46e5;
+  --accent-blue-light: #6366f1;
+
+  /* Signature redesign tokens — cohesive indigo → violet → cyan system */
+  --accent: #6366f1;
+  --accent-2: #8b5cf6;
+  --accent-3: #22d3ee;
+  --accent-gradient: linear-gradient(120deg, #6366f1 0%, #8b5cf6 55%, #22d3ee 120%);
+  --accent-soft: rgba(99, 102, 241, 0.12);
+  --ring: rgba(99, 102, 241, 0.55);
+
+  --shadow-sm: 0 2px 8px rgba(15, 23, 42, 0.08);
+  --shadow-md: 0 10px 30px -12px rgba(15, 23, 42, 0.18);
+  --shadow-lg: 0 24px 60px -20px rgba(15, 23, 42, 0.28);
+  --shadow-glow: 0 0 0 1px rgba(99, 102, 241, 0.2), 0 18px 50px -18px rgba(99, 102, 241, 0.45);
+
   --img-filter: invert(0);
 }
 
@@ -48,14 +56,21 @@
   --border-primary: #282732;
   --border-secondary: #2d2d38;
   
-  --accent-blue: #2997ff;
-  --accent-blue-light: #0a84ff;
-  --accent-gradient: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-  
+  --accent-blue: #818cf8;
+  --accent-blue-light: #6366f1;
+
+  --accent: #818cf8;
+  --accent-2: #a78bfa;
+  --accent-3: #22d3ee;
+  --accent-gradient: linear-gradient(120deg, #818cf8 0%, #a78bfa 55%, #22d3ee 120%);
+  --accent-soft: rgba(129, 140, 248, 0.14);
+  --ring: rgba(129, 140, 248, 0.6);
+
   --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.4);
-  --shadow-md: 0 4px 16px rgba(0, 0, 0, 0.6);
-  --shadow-lg: 0 8px 32px rgba(0, 0, 0, 0.8);
-  
+  --shadow-md: 0 12px 34px -14px rgba(0, 0, 0, 0.7);
+  --shadow-lg: 0 28px 70px -24px rgba(0, 0, 0, 0.85);
+  --shadow-glow: 0 0 0 1px rgba(129, 140, 248, 0.25), 0 22px 60px -20px rgba(129, 140, 248, 0.5);
+
   --gradient: radial-gradient(circle, #1a1a1a 0%, #000000 100%);
   --img-filter: invert(1);
 }
@@ -77,14 +92,20 @@ section {
 
 @theme {
   --font-sans: "Mona Sans", sans-serif;
-  
+
   /* Text colors - will adapt to theme */
   --color-white-50: #d9ecff;
+  --color-white-70: #f3f4f6;
   --color-black-50: #1c1c21;
   --color-black-100: #0e0e10;
   --color-black-200: #282732;
   --color-blue-50: #839cb5;
   --color-blue-100: #2d2d38;
+
+  /* Brand palette — usable as text-brand, bg-brand-2, etc. */
+  --color-brand: #6366f1;
+  --color-brand-2: #8b5cf6;
+  --color-brand-3: #22d3ee;
   
   /* Theme-aware colors */
   --color-bg-primary: var(--bg-primary);
@@ -143,6 +164,75 @@ section {
 }
 
 @layer components {
+  /* ===== Redesign system (2026) ===================================== */
+
+  /* Eyebrow / section kicker */
+  .eyebrow {
+    @apply inline-flex items-center gap-2 text-xs md:text-sm font-semibold uppercase tracking-[0.18em];
+    color: var(--accent);
+  }
+
+  /* Gradient display text */
+  .text-gradient {
+    background: var(--accent-gradient);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+  }
+
+  /* Glassy surface that adapts to theme */
+  .glass-surface {
+    background-color: color-mix(in srgb, var(--bg-card) 78%, transparent);
+    border: 1px solid var(--border-primary);
+    backdrop-filter: blur(14px);
+    -webkit-backdrop-filter: blur(14px);
+  }
+
+  /* 1px gradient hairline frame */
+  .gradient-frame {
+    position: relative;
+    border-radius: 1rem;
+    background:
+      linear-gradient(var(--bg-card), var(--bg-card)) padding-box,
+      var(--accent-gradient) border-box;
+    border: 1px solid transparent;
+  }
+
+  /* Primary pill button */
+  .btn-primary {
+    @apply inline-flex items-center justify-center gap-2 font-semibold rounded-xl px-6 py-3 transition-all duration-300;
+    background: var(--accent-gradient);
+    color: #fff;
+    box-shadow: var(--shadow-glow);
+  }
+  .btn-primary:hover {
+    filter: brightness(1.07);
+    transform: translateY(-2px);
+  }
+  .btn-primary:active {
+    transform: translateY(0);
+  }
+
+  /* Secondary / ghost button */
+  .btn-ghost {
+    @apply inline-flex items-center justify-center gap-2 font-semibold rounded-xl px-6 py-3 transition-all duration-300;
+    background-color: color-mix(in srgb, var(--bg-tertiary) 70%, transparent);
+    color: var(--text-primary);
+    border: 1px solid var(--border-primary);
+  }
+  .btn-ghost:hover {
+    border-color: var(--accent);
+    transform: translateY(-2px);
+  }
+
+  /* Status / capability chip */
+  .chip {
+    @apply inline-flex items-center gap-1.5 text-xs md:text-sm font-medium rounded-full px-3 py-1.5;
+    background-color: var(--accent-soft);
+    color: var(--accent);
+    border: 1px solid color-mix(in srgb, var(--accent) 28%, transparent);
+  }
+
   .padding-x {
     @apply px-5 md:px-10;
   }
@@ -250,7 +340,7 @@ section {
 
           .underline {
             @apply absolute -bottom-1 left-0 w-0 h-0.5 transition-all duration-300 group-hover:w-full;
-            background-color: var(--text-primary);
+            background: var(--accent-gradient);
           }
         }
       }
@@ -260,9 +350,10 @@ section {
       @apply flex;
 
       .inner {
-        @apply px-5 py-2 rounded-lg transition-colors duration-300;
-        background-color: var(--text-primary);
-        color: var(--bg-primary);
+        @apply px-5 py-2 rounded-xl transition-all duration-300;
+        background: var(--accent-gradient);
+        color: #fff;
+        box-shadow: var(--shadow-glow);
 
         span {
           @apply transition-colors duration-300;
@@ -270,7 +361,8 @@ section {
       }
 
       &:hover .inner {
-        background-color: var(--text-tertiary);
+        filter: brightness(1.08);
+        transform: translateY(-1px);
       }
     }
   }
@@ -461,11 +553,12 @@ section {
   }
 
   .footer {
-    @apply my-10 md:mt-20 mt-10 px-5 md:px-20 xl:px-20 flex items-center justify-center;
+    @apply mt-10 md:mt-20 px-5 md:px-20 xl:px-20 py-10 flex items-center justify-center;
     color: var(--text-secondary);
+    border-top: 1px solid var(--border-primary);
 
     .footer-container {
-      @apply grid grid-cols-1 md:grid-cols-3 gap-5 md:gap-0 w-full;
+      @apply grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-0 w-full max-w-7xl items-center;
     }
 
     p {
@@ -651,18 +744,96 @@ section {
   opacity: 1;
 }
 
+.card {
+  transition: border-color 1s ease-in-out, box-shadow 0.4s ease,
+    transform 0.3s ease;
+}
+.card:hover {
+  box-shadow: var(--shadow-glow);
+}
+
 /* Theme Toggle Button Styles */
 .theme-toggle-btn {
   background-color: var(--bg-tertiary);
   color: var(--text-primary);
   border: 1px solid var(--border-primary);
-  
+
   &:hover {
     background-color: var(--bg-card-hover);
     box-shadow: var(--shadow-sm);
   }
-  
+
   &:active {
     transform: scale(0.95);
   }
+}
+
+/* ===== Global polish ================================================ */
+
+/* On-brand, accessible focus ring for keyboard users */
+:focus-visible {
+  outline: 2px solid var(--ring);
+  outline-offset: 3px;
+  border-radius: 6px;
+}
+
+::selection {
+  background: color-mix(in srgb, var(--accent) 35%, transparent);
+  color: var(--text-primary);
+}
+
+/* Themed scrollbar */
+::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+::-webkit-scrollbar-track {
+  background: var(--bg-secondary);
+}
+::-webkit-scrollbar-thumb {
+  background: var(--accent-gradient);
+  border-radius: 9999px;
+  border: 2px solid var(--bg-secondary);
+}
+
+/* Subtle animated aurora used behind hero / section dividers */
+@keyframes auroraShift {
+  0%, 100% { transform: translate3d(0, 0, 0) scale(1); opacity: 0.55; }
+  50% { transform: translate3d(0, -3%, 0) scale(1.08); opacity: 0.8; }
+}
+.aurora-blob {
+  position: absolute;
+  border-radius: 9999px;
+  filter: blur(60px);
+  pointer-events: none;
+  animation: auroraShift 14s ease-in-out infinite;
+}
+
+/* Skip link for keyboard / screen-reader users */
+.skip-link {
+  position: absolute;
+  left: -9999px;
+  top: 0;
+  z-index: 200;
+}
+.skip-link:focus {
+  left: 1rem;
+  top: 1rem;
+  padding: 0.6rem 1rem;
+  border-radius: 0.6rem;
+  background: var(--accent);
+  color: #fff;
+}
+
+/* Respect reduced-motion globally */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+    scroll-behavior: auto !important;
+  }
+  .aurora-blob { animation: none !important; }
 }

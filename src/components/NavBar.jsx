@@ -1,10 +1,8 @@
 import React, { useEffect, useState } from "react";
 import { navLinks } from "../constants/index.js";
 import ThemeToggle from "./ThemeToggle.jsx";
-import { useTheme } from "../contexts/ThemeContext.jsx";
 
 const NavBar = () => {
-  const { theme } = useTheme();
   const [scrolled, setScrolled] = useState(false);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
@@ -58,19 +56,27 @@ const NavBar = () => {
 
   return (
     <>
-      <header 
-        className={`navbar ${scrolled ? "scrolled" : "not-scrolled"}`} 
-        style={theme === 'light' ? { backgroundColor: 'white', color: '#000' } : {}}
+      <header
+        className={`navbar ${scrolled ? "scrolled" : "not-scrolled"}`}
+        style={scrolled ? { backdropFilter: "blur(14px)" } : {}}
       >
         <div className="inner">
           {/* Logo */}
-          <a 
-            className="logo" 
-            href="#hero" 
-            onClick={handleNavClick} 
-            style={theme === 'light' ? { color: '#000' } : {}}
+          <a
+            className="logo flex items-center gap-2.5"
+            href="#hero"
+            onClick={handleNavClick}
+            aria-label="Ken Patrick Garcia — home"
           >
-            Ken | Garcia
+            <span
+              className="grid place-items-center w-9 h-9 rounded-xl font-black text-white text-lg shrink-0"
+              style={{ background: "var(--accent-gradient)" }}
+            >
+              K
+            </span>
+            <span className="font-semibold" style={{ color: "var(--text-primary)" }}>
+              Ken <span style={{ color: "var(--text-tertiary)" }}>|</span> Garcia
+            </span>
           </a>
 
           {/* Desktop Navigation - Hidden on mobile/tablet */}
@@ -78,7 +84,7 @@ const NavBar = () => {
             <ul>
               {navLinks.map(({ link, name }) => (
                 <li key={name} className="group">
-                  <a href={link} style={theme === 'light' ? { color: '#000' } : {}}>
+                  <a href={link}>
                     <span>{name}</span>
                     <span className="underline" />
                   </a>
@@ -108,17 +114,17 @@ const NavBar = () => {
             >
               <span
                 className={`block w-6 h-0.5 transition-all duration-300 ${
-                  isMenuOpen ? "rotate-45 translate-y-2 bg-white" : (theme === 'light' ? "bg-black" : "bg-[var(--text-primary)]")
+                  isMenuOpen ? "rotate-45 translate-y-2 bg-white" : "bg-[var(--text-primary)]"
                 }`}
               />
               <span
                 className={`block w-6 h-0.5 transition-all duration-300 ${
-                  isMenuOpen ? "opacity-0 bg-white" : (theme === 'light' ? "bg-black" : "bg-[var(--text-primary)]")
+                  isMenuOpen ? "opacity-0 bg-white" : "bg-[var(--text-primary)]"
                 }`}
               />
               <span
                 className={`block w-6 h-0.5 transition-all duration-300 ${
-                  isMenuOpen ? "-rotate-45 -translate-y-2 bg-white" : (theme === 'light' ? "bg-black" : "bg-[var(--text-primary)]")
+                  isMenuOpen ? "-rotate-45 -translate-y-2 bg-white" : "bg-[var(--text-primary)]"
                 }`}
               />
             </button>

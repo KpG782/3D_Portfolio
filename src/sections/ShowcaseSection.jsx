@@ -1,4 +1,4 @@
-import React, { memo, useState, useEffect } from "react";
+import React, { memo, useState } from "react";
 import {
   AnimatePresence,
   LazyMotion,
@@ -386,7 +386,8 @@ const ProjectModal = ({ project, isOpen, onClose }) => {
 const ShowcaseSection = () => {
   const { theme } = useTheme();
   const shouldReduceMotion = useReducedMotion();
-  const [activeTab, setActiveTab] = useState(0);
+  // Single tab today; kept as state so adding categories later is trivial.
+  const [activeTab] = useState(0);
   const [selectedProject, setSelectedProject] = useState(null);
   const [isModalOpen, setIsModalOpen] = useState(false);
 

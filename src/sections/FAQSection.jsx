@@ -1,5 +1,4 @@
 import TitleHeader from "../components/TitleHeader.jsx";
-import { useTheme } from "../contexts/ThemeContext.jsx";
 
 const faqItems = [
   {
@@ -30,8 +29,6 @@ const faqItems = [
 ];
 
 const FAQSection = () => {
-  const { theme } = useTheme();
-
   return (
     <section
       id="faq"
@@ -41,37 +38,25 @@ const FAQSection = () => {
       <div className="w-full md:px-10 px-5">
         <TitleHeader
           title="Frequently Asked Questions"
-          sub="SEO, Answers & Hiring Context"
+          sub="Answers & Hiring Context"
         />
 
         <div className="mt-14 max-w-5xl mx-auto grid gap-4">
           {faqItems.map((item) => (
             <article
               key={item.question}
-              className="rounded-2xl p-6 md:p-7"
-              style={
-                theme === "light"
-                  ? {
-                      backgroundColor: "#ffffff",
-                      border: "1px solid #d1d5db",
-                      boxShadow: "0 8px 24px rgba(15, 23, 42, 0.06)",
-                    }
-                  : {
-                      backgroundColor: "#0f172a",
-                      border: "1px solid #1f2937",
-                      boxShadow: "0 8px 24px rgba(0, 0, 0, 0.25)",
-                    }
-              }
+              className="gradient-frame p-6 md:p-7 transition-transform duration-300 hover:-translate-y-1"
+              style={{ boxShadow: "var(--shadow-md)" }}
             >
               <h3
                 className="text-lg md:text-xl font-semibold leading-snug"
-                style={theme === "light" ? { color: "#111827" } : { color: "#f9fafb" }}
+                style={{ color: "var(--text-primary)" }}
               >
                 {item.question}
               </h3>
               <p
                 className="mt-3 text-sm md:text-base leading-7"
-                style={theme === "light" ? { color: "#4b5563" } : { color: "#cbd5e1" }}
+                style={{ color: "var(--text-secondary)" }}
               >
                 {item.answer}
               </p>

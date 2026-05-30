@@ -48,7 +48,6 @@ const AnimatedCounter = () => {
           <CounterCard
             key={index}
             item={item}
-            index={index}
             startCounting={startCounting}
           />
         ))}
@@ -57,7 +56,7 @@ const AnimatedCounter = () => {
   );
 };
 
-const CounterCard = ({ item, index, startCounting }) => {
+const CounterCard = ({ item, startCounting }) => {
   const cardRef = useRef(null);
   const [isHovered, setIsHovered] = useState(false);
 

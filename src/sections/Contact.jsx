@@ -1,7 +1,7 @@
 import React, { lazy, Suspense, useRef, useState, useEffect } from "react";
 import TitleHeader from "../components/TitleHeader.jsx";
 import emailjs from "@emailjs/browser";
-import { motion, AnimatePresence } from "framer-motion";
+import { AnimatePresence, motion } from "framer-motion";
 
 const ContactExperience = lazy(() => import("../components/ContactExperience.jsx"));
 
@@ -111,9 +111,8 @@ const Contact = () => {
                 </div>
 
                 <div>
-                  <label htmlFor="email">Message</label>
+                  <label htmlFor="message">Message</label>
                   <textarea
-                    type="text"
                     id="message"
                     name="message"
                     rows="5"

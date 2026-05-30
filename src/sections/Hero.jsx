@@ -391,6 +391,7 @@ const VideoModal = ({ isOpen, onClose }) => {
               className="absolute top-0 left-0 w-full h-full"
               src="https://www.youtube.com/embed/nze_7ezndes?autoplay=1"
               title="Ken Patrick Garcia - Introduction"
+              loading="lazy"
               allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
               allowFullScreen
             />
@@ -518,6 +519,7 @@ const VideoModal = ({ isOpen, onClose }) => {
           className="absolute top-0 left-0 w-full h-full pointer-events-auto"
           src="https://www.youtube.com/embed/nze_7ezndes?autoplay=1&controls=1"
           title="Ken Patrick Garcia - Introduction"
+          loading="lazy"
           allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
           allowFullScreen
         />
@@ -693,7 +695,10 @@ const Hero = () => {
                 fetchPriority="high"
                 decoding="async"
               />
-              <div className="absolute -bottom-3 left-1/2 transform -translate-x-1/2 bg-blue-600 text-white text-xs font-bold px-4 py-1.5 rounded-full shadow-lg flex items-center gap-2 whitespace-nowrap">
+              <div
+                className="absolute -bottom-3 left-1/2 transform -translate-x-1/2 text-white text-xs font-bold px-4 py-1.5 rounded-full shadow-lg flex items-center gap-2 whitespace-nowrap"
+                style={{ background: "var(--accent-gradient)" }}
+              >
                 <span className="w-2.5 h-2.5 bg-white rounded-full animate-pulse" />
                 Available for Work
               </div>
@@ -719,7 +724,7 @@ const Hero = () => {
                           alt={word.text}
                           className="w-6 h-6 sm:w-8 sm:h-8 md:w-10 md:h-10 lg:w-12 lg:h-12 p-1 md:p-2 rounded-full bg-white/10 backdrop-blur-sm border border-white/20"
                         />
-                        <span className="text-blue-500">
+                        <span className="text-gradient">
                           {word.text}
                         </span>
                       </span>
@@ -732,7 +737,7 @@ const Hero = () => {
               </h1>
               <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-bold leading-tight">
                 that Deliver{" "}
-                <span className="text-blue-500">
+                <span className="text-gradient">
                   Results
                 </span>
               </h1>
@@ -758,34 +763,39 @@ const Hero = () => {
               startups, clients, and modern teams.
             </p>
 
+            {/* Capability chips — signal the AI Full Stack Engineer role at a glance */}
+            <div className="hero-description flex flex-wrap gap-2">
+              {[
+                "LLM & RAG Systems",
+                "React / Next.js",
+                "Flutter Mobile",
+                "Node & APIs",
+                "Three.js / WebGL",
+              ].map((cap) => (
+                <span key={cap} className="chip">
+                  {cap}
+                </span>
+              ))}
+            </div>
+
             {/* CTA Buttons */}
-            <div className="hero-buttons flex flex-col sm:flex-row gap-3 sm:gap-4">
+            <div className="hero-buttons flex flex-col sm:flex-row flex-wrap gap-3 sm:gap-4">
               <button
                 onClick={scrollToWork}
-                className="w-full sm:w-auto h-12 md:h-14 lg:h-16 px-6 md:px-8 font-bold rounded-lg transition-all duration-300 shadow-lg text-sm md:text-base"
-                style={theme === 'light' ? {
-                  backgroundColor: '#3b82f6',
-                  color: '#ffffff'
-                } : {
-                  backgroundColor: '#ffffff',
-                  color: '#000000'
-                }}
+                className="btn-primary w-full sm:w-auto text-sm md:text-base"
               >
                 See my Work
+                <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                </svg>
               </button>
               <button
                 onClick={() => setIsVideoOpen(true)}
-                className="w-full sm:w-auto h-12 md:h-14 lg:h-16 px-6 md:px-8 font-bold rounded-lg transition-all duration-300 shadow-lg flex items-center justify-center gap-2 group text-sm md:text-base"
-                style={theme === 'light' ? {
-                  backgroundColor: '#dc2626',
-                  color: '#ffffff'
-                } : {
-                  backgroundColor: '#dc2626',
-                  color: '#ffffff'
-                }}
+                className="btn-ghost w-full sm:w-auto group text-sm md:text-base"
               >
                 <svg
-                  className="w-5 h-5 md:w-6 md:h-6 group-hover:scale-110 transition-transform"
+                  className="w-5 h-5 group-hover:scale-110 transition-transform"
+                  style={{ color: "var(--accent)" }}
                   fill="currentColor"
                   viewBox="0 0 24 24"
                 >
@@ -795,17 +805,7 @@ const Hero = () => {
               </button>
               <button
                 onClick={handleDownloadCV}
-                className="w-full sm:w-auto h-12 md:h-14 lg:h-16 px-6 md:px-8 font-bold rounded-lg transition-all duration-300 shadow-lg flex items-center justify-center gap-2 group text-sm md:text-base"
-                style={theme === 'light' ? {
-                  backgroundColor: 'transparent',
-                  border: '2px solid #3b82f6',
-                  color: '#3b82f6'
-                } : {
-                  backgroundColor: 'rgba(255, 255, 255, 0.05)',
-                  backdropFilter: 'blur(10px)',
-                  border: '2px solid rgba(255, 255, 255, 0.2)',
-                  color: '#ffffff'
-                }}
+                className="btn-ghost w-full sm:w-auto group text-sm md:text-base"
               >
                 <svg
                   className="w-4 h-4 md:w-5 md:h-5 group-hover:translate-y-1 transition-transform"
@@ -863,25 +863,17 @@ const Hero = () => {
             <div className="pt-4 md:pt-6 border-t border-white/10">
               <div className="flex flex-wrap gap-4 md:gap-6">
                 {[
-                  {
-                    text: "Award Winning Developer",
-                    color: "text-blue-500",
-                  },
-                  {
-                    text: "Open to Developer Roles",
-                    color: "text-purple-500",
-                  },
-                  {
-                    text: "Remote Ready",
-                    color: "text-green-500",
-                  },
+                  { text: "🏆 Award-Winning Engineer" },
+                  { text: "🤖 AI / LLM Focused" },
+                  { text: "🌏 Remote Ready" },
                 ].map((stat) => (
                   <div
                     key={stat.text}
-                    className="hero-quick-stat group hover:scale-105 transition-transform duration-300 cursor-pointer"
+                    className="hero-quick-stat group hover:scale-105 transition-transform duration-300 cursor-default"
                   >
                     <div
-                      className={`text-sm sm:text-base md:text-lg font-semibold ${stat.color}`}
+                      className="text-sm sm:text-base md:text-lg font-semibold"
+                      style={{ color: "var(--text-primary)" }}
                     >
                       {stat.text}
                     </div>

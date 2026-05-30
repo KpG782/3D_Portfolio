@@ -1,4 +1,6 @@
 import { lazy, Suspense } from "react";
+import { Analytics } from "@vercel/analytics/react";
+import { SpeedInsights } from "@vercel/speed-insights/react";
 import NavBar from "./components/NavBar.jsx";
 import Hero from "./sections/Hero.jsx";
 import DeferredSection from "./components/DeferredSection.jsx";
@@ -30,6 +32,9 @@ const SectionFallback = ({ minHeight }) => (
 const App = () => {
   return (
     <ThemeProvider>
+      <a href="#work" className="skip-link">
+        Skip to main content
+      </a>
       <NavBar />
       <Hero />
       <DeferredSection id="work" minHeight="120vh" rootMargin="800px 0px">
@@ -70,6 +75,10 @@ const App = () => {
       <Suspense fallback={null}>
         <Footer />
       </Suspense>
+
+      {/* Privacy-friendly product analytics + Core Web Vitals (Vercel) */}
+      <Analytics />
+      <SpeedInsights />
     </ThemeProvider>
   );
 };
