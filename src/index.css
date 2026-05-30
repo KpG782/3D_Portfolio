@@ -294,13 +294,7 @@ section {
   }
 
   .hero-text {
-    @apply flex flex-col justify-center md:text-[60px] text-[30px] font-semibold relative z-10 pointer-events-none;
-    img {
-      @apply size-8 md:size-10 object-contain;
-    }
-    .slide {
-      @apply absolute pt-0 px-2 md:px-5 py-[30px] h-[48px] md:h-[78px] md:translate-y-1 translate-y-0 overflow-hidden;
-    }
+    @apply relative z-10;
   }
 
   .hero-badge {
@@ -610,47 +604,41 @@ section {
   }
 }
 
-/* Hero text slider starts */
-.slide {
-  display: inline-block;
+/* Inline vertical word rotator — stays in text flow, no absolute float.
+   Height is 1em so exactly one word shows; the track steps through them. */
+.word-rotator {
+  display: inline-flex;
   flex-direction: column;
-  transition: all cubic-bezier(0.71, 0.03, 0.34, 1);
+  height: 1.05em;
+  overflow: hidden;
+  vertical-align: bottom;
 }
-
-.wrapper {
+.word-rotator-track {
   display: flex;
   flex-direction: column;
-  animation: wordSlider 21s infinite cubic-bezier(0.9, 0.01, 0.3, 0.99);
+  animation: wordRotate 8s infinite;
+}
+.word-rotator-track > span {
+  height: 1.05em;
+  line-height: 1.05em;
+  white-space: nowrap;
 }
 
-@keyframes wordSlider {
-  0% {
-    transform: translateY(0.5%);
-  }
-  12.5% {
-    transform: translateY(-12.5%);
-  }
-  25% {
-    transform: translateY(-25%);
-  }
-  37.5% {
-    transform: translateY(-37.5%);
-  }
-  50% {
-    transform: translateY(-50%);
-  }
-  62.5% {
-    transform: translateY(-62.5%);
-  }
-  75% {
-    transform: translateY(-75%);
-  }
-  87.5% {
-    transform: translateY(-87.5%);
-  }
+/* 4 unique words + a repeat of the first; the final stop equals the start,
+   so the snap-back is invisible. */
+@keyframes wordRotate {
+  0%, 18%    { transform: translateY(0); }
+  25%, 43%   { transform: translateY(-1.05em); }
+  50%, 68%   { transform: translateY(-2.1em); }
+  75%, 93%   { transform: translateY(-3.15em); }
+  100%       { transform: translateY(-4.2em); }
 }
 
-/* Hero Text slider ends */
+@media (prefers-reduced-motion: reduce) {
+  .word-rotator-track {
+    animation: none;
+  }
+}
 
 .gradient-line {
   width: 2px;

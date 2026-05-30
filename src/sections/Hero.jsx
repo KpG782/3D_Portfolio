@@ -1,5 +1,4 @@
 import React, { memo, useRef, useState, useEffect } from "react";
-import { words } from "../constants/index.js";
 import { useGSAP } from "@gsap/react";
 import gsap from "gsap";
 import { useTheme } from "../contexts/ThemeContext.jsx";
@@ -533,6 +532,10 @@ const VideoModal = ({ isOpen, onClose }) => {
   );
 };
 
+// Unique rotating words + the first repeated so the vertical loop wraps
+// seamlessly back to the start.
+const rotatingWords = ["Ideas", "Concepts", "Designs", "Code", "Ideas"];
+
 const Hero = () => {
   const { theme } = useTheme();
   const [isVideoOpen, setIsVideoOpen] = useState(false);
@@ -544,7 +547,7 @@ const Hero = () => {
         gsap.set(
           [
             ".hero-profile",
-            ".hero-text h1",
+            ".hero-text",
             ".hero-description",
             ".hero-buttons",
             ".hero-social",
@@ -575,7 +578,7 @@ const Hero = () => {
           y: 18,
         })
         .from(
-          ".hero-text h1",
+          ".hero-text",
           {
             opacity: 0,
             y: 28,
@@ -664,7 +667,7 @@ const Hero = () => {
     <section
       ref={heroRef}
       id="hero"
-      className="relative overflow-hidden min-h-screen pt-24 sm:pt-28 md:pt-32"
+      className="relative overflow-hidden min-h-[88vh] md:min-h-screen pt-24 sm:pt-28 md:pt-32"
       style={{ backgroundColor: "var(--bg-primary)", color: "var(--text-primary)" }}
     >
       {/* Neural Network Background */}
@@ -708,59 +711,43 @@ const Hero = () => {
 
         {/* Content - Bottom on mobile, Left on tablet/desktop */}
         <header className="w-full md:w-1/2 flex flex-col justify-center md:order-1">
-          <div className="flex flex-col gap-7">
-            <div className="hero-text">
-              <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-bold leading-tight">
-                Shaping
-                <span className="slide inline-block">
-                  <span className="wrapper inline-flex items-center flex-wrap">
-                    {words.map((word, index) => (
-                      <span
-                        key={`${word.text}-${index}`}
-                        className="flex items-center gap-1 md:gap-2 lg:gap-3 pb-2 ml-2 md:ml-3"
-                      >
-                        <img
-                          src={word.imgPath}
-                          alt={word.text}
-                          className="w-6 h-6 sm:w-8 sm:h-8 md:w-10 md:h-10 lg:w-12 lg:h-12 p-1 md:p-2 rounded-full bg-white/10 backdrop-blur-sm border border-white/20"
-                        />
-                        <span className="text-gradient">
-                          {word.text}
-                        </span>
+          <div className="flex flex-col gap-5">
+            <span className="chip w-fit">
+              <span className="w-2 h-2 rounded-full bg-current animate-pulse" />
+              AI Full Stack Engineer
+            </span>
+
+            <h1 className="hero-text font-bold tracking-tight text-4xl sm:text-5xl lg:text-6xl leading-[1.05]">
+              <span className="sr-only">Shaping ideas, concepts, designs and code into work that delivers.</span>
+              <span className="block" aria-hidden="true">Shaping</span>
+              <span className="block">
+                <span className="word-rotator" aria-hidden="true">
+                  <span className="word-rotator-track">
+                    {rotatingWords.map((word, index) => (
+                      <span key={`${word}-${index}`} className="text-gradient">
+                        {word}
                       </span>
                     ))}
                   </span>
                 </span>
-              </h1>
-              <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-bold leading-tight">
-                into Real Projects
-              </h1>
-              <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-bold leading-tight">
-                that Deliver{" "}
-                <span className="text-gradient">
-                  Results
-                </span>
-              </h1>
-            </div>
-
-            <p className="hero-description text-base sm:text-lg md:text-xl max-w-2xl"
-              style={{ color: "var(--text-secondary)" }}>
-              Hi, I'm{" "}
-              <span className="font-semibold"
-                style={{ color: "var(--text-primary)" }}>
-                Ken Patrick Garcia
-              </span>{" "}
-              — an AI Full Stack Engineer from the Philippines 🇵🇭,
-              building intelligent systems that combine cutting-edge AI with full-stack development.
-            </p>
+              </span>
+              <span className="block" aria-hidden="true">
+                into work that{" "}
+                <span className="text-gradient">delivers</span>.
+              </span>
+            </h1>
 
             <p
-              className="hero-description text-sm sm:text-base md:text-lg max-w-3xl leading-7"
+              className="text-base sm:text-lg md:text-xl max-w-xl leading-relaxed"
               style={{ color: "var(--text-secondary)" }}
             >
-              I build AI-powered full-stack products, React interfaces, Flutter
-              mobile apps, and performance-focused digital experiences for
-              startups, clients, and modern teams.
+              Hi, I'm{" "}
+              <span className="font-semibold" style={{ color: "var(--text-primary)" }}>
+                Ken Patrick Garcia
+              </span>{" "}
+              — an AI Full Stack Engineer from the Philippines 🇵🇭. I build
+              AI-powered products, React &amp; Flutter apps, and fast,
+              accessible experiences for modern teams.
             </p>
 
             {/* Capability chips — signal the AI Full Stack Engineer role at a glance */}
