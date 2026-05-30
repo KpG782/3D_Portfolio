@@ -77,7 +77,8 @@
 
 html,
 body {
-  width: 100dvw;
+  width: 100%;
+  max-width: 100%;
   overflow-x: hidden;
   background-color: var(--bg-primary);
   color: var(--text-primary);
@@ -87,7 +88,7 @@ body {
 }
 
 section {
-  width: 100dvw;
+  width: 100%;
 }
 
 @theme {
@@ -314,25 +315,24 @@ section {
   }
 
   .navbar {
-    @apply fixed w-full left-1/2 py-5 px-5 md:px-20 -translate-x-1/2 z-[100] transition-all duration-300 ease-in-out;
+    @apply fixed top-0 w-full left-1/2 py-3 md:py-4 px-5 md:px-10 -translate-x-1/2 z-[100] transition-all duration-300 ease-in-out;
 
     &.scrolled {
-      @apply top-0;
-      background-color: var(--bg-primary);
+      background-color: color-mix(in srgb, var(--bg-primary) 80%, transparent);
+      border-bottom: 1px solid var(--border-primary);
       box-shadow: var(--shadow-sm);
     }
 
     &.not-scrolled {
-      @apply md:top-10 top-0 bg-transparent;
+      @apply bg-transparent;
     }
 
     .inner {
-      @apply mx-auto flex items-center justify-between;
+      @apply mx-auto flex items-center justify-between gap-4 w-full max-w-7xl;
     }
 
     .logo {
-      @apply text-xl md:text-2xl font-semibold transition-transform duration-300 hover:scale-105;
-      color: var(--text-secondary);
+      @apply text-lg md:text-xl font-bold tracking-tight transition-transform duration-300 hover:scale-105 whitespace-nowrap;
     }
 
     nav.desktop {
@@ -684,7 +684,7 @@ section {
 
 /* marquee */
 .marquee {
-  width: 100dvw;
+  width: 100%;
   overflow: hidden;
   position: relative;
 }

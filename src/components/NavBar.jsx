@@ -63,20 +63,13 @@ const NavBar = () => {
         <div className="inner">
           {/* Logo */}
           <a
-            className="logo flex items-center gap-2.5"
+            className="logo"
             href="#hero"
             onClick={handleNavClick}
             aria-label="Ken Patrick Garcia — home"
           >
-            <span
-              className="grid place-items-center w-9 h-9 rounded-xl font-black text-white text-lg shrink-0"
-              style={{ background: "var(--accent-gradient)" }}
-            >
-              K
-            </span>
-            <span className="font-semibold" style={{ color: "var(--text-primary)" }}>
-              Ken <span style={{ color: "var(--text-tertiary)" }}>|</span> Garcia
-            </span>
+            <span style={{ color: "var(--text-primary)" }}>Ken</span>
+            <span style={{ color: "var(--accent)" }}> Garcia</span>
           </a>
 
           {/* Desktop Navigation - Hidden on mobile/tablet */}

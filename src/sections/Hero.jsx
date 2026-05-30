@@ -664,8 +664,8 @@ const Hero = () => {
     <section
       ref={heroRef}
       id="hero"
-      className="relative overflow-hidden min-h-screen pt-20 md:pt-24 lg:pt-20"
-      style={theme === 'light' ? { backgroundColor: '#ffffff', color: '#000' } : { backgroundColor: '#000', color: '#fff' }}
+      className="relative overflow-hidden min-h-screen pt-24 sm:pt-28 md:pt-32"
+      style={{ backgroundColor: "var(--bg-primary)", color: "var(--text-primary)" }}
     >
       {/* Neural Network Background */}
       <NeuralNetworkBackground theme={theme} />
@@ -681,7 +681,7 @@ const Hero = () => {
         />
       </div>
 
-      <div className="flex flex-col md:flex-row items-center justify-center min-h-screen px-5 md:px-10 lg:px-20 gap-8 md:gap-12">
+      <div className="max-w-7xl mx-auto flex flex-col md:flex-row items-center justify-center px-5 md:px-10 lg:px-20 gap-10 md:gap-12 pb-16 md:pb-24">
         {/* Profile Image - Top on mobile, Right on tablet/desktop */}
         <figure className="w-full md:w-1/2 flex items-center justify-center md:order-2">
           <div className="hero-profile relative">
@@ -744,10 +744,10 @@ const Hero = () => {
             </div>
 
             <p className="hero-description text-base sm:text-lg md:text-xl max-w-2xl"
-              style={theme === 'light' ? { color: '#4b5563' } : { color: '#9ca3af' }}>
+              style={{ color: "var(--text-secondary)" }}>
               Hi, I'm{" "}
               <span className="font-semibold"
-                style={theme === 'light' ? { color: '#000' } : { color: '#fff' }}>
+                style={{ color: "var(--text-primary)" }}>
                 Ken Patrick Garcia
               </span>{" "}
               — an AI Full Stack Engineer from the Philippines 🇵🇭,
@@ -756,7 +756,7 @@ const Hero = () => {
 
             <p
               className="hero-description text-sm sm:text-base md:text-lg max-w-3xl leading-7"
-              style={theme === "light" ? { color: "#374151" } : { color: "#cbd5e1" }}
+              style={{ color: "var(--text-secondary)" }}
             >
               I build AI-powered full-stack products, React interfaces, Flutter
               mobile apps, and performance-focused digital experiences for
@@ -841,7 +841,7 @@ const Hero = () => {
                 >
                   <svg
                     className="w-5 h-5 md:w-6 md:h-6 transition-colors"
-                    style={theme === 'light' ? { color: '#6b7280' } : { color: '#9ca3af' }}
+                    style={{ color: "var(--text-tertiary)" }}
                     fill={social.stroke ? "none" : "currentColor"}
                     stroke={social.stroke ? "currentColor" : undefined}
                     viewBox="0 0 24 24"
