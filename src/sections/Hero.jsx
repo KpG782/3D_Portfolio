@@ -687,25 +687,75 @@ const Hero = () => {
       <div className="max-w-7xl mx-auto flex flex-col md:flex-row items-center justify-center px-5 md:px-10 lg:px-20 gap-10 md:gap-12 pb-16 md:pb-24">
         {/* Profile Image - Top on mobile, Right on tablet/desktop */}
         <figure className="w-full md:w-1/2 flex items-center justify-center md:order-2">
-          <div className="hero-profile relative">
-            {/* Profile Picture */}
-            <div className="relative">
-              <img
-                src="/images/2x2.webp"
-                alt="Ken Patrick Garcia"
-                className="w-56 h-56 sm:w-64 sm:h-64 md:w-72 md:h-72 lg:w-80 lg:h-80 rounded-full object-cover border-4 border-white/20 shadow-2xl"
-                loading="eager"
-                fetchPriority="high"
-                decoding="async"
-              />
-              <div
-                className="absolute -bottom-3 left-1/2 transform -translate-x-1/2 text-white text-xs font-bold px-4 py-1.5 rounded-full shadow-lg flex items-center gap-2 whitespace-nowrap"
-                style={{ background: "var(--accent-gradient)" }}
-              >
-                <span className="w-2.5 h-2.5 bg-white rounded-full animate-pulse" />
-                Available for Work
+          <div className="hero-profile relative flex flex-col items-center gap-8">
+            {/* Photo + orbiting tech badges */}
+            <div className="orbit-stage">
+              {/* glowing gradient ring */}
+              <div className="orbit-glow" aria-hidden="true" />
+
+              <div className="orbit-photo">
+                <img
+                  src="/images/2x2.webp"
+                  alt="Ken Patrick Garcia"
+                  className="w-full h-full rounded-full object-cover"
+                  loading="eager"
+                  fetchPriority="high"
+                  decoding="async"
+                />
+                <div
+                  className="absolute -bottom-3 left-1/2 -translate-x-1/2 text-white text-xs font-bold px-4 py-1.5 rounded-full shadow-lg flex items-center gap-2 whitespace-nowrap"
+                  style={{ background: "var(--accent-gradient)" }}
+                >
+                  <span className="w-2.5 h-2.5 bg-white rounded-full animate-pulse" />
+                  Available for Work
+                </div>
+              </div>
+
+              {/* Orbiting tech badges — counter-rotate so labels stay upright */}
+              <div className="orbit-ring" aria-hidden="true">
+                {[
+                  { label: "AI", tone: "var(--accent-2)" },
+                  { label: "React", tone: "var(--accent-3)" },
+                  { label: "Flutter", tone: "var(--accent)" },
+                  { label: "Node", tone: "#3c873a" },
+                  { label: "n8n", tone: "var(--accent-2)" },
+                ].map((b, i) => (
+                  <span
+                    key={b.label}
+                    className="orbit-item"
+                    style={{ "--i": i, "--total": 5 }}
+                  >
+                    <span className="orbit-badge" style={{ color: b.tone }}>
+                      {b.label}
+                    </span>
+                  </span>
+                ))}
               </div>
             </div>
+
+            {/* Recruiter proof strip */}
+            <dl className="grid grid-cols-3 gap-3 w-full max-w-sm">
+              {[
+                { n: "4+", l: "Years building" },
+                { n: "20+", l: "Projects shipped" },
+                { n: "3", l: "Awards won" },
+              ].map((s) => (
+                <div
+                  key={s.l}
+                  className="gradient-frame px-3 py-4 text-center"
+                >
+                  <dt className="text-2xl md:text-3xl font-black text-gradient leading-none">
+                    {s.n}
+                  </dt>
+                  <dd
+                    className="mt-1.5 text-[11px] md:text-xs font-medium"
+                    style={{ color: "var(--text-tertiary)" }}
+                  >
+                    {s.l}
+                  </dd>
+                </div>
+              ))}
+            </dl>
           </div>
         </figure>
 
