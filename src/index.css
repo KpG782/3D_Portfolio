@@ -233,6 +233,20 @@ section {
     border: 1px solid color-mix(in srgb, var(--accent) 28%, transparent);
   }
 
+  /* Brand gradient fill — single source of truth for "blue→purple" CTAs */
+  .bg-brand-gradient {
+    background: var(--accent-gradient);
+  }
+  .bg-brand-gradient:hover {
+    filter: brightness(1.07);
+  }
+
+  /* Brand-tinted focus ring (replaces scattered focus:ring-blue-500) */
+  .focus-ring-brand:focus-visible {
+    outline: none;
+    box-shadow: 0 0 0 2px var(--bg-primary), 0 0 0 4px var(--ring);
+  }
+
   .padding-x {
     @apply px-5 md:px-10;
   }

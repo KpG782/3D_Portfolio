@@ -96,7 +96,7 @@ const CertificationModal = memo(function CertificationModal({
             {cert.credentialUrl && (
               <button
                 onClick={handleViewCredential}
-                className="flex-shrink-0 bg-gradient-to-r from-blue-500 to-purple-600 text-white px-4 py-2 rounded-lg hover:from-blue-600 hover:to-purple-700 transition-all duration-300 font-semibold text-xs sm:text-sm flex items-center gap-2 shadow-lg hover:shadow-blue-500/50"
+                className="flex-shrink-0 bg-brand-gradient text-white px-4 py-2 rounded-lg transition-all duration-300 font-semibold text-xs sm:text-sm flex items-center gap-2 shadow-lg focus-ring-brand"
               >
                 View Credential
                 <svg

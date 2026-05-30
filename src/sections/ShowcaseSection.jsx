@@ -47,7 +47,7 @@ const ProjectCard = memo(
     onKeyDown,
   }) => (
     <motion.article
-      className="group rounded-xl sm:rounded-2xl shadow-xl hover:shadow-2xl hover:shadow-blue-500/20 transition-[transform,box-shadow] duration-300 cursor-pointer focus:outline-none focus:ring-2 focus:ring-blue-500 overflow-hidden relative"
+      className="group rounded-xl sm:rounded-2xl shadow-xl hover:shadow-2xl transition-[transform,box-shadow] duration-300 cursor-pointer focus-ring-brand overflow-hidden relative"
       style={
         theme === "light"
           ? {
@@ -94,7 +94,7 @@ const ProjectCard = memo(
           />
           <div className="absolute inset-0 bg-gradient-to-t from-gray-900 via-transparent to-transparent opacity-60" />
           <div className="absolute top-3 left-3 z-10">
-            <span className="inline-block text-xs font-bold text-white bg-gradient-to-r from-blue-500 to-purple-600 px-3 py-1.5 rounded-full shadow-lg backdrop-blur-sm border border-blue-400/30">
+            <span className="inline-block text-xs font-bold text-white bg-brand-gradient px-3 py-1.5 rounded-full shadow-lg backdrop-blur-sm">
               {project.category}
             </span>
           </div>
@@ -180,7 +180,7 @@ const ProjectCard = memo(
                   href={project.demoLink}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="flex-1 sm:flex-none bg-gradient-to-r from-blue-500 to-purple-600 text-white hover:from-blue-600 hover:to-purple-700 transition-all duration-300 px-3 py-2 rounded-lg text-xs font-bold focus:outline-none focus:ring-2 focus:ring-blue-500 shadow-lg hover:shadow-blue-500/50 transform hover:scale-105 text-center"
+                  className="flex-1 sm:flex-none bg-brand-gradient text-white transition-all duration-300 px-3 py-2 rounded-lg text-xs font-bold focus-ring-brand shadow-lg transform hover:scale-105 text-center"
                   onClick={(e) => e.stopPropagation()}
                   aria-label={`View ${project.title}`}
                 >
@@ -368,7 +368,7 @@ const ProjectModal = ({ project, isOpen, onClose }) => {
                     href={project.demoLink}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="flex-1 sm:flex-none bg-gradient-to-r from-blue-500 to-purple-600 text-white px-6 py-3 rounded-lg hover:from-blue-600 hover:to-purple-700 transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-blue-500 text-sm font-semibold shadow-lg hover:shadow-blue-500/50 text-center"
+                    className="flex-1 sm:flex-none bg-brand-gradient text-white px-6 py-3 rounded-lg transition-all duration-300 focus-ring-brand text-sm font-semibold shadow-lg text-center"
                     aria-label={`View ${project.title}`}
                   >
                     View Project
