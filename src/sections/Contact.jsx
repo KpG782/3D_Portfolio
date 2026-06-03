@@ -51,7 +51,7 @@ const Contact = () => {
       setFormData({ name: "", email: "", message: "" });
       setIsModalOpen(true); // ✅ Show modal
     } catch (error) {
-      console.log("EMAILJS ERROR", error);
+      console.error("Email send failed:", error);
     } finally {
       setLoading(false);
     }

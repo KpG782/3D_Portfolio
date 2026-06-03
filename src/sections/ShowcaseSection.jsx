@@ -343,7 +343,12 @@ const ProjectModal = ({ project, isOpen, onClose }) => {
                   {project.techStack.map((tech, idx) => (
                     <span
                       key={idx}
-                      className="bg-gradient-to-r from-blue-500/10 to-purple-500/10 text-blue-300 px-3 py-2 rounded-lg text-sm font-medium border border-blue-500/20 hover:border-blue-400/40 transition-colors"
+                      className="px-3 py-2 rounded-lg text-sm font-mono font-medium border transition-colors"
+                      style={{
+                        backgroundColor: "var(--accent-soft)",
+                        color: "var(--accent)",
+                        borderColor: "color-mix(in srgb, var(--accent) 28%, transparent)",
+                      }}
                     >
                       {tech}
                     </span>

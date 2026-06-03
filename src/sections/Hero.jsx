@@ -532,10 +532,6 @@ const VideoModal = ({ isOpen, onClose }) => {
   );
 };
 
-// Unique rotating words + the first repeated so the vertical loop wraps
-// seamlessly back to the start.
-const rotatingWords = ["Ideas", "Concepts", "Designs", "Code", "Ideas"];
-
 const Hero = () => {
   const { theme } = useTheme();
   const [isVideoOpen, setIsVideoOpen] = useState(false);
@@ -609,27 +605,6 @@ const Hero = () => {
     { scope: heroRef }
   );
 
-  const handleDownloadCV = () => {
-    // Scroll to contact section
-    const contactSection = document.getElementById("contact");
-    if (contactSection) {
-      contactSection.scrollIntoView({ behavior: "smooth" });
-      
-      // Wait for scroll to complete, then pre-fill the message field
-      setTimeout(() => {
-        const messageField = document.getElementById("message");
-        if (messageField) {
-          messageField.value = "Hi Ken,\n\nI would like to request a copy of your resume for review.\n\nThank you!";
-          messageField.focus();
-          
-          // Trigger the onChange event to update the form state
-          const event = new Event('input', { bubbles: true });
-          messageField.dispatchEvent(event);
-        }
-      }, 1000); // Wait 1 second for smooth scroll to finish
-    }
-  };
-
   const scrollToWork = () => {
     document.getElementById("work")?.scrollIntoView({ behavior: "smooth" });
   };
@@ -667,7 +642,7 @@ const Hero = () => {
     <section
       ref={heroRef}
       id="hero"
-      className="relative overflow-hidden min-h-[88vh] md:min-h-screen pt-24 sm:pt-28 md:pt-32"
+      className="relative overflow-hidden min-h-[80vh] md:min-h-[88vh] flex items-center pt-24 sm:pt-28 md:pt-28 pb-12 md:pb-16"
       style={{ backgroundColor: "var(--bg-primary)", color: "var(--text-primary)" }}
     >
       {/* Neural Network Background */}
@@ -684,78 +659,61 @@ const Hero = () => {
         />
       </div>
 
-      <div className="max-w-7xl mx-auto flex flex-col md:flex-row items-center justify-center px-5 md:px-10 lg:px-20 gap-10 md:gap-12 pb-16 md:pb-24">
+      <div className="relative z-20 w-full max-w-7xl mx-auto flex flex-col md:flex-row items-center justify-center px-5 md:px-10 lg:px-20 gap-10 md:gap-14">
         {/* Profile Image - Top on mobile, Right on tablet/desktop */}
         <figure className="w-full md:w-1/2 flex items-center justify-center md:order-2">
-          <div className="hero-profile relative flex flex-col items-center gap-8">
-            {/* Photo + orbiting tech badges */}
-            <div className="orbit-stage">
-              {/* glowing gradient ring */}
-              <div className="orbit-glow" aria-hidden="true" />
+          <div className="hero-profile relative flex flex-col items-center gap-5 w-full max-w-[360px]">
+            {/* Photo — clean front-facing headshot */}
+            <img
+              src="/images/2x2.webp"
+              alt="Ken Patrick Garcia"
+              width={440}
+              height={440}
+              className="w-full aspect-square rounded-2xl object-cover"
+              style={{
+                border: "1px solid var(--border-primary)",
+                boxShadow: "var(--shadow-lg)",
+              }}
+              loading="eager"
+              fetchPriority="high"
+              decoding="async"
+            />
 
-              <div className="orbit-photo">
-                <img
-                  src="/images/2x2.webp"
-                  alt="Ken Patrick Garcia"
-                  className="w-full h-full rounded-full object-cover"
-                  loading="eager"
-                  fetchPriority="high"
-                  decoding="async"
-                />
-                <div
-                  className="absolute -bottom-3 left-1/2 -translate-x-1/2 text-white text-xs font-bold px-4 py-1.5 rounded-full shadow-lg flex items-center gap-2 whitespace-nowrap"
-                  style={{ background: "var(--accent-gradient)" }}
-                >
-                  <span className="w-2.5 h-2.5 bg-white rounded-full animate-pulse" />
-                  Available for Work
-                </div>
+            {/* whoami terminal */}
+            <div
+              className="w-full rounded-xl overflow-hidden"
+              style={{
+                backgroundColor: "var(--bg-card)",
+                border: "1px solid var(--border-primary)",
+              }}
+              aria-hidden="true"
+            >
+              <div
+                className="flex items-center gap-1.5 px-3 py-2.5"
+                style={{ borderBottom: "1px solid var(--border-primary)" }}
+              >
+                <span className="w-2.5 h-2.5 rounded-full" style={{ backgroundColor: "var(--bg-tertiary)" }} />
+                <span className="w-2.5 h-2.5 rounded-full" style={{ backgroundColor: "var(--bg-tertiary)" }} />
+                <span className="w-2.5 h-2.5 rounded-full" style={{ backgroundColor: "var(--bg-tertiary)" }} />
+                <span className="font-mono text-[11px] ml-2" style={{ color: "var(--text-tertiary)" }}>
+                  ken@portfolio ~ %
+                </span>
               </div>
-
-              {/* Orbiting tech badges — counter-rotate so labels stay upright */}
-              <div className="orbit-ring" aria-hidden="true">
-                {[
-                  { label: "AI", tone: "var(--accent-2)" },
-                  { label: "React", tone: "var(--accent-3)" },
-                  { label: "Flutter", tone: "var(--accent)" },
-                  { label: "Node", tone: "#3c873a" },
-                  { label: "n8n", tone: "var(--accent-2)" },
-                ].map((b, i) => (
-                  <span
-                    key={b.label}
-                    className="orbit-item"
-                    style={{ "--i": i, "--total": 5 }}
-                  >
-                    <span className="orbit-badge" style={{ color: b.tone }}>
-                      {b.label}
-                    </span>
-                  </span>
-                ))}
+              <div
+                className="px-4 py-3.5 font-mono text-xs leading-relaxed"
+                style={{ color: "var(--text-secondary)" }}
+              >
+                <span style={{ color: "var(--accent)" }}>$</span> whoami
+                <br />
+                <span style={{ color: "var(--text-tertiary)" }}>
+                  Ken Patrick Garcia — AI Full-Stack Engineer
+                </span>
+                <br />
+                <span style={{ color: "var(--accent)" }}>$</span> status
+                <br />
+                &gt; <span style={{ color: "var(--accent)" }}>● open to roles</span> · ships production AI
               </div>
             </div>
-
-            {/* Recruiter proof strip */}
-            <dl className="grid grid-cols-3 gap-3 w-full max-w-sm">
-              {[
-                { n: "4+", l: "Years building" },
-                { n: "20+", l: "Projects shipped" },
-                { n: "3", l: "Awards won" },
-              ].map((s) => (
-                <div
-                  key={s.l}
-                  className="gradient-frame px-3 py-4 text-center"
-                >
-                  <dt className="text-2xl md:text-3xl font-black text-gradient leading-none">
-                    {s.n}
-                  </dt>
-                  <dd
-                    className="mt-1.5 text-[11px] md:text-xs font-medium"
-                    style={{ color: "var(--text-tertiary)" }}
-                  >
-                    {s.l}
-                  </dd>
-                </div>
-              ))}
-            </dl>
           </div>
         </figure>
 
@@ -764,62 +722,44 @@ const Hero = () => {
           <div className="flex flex-col gap-5">
             <span className="chip w-fit">
               <span className="w-2 h-2 rounded-full bg-current animate-pulse" />
-              AI Full Stack Engineer
+              Open to Full-Stack / AI roles
             </span>
 
             <h1 className="hero-text font-bold tracking-tight text-4xl sm:text-5xl lg:text-6xl leading-[1.05]">
-              <span className="sr-only">Shaping ideas, concepts, designs and code into work that delivers.</span>
-              <span className="block" aria-hidden="true">Shaping</span>
-              <span className="block">
-                <span className="word-rotator" aria-hidden="true">
-                  <span className="word-rotator-track">
-                    {rotatingWords.map((word, index) => (
-                      <span key={`${word}-${index}`} className="text-gradient">
-                        {word}
-                      </span>
-                    ))}
-                  </span>
-                </span>
-              </span>
-              <span className="block" aria-hidden="true">
-                into work that{" "}
-                <span className="text-gradient">delivers</span>.
-              </span>
+              Ken Patrick Garcia
             </h1>
-
             <p
-              className="text-base sm:text-lg md:text-xl max-w-xl leading-relaxed"
+              className="hero-text text-xl sm:text-2xl font-semibold -mt-1"
               style={{ color: "var(--text-secondary)" }}
             >
-              Hi, I'm{" "}
-              <span className="font-semibold" style={{ color: "var(--text-primary)" }}>
-                Ken Patrick Garcia
-              </span>{" "}
-              — an AI Full Stack Engineer from the Philippines 🇵🇭. I build
-              AI-powered products, React &amp; Flutter apps, and fast,
-              accessible experiences for modern teams.
+              AI Full-Stack Engineer
             </p>
 
-            {/* Capability chips — signal the AI Full Stack Engineer role at a glance */}
+            <p
+              className="hero-description text-base sm:text-lg max-w-xl leading-relaxed"
+              style={{ color: "var(--text-secondary)" }}
+            >
+              I build AI-powered, full-stack products — RAG systems, AI agents, and fast,
+              accessible web &amp; mobile apps. Hackathon champion shipping production AI from
+              the Philippines 🇵🇭.
+            </p>
+
+            {/* Capability chips */}
             <div className="hero-description flex flex-wrap gap-2">
-              {[
-                "LLM & RAG Systems",
-                "React / Next.js",
-                "Flutter Mobile",
-                "Node & APIs",
-                "Three.js / WebGL",
-              ].map((cap) => (
-                <span key={cap} className="chip">
-                  {cap}
-                </span>
-              ))}
+              {["LLM & RAG", "AI Agents", "React / Next.js", "Flutter", "n8n Automation"].map(
+                (cap) => (
+                  <span key={cap} className="chip">
+                    {cap}
+                  </span>
+                )
+              )}
             </div>
 
             {/* CTA Buttons */}
-            <div className="hero-buttons flex flex-col sm:flex-row flex-wrap gap-3 sm:gap-4">
+            <div className="hero-buttons flex flex-col sm:flex-row flex-wrap gap-3">
               <button
                 onClick={scrollToWork}
-                className="btn-primary w-full sm:w-auto text-sm md:text-base"
+                className="btn-primary w-full sm:w-auto text-sm md:text-base focus-ring-brand"
               >
                 See my Work
                 <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -828,7 +768,7 @@ const Hero = () => {
               </button>
               <button
                 onClick={() => setIsVideoOpen(true)}
-                className="btn-ghost w-full sm:w-auto group text-sm md:text-base"
+                className="btn-ghost w-full sm:w-auto group text-sm md:text-base focus-ring-brand"
               >
                 <svg
                   className="w-5 h-5 group-hover:scale-110 transition-transform"
@@ -840,44 +780,27 @@ const Hero = () => {
                 </svg>
                 Watch Introduction
               </button>
-              <button
-                onClick={handleDownloadCV}
-                className="btn-ghost w-full sm:w-auto group text-sm md:text-base"
-              >
-                <svg
-                  className="w-4 h-4 md:w-5 md:h-5 group-hover:translate-y-1 transition-transform"
-                  fill="none"
-                  stroke="currentColor"
-                  viewBox="0 0 24 24"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth={2}
-                    d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"
-                  />
-                </svg>
-                Download Resume
-              </button>
             </div>
 
             {/* Social Links */}
-            <div className="flex flex-wrap gap-3 sm:gap-4 pt-2">
+            <div className="hero-social flex flex-wrap gap-3 pt-1">
               {socialLinks.map((social) => (
                 <a
                   key={social.label}
                   href={social.href}
                   target={social.href.startsWith("http") ? "_blank" : undefined}
                   rel={
-                    social.href.startsWith("http")
-                      ? "noopener noreferrer"
-                      : undefined
+                    social.href.startsWith("http") ? "noopener noreferrer" : undefined
                   }
-                  className="hero-social group relative p-2.5 md:p-3 bg-white/5 backdrop-blur-sm border border-white/10 rounded-lg hover:bg-white/10 hover:border-white/30 transition-all duration-300 hover:scale-110"
+                  className="group p-2.5 md:p-3 rounded-lg transition-all duration-300 hover:scale-110 focus-ring-brand"
+                  style={{
+                    backgroundColor: "var(--bg-card)",
+                    border: "1px solid var(--border-primary)",
+                  }}
                   aria-label={social.label}
                 >
                   <svg
-                    className="w-5 h-5 md:w-6 md:h-6 transition-colors"
+                    className="w-5 h-5 transition-colors"
                     style={{ color: "var(--text-tertiary)" }}
                     fill={social.stroke ? "none" : "currentColor"}
                     stroke={social.stroke ? "currentColor" : undefined}
@@ -896,28 +819,10 @@ const Hero = () => {
               ))}
             </div>
 
-            {/* Quick Stats - Recruiter Focused */}
-            <div className="pt-4 md:pt-6 border-t border-white/10">
-              <div className="flex flex-wrap gap-4 md:gap-6">
-                {[
-                  { text: "🏆 Award-Winning Engineer" },
-                  { text: "🤖 AI / LLM Focused" },
-                  { text: "🌏 Remote Ready" },
-                ].map((stat) => (
-                  <div
-                    key={stat.text}
-                    className="hero-quick-stat group hover:scale-105 transition-transform duration-300 cursor-default"
-                  >
-                    <div
-                      className="text-sm sm:text-base md:text-lg font-semibold"
-                      style={{ color: "var(--text-primary)" }}
-                    >
-                      {stat.text}
-                    </div>
-                  </div>
-                ))}
-              </div>
-            </div>
+            {/* Proof line */}
+            <p className="font-mono text-xs pt-2" style={{ color: "var(--text-tertiary)" }}>
+              4 awards · 24 projects · 9 roles · building since 2021
+            </p>
           </div>
         </header>
       </div>

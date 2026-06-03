@@ -19,6 +19,10 @@ const FAQSection = lazy(() => import("./sections/FAQSection.jsx"));
 const Contact = lazy(() => import("./sections/Contact.jsx"));
 const Footer = lazy(() => import("./sections/Footer.jsx"));
 
+// New résumé-driven sections
+const EducationAwards = lazy(() => import("./sections/EducationAwards.jsx"));
+const Leadership = lazy(() => import("./sections/Leadership.jsx"));
+
 const SectionFallback = ({ minHeight }) => (
   <div
     aria-hidden="true"
@@ -42,19 +46,29 @@ const App = () => {
           <ShowcaseSection />
         </Suspense>
       </DeferredSection>
-      <DeferredSection minHeight="70vh" rootMargin="700px 0px">
-        <Suspense fallback={<SectionFallback minHeight="70vh" />}>
-          <CertificationsSection />
-        </Suspense>
-      </DeferredSection>
       <DeferredSection minHeight="90vh" rootMargin="700px 0px">
         <Suspense fallback={<SectionFallback minHeight="90vh" />}>
           <ExperienceSection />
         </Suspense>
       </DeferredSection>
+      <DeferredSection id="education" minHeight="80vh" rootMargin="700px 0px">
+        <Suspense fallback={<SectionFallback minHeight="80vh" />}>
+          <EducationAwards />
+        </Suspense>
+      </DeferredSection>
       <DeferredSection minHeight="75vh" rootMargin="650px 0px">
         <Suspense fallback={<SectionFallback minHeight="75vh" />}>
           <TechStack />
+        </Suspense>
+      </DeferredSection>
+      <DeferredSection id="leadership" minHeight="60vh" rootMargin="650px 0px">
+        <Suspense fallback={<SectionFallback minHeight="60vh" />}>
+          <Leadership />
+        </Suspense>
+      </DeferredSection>
+      <DeferredSection minHeight="70vh" rootMargin="700px 0px">
+        <Suspense fallback={<SectionFallback minHeight="70vh" />}>
+          <CertificationsSection />
         </Suspense>
       </DeferredSection>
       <DeferredSection minHeight="65vh" rootMargin="650px 0px">

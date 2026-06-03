@@ -541,8 +541,8 @@ const CertificationsSection = () => {
               className="text-sm"
               style={theme === "light" ? { color: "#6b7280" } : { color: "#9ca3af" }}
             >
-              <span className="text-blue-400">Auto-scrolling</span> • Drag to
-              control • <span className="text-purple-400">Hover</span> to
+              <span style={{ color: "var(--accent)" }}>Auto-scrolling</span> • Drag to
+              control • <span style={{ color: "var(--accent)" }}>Hover</span> to
               preview • <span className="text-green-400">Click</span> to lock
               view
             </p>
