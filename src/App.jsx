@@ -6,6 +6,10 @@ import Hero from "./sections/Hero.jsx";
 import DeferredSection from "./components/DeferredSection.jsx";
 import { ThemeProvider } from "./contexts/ThemeContext.jsx";
 
+const FeatureCards = lazy(() => import("./sections/FeatureCards.jsx"));
+// FeaturedHighlights ("Featured Work") intentionally unmounted for now — the
+// Selected Work grid already leads with Beacon + Kudlit. Re-add the block below
+// to restore it.
 const ShowcaseSection = lazy(() => import("./sections/ShowcaseSection.jsx"));
 const CertificationsSection = lazy(() =>
   import("./sections/CertificationsSection.jsx")
@@ -21,7 +25,8 @@ const Footer = lazy(() => import("./sections/Footer.jsx"));
 
 // New résumé-driven sections
 const EducationAwards = lazy(() => import("./sections/EducationAwards.jsx"));
-const Leadership = lazy(() => import("./sections/Leadership.jsx"));
+const SpeakingCommunity = lazy(() => import("./sections/SpeakingCommunity.jsx"));
+const DesignSystem = lazy(() => import("./sections/DesignSystem.jsx"));
 
 const SectionFallback = ({ minHeight }) => (
   <div
@@ -41,12 +46,20 @@ const App = () => {
       </a>
       <NavBar />
       <Hero />
+
+      {/* Why work with me — the 60-second hireability pitch */}
+      <DeferredSection id="why" minHeight="60vh" rootMargin="800px 0px">
+        <Suspense fallback={<SectionFallback minHeight="60vh" />}>
+          <FeatureCards />
+        </Suspense>
+      </DeferredSection>
+
       <DeferredSection id="work" minHeight="120vh" rootMargin="800px 0px">
         <Suspense fallback={<SectionFallback minHeight="120vh" />}>
           <ShowcaseSection />
         </Suspense>
       </DeferredSection>
-      <DeferredSection minHeight="90vh" rootMargin="700px 0px">
+      <DeferredSection id="experience" minHeight="90vh" rootMargin="700px 0px">
         <Suspense fallback={<SectionFallback minHeight="90vh" />}>
           <ExperienceSection />
         </Suspense>
@@ -61,11 +74,14 @@ const App = () => {
           <TechStack />
         </Suspense>
       </DeferredSection>
-      <DeferredSection id="leadership" minHeight="60vh" rootMargin="650px 0px">
-        <Suspense fallback={<SectionFallback minHeight="60vh" />}>
-          <Leadership />
+
+      {/* Speaking & community — proof Ken is a visible builder, not just a coder */}
+      <DeferredSection id="community" minHeight="100vh" rootMargin="700px 0px">
+        <Suspense fallback={<SectionFallback minHeight="100vh" />}>
+          <SpeakingCommunity />
         </Suspense>
       </DeferredSection>
+
       <DeferredSection minHeight="70vh" rootMargin="700px 0px">
         <Suspense fallback={<SectionFallback minHeight="70vh" />}>
           <CertificationsSection />
@@ -86,6 +102,14 @@ const App = () => {
           <Contact />
         </Suspense>
       </DeferredSection>
+
+      {/* Colophon — the design system + accessibility behind the site */}
+      <DeferredSection id="design-system" minHeight="60vh" rootMargin="650px 0px">
+        <Suspense fallback={<SectionFallback minHeight="60vh" />}>
+          <DesignSystem />
+        </Suspense>
+      </DeferredSection>
+
       <Suspense fallback={null}>
         <Footer />
       </Suspense>

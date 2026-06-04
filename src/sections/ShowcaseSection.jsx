@@ -91,6 +91,10 @@ const ProjectCard = memo(
             decoding="async"
             sizes="(min-width: 1280px) 20rem, (min-width: 640px) 40vw, 100vw"
             draggable="false"
+            onError={(e) => {
+              e.currentTarget.onerror = null;
+              e.currentTarget.src = "/images/projects/_placeholder.svg";
+            }}
           />
           <div className="absolute inset-0 bg-gradient-to-t from-gray-900 via-transparent to-transparent opacity-60" />
           <div className="absolute top-3 left-3 z-10">
@@ -272,6 +276,10 @@ const ProjectModal = ({ project, isOpen, onClose }) => {
                   decoding="async"
                   sizes="(min-width: 1024px) 56rem, 100vw"
                   draggable="false"
+                  onError={(e) => {
+                    e.currentTarget.onerror = null;
+                    e.currentTarget.src = "/images/projects/_placeholder.svg";
+                  }}
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity" />
               </div>
@@ -453,8 +461,8 @@ const ShowcaseSection = () => {
       >
         <motion.div className="max-w-7xl mx-auto py-2 relative z-10" variants={sectionVariants}>
           <TitleHeader
-            title={"Award-Winning Projects"}
-            sub={"My Work & Portfolio"}
+            title={"Selected Work"}
+            sub={"Production AI & award-winning builds"}
           />
 
           <motion.div

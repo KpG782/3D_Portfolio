@@ -36,10 +36,39 @@ const firstSentence = (s = "") => {
  */
 const META = [
   {
+    key: "Beacon",
+    id: "beacon",
+    category: "AI/ML",
+    featured: true,
+    role: "Solo build · Full-stack + agent",
+    tagline:
+      "An AI research agent whose memory compounds across sessions — so research builds on itself instead of starting over.",
+    metrics: [
+      { label: "Type", value: "Autonomous agent" },
+      { label: "Memory", value: "Persistent" },
+      { label: "Shipped at", value: "Vercel Zero to Agent" },
+    ],
+  },
+  {
+    key: "Kudlit",
+    id: "kudlit",
+    category: "AI/ML",
+    featured: true,
+    role: "Team build · Cross-platform + on-device AI",
+    awardId: "devakda",
+    tagline:
+      "A cross-platform Baybayin app (Android, iOS, web) that scans glyphs with a vision model and explains them with local Gemma + Google Gemini.",
+    metrics: [
+      { label: "Result", value: "Top 13 / 500+" },
+      { label: "Platforms", value: "Android · iOS · Web" },
+      { label: "AI", value: "Local Gemma + Gemini" },
+    ],
+  },
+  {
     key: "ARS",
     id: "ars",
     category: "Mobile",
-    featured: true,
+    featured: false,
     tagline:
       "Emergency roadside assistance connecting stranded motorists to nearby mechanics in real time.",
     awardId: "best-paper",
@@ -52,7 +81,7 @@ const META = [
     key: "FlowFit",
     id: "flowfit",
     category: "Mobile",
-    featured: true,
+    featured: false,
     tagline:
       "AI-powered fitness buddy helping kids (7–12) build healthy habits with a whale companion.",
     awardId: "coldstart-champion",
@@ -66,6 +95,7 @@ const META = [
     id: "pacebeats",
     category: "Mobile",
     featured: true,
+    role: "Project Lead · Fullstack + ML",
     tagline:
       "Biometric music recommender that adapts playlists to your real-time heart rate on Galaxy Watch.",
     awardId: "infotech-olympics",
@@ -79,6 +109,7 @@ const META = [
     id: "herbalens",
     category: "AI/ML",
     featured: true,
+    role: "AI · Computer Vision",
     tagline:
       "AI medicinal-plant recognition bridging Filipino herbal knowledge with computer vision.",
     awardId: "dost-tapi",

@@ -2,6 +2,61 @@ export const PROJECTS = [
   // Tab 0: Full Stack Applications & Websites
   [
     {
+      title: "Beacon – AI Research Agent with Persistent Memory",
+      desc: "An AI research agent that combines structured research frameworks with persistent memory, so research compounds instead of repeating. Most AI tools reset every session — no memory, no continuity, no sense of what changed. Beacon remembers and builds on it. Submitted to the Vercel Zero to Agent Hackathon 2026.",
+      img: "/images/projects/beacon.webp",
+      alt: "Beacon — durable AI research agent landing page",
+      // ⬇️ ADD LINKS: set `demoLink` to your live app and `link` to the repo. Empty = button hidden.
+      link: "",
+      demoLink: "",
+      techStack: [
+        "Next.js",
+        "Vercel AI SDK",
+        "RAG",
+        "Vector Memory",
+        "TypeScript",
+        "Tailwind CSS",
+      ],
+      category: "AI Agent",
+      members: ["Ken Patrick Garcia"],
+      features: [
+        "Persistent memory across sessions — research compounds instead of resetting",
+        "Structured research frameworks for repeatable validation and discovery",
+        "Built and shipped for the Vercel Zero to Agent Hackathon 2026",
+      ],
+      duration: "Hackathon build",
+      status: "Live",
+    },
+    {
+      title: "Kudlit – Baybayin Learning & Translation App",
+      desc: "A cross-platform Filipino learning companion for Baybayin — the ancient Philippine script — on Android, iOS, and web. Scan glyphs with a camera-first vision model (YOLO → TFLite), translate both ways between Filipino and Baybayin Unicode, and learn with Butty, an AI companion that runs on-device with local Gemma and in the cloud with Google Gemini. Shipped as Android v1.0.0; Top 13 of 500+ at the DEVAKDA Hackathon.",
+      img: "/images/projects/kudlit.webp",
+      alt: "Kudlit — Baybayin learning app v1.0.0 banner",
+      link: "https://github.com/KpG782/kudlit-app",
+      // ⬇️ Optional: add the APK release or live web demo URL for a "View →" button.
+      demoLink: "",
+      techStack: [
+        "Android · iOS · Web",
+        "Local Gemma (on-device)",
+        "Google Gemini (cloud)",
+        "Vision Model (YOLO · TFLite)",
+        "Flutter",
+        "Supabase",
+        "Riverpod",
+      ],
+      category: "AI/ML",
+      members: ["Ken Patrick Garcia", "ACSADians Team"],
+      features: [
+        "Cross-platform from one Flutter codebase — Android, iOS, and web",
+        "Camera-first Baybayin glyph scanner — a YOLO → TFLite vision model",
+        "Two-way translation between Filipino text and Baybayin Unicode",
+        "Butty AI companion: on-device local Gemma + Google Gemini in the cloud",
+        "Shipped as Android v1.0.0 with feature-first clean architecture",
+      ],
+      duration: "DEVAKDA Hackathon 2026",
+      status: "Live",
+    },
+    {
       title: "ARS – Auto Repair Response Network Service",
       desc: "🏆 Best Paper Presentation Award Winner (97% score) at the 8th Research Congress. A civic technology solution designed to provide emergency automotive assistance to stranded motorists. This mobile application connects vehicle owners with nearby professional mechanics during roadside emergencies, ensuring rapid response and community safety. Built with Flutter and Firebase using Feature-First Clean Architecture to deliver reliable, life-saving assistance when people need it most.",
       img: "/images/hero/ars.webp",

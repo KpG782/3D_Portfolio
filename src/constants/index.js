@@ -10,12 +10,8 @@ const navLinks = [
     link: "#experience",
   },
   {
-    name: "Skills",
-    link: "#skills",
-  },
-  {
-    name: "Testimonials",
-    link: "#testimonials",
+    name: "Speaking",
+    link: "#community",
   },
 ];
 
@@ -78,21 +74,22 @@ const logoIconsList = [
   },
 ];
 
+// "Why work with me" — the 3 things a hiring manager needs to believe, up front.
 const abilities = [
   {
+    imgPath: "/images/dev.webp",
+    title: "Ships production AI, not demos",
+    desc: "RAG pipelines, AI agents, and n8n automation running in production at Romega — plus Beacon, an AI research agent I built and shipped end-to-end.",
+  },
+  {
     imgPath: "/images/seo.webp",
-    title: "Agile Leadership",
-    desc: "Coordinating cross-functional tasks efficiently with adaptability and clear project goals.",
+    title: "Validated & visible",
+    desc: "5 awards, a first speakership at Qwen Meetup (Alibaba Cloud PH), and an active builder across the PH AI community — OpenAI, AWS, Google, Vercel.",
   },
   {
-    imgPath: "/images/chat.webp",
-    title: "UI/UX Precision",
-    desc: "Crafting clean and user-friendly interfaces that align with user needs and system goals.",
-  },
-  {
-    imgPath: "/images/time.webp",
-    title: "Robust Backend Development",
-    desc: "Building secure, scalable systems with smooth data handling and reliable performance under pressure.",
+    imgPath: "/images/devices.webp",
+    title: "Full-stack range",
+    desc: "Web, mobile, and automation — I own the whole path from idea to deployed product with React, Next.js, Flutter, and cloud.",
   },
 ];
 

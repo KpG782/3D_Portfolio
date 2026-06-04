@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { navLinks } from "../constants/index.js";
+import { profile } from "../constants/resume.js";
 import ThemeToggle from "./ThemeToggle.jsx";
 
 const NavBar = () => {
@@ -89,6 +90,19 @@ const NavBar = () => {
           {/* Desktop Contact Button - Hidden on mobile/tablet */}
           <div className="hidden lg:flex items-center gap-3">
             <ThemeToggle />
+            {profile.resume && (
+              <a
+                href={profile.resume}
+                download
+                className="text-sm font-medium px-3 py-2 rounded-lg transition-colors focus-ring-brand"
+                style={{
+                  color: "var(--text-secondary)",
+                  border: "1px solid var(--border-primary)",
+                }}
+              >
+                Résumé
+              </a>
+            )}
             <a href="#contact" className="contact-btn group">
               <div className="inner">
                 <span>Contact Me</span>
@@ -198,6 +212,20 @@ const NavBar = () => {
                 : "none",
             }}
           >
+            {profile.resume && (
+              <a
+                href={profile.resume}
+                download
+                onClick={handleNavClick}
+                className="flex items-center justify-center mb-3 w-full px-4 py-3 rounded-lg text-base font-medium focus-ring-brand"
+                style={{
+                  color: "var(--text-primary)",
+                  border: "1px solid var(--border-primary)",
+                }}
+              >
+                Download Résumé
+              </a>
+            )}
             <a
               href="#contact"
               onClick={handleNavClick}
@@ -245,7 +273,7 @@ const NavBar = () => {
             </a>
 
             <a
-              href="https://www.linkedin.com/in/kenpatrickgarcia123"
+              href="https://www.linkedin.com/in/ken-patrick-garcia-ba5430285/"
               target="_blank"
               rel="noopener noreferrer"
               className="p-3 backdrop-blur-sm rounded-lg transition-all duration-300"

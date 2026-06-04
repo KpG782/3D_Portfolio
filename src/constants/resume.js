@@ -8,7 +8,7 @@
 export const profile = {
   name: "Ken Patrick Garcia",
   role: "AI Full-Stack Engineer",
-  tagline: "I build AI-powered, full-stack products — web, mobile, and automation.",
+  tagline: "I ship production AI systems — RAG pipelines, AI agents, and automation.",
   location: "Mandaluyong City, PH",
   workMode: "Remote · PH or International",
   email: "kenpatrickgarcia123@gmail.com",
@@ -17,13 +17,17 @@ export const profile = {
   github: "https://github.com/KpG782",
   linkedin: "https://www.linkedin.com/in/ken-patrick-garcia-ba5430285/",
   portfolio: "https://kenbuilds.tech/",
+  // TO ENABLE THE RÉSUMÉ BUTTONS: drop your PDF at /public/Ken-Patrick-Garcia-Resume.pdf
+  // then set this to "/Ken-Patrick-Garcia-Resume.pdf". Empty string = buttons stay hidden
+  // (so the live site never ships a broken download link).
+  resume: "",
 };
 
 /** Headline counters for About/Stats. */
 export const stats = [
   { value: 4, suffix: "+", label: "Years building software", icon: "code" },
   { value: 24, suffix: "", label: "Projects shipped", icon: "laptop" },
-  { value: 4, suffix: "", label: "Awards & finalist runs", icon: "trophy" },
+  { value: 5, suffix: "", label: "Awards & finalist runs", icon: "trophy" },
   { value: 6, suffix: "", label: "Professional roles", icon: "users" },
 ];
 
@@ -222,6 +226,16 @@ export const education = [
 // -----------------------------------------------------------------------------
 export const awards = [
   {
+    id: "devakda",
+    place: "Top 13",
+    event: "DEVAKDA Hackathon",
+    detail: "Top 13 of 500+ participants",
+    year: "2026",
+    project: "Kudlit",
+    projectId: "kudlit",
+    icon: "medal",
+  },
+  {
     id: "infotech-olympics",
     place: "1st Runner-Up",
     event: "InfoTech Olympics 2025",
@@ -379,3 +393,41 @@ export const skillMatrix = [
 
 /** Spoken languages. */
 export const spokenLanguages = ["Filipino (Native)", "English (Professional)"];
+
+// -----------------------------------------------------------------------------
+// SPEAKING — talks given. `first: true` flags a milestone; `photo` is optional
+// (section degrades gracefully to a text card if the image is missing).
+// Add a stage photo at the `photo` path to make a talk photo-led.
+// -----------------------------------------------------------------------------
+export const talks = [
+  {
+    id: "qwen-meetup",
+    title: "From Creative Brief to Campaign",
+    event: "Qwen Meetup Manila #2",
+    host: "Alibaba Cloud Philippines",
+    venue: "Common Ground, Rockwell",
+    date: "2026",
+    first: true,
+    photo: "/images/speaking/qwen-1.webp",
+    blurb:
+      "Showed Qwen as a creative director that delegates to specialist models — live, with no written brief. From a single photo of a Filipino café it pitched a full rival brand, then wrote the video prompt and wired the whole campaign end-to-end through n8n + Wan Video.",
+    takeaway: "AI amplifies the creative — it doesn't replace them.",
+  },
+];
+
+// -----------------------------------------------------------------------------
+// COMMUNITY — ecosystems Ken builds and shows up in. Rendered as a text wall
+// (no logo assets required). Optional `note` highlights a standout role.
+// -----------------------------------------------------------------------------
+export const communities = [
+  { name: "Alibaba Cloud · Qwen", note: "Speaker" },
+  { name: "OpenAI · Codex" },
+  { name: "AWS Community", note: "Community Officer" },
+  { name: "Google · Gen AI Academy APAC" },
+  { name: "Vercel" },
+  { name: "n8n" },
+  { name: "Cursor" },
+  { name: "Microsoft Azure" },
+  { name: "GDG Manila" },
+  { name: "Python PH" },
+];
