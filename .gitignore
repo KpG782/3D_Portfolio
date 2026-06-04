@@ -29,3 +29,4 @@ dist-ssr
 
 # Local design scratch / mockups (not shipped)
 design/
+.vercel
