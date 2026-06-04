@@ -1,37 +1,38 @@
 @import "tailwindcss";
 
 :root {
-  --gradient: radial-gradient(circle, #e5e5e5 0%, #fff 100%);
-  
-  /* Light Mode — Zinc neutrals + Electric Blue (Terminal Mono identity) */
-  --bg-primary: #fafafa;
-  --bg-secondary: #f4f4f5;
-  --bg-tertiary: #e4e4e7;
+  --gradient: radial-gradient(circle, #e9eef5 0%, #ffffff 100%);
+
+  /* Light Mode — Ledger Navy: warm-slate neutrals + navy primary + honey accent (WCAG AA) */
+  --bg-primary: #f7f8fa;
+  --bg-secondary: #ffffff;
+  --bg-tertiary: #edf1f5;
   --bg-card: #ffffff;
-  --bg-card-hover: #f4f4f5;
+  --bg-card-hover: #edf1f5;
 
-  --text-primary: #18181b;
-  --text-secondary: #52525b;
-  --text-tertiary: #71717a;
+  --text-primary: #0f1721;
+  --text-secondary: #44505f;
+  --text-tertiary: #66727f;
 
-  --border-primary: #d4d4d8;
-  --border-secondary: #e4e4e7;
+  --border-primary: #dae1e9;
+  --border-secondary: #edf1f5;
 
-  --accent-blue: #1d4ed8;
-  --accent-blue-light: #2563eb;
+  /* navy primary family (used by cta-button accents) */
+  --accent-blue: #1f4e7a;
+  --accent-blue-light: #2a5c8c;
 
-  /* Single electric-blue accent */
-  --accent: #1d4ed8;
-  --accent-2: #1d4ed8;
-  --accent-3: #1d4ed8;
-  /* CTA fill — white text passes AA on this (kept var name for consumers) */
-  --accent-gradient: #2563eb;
-  --accent-soft: rgba(37, 99, 235, 0.10);
-  --ring: rgba(37, 99, 235, 0.5);
+  /* --accent = text-safe honey (deep bronze on light) for eyebrows / chips / highlights */
+  --accent: #8c6312;
+  --accent-2: #1f4e7a;
+  --accent-3: #2a5c8c;
+  /* CTA fill = navy primary; white text passes AA (var name kept for consumers) */
+  --accent-gradient: #1f4e7a;
+  --accent-soft: rgba(194, 138, 43, 0.16);
+  --ring: rgba(31, 78, 122, 0.55);
 
-  --shadow-sm: 0 2px 8px rgba(15, 23, 42, 0.08);
-  --shadow-md: 0 10px 30px -12px rgba(15, 23, 42, 0.18);
-  --shadow-lg: 0 24px 60px -20px rgba(15, 23, 42, 0.28);
+  --shadow-sm: 0 1px 2px rgba(15, 23, 42, 0.08);
+  --shadow-md: 0 10px 28px -12px rgba(15, 23, 42, 0.18);
+  --shadow-lg: 0 24px 56px -22px rgba(15, 23, 42, 0.24);
   /* Neutral shadow — no colored glow */
   --shadow-glow: var(--shadow-md);
 
@@ -40,41 +41,42 @@
 
 /* Light Mode Gradient Override */
 .light {
-  --gradient: radial-gradient(circle, #f0f0f0 0%, #ffffff 100%);
+  --gradient: radial-gradient(circle, #e9eef5 0%, #ffffff 100%);
 }
 
-/* Dark Mode Colors */
+/* Dark Mode Colors — Ledger Navy shipping theme (WCAG AA) */
 .dark {
-  --bg-primary: #0a0a0b;
-  --bg-secondary: #18181b;
-  --bg-tertiary: #27272a;
-  --bg-card: #18181b;
-  --bg-card-hover: #27272a;
+  --bg-primary: #0f131a;
+  --bg-secondary: #1a212b;
+  --bg-tertiary: #262f3b;
+  --bg-card: #1a212b;
+  --bg-card-hover: #262f3b;
 
-  --text-primary: #fafafa;
-  --text-secondary: #d4d4d8;
-  --text-tertiary: #a1a1aa;
+  --text-primary: #eef2f8;
+  --text-secondary: #c2cdda;
+  --text-tertiary: #93a1b2;
 
-  --border-primary: #3f3f46;
-  --border-secondary: #27272a;
+  --border-primary: #313b48;
+  --border-secondary: #262f3b;
 
-  --accent-blue: #3b82f6;
-  --accent-blue-light: #60a5fa;
+  --accent-blue: #3c6fa6;
+  --accent-blue-light: #4a7fb8;
 
-  --accent: #3b82f6;
-  --accent-2: #3b82f6;
-  --accent-3: #3b82f6;
-  /* CTA fill — white text passes AA */
-  --accent-gradient: #2563eb;
-  --accent-soft: rgba(37, 99, 235, 0.18);
-  --ring: rgba(59, 130, 246, 0.55);
+  /* --accent = honey (AA as text on dark) for eyebrows / chips / highlights */
+  --accent: #e6b85c;
+  --accent-2: #3c6fa6;
+  --accent-3: #4a7fb8;
+  /* CTA fill = navy primary; white text passes AA */
+  --accent-gradient: #3c6fa6;
+  --accent-soft: rgba(230, 184, 92, 0.15);
+  --ring: rgba(96, 140, 196, 0.7);
 
-  --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.4);
-  --shadow-md: 0 12px 34px -14px rgba(0, 0, 0, 0.7);
-  --shadow-lg: 0 28px 70px -24px rgba(0, 0, 0, 0.85);
+  --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.5);
+  --shadow-md: 0 8px 24px -10px rgba(0, 0, 0, 0.7);
+  --shadow-lg: 0 22px 48px -18px rgba(0, 0, 0, 0.78);
   --shadow-glow: var(--shadow-md);
 
-  --gradient: radial-gradient(circle, #1a1a1a 0%, #000000 100%);
+  --gradient: radial-gradient(circle, #1a212b 0%, #0f131a 100%);
   --img-filter: invert(1);
 }
 
@@ -86,7 +88,7 @@ body {
   background-color: var(--bg-primary);
   color: var(--text-primary);
   scroll-behavior: smooth;
-  font-family: "IBM Plex Sans", system-ui, sans-serif;
+  font-family: "Inter", system-ui, -apple-system, sans-serif;
   transition: background-color 0.3s ease, color 0.3s ease;
 }
 
@@ -100,24 +102,33 @@ h1, h2, h3, .font-display {
 }
 
 @theme {
-  --font-sans: "IBM Plex Sans", system-ui, sans-serif;
-  --font-display: "Space Grotesk", "IBM Plex Sans", sans-serif;
+  --font-sans: "Inter", system-ui, -apple-system, sans-serif;
+  --font-display: "Fraunces", Georgia, serif;
   --font-mono: "JetBrains Mono", ui-monospace, monospace;
 
-  /* Text colors - will adapt to theme */
-  --color-white-50: #d9ecff;
-  --color-white-70: #f3f4f6;
-  --color-black-50: #1c1c21;
-  --color-black-100: #0e0e10;
-  --color-black-200: #282732;
-  --color-blue-50: #839cb5;
-  --color-blue-100: #2d2d38;
+  /* Legacy template ramps retoned to Ledger Navy (dark-surface friendly) */
+  --color-white-50: #c2cdda;
+  --color-white-70: #eef2f8;
+  --color-black-50: #1a212b;
+  --color-black-100: #0f131a;
+  --color-black-200: #262f3b;
 
-  /* Brand palette — single electric-blue (usable as text-brand, bg-brand-2) */
-  --color-brand: #2563eb;
-  --color-brand-2: #3b82f6;
-  --color-brand-3: #60a5fa;
-  
+  /* Remap Tailwind blue/purple ramps → navy family so stray *-blue-* / *-purple-*
+     utilities scattered in JSX read on-brand instead of electric blue/violet. */
+  --color-blue-50: #cde0f2;
+  --color-blue-100: #cdddf0;
+  --color-blue-300: #8aa8cb;
+  --color-blue-400: #6b97c4;
+  --color-blue-500: #3c6fa6;
+  --color-blue-600: #33618f;
+  --color-purple-400: #7ea8d4;
+  --color-purple-500: #4a7fb8;
+
+  /* Brand palette — navy primary + honey accent */
+  --color-brand: #1f4e7a;
+  --color-brand-2: #3c6fa6;
+  --color-brand-3: #e6b85c;
+
   /* Theme-aware colors */
   --color-bg-primary: var(--bg-primary);
   --color-bg-secondary: var(--bg-secondary);
