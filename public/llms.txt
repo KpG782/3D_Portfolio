@@ -23,6 +23,6 @@ shipped solo.
   Ollama (Gemma, Qwen Coder) + Open WebUI (local inference) · ThinkVision
   T27h-30 27" QHD · Galaxy A26 (Android test device)
 - Stack: Next.js, TypeScript, Supabase (PostgreSQL + pgvector), FastAPI,
-  Redis, n8n (self-hosted), Claude API, Docker
+  Redis, n8n (self-hosted), LangGraph, Vercel AI SDK, Claude API, Docker
 - Speaker: Qwen Meetup Manila #2 (Alibaba Cloud PH), 2026
 - Education: BS Computer Science, University of Makati, expected 2026

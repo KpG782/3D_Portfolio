@@ -140,11 +140,11 @@
         <dt>Languages</dt>
         <dd>Python, TypeScript, JavaScript, Kotlin, SQL, HTML5, CSS3</dd>
         <dt>AI / ML</dt>
-        <dd>LLM APIs (OpenAI · Claude · Gemini), RAG, Vector Embeddings (ChromaDB), n8n Automation, TensorFlow, Scikit-learn, Computer Vision, NLP, Recommendation Systems, Pandas, NumPy</dd>
+        <dd>RAG pipelines (pgvector · ChromaDB · sentence-transformers), AI agents (LangGraph · Vercel AI SDK · durable workflows), LLM APIs (Claude · Gemini · OpenAI · Groq · OpenRouter), local inference (Ollama · Gemma · YOLO→TFLite), Rasa, n8n Automation, TensorFlow, Scikit-learn, Computer Vision, NLP, Recommendation Systems</dd>
         <dt>Frontend &amp; Mobile</dt>
         <dd>React.js, Next.js, React Native (Expo), Flutter, Astro, Three.js, TailwindCSS, Responsive Design</dd>
         <dt>Backend &amp; DB</dt>
-        <dd>Node.js, PostgreSQL, Supabase, Firebase, Prisma ORM, RESTful APIs, Socket.io, Cloud Firestore</dd>
+        <dd>Node.js, FastAPI, PostgreSQL (pgvector · RLS), Supabase, Firebase, Drizzle ORM, Prisma ORM, Redis, RESTful APIs, Socket.io, Cloud Firestore</dd>
         <dt>DevOps &amp; Cloud</dt>
         <dd>AWS (EC2 · S3 · VPC · EBS), Docker, Kubernetes (learning), GitHub Actions, CI/CD Pipelines, Vercel</dd>
         <dt>Specialized</dt>
@@ -161,7 +161,10 @@
           <span class="meta mono">Jul 2025 – Present · El Segundo, CA (Remote)</span>
         </div>
         <ul>
-          <li>Architected production-ready AI chatbots and automation systems, integrating LLM APIs, RAG pipelines with vector embeddings (ChromaDB), and Google Gemini AI for intelligent customer interactions and business workflow automation.</li>
+          <li>Built an all-in-one internal operations platform (PM/ticketing, attendance, recruiting ATS, LMS, AI reporting) serving a distributed team — 46 pages, 56 API routes, and a 31-table Postgres schema in ~42K lines of TypeScript, shipped solo in ~3 months.</li>
+          <li>Led a zero-downtime migration off a third-party PM SaaS: rebuilt ticketing natively (kanban, sprints, comments, activity feeds), migrated SQLite → Supabase Postgres with Drizzle ORM, and replaced custom JWT auth with Supabase Auth + Google OAuth.</li>
+          <li>Integrated LLM features (daily executive briefings, AI status-report drafting) and n8n automations (resume parsing, applicant comms, multi-step onboarding sequences) directly into business workflows — outputs land in human review queues, never auto-publish.</li>
+          <li>Shipped production RAG chatbots with vector embeddings (ChromaDB · sentence-transformers) and Google Gemini for customer interactions and workflow automation.</li>
         </ul>
       </div>
 
