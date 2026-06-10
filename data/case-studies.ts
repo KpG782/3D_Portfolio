@@ -14,6 +14,8 @@ export type CaseStudy = {
   lead: string;
   role: string;
   status: string;
+  /** Real product screenshot (from the project's own assets). */
+  image: { src: string; alt: string; width: number; height: number };
   problem: string[];
   /** Trace diagram definition — stages light up in order on scroll. */
   spanLabel: string;
@@ -41,6 +43,14 @@ export const caseStudies: CaseStudy[] = [
     lead: "100-question golden eval set — legal RAG graded before it ships.",
     role: "Full-stack — RAG core, realtime chat, database architecture",
     status: "In progress (beta)",
+    // Image association comes from Ken's original site data (this file was
+    // LexInSight's project image there) — caption describes only what's visible.
+    image: {
+      src: "/images/hero/lexinsight.webp",
+      alt: "The LexInSight team at CodeKada — The Innovation Hackathon (DevKada × KMC, Makati, Nov 2025)",
+      width: 2048,
+      height: 1150,
+    },
     problem: [
       "Philippine legal knowledge sits behind expensive consultations. Individuals, small businesses, and student organizations navigate compliance requirements blind — the documents are public, but reading them like a lawyer isn't.",
       "LexInSight is a legal assistant over Philippine law: ask in plain language, get answers grounded in retrieved statute text — with a compliance mode that checks documents you upload against the requirements that apply to them.",
@@ -103,6 +113,12 @@ export const caseStudies: CaseStudy[] = [
     lead: "Research that compounds — an agent with persistent memory, shipped solo.",
     role: "Solo build — agent, memory layer, full stack",
     status: "Live · built for Vercel Zero to Agent Hackathon 2026",
+    image: {
+      src: "/images/projects/beacon.webp",
+      alt: "Beacon's landing page — durable research agent, built for Vercel Zero to Agent 2026",
+      width: 2048,
+      height: 1347,
+    },
     problem: [
       "Most AI research tools reset every session: no memory, no continuity, no sense of what you already learned. Every conversation starts at zero, and the tenth research session is no smarter than the first.",
       "Beacon is a research agent whose memory persists — findings from one session are retrievable in the next, so research builds on itself instead of repeating.",
@@ -157,6 +173,12 @@ export const caseStudies: CaseStudy[] = [
     lead: "1st Runner-Up — InfoTech Olympics 2025 (University of Makati), Android App Development: Productivity.",
     role: "Lead — WearOS app, recommendation engine, architecture",
     status: "Shipped · team of 4",
+    image: {
+      src: "/images/hero/pacebeats.webp",
+      alt: "The Pacebeats team taking 1st Runner-Up at InfoTech Olympics 2025",
+      width: 1280,
+      height: 720,
+    },
     problem: [
       "Workout music doesn't react to the body. Runners pick a playlist before the run and live with it — the music has no idea whether you're warming up, pushing a sprint, or cooling down.",
       "Pacebeats reads live heart rate and inter-beat intervals from a Galaxy Watch 6 and adapts the playlist to your actual physiological state, in real time.",

@@ -87,13 +87,8 @@ export const bento: BentoItem[] = [
     stack: ["Flutter", "Firebase", "Maps"],
     repo: "https://github.com/KpG782/ARSAPPLICATION",
   },
-  {
-    id: "damay",
-    title: "DAMAY",
-    lead: "Top 5 of 105 — Stellar PH Hackathon 2026.",
-    stack: ["Soroban", "Stellar"],
-    stamp: true,
-  },
+  // DAMAY (Top 5 of 105 — Stellar PH 2026) intentionally absent for now per
+  // Ken (2026-06-10); restore as a `stamp: true` card when content is ready.
 ];
 
 /** "Now building" live card — edit freely; keep it true. */

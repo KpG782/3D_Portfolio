@@ -6,7 +6,8 @@ export const awards = [
     event: "InfoTech Olympics 2025 · Android App Development: Productivity",
     project: "Pacebeats",
   },
-  { place: "Top 5 of 105", event: "Stellar PH Hackathon 2026", project: "DAMAY" },
+  // DAMAY's "Top 5 of 105 — Stellar PH Hackathon 2026" stamp is parked until
+  // Ken finalizes its content (2026-06-10).
   { place: "Top 13 of 500+", event: "DEVAKDA Hackathon 2026", project: "Kudlit" },
   { place: "Top 10 of 53", event: "DOST-TAPI ClustRICE 2025", project: "HerbaLens" },
   {

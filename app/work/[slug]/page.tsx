@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import Nav from "@/components/Nav";
@@ -103,6 +104,20 @@ export default async function CaseStudyPage({
                 {p}
               </p>
             ))}
+            <figure className="mt-8 overflow-hidden rounded-2xl border border-white/10">
+              <Image
+                src={cs.image.src}
+                alt={cs.image.alt}
+                width={cs.image.width}
+                height={cs.image.height}
+                sizes="(min-width: 1152px) 66rem, 100vw"
+                className="w-full"
+              />
+              <figcaption className="border-t border-white/8 bg-panel px-4 py-2.5 font-mono text-[11px] leading-relaxed text-telemetry">
+                <span className="text-pulse">[ SCREEN · {cs.name.toUpperCase()} ]</span>{" "}
+                {cs.image.alt}
+              </figcaption>
+            </figure>
             {cs.evalBoard ? (
               <div className="mt-8">
                 <EvalBoard />
