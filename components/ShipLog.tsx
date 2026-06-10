@@ -103,6 +103,11 @@ export default async function ShipLog() {
                   />
                 ) : null}
                 <div className="flex flex-col gap-4">
+                  {item.body ? (
+                    <p className="max-w-prose text-sm leading-relaxed text-telemetry">
+                      {item.body}
+                    </p>
+                  ) : null}
                   <ul className="flex flex-wrap gap-1.5">
                     {item.stack.map((s) => (
                       <li key={s} className="chip-mini">

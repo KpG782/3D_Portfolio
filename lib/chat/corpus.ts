@@ -37,7 +37,7 @@ function buildCorpus(): Chunk[] {
     add(
       `log-${item.id}`,
       item.title,
-      `${item.title}: ${item.lead} Stack: ${item.stack.join(", ")}.${item.repo ? ` Repo: ${item.repo}.` : ""}${item.live ? ` Live: ${item.live}.` : ""}`,
+      `${item.title}: ${item.lead}${item.body ? ` ${item.body}` : ""} Stack: ${item.stack.join(", ")}.${item.repo ? ` Repo: ${item.repo}.` : ""}${item.live ? ` Live: ${item.live}.` : ""}`,
     );
   }
   add("now-building", "Now building", nowBuilding.body);

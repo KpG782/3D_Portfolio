@@ -3,6 +3,9 @@ export type LogItem = {
   title: string;
   /** Quantified result or concrete shipped fact — leads the row. */
   lead: string;
+  /** What the system actually does — sourced from the repo's own README/
+      description, never invented. Omit when no public artifact exists. */
+  body?: string;
   stack: string[];
   repo?: string;
   live?: string;
@@ -20,6 +23,7 @@ export const shipLog: LogItem[] = [
     id: "kudlit",
     title: "Kudlit",
     lead: "Top 13 of 500+ — DEVAKDA · Baybayin scanner shipped as Android v1.0.0.",
+    body: "Camera-first Baybayin glyph scanner, two-way translation between Filipino text and Baybayin Unicode, lessons and quiz practice, and Butty — an AI learning companion for explanations. Shipped as a public Android APK with its own bundled design system and Baybayin display font.",
     stack: ["Flutter", "YOLO → TFLite", "Local Gemma", "Gemini"],
     repo: "https://github.com/KpG782/kudlit-app",
     image: {
@@ -33,6 +37,7 @@ export const shipLog: LogItem[] = [
     id: "flowfit",
     title: "FlowFit",
     lead: "Champion — C(Old) St.art 2025 · kids' fitness with on-device AI.",
+    body: "Dual-platform fitness tracking: a Galaxy Watch (Wear OS) app streams real-time heart rate and inter-beat intervals from the Samsung Health Sensor SDK, syncing to an Android companion over the Wearable Data Layer — with activity, sleep, nutrition, and mood tracking on a Supabase backend.",
     stack: ["Flutter", "WearOS", "Samsung Health SDK", "Supabase"],
     repo: "https://github.com/KpG782/flowfit",
     image: {
@@ -48,6 +53,7 @@ export const shipLog: LogItem[] = [
     id: "romega-ats",
     title: "Romega ATS",
     lead: "Sole engineer on Romega's internal ATS — orchestrated by a self-hosted n8n server I operate.",
+    body: "Candidate intake, parsing, pipeline stages, and automated notifications orchestrated through a self-hosted n8n instance I deployed and operate in production. Internal system — architecture walkthrough on request.",
     stack: ["n8n", "LLM APIs", "Node.js"],
   },
   {
@@ -56,16 +62,13 @@ export const shipLog: LogItem[] = [
     lead: "Agent on Cloud Run — built at Google Gen AI Academy APAC.",
     stack: ["Cloud Run", "Agents"],
   },
-  {
-    id: "sagipai",
-    title: "SagipAI",
-    lead: "Emergency AI that works offline — on-device LiteRT-LM.",
-    stack: ["LiteRT-LM", "On-device"],
-  },
+  // SagipAI (offline emergency AI, on-device LiteRT-LM) parked per Ken
+  // (2026-06-11); restore as a log row when he wants it back.
   {
     id: "herbalens",
     title: "HerbaLens",
     lead: "Top 10 of 53 — DOST-TAPI 2025 · medicinal-plant recognition.",
+    body: "AI medicinal-plant recognition bridging Filipino herbal knowledge with computer vision — TensorFlow models in an Android app, with a public project site.",
     stack: ["Android", "TensorFlow", "Computer vision"],
     live: "https://theherbalenswebsite.web.app/",
     image: {
@@ -79,7 +82,8 @@ export const shipLog: LogItem[] = [
     id: "ars",
     title: "ARS",
     lead: "Best Paper, 97% — roadside emergencies matched to nearby mechanics.",
-    stack: ["Flutter", "Firebase", "Maps"],
+    body: "Connects vehicle owners with mechanics for on-demand repairs: booking, live ETA over a self-hosted OSRM routing server built for the Philippine road network, in-app chat, AI diagnostics via a Rasa + RAG + Gemini chatbot with Taglish support, and a real-time mechanic dashboard — Firebase backend, feature-first clean architecture.",
+    stack: ["Flutter", "Riverpod", "Firebase", "Self-hosted OSRM", "Rasa + RAG"],
     repo: "https://github.com/KpG782/ars",
     live: "https://ars-website-chi.vercel.app",
     image: {

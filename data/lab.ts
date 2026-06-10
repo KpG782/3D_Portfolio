@@ -28,7 +28,7 @@ export const lab = {
       id: "a26",
       name: "Galaxy A26",
       spec: "Android",
-      runs: "Kudlit, SagipAI on real hardware",
+      runs: "Kudlit builds on real hardware",
       role: "test device",
     },
   ],
