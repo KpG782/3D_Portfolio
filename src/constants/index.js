@@ -2,6 +2,10 @@ import { FaCode, FaLaptopCode, FaLayerGroup, FaUsers } from "react-icons/fa";
 
 const navLinks = [
   {
+    name: "Journey",
+    link: "#journey",
+  },
+  {
     name: "Work",
     link: "#work",
   },
@@ -243,50 +247,8 @@ const expLogos = [
     imgPath: "/images/logo4.webp",
   },
 ];
-const testimonials = [
-  {
-    name: "Mark Siazon",
-    mentions: "msiazon.k12043276@umak.edu.ph ",
-    review:
-      "Ken showed real grit during our early web dev days. He always explored new tools beyond what was taught, and made sure we understood what we were building. His curiosity is contagious.",
-    imgPath: "/images/client1.webp",
-  },
-  {
-    name: "Timothy Forte",
-    mentions: "tforte.a62241031@umak.edu.ph ",
-    review:
-      "When we transitioned to Flutter, Ken was the one who led the charge. He learned the framework fast and even taught us the basics. It’s rare to have a teammate that dedicated.",
-    imgPath: "/images/client2.webp",
-  },
-  {
-    name: "Jam Villarosa",
-    mentions: "jvillarosa.a12240987@umak.edu.ph",
-    review:
-      "Ken’s progress in React is seriously impressive. He doesn’t just learn tools—he builds things. He’s the kind of teammate who levels up the whole group by sharing what he knows.",
-    imgPath: "/images/client3.webp",
-  },
-  {
-    name: "Lanz Corpuz",
-    mentions: "lcorpuz.a12241569@umak.edu.ph ",
-    review:
-      "Ken naturally took the lead in most of our projects. Even under pressure, he kept the team organized and focused. He made sure everyone had a role and felt valued.",
-    imgPath: "/images/client4.webp",
-  },
-  {
-    name: "Brian Ashley Papa",
-    mentions: "bpapa.a12034938@umak.edu.ph ",
-    review:
-      "You can tell Ken isn’t in this just to pass subjects—he’s here to grow. His willingness to explore new tech and take feedback makes him stand out as a leader.",
-    imgPath: "/images/client5.webp",
-  },
-  {
-    name: "Mars Maguddayao",
-    mentions: "lmaguddayao.a12240891@umak.edu.ph",
-    review:
-      "Ken is detail-oriented and driven. Whether it’s frontend polish or code clarity, he’ll always push for better. His calm leadership made our collabs smoother and more productive.",
-    imgPath: "/images/client6.webp",
-  },
-];
+// Testimonials removed 2026-06-10: classmate quotes + university emails
+// taken down for privacy. Section returns only with professional quotes.
 
 const socialImgs = [
   {
@@ -323,7 +285,6 @@ export {
   counterItems,
   expCards,
   expLogos,
-  testimonials,
   socialImgs,
   techStackIcons,
   techStackImgs,

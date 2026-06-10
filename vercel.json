@@ -7,6 +7,7 @@
   "cleanUrls": true,
   "trailingSlash": false,
   "rewrites": [
+    { "source": "/resume", "destination": "/resume.html" },
     {
       "source": "/((?!assets/|.*\\.[a-zA-Z0-9]+$).*)",
       "destination": "/index.html"

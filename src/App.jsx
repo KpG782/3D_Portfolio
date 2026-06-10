@@ -11,6 +11,7 @@ const FeatureCards = lazy(() => import("./sections/FeatureCards.jsx"));
 // Selected Work grid already leads with Beacon + Kudlit. Re-add the block below
 // to restore it.
 const ShowcaseSection = lazy(() => import("./sections/ShowcaseSection.jsx"));
+const JourneySection = lazy(() => import("./sections/JourneySection.jsx"));
 const CertificationsSection = lazy(() =>
   import("./sections/CertificationsSection.jsx")
 );
@@ -18,7 +19,6 @@ const ExperienceSection = lazy(() =>
   import("./sections/ExperienceSection.jsx")
 );
 const TechStack = lazy(() => import("./sections/TechStack.jsx"));
-const Testimonials = lazy(() => import("./sections/Testimonials.jsx"));
 const FAQSection = lazy(() => import("./sections/FAQSection.jsx"));
 const Contact = lazy(() => import("./sections/Contact.jsx"));
 const Footer = lazy(() => import("./sections/Footer.jsx"));
@@ -54,6 +54,13 @@ const App = () => {
         </Suspense>
       </DeferredSection>
 
+      {/* The journey — scroll-drawn SVG storytelling timeline */}
+      <DeferredSection id="journey" minHeight="120vh" rootMargin="800px 0px">
+        <Suspense fallback={<SectionFallback minHeight="120vh" />}>
+          <JourneySection />
+        </Suspense>
+      </DeferredSection>
+
       <DeferredSection id="work" minHeight="120vh" rootMargin="800px 0px">
         <Suspense fallback={<SectionFallback minHeight="120vh" />}>
           <ShowcaseSection />
@@ -85,11 +92,6 @@ const App = () => {
       <DeferredSection minHeight="70vh" rootMargin="700px 0px">
         <Suspense fallback={<SectionFallback minHeight="70vh" />}>
           <CertificationsSection />
-        </Suspense>
-      </DeferredSection>
-      <DeferredSection minHeight="65vh" rootMargin="650px 0px">
-        <Suspense fallback={<SectionFallback minHeight="65vh" />}>
-          <Testimonials />
         </Suspense>
       </DeferredSection>
       <DeferredSection minHeight="70vh" rootMargin="650px 0px">

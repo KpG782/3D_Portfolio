@@ -6,9 +6,8 @@ export const PROJECTS = [
       desc: "An AI research agent that combines structured research frameworks with persistent memory, so research compounds instead of repeating. Most AI tools reset every session — no memory, no continuity, no sense of what changed. Beacon remembers and builds on it. Submitted to the Vercel Zero to Agent Hackathon 2026.",
       img: "/images/projects/beacon.webp",
       alt: "Beacon — durable AI research agent landing page",
-      // ⬇️ ADD LINKS: set `demoLink` to your live app and `link` to the repo. Empty = button hidden.
-      link: "",
-      demoLink: "",
+      link: "https://github.com/KpG782/Beacon",
+      demoLink: "https://beacon-mu-murex.vercel.app/",
       techStack: [
         "Next.js",
         "Vercel AI SDK",

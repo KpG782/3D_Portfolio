@@ -92,8 +92,7 @@ const NavBar = () => {
             <ThemeToggle />
             {profile.resume && (
               <a
-                href={profile.resume}
-                download
+                href={profile.resumePage || profile.resume}
                 className="text-sm font-medium px-3 py-2 rounded-lg transition-colors focus-ring-brand"
                 style={{
                   color: "var(--text-secondary)",

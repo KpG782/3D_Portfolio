@@ -17,10 +17,13 @@ export const profile = {
   github: "https://github.com/KpG782",
   linkedin: "https://www.linkedin.com/in/ken-patrick-garcia-ba5430285/",
   portfolio: "https://kenbuilds.tech/",
-  // TO ENABLE THE RÉSUMÉ BUTTONS: drop your PDF at /public/Ken-Patrick-Garcia-Resume.pdf
-  // then set this to "/Ken-Patrick-Garcia-Resume.pdf". Empty string = buttons stay hidden
-  // (so the live site never ships a broken download link).
-  resume: "",
+  // Public recruiter résumé: PDF is generated from /public/resume.html (PII-free —
+  // no phone/street address). Regenerate after editing resume.html:
+  //   "/Applications/Google Chrome.app/Contents/MacOS/Google Chrome" --headless \
+  //     --no-pdf-header-footer --print-to-pdf=public/Ken-Patrick-Garcia-Resume.pdf \
+  //     "file://$PWD/public/resume.html"
+  resume: "/Ken-Patrick-Garcia-Resume.pdf",
+  resumePage: "/resume.html",
 };
 
 /** Headline counters for About/Stats. */
@@ -393,6 +396,59 @@ export const skillMatrix = [
 
 /** Spoken languages. */
 export const spokenLanguages = ["Filipino (Native)", "English (Professional)"];
+
+// -----------------------------------------------------------------------------
+// JOURNEY — the story arc for the scroll-drawn SVG timeline (JourneySection).
+// Each chapter: year label, title, one-sentence story beat, tech keys (rendered
+// as icon chips), and an optional proof line (award / role that anchors it).
+// -----------------------------------------------------------------------------
+export const journey = [
+  {
+    id: "foundations",
+    year: "2021",
+    title: "First lines of code",
+    story:
+      "Started CS at TIP, transferred to UMak, and built 10+ web apps the old-school way — hand-rolled HTML, CSS, PHP, and normalized MySQL schemas.",
+    tech: ["HTML5", "CSS3", "JavaScript", "PHP", "MySQL"],
+    proof: "10+ academic & self-directed web builds",
+  },
+  {
+    id: "mobile",
+    year: "2024",
+    title: "Going mobile",
+    story:
+      "Shipped 5+ cross-platform apps with Flutter and Firebase while doing enterprise SaaS support at Concentrix — learning how real users break real software.",
+    tech: ["Flutter", "Dart", "Firebase", "Kotlin"],
+    proof: "CampusCare wellness app · Concentrix enterprise support",
+  },
+  {
+    id: "ai-turn",
+    year: "2025",
+    title: "The AI turn",
+    story:
+      "Joined Romega Solutions as an AI Full-Stack Engineer — production RAG pipelines, ChromaDB embeddings, and Gemini-powered chatbots — while leading Pacebeats to a podium finish.",
+    tech: ["Python", "RAG", "ChromaDB", "Gemini", "n8n", "WearOS"],
+    proof: "1st Runner-Up InfoTech Olympics · Top 10 DOST-TAPI · Best Paper",
+  },
+  {
+    id: "visible",
+    year: "2026",
+    title: "Speaking & shipping",
+    story:
+      "First conference talk at Qwen Meetup Manila (Alibaba Cloud), real-time collaboration engineering at CodeVF, n8n automation for UMak — and a BS CS degree on the way.",
+    tech: ["WebSockets", "n8n", "Qwen", "TypeScript"],
+    proof: "Speaker · Alibaba Cloud Qwen Meetup Manila #2",
+  },
+  {
+    id: "next",
+    year: "Next",
+    title: "Where I'm headed",
+    story:
+      "Going deeper on AI agents, MCP, and data engineering — backed by a 12-month DataCamp scholarship and the AWS community I help organize.",
+    tech: ["AI Agents", "MCP", "Kubernetes", "Data Engineering"],
+    proof: "DataCamp Scholar · AWS Community Officer",
+  },
+];
 
 // -----------------------------------------------------------------------------
 // SPEAKING — talks given. `first: true` flags a milestone; `photo` is optional

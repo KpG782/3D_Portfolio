@@ -1,0 +1,260 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Ken Patrick Garcia — Résumé (AI Full-Stack Engineer)</title>
+<meta name="description" content="Public recruiter-friendly résumé of Ken Patrick Garcia — AI Full-Stack Engineer shipping production RAG pipelines, AI agents, and automation. PDF available." />
+<meta name="robots" content="index, follow" />
+<link rel="icon" href="/favicon.png" />
+<style>
+  /* Ledger Navy — print-first résumé styling */
+  :root {
+    --ink: #16243a;
+    --ink-soft: #3d4c63;
+    --navy: #1f4e7a;
+    --honey: #8c6312;
+    --line: #d8dee8;
+    --bg: #ffffff;
+    --bg-soft: #f4f6fa;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    color: var(--ink);
+    background: var(--bg-soft);
+    line-height: 1.45;
+    font-size: 14px;
+  }
+  .mono { font-family: ui-monospace, "SF Mono", Menlo, Consolas, monospace; }
+
+  .toolbar {
+    max-width: 820px; margin: 0 auto; padding: 16px 20px 0;
+    display: flex; gap: 10px; justify-content: flex-end; align-items: center;
+  }
+  .toolbar a, .toolbar button {
+    font: inherit; font-size: 13px; font-weight: 600; cursor: pointer;
+    padding: 8px 14px; border-radius: 8px; text-decoration: none;
+    border: 1px solid var(--line); color: var(--ink-soft); background: #fff;
+  }
+  .toolbar .primary { background: var(--navy); border-color: var(--navy); color: #fff; }
+  .toolbar .back { margin-right: auto; }
+
+  .page {
+    max-width: 820px; margin: 14px auto 48px; background: var(--bg);
+    padding: 44px 48px; border: 1px solid var(--line); border-radius: 12px;
+  }
+
+  header.id h1 { font-size: 26px; letter-spacing: -0.02em; }
+  header.id .role { color: var(--navy); font-weight: 600; margin-top: 2px; }
+  header.id .contact {
+    margin-top: 10px; display: flex; flex-wrap: wrap; gap: 4px 18px;
+    font-size: 12.5px; color: var(--ink-soft);
+  }
+  header.id .contact a { color: var(--navy); text-decoration: none; }
+  .privacy-note {
+    margin-top: 10px; font-size: 11.5px; color: var(--ink-soft);
+    background: var(--bg-soft); border: 1px dashed var(--line);
+    border-radius: 6px; padding: 6px 10px;
+  }
+
+  section { margin-top: 22px; }
+  h2 {
+    font-size: 11px; text-transform: uppercase; letter-spacing: 0.16em;
+    color: var(--honey); border-bottom: 1px solid var(--line);
+    padding-bottom: 5px; margin-bottom: 10px;
+  }
+  .entry { margin-bottom: 12px; break-inside: avoid; }
+  .entry .top { display: flex; justify-content: space-between; gap: 12px; flex-wrap: wrap; }
+  .entry .org { font-weight: 700; }
+  .entry .role { color: var(--navy); font-weight: 600; font-size: 13px; }
+  .entry .meta { font-size: 11.5px; color: var(--ink-soft); white-space: nowrap; }
+  .entry ul { margin: 4px 0 0 18px; }
+  .entry li { margin-top: 2px; font-size: 13px; color: var(--ink-soft); }
+
+  .skills-grid { display: grid; grid-template-columns: 130px 1fr; gap: 6px 14px; }
+  .skills-grid dt { font-weight: 700; font-size: 12.5px; }
+  .skills-grid dd { font-size: 12.5px; color: var(--ink-soft); }
+
+  .awards li, .lead li { font-size: 13px; color: var(--ink-soft); margin: 3px 0 3px 18px; }
+  .awards b, .lead b { color: var(--ink); }
+
+  .two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 0 32px; }
+
+  @media (max-width: 640px) {
+    .page { padding: 28px 22px; }
+    .two-col { grid-template-columns: 1fr; }
+    .skills-grid { grid-template-columns: 1fr; gap: 2px; }
+    .skills-grid dd { margin-bottom: 6px; }
+  }
+
+  @media print {
+    body { background: #fff; font-size: 12.5px; }
+    .toolbar, .privacy-note { display: none; }
+    .page {
+      max-width: none; margin: 0; border: 0; border-radius: 0;
+      padding: 0;
+    }
+    a { color: var(--navy) !important; text-decoration: none; }
+    section { margin-top: 16px; }
+    @page { margin: 14mm 15mm; }
+  }
+</style>
+</head>
+<body>
+  <div class="toolbar">
+    <a class="back" href="/">&larr; kenbuilds.tech</a>
+    <a class="primary" href="/Ken-Patrick-Garcia-Resume.pdf" download>Download PDF</a>
+    <button onclick="window.print()">Print</button>
+  </div>
+
+  <main class="page">
+    <header class="id">
+      <h1>Ken Patrick Garcia</h1>
+      <p class="role">AI Full-Stack Engineer — RAG pipelines · AI agents · automation</p>
+      <div class="contact mono">
+        <span>Metro Manila, Philippines (Remote-ready)</span>
+        <a href="mailto:kenpatrickgarcia123@gmail.com">kenpatrickgarcia123@gmail.com</a>
+        <a href="https://kenbuilds.tech">kenbuilds.tech</a>
+        <a href="https://github.com/KpG782">github.com/KpG782</a>
+        <a href="https://www.linkedin.com/in/ken-patrick-garcia-ba5430285/">LinkedIn</a>
+      </div>
+      <p class="privacy-note">
+        Public version — phone number and street address withheld for privacy.
+        Full contact details shared on request via email or LinkedIn.
+      </p>
+    </header>
+
+    <section>
+      <h2>Skills</h2>
+      <dl class="skills-grid">
+        <dt>Languages</dt>
+        <dd>Python, TypeScript, JavaScript, Kotlin, SQL, HTML5, CSS3</dd>
+        <dt>AI / ML</dt>
+        <dd>LLM APIs (OpenAI · Claude · Gemini), RAG, Vector Embeddings (ChromaDB), n8n Automation, TensorFlow, Scikit-learn, Computer Vision, NLP, Recommendation Systems, Pandas, NumPy</dd>
+        <dt>Frontend &amp; Mobile</dt>
+        <dd>React.js, Next.js, React Native (Expo), Flutter, Astro, Three.js, TailwindCSS, Responsive Design</dd>
+        <dt>Backend &amp; DB</dt>
+        <dd>Node.js, PostgreSQL, Supabase, Firebase, Prisma ORM, RESTful APIs, Socket.io, Cloud Firestore</dd>
+        <dt>DevOps &amp; Cloud</dt>
+        <dd>AWS (EC2 · S3 · VPC · EBS), Docker, Kubernetes (learning), GitHub Actions, CI/CD Pipelines, Vercel</dd>
+        <dt>Specialized</dt>
+        <dd>IoT Integration, Real-time Data Processing, WebSockets, Performance Optimization, GDPR Compliance</dd>
+      </dl>
+    </section>
+
+    <section>
+      <h2>Experience</h2>
+
+      <div class="entry">
+        <div class="top">
+          <span><span class="org">Romega Solutions</span> · <span class="role">AI Full-Stack Engineer (Part-Time)</span></span>
+          <span class="meta mono">Jul 2025 – Present · El Segundo, CA (Remote)</span>
+        </div>
+        <ul>
+          <li>Architected production-ready AI chatbots and automation systems, integrating LLM APIs, RAG pipelines with vector embeddings (ChromaDB), and Google Gemini AI for intelligent customer interactions and business workflow automation.</li>
+        </ul>
+      </div>
+
+      <div class="entry">
+        <div class="top">
+          <span><span class="org">CodeVF</span> · <span class="role">Software Engineer (Contract)</span></span>
+          <span class="meta mono">Feb 2026 – Apr 2026 · US (Remote)</span>
+        </div>
+        <ul>
+          <li>Engineered a real-time collaboration platform with WebSocket architecture, enabling live debugging sessions between customers and engineers with bidirectional communication for code review and remote assistance.</li>
+        </ul>
+      </div>
+
+      <div class="entry">
+        <div class="top">
+          <span><span class="org">University of Makati</span> · <span class="role">AI Workflow Automation Engineer (Part-Time)</span></span>
+          <span class="meta mono">Jan 2026 – Apr 2026 · Makati (Remote)</span>
+        </div>
+        <ul>
+          <li>Developed intelligent automation workflows using n8n to streamline university administrative processes and data management.</li>
+        </ul>
+      </div>
+
+      <div class="entry">
+        <div class="top">
+          <span><span class="org">Pacebeats</span> · <span class="role">Lead Software Engineer (Full-Time)</span></span>
+          <span class="meta mono">Aug 2025 – Mar 2026 · Makati (Remote)</span>
+        </div>
+        <ul>
+          <li>Architected a biometric music platform (1st Runner-Up, InfoTech Olympics 2025) with a WearOS app (Kotlin, Health Services API), Kotlin Android app, React/TypeScript dashboard, and Supabase backend.</li>
+          <li>Built a hybrid recommendation engine combining rule-based pace-to-BPM mapping with content-based ML scoring on user listening patterns, achieving real-time playlist adaptation.</li>
+          <li>Engineered the WearOS companion with GPS tracking, heart-rate monitoring, Data Layer API sync, Spotify SDK integration, and 8+ hour battery optimization.</li>
+        </ul>
+      </div>
+
+      <div class="entry">
+        <div class="top">
+          <span><span class="org">Commission on Elections (COMELEC)</span> · <span class="role">Technical DESO Support Staff (Contract)</span></span>
+          <span class="meta mono">Jul 2025 – Oct 2025 · Makati</span>
+        </div>
+        <ul>
+          <li>Installed and configured Vote Counting Machine (VCM) hardware — CF/SD cards, thermal printers, modems, batteries — for Final Testing &amp; Sealing and Election Day operations.</li>
+        </ul>
+      </div>
+
+      <div class="entry">
+        <div class="top">
+          <span><span class="org">Concentrix</span> · <span class="role">Technical Support Representative</span></span>
+          <span class="meta mono">Feb 2024 – Sep 2024 · Mandaluyong</span>
+        </div>
+        <ul>
+          <li>Provided technical support for a major enterprise SaaS productivity platform (client under NDA), troubleshooting complex issues across identity management, cloud services, and software configuration.</li>
+        </ul>
+      </div>
+    </section>
+
+    <section>
+      <h2>Education</h2>
+      <div class="entry">
+        <div class="top">
+          <span><span class="org">University of Makati</span> · <span class="role">BS Computer Science, Major in Application Development</span></span>
+          <span class="meta mono">Expected 2026 · Makati City</span>
+        </div>
+        <ul>
+          <li>Coursework: Machine Learning, Artificial Intelligence, Data Structures &amp; Algorithms, Database Systems, Software Engineering, Mobile Development, IoT Systems.</li>
+        </ul>
+      </div>
+      <div class="entry">
+        <div class="top">
+          <span><span class="org">Technological Institute of the Philippines</span> · <span class="role">BS Computer Science</span></span>
+          <span class="meta mono">2020 – 2021 · Manila</span>
+        </div>
+      </div>
+    </section>
+
+    <div class="two-col">
+      <section>
+        <h2>Awards &amp; Honors</h2>
+        <ul class="awards">
+          <li><b>1st Runner-Up</b> — InfoTech Olympics 2025 (University of Makati), Android App Development: Productivity (Pacebeats)</li>
+          <li><b>Top 10 Finalist</b> — DOST-TAPI Regional Invention Contest 2025, 53 entries (HerbaLens)</li>
+          <li><b>Best Paper Presentation</b> — 8th Research Congress, University of Makati (ARS)</li>
+          <li><b>Champion</b> — C(Old) (St)art Hackathon 2025 by Old St. Labs</li>
+        </ul>
+      </section>
+
+      <section>
+        <h2>Leadership &amp; Community</h2>
+        <ul class="lead">
+          <li><b>Speaker</b> — Qwen Meetup Manila #2 (Alibaba Cloud PH), 2026</li>
+          <li><b>DataCamp Scholar</b> — Data Engineering Pilipinas, Nov 2025 – Present</li>
+          <li><b>AWS Community Officer</b> — AWS User Group PH, Community Day 2026</li>
+          <li><b>Technical Committee</b> — UMak Computer Society, 15+ campus events</li>
+        </ul>
+      </section>
+    </div>
+
+    <section>
+      <h2>Languages</h2>
+      <p style="font-size:12.5px;color:var(--ink-soft)">Filipino (Native) · English (Professional)</p>
+    </section>
+  </main>
+</body>
+</html>
