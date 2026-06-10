@@ -104,7 +104,10 @@ export const caseStudies: CaseStudy[] = [
       "Zustand",
       "Tailwind CSS",
     ],
-    links: { repo: "https://github.com/KpG782/lexiph" },
+    links: {
+      repo: "https://github.com/KpG782/Lexinsights",
+      live: "https://lexinsights.vercel.app",
+    },
     evalBoard: true,
   },
   {
@@ -231,7 +234,8 @@ export const caseStudies: CaseStudy[] = [
       "MVVM",
     ],
     links: {
-      live: "https://www.linkedin.com/feed/update/urn:li:activity:7391489789952212992/",
+      repo: "https://github.com/KpG782/pacebeats-release-files",
+      live: "https://www.pacebeats.top/",
     },
   },
 ];

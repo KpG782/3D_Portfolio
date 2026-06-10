@@ -22,7 +22,8 @@ export const bento: BentoItem[] = [
     lead: "100-question golden eval set — legal RAG graded before it ships.",
     stack: ["Next.js", "Supabase", "pgvector", "RAG"],
     href: "/work/lexinsight",
-    repo: "https://github.com/KpG782/lexiph",
+    repo: "https://github.com/KpG782/Lexinsights",
+    live: "https://lexinsights.vercel.app",
     wide: true,
   },
   {
@@ -40,7 +41,8 @@ export const bento: BentoItem[] = [
     lead: "1st Runner-Up — InfoTech Olympics 2025 · playlists from live heart rate.",
     stack: ["Kotlin", "WearOS", "Supabase", "ML"],
     href: "/work/pacebeats",
-    live: "https://www.linkedin.com/feed/update/urn:li:activity:7391489789952212992/",
+    repo: "https://github.com/KpG782/pacebeats-release-files",
+    live: "https://www.pacebeats.top/",
   },
   {
     id: "kudlit",
@@ -57,7 +59,8 @@ export const bento: BentoItem[] = [
     id: "flowfit",
     title: "FlowFit",
     lead: "Champion — C(Old) St.art 2025 · kids' fitness with on-device AI.",
-    stack: ["Flutter", "Kotlin", "WearOS", "Local inference"],
+    stack: ["Flutter", "WearOS", "Samsung Health SDK", "Supabase"],
+    repo: "https://github.com/KpG782/flowfit",
     image: {
       src: "/images/hero/flowfit.webp",
       alt: "C(Old) St.art Hackathon winners announcement — Team ACSADIANS, University of Makati",
@@ -99,7 +102,8 @@ export const bento: BentoItem[] = [
     title: "ARS",
     lead: "Best Paper, 97% — roadside emergencies matched to nearby mechanics.",
     stack: ["Flutter", "Firebase", "Maps"],
-    repo: "https://github.com/KpG782/ARSAPPLICATION",
+    repo: "https://github.com/KpG782/ars",
+    live: "https://ars-website-chi.vercel.app",
     image: {
       src: "/images/hero/ars.webp",
       alt: "The ARS team recognized at the 8th Research Congress, University of Makati",
