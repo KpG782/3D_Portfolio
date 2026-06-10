@@ -1,49 +1,21 @@
-export type BentoItem = {
+export type LogItem = {
   id: string;
   title: string;
-  /** Quantified result or concrete shipped fact — leads the card. */
+  /** Quantified result or concrete shipped fact — leads the row. */
   lead: string;
   stack: string[];
-  href?: string; // internal case-study route
   repo?: string;
   live?: string;
   /** Real asset from the project (banner, award photo, certificate). */
-  image?: { src: string; alt: string };
-  /** 2-wide feature cell in the bento. */
-  wide?: boolean;
-  /** Achievement-only card (no body, stamp styling). */
-  stamp?: boolean;
+  image?: { src: string; alt: string; width: number; height: number };
 };
 
-export const bento: BentoItem[] = [
-  {
-    id: "lexinsight",
-    title: "LexInSight",
-    lead: "Legal RAG over Philippine law — dual-mode chat, live in beta.",
-    stack: ["Next.js", "Supabase", "pgvector", "RAG"],
-    href: "/work/lexinsight",
-    repo: "https://github.com/KpG782/Lexinsights",
-    live: "https://lexinsights.vercel.app",
-    wide: true,
-  },
-  {
-    id: "beacon",
-    title: "Beacon",
-    lead: "Research that compounds — an agent with persistent memory, shipped solo.",
-    stack: ["Vercel AI SDK", "Next.js", "Vector memory"],
-    href: "/work/beacon",
-    repo: "https://github.com/KpG782/Beacon",
-    live: "https://beacon-mu-murex.vercel.app/",
-  },
-  {
-    id: "pacebeats",
-    title: "Pacebeats",
-    lead: "1st Runner-Up — InfoTech Olympics 2025 · playlists from live heart rate.",
-    stack: ["Kotlin", "WearOS", "Supabase", "ML"],
-    href: "/work/pacebeats",
-    repo: "https://github.com/KpG782/pacebeats-release-files",
-    live: "https://www.pacebeats.top/",
-  },
+/**
+ * The ship log — every shipped system that isn't one of the three case
+ * studies. Rendered as dense disclosure rows, not cards: the three traces
+ * are the only cards on the page (taste pass, 2026-06-10).
+ */
+export const shipLog: LogItem[] = [
   {
     id: "kudlit",
     title: "Kudlit",
@@ -53,6 +25,8 @@ export const bento: BentoItem[] = [
     image: {
       src: "/images/projects/kudlit.webp",
       alt: "Kudlit v1.0.0 release banner — Baybayin scanner, translator, and learning companion",
+      width: 1600,
+      height: 600,
     },
   },
   {
@@ -64,6 +38,8 @@ export const bento: BentoItem[] = [
     image: {
       src: "/images/hero/flowfit.webp",
       alt: "C(Old) St.art Hackathon winners announcement — Team ACSADIANS, University of Makati",
+      width: 1638,
+      height: 2048,
     },
   },
   // Copy confirmed public-safe by Ken, pending his lead's verbal OK before
@@ -95,6 +71,8 @@ export const bento: BentoItem[] = [
     image: {
       src: "/images/hero/herbalens.webp",
       alt: "DOST-TAPI ClustRICE 2025 finalist certificate naming the HerbaLens team",
+      width: 2021,
+      height: 1536,
     },
   },
   {
@@ -107,14 +85,16 @@ export const bento: BentoItem[] = [
     image: {
       src: "/images/hero/ars.webp",
       alt: "The ARS team recognized at the 8th Research Congress, University of Makati",
+      width: 2048,
+      height: 1365,
     },
   },
   // DAMAY (Top 5 of 105 — Stellar PH 2026) intentionally absent for now per
-  // Ken (2026-06-10); restore as a `stamp: true` card when content is ready.
+  // Ken (2026-06-10); restore as a log row when content is ready.
 ];
 
-/** "Now building" live card — edit freely; keep it true. */
+/** "Now building" status — edit freely; keep it true and keep it short. */
 export const nowBuilding = {
-  title: "Now building",
-  body: "THE TRACE — this portfolio, rebuilt as a documented Next.js system with a RAG chat over its own content.",
+  label: "now building",
+  body: "THE TRACE — this portfolio as a documented system",
 };

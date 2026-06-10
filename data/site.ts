@@ -34,7 +34,6 @@ export const heroChips = [
 
 export const nav = [
   { label: "Work", href: "/#work" },
-  { label: "Case studies", href: "/#case-studies" },
   { label: "Lab", href: "/#lab" },
   { label: "Talks", href: "/#talks" },
   { label: "Contact", href: "/#contact" },

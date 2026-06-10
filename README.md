@@ -31,8 +31,8 @@ trade-offs, what broke, results.
 ```
 app/
   layout.tsx          fonts, metadata, JSON-LD, analytics
-  page.tsx            hero → 01 work → 02 case studies → awards → 03 lab
-                      → 04 talks → 05 contact  (ISR 1h)
+  page.tsx            hero → 01 work (3 case-study cards + ship log)
+                      → awards → 02 lab → 03 talks → 04 contact  (ISR 1h)
   work/[slug]/        3 case-study traces (SSG) + per-route OG images
   api/chat/route.ts   RAG chat endpoint (dynamic)
   robots.ts · sitemap.ts · not-found.tsx

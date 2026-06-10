@@ -1,5 +1,5 @@
 import { caseStudies } from "@/data/case-studies";
-import { bento, nowBuilding } from "@/data/projects";
+import { nowBuilding, shipLog } from "@/data/projects";
 import { awards, certifications } from "@/data/awards";
 import { lab } from "@/data/lab";
 import { talk, communities } from "@/data/talks";
@@ -33,9 +33,9 @@ function buildCorpus(): Chunk[] {
     "At Romega Solutions Ken pitched and shipped the internal ATS — candidate intake, parsing, pipeline stages, and automated notifications orchestrated through a self-hosted n8n instance he deployed and operates in production, built end-to-end as the sole engineer. The system is internal; an architecture walkthrough is available on request.",
   );
 
-  for (const item of bento) {
+  for (const item of shipLog) {
     add(
-      `bento-${item.id}`,
+      `log-${item.id}`,
       item.title,
       `${item.title}: ${item.lead} Stack: ${item.stack.join(", ")}.${item.repo ? ` Repo: ${item.repo}.` : ""}${item.live ? ` Live: ${item.live}.` : ""}`,
     );
@@ -43,7 +43,11 @@ function buildCorpus(): Chunk[] {
   add("now-building", "Now building", nowBuilding.body);
 
   for (const cs of caseStudies) {
-    add(`${cs.slug}-overview`, cs.name, `${cs.name} — ${cs.lead} Role: ${cs.role}. Status: ${cs.status}.`);
+    add(
+      `${cs.slug}-overview`,
+      cs.name,
+      `${cs.name} — ${cs.lead} Role: ${cs.role}. Status: ${cs.status}.${cs.links.repo ? ` Repo: ${cs.links.repo}.` : ""}${cs.links.live ? ` Live: ${cs.links.live}.` : ""}`,
+    );
     cs.problem.forEach((p, i) => add(`${cs.slug}-problem-${i}`, cs.name, p));
     cs.how.forEach((p, i) => add(`${cs.slug}-how-${i}`, cs.name, p));
     cs.annotations.forEach((p, i) => add(`${cs.slug}-note-${i}`, cs.name, p));
