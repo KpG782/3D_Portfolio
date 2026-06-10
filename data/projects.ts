@@ -33,20 +33,6 @@ export const shipLog: LogItem[] = [
       height: 600,
     },
   },
-  {
-    id: "flowfit",
-    title: "FlowFit",
-    lead: "Champion — C(Old) St.art 2025 · kids' fitness with on-device AI.",
-    body: "Dual-platform fitness tracking: a Galaxy Watch (Wear OS) app streams real-time heart rate and inter-beat intervals from the Samsung Health Sensor SDK, syncing to an Android companion over the Wearable Data Layer — with activity, sleep, nutrition, and mood tracking on a Supabase backend.",
-    stack: ["Flutter", "WearOS", "Samsung Health SDK", "Supabase"],
-    repo: "https://github.com/KpG782/flowfit",
-    image: {
-      src: "/images/hero/flowfit.webp",
-      alt: "C(Old) St.art Hackathon winners announcement — Team ACSADIANS, University of Makati",
-      width: 1638,
-      height: 2048,
-    },
-  },
   // Internal ops hub presented under a portfolio codename per Ken's
   // anonymization write-up (2026-06-11): never name the company on the
   // project, no links, no screenshots with real data. Copy below is from
@@ -98,6 +84,26 @@ export const shipLog: LogItem[] = [
   // DAMAY (Top 5 of 105 — Stellar PH 2026) intentionally absent for now per
   // Ken (2026-06-10); restore as a log row when content is ready.
 ];
+
+/**
+ * FlowFit promoted out of the ship log to a featured card beside the three
+ * traces (Ken, 2026-06-11). It links to the repo, not a /work route — no
+ * trace exists for it and we don't fake one.
+ */
+export const featuredBuild: LogItem = {
+  id: "flowfit",
+  title: "FlowFit",
+  lead: "Champion — C(Old) St.art 2025 · kids' fitness with on-device AI.",
+  body: "Dual-platform fitness tracking: a Galaxy Watch (Wear OS) app streams real-time heart rate and inter-beat intervals from the Samsung Health Sensor SDK, syncing to an Android companion over the Wearable Data Layer — with activity, sleep, nutrition, and mood tracking on a Supabase backend.",
+  stack: ["Flutter", "WearOS", "Samsung Health SDK", "Supabase"],
+  repo: "https://github.com/KpG782/flowfit",
+  image: {
+    src: "/images/hero/flowfit.webp",
+    alt: "C(Old) St.art Hackathon winners announcement — Team ACSADIANS, University of Makati",
+    width: 1638,
+    height: 2048,
+  },
+};
 
 /** "Now building" status — edit freely; keep it true and keep it short. */
 export const nowBuilding = {

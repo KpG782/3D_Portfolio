@@ -31,7 +31,7 @@ trade-offs, what broke, results.
 ```
 app/
   layout.tsx          fonts, metadata, JSON-LD, analytics
-  page.tsx            hero → 01 work (3 case-study cards + ship log)
+  page.tsx            hero → 01 work (3 trace cards + champion build + ship log)
                       → awards → 02 lab → 03 talks → 04 contact  (ISR 1h)
   work/[slug]/        3 case-study traces (SSG) + per-route OG images
   api/chat/route.ts   RAG chat endpoint (dynamic)
@@ -67,7 +67,7 @@ Claude with a system prompt that forbids out-of-corpus claims.
 The hero is server-rendered text with **no entrance animation** — the LCP
 element is the headline. Motion is transform/opacity only, scroll-triggered
 through one IntersectionObserver island, and fully pre-lit under
-`prefers-reduced-motion`. Glass appears only on nav, bento cards, stat
+`prefers-reduced-motion`. Glass appears only on nav, work cards, stat
 overlays, and the chat launcher — never on prose or in the LCP path.
 
 ### Content rules

@@ -1,4 +1,5 @@
 import Image from "next/image";
+import InView from "@/components/InView";
 import { nowBuilding, shipLog } from "@/data/projects";
 
 type GhEvent = {
@@ -33,14 +34,15 @@ async function fetchActivity() {
 
 /**
  * Everything shipped that isn't a flagship trace: one live status line plus
- * dense native-<details> rows. Zero JS — disclosure, focus, and keyboard
- * handling are the browser's.
+ * dense native-<details> rows. Zero JS for the disclosure itself — open/close
+ * animates via ::details-content in globals.css. The reveal wrapper is safe
+ * here: the log sits below four cards, never in the initial viewport.
  */
 export default async function ShipLog() {
   const gh = await fetchActivity();
 
   return (
-    <div className="mt-14">
+    <InView className="reveal mt-14">
       <p className="station-label">[ SHIP LOG ]</p>
 
       <p className="mt-4 flex flex-wrap items-center gap-x-2 font-mono text-xs leading-relaxed text-telemetry">
@@ -69,11 +71,11 @@ export default async function ShipLog() {
       <ul className="mt-5 border-t border-white/8">
         {shipLog.map((item) => (
           <li key={item.id}>
-            <details className="group border-b border-white/8">
+            <details className="log-row group border-b border-white/8">
               <summary
                 data-track="project_card_click"
                 data-track-id={item.id}
-                className="flex cursor-pointer list-none flex-col gap-1 py-4 sm:flex-row sm:items-baseline sm:gap-3 [&::-webkit-details-marker]:hidden"
+                className="flex cursor-pointer list-none flex-col gap-1 rounded-sm py-4 transition-colors duration-200 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-pulse sm:flex-row sm:items-baseline sm:gap-3 [&::-webkit-details-marker]:hidden"
               >
                 <span className="flex items-baseline gap-3 sm:w-36 sm:shrink-0">
                   <span
@@ -86,7 +88,7 @@ export default async function ShipLog() {
                     {item.title}
                   </span>
                 </span>
-                <span className="pl-6 text-sm leading-snug text-telemetry sm:min-w-0 sm:flex-1 sm:pl-0">
+                <span className="pl-6 text-sm leading-snug text-telemetry transition-colors duration-200 group-hover:text-signal sm:min-w-0 sm:flex-1 sm:pl-0">
                   {item.lead}
                 </span>
               </summary>
@@ -99,7 +101,7 @@ export default async function ShipLog() {
                     width={item.image.width}
                     height={item.image.height}
                     sizes="(min-width: 768px) 20rem, 100vw"
-                    className="w-full rounded-xl border border-white/10"
+                    className="h-auto max-h-72 w-auto max-w-full rounded-xl border border-white/10"
                   />
                 ) : null}
                 <div className="flex flex-col gap-4">
@@ -148,6 +150,6 @@ export default async function ShipLog() {
           </li>
         ))}
       </ul>
-    </div>
+    </InView>
   );
 }

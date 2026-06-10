@@ -27,7 +27,7 @@ export default function Home() {
           station="01"
           label="THE WORK"
           title="The work"
-          kicker="Three systems traced end to end — then the full ship log."
+          kicker="Three systems traced end to end, plus the champion build — then the full ship log."
         >
           <CaseStudyCards />
           <ShipLog />

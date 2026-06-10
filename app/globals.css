@@ -178,6 +178,31 @@
   }
 }
 
+/* ── Ship-log disclosure: zero-JS open/close animation ──────────────────
+   User-triggered (not scroll-driven), so animating block-size is fine here.
+   Progressive enhancement: browsers without interpolate-size snap open,
+   exactly as before. No scripting gate — this works without JS. */
+@supports (interpolate-size: allow-keywords) {
+  @media (prefers-reduced-motion: no-preference) {
+    .log-row {
+      interpolate-size: allow-keywords;
+    }
+    .log-row::details-content {
+      block-size: 0;
+      opacity: 0;
+      overflow-y: clip;
+      transition:
+        block-size 0.25s var(--ease-trace),
+        opacity 0.2s var(--ease-trace),
+        content-visibility 0.25s allow-discrete;
+    }
+    .log-row[open]::details-content {
+      block-size: auto;
+      opacity: 1;
+    }
+  }
+}
+
 /* ── Motion (DESIGN.md §4) — transform/opacity only ─────────────────────
    Hidden-until-revealed styles apply only when scripting is available
    (`@media (scripting: enabled)`), so content is never invisible for
