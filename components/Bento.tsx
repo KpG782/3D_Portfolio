@@ -1,3 +1,4 @@
+import Image from "next/image";
 import Link from "next/link";
 import { bento, nowBuilding, type BentoItem } from "@/data/projects";
 import GitHubCard from "./GitHubCard";
@@ -6,6 +7,17 @@ function CardBody({ item }: { item: BentoItem }) {
   return (
     <>
       <div>
+        {item.image ? (
+          <div className="relative -mx-5 -mt-5 mb-4 aspect-video overflow-hidden border-b border-white/10">
+            <Image
+              src={item.image.src}
+              alt={item.image.alt}
+              fill
+              sizes="(min-width: 768px) 33vw, (min-width: 640px) 50vw, 100vw"
+              className="object-cover"
+            />
+          </div>
+        ) : null}
         <p className="font-mono text-xs tracking-wide text-telemetry">
           {item.title.toUpperCase()}
         </p>
@@ -54,7 +66,7 @@ function Card({ item }: { item: BentoItem }) {
 
   if (!href) {
     return (
-      <div className={`glass flex flex-col justify-between p-5 ${span}`}>
+      <div className={`glass flex flex-col justify-between overflow-hidden p-5 ${span}`}>
         <CardBody item={item} />
       </div>
     );
@@ -67,7 +79,7 @@ function Card({ item }: { item: BentoItem }) {
       rel="noopener noreferrer"
       data-track="project_card_click"
       data-track-id={item.id}
-      className={`glass flex flex-col justify-between p-5 transition-colors duration-200 hover:border-pulse/40 ${span}`}
+      className={`glass flex flex-col justify-between overflow-hidden p-5 transition-colors duration-200 hover:border-pulse/40 ${span}`}
     >
       <CardBody item={item} />
       <span className="mt-3 font-mono text-xs text-pulse">view →</span>
@@ -77,7 +89,7 @@ function Card({ item }: { item: BentoItem }) {
       href={href}
       data-track="project_card_click"
       data-track-id={item.id}
-      className={`glass flex flex-col justify-between p-5 transition-colors duration-200 hover:border-pulse/40 ${span}`}
+      className={`glass flex flex-col justify-between overflow-hidden p-5 transition-colors duration-200 hover:border-pulse/40 ${span}`}
     >
       <CardBody item={item} />
       <span className="mt-3 font-mono text-xs text-pulse">trace it →</span>

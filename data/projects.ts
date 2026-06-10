@@ -7,6 +7,8 @@ export type BentoItem = {
   href?: string; // internal case-study route
   repo?: string;
   live?: string;
+  /** Real asset from the project (banner, award photo, certificate). */
+  image?: { src: string; alt: string };
   /** 2-wide feature cell in the bento. */
   wide?: boolean;
   /** Achievement-only card (no body, stamp styling). */
@@ -46,12 +48,20 @@ export const bento: BentoItem[] = [
     lead: "Top 13 of 500+ — DEVAKDA · Baybayin scanner shipped as Android v1.0.0.",
     stack: ["Flutter", "YOLO → TFLite", "Local Gemma", "Gemini"],
     repo: "https://github.com/KpG782/kudlit-app",
+    image: {
+      src: "/images/projects/kudlit.webp",
+      alt: "Kudlit v1.0.0 release banner — Baybayin scanner, translator, and learning companion",
+    },
   },
   {
     id: "flowfit",
     title: "FlowFit",
     lead: "Champion — C(Old) St.art 2025 · kids' fitness with on-device AI.",
     stack: ["Flutter", "Kotlin", "WearOS", "Local inference"],
+    image: {
+      src: "/images/hero/flowfit.webp",
+      alt: "C(Old) St.art Hackathon winners announcement — Team ACSADIANS, University of Makati",
+    },
   },
   // Copy confirmed public-safe by Ken, pending his lead's verbal OK before
   // production promotion. Preview-only until then.
@@ -79,6 +89,10 @@ export const bento: BentoItem[] = [
     lead: "Top 10 of 53 — DOST-TAPI 2025 · medicinal-plant recognition.",
     stack: ["Android", "TensorFlow", "Computer vision"],
     live: "https://theherbalenswebsite.web.app/",
+    image: {
+      src: "/images/hero/herbalens.webp",
+      alt: "DOST-TAPI ClustRICE 2025 finalist certificate naming the HerbaLens team",
+    },
   },
   {
     id: "ars",
@@ -86,6 +100,10 @@ export const bento: BentoItem[] = [
     lead: "Best Paper, 97% — roadside emergencies matched to nearby mechanics.",
     stack: ["Flutter", "Firebase", "Maps"],
     repo: "https://github.com/KpG782/ARSAPPLICATION",
+    image: {
+      src: "/images/hero/ars.webp",
+      alt: "The ARS team recognized at the 8th Research Congress, University of Makati",
+    },
   },
   // DAMAY (Top 5 of 105 — Stellar PH 2026) intentionally absent for now per
   // Ken (2026-06-10); restore as a `stamp: true` card when content is ready.
