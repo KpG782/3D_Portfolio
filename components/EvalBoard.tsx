@@ -1,7 +1,8 @@
 /**
- * The 100-question golden eval set, rendered like a CI scoreboard.
- * Cells stay deliberately unlit: pass-rates appear only when Ken publishes
- * real numbers — nothing here implies results that don't exist yet.
+ * PARKED (2026-06-10): not rendered anywhere. The golden-eval claim was
+ * removed from the site because no eval artifact exists yet. When Ken builds
+ * a real eval set, set `evalBoard: true` on the case study and light this up
+ * with the real question count and pass-rates.
  */
 export default function EvalBoard() {
   return (

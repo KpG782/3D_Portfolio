@@ -4,14 +4,14 @@
 > Metro Manila, PH · open to AI engineering roles · kenpatrickgarcia123@gmail.com
 
 Proof: Champion — C(Old) St.art Hackathon 2025 (FlowFit) · Top 13 of 500+ —
-DEVAKDA, shipped Android v1.0.0 (Kudlit) · Legal RAG with a 100-question
-golden eval set (LexInSight) · 1st Runner-Up — InfoTech Olympics 2025
-(Pacebeats).
+DEVAKDA, shipped Android v1.0.0 (Kudlit) · 1st Runner-Up — InfoTech
+Olympics 2025 (Pacebeats) · Beacon — persistent-memory research agent,
+shipped solo.
 
 ## Pages
 
 - [Home](https://kenbuilds.tech/): hero, shipped work, the lab, talks, contact
-- [LexInSight case study](https://kenbuilds.tech/work/lexinsight): legal RAG — pgvector retrieval, RLS isolation, golden eval gate
+- [LexInSight case study](https://kenbuilds.tech/work/lexinsight): legal RAG — pgvector retrieval, RLS isolation, dual-mode compliance checks
 - [Beacon case study](https://kenbuilds.tech/work/beacon): research agent with persistent memory (Vercel AI SDK)
 - [Pacebeats case study](https://kenbuilds.tech/work/pacebeats): WearOS biometric music — hybrid rule+ML recommender
 - [Résumé](https://kenbuilds.tech/resume): PII-free recruiter résumé (PDF at /Ken-Patrick-Garcia-Resume.pdf)

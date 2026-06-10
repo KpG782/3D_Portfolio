@@ -24,11 +24,12 @@ export const site = {
   ],
 } as const;
 
-/** The three locked hero proof chips. Do not edit without a certificate. */
+/** The three locked hero proof chips. Do not edit without a certificate.
+    Golden-eval chip parked 2026-06-10 (no eval artifact exists yet). */
 export const heroChips = [
   "Champion — C(Old) St.art Hackathon 2025",
   "Top 13 of 500+ — DEVAKDA · shipped Android v1.0.0",
-  "Legal RAG with a 100-question golden eval set",
+  "Beacon — persistent-memory research agent, shipped solo",
 ] as const;
 
 export const nav = [

@@ -74,8 +74,9 @@ overlays, and the chat launcher — never on prose or in the LCP path.
 
 - Facts come from `data/` only; the build never invents metrics.
   Pacebeats is "1st Runner-Up — InfoTech Olympics 2025" everywhere.
-- LexInSight is never called "production"; its eval scoreboard stays unlit
-  until real pass-rates are published.
+- LexInSight is never called "production". The golden-eval framing is
+  parked entirely (no artifact exists yet) — `components/EvalBoard.tsx`
+  returns only when a real eval set with real pass-rates does.
 - "What broke" sections render an honest pending state until written from
   real incident notes.
 

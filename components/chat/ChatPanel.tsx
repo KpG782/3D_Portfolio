@@ -5,7 +5,7 @@ import { useEffect, useRef, useState } from "react";
 type Msg = { role: "user" | "assistant"; content: string };
 
 const SUGGESTIONS = [
-  "What's the golden eval set?",
+  "How does Beacon's memory work?",
   "What runs in Ken's homelab?",
   "Is Ken open to roles right now?",
 ];

@@ -32,7 +32,7 @@ export type CaseStudy = {
   resultsNote?: string;
   stack: string[];
   links: { repo?: string; live?: string };
-  /** Render the 100-question golden-set scoreboard (LexInSight only). */
+  /** Eval scoreboard — parked until a real eval set exists (2026-06-10). */
   evalBoard?: boolean;
 };
 
@@ -40,7 +40,7 @@ export const caseStudies: CaseStudy[] = [
   {
     slug: "lexinsight",
     name: "LexInSight",
-    lead: "100-question golden eval set — legal RAG graded before it ships.",
+    lead: "Legal RAG over Philippine law — dual-mode chat, live in beta.",
     role: "Full-stack — RAG core, realtime chat, database architecture",
     status: "In progress (beta)",
     // Image association comes from Ken's original site data (this file was
@@ -61,11 +61,11 @@ export const caseStudies: CaseStudy[] = [
       { id: "embed", label: "Embed", sub: "query vector" },
       { id: "retrieve", label: "Retrieve", sub: "pgvector · RLS-scoped" },
       { id: "generate", label: "Generate", sub: "grounded answer" },
-      { id: "eval", label: "Eval gate", sub: "100-q golden set" },
+      { id: "stream", label: "Stream", sub: "realtime channel" },
     ],
     annotations: [
       "Every retrieval is scoped by Postgres Row Level Security — tenant isolation lives in the database, not in application code.",
-      "The golden eval set replays 100 known-answer legal questions against the pipeline, so retrieval or prompt changes get graded before they ship.",
+      "Compliance mode checks up to three uploaded documents (5MB each) against retrieved Philippine legal requirements.",
     ],
     how: [
       "Next.js App Router front to back in TypeScript. Supabase provides Postgres, auth, and realtime; documents are chunked and embedded into pgvector, so rows, vectors, and access policies live in one database.",
@@ -81,18 +81,16 @@ export const caseStudies: CaseStudy[] = [
         body: "RLS policies mean a leaked query can't cross tenants even if application code has a bug. The cost: policies are harder to write and debug than `where` clauses, and every new table needs its policy thought through.",
       },
       {
-        title: "A graded eval set before more features",
-        body: "A 100-question golden set is unglamorous work that ships no visible feature. It was prioritized anyway: legal answers that sound right but cite wrong are worse than no product. The eval gate is what makes iteration on chunking and prompts safe.",
+        title: "Two modes, one retrieval pipeline",
+        body: "General legal Q&A and compliance document-checking share the same retrieval stack instead of living as separate tools — one corpus, one ranking path to maintain. The cost is prompting that has to adapt per mode, and a single pipeline whose failures affect both surfaces.",
       },
     ],
     broke: null,
     results: [
-      { value: "100", label: "questions in the golden eval set" },
+      { value: "Live", label: "public beta — lexinsights.vercel.app" },
       { value: "2", label: "chat modes — general & compliance" },
       { value: "3×5MB", label: "documents checked per compliance run" },
     ],
-    resultsNote:
-      "Eval pass-rates are being finalized for publication — no numbers appear here until they're real.",
     stack: [
       "Next.js",
       "TypeScript",
@@ -108,7 +106,6 @@ export const caseStudies: CaseStudy[] = [
       repo: "https://github.com/KpG782/Lexinsights",
       live: "https://lexinsights.vercel.app",
     },
-    evalBoard: true,
   },
   {
     slug: "beacon",

@@ -19,7 +19,7 @@ export const bento: BentoItem[] = [
   {
     id: "lexinsight",
     title: "LexInSight",
-    lead: "100-question golden eval set — legal RAG graded before it ships.",
+    lead: "Legal RAG over Philippine law — dual-mode chat, live in beta.",
     stack: ["Next.js", "Supabase", "pgvector", "RAG"],
     href: "/work/lexinsight",
     repo: "https://github.com/KpG782/Lexinsights",
