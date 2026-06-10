@@ -55,7 +55,7 @@ export default function Contact() {
               href={site.introVideo}
               target="_blank"
               rel="noopener noreferrer"
-              className="text-pulse hover:underline"
+              className="text-pulse underline underline-offset-4"
             >
               2-minute intro video ↗
             </a>

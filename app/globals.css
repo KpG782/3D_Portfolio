@@ -100,12 +100,15 @@
     padding: 0.5rem 0.75rem;
   }
   .chip-mini {
+    display: inline-flex;
+    align-items: center;
+    min-height: 24px; /* WCAG target-size floor for linked chips */
     font-family: var(--font-mono);
     font-size: 11px;
     color: var(--color-telemetry);
     border: 1px solid rgba(255, 255, 255, 0.1);
     border-radius: 6px;
-    padding: 0.15rem 0.45rem;
+    padding: 0.2rem 0.5rem;
     white-space: nowrap;
   }
 

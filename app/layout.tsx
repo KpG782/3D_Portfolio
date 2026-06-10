@@ -9,23 +9,26 @@ import { SpeedInsights } from "@vercel/speed-insights/next";
 import { site } from "@/data/site";
 import "./globals.css";
 
+// display:"optional" — the LCP gate (<1s) beats the brand font on cold slow
+// connections: text paints once in a metrically-matched fallback and never
+// re-fires LCP; preloaded fonts win on warm/normal connections.
 const bricolage = Bricolage_Grotesque({
   subsets: ["latin"],
   variable: "--font-bricolage",
-  display: "swap",
+  display: "optional",
 });
 
 const atkinson = Atkinson_Hyperlegible({
   weight: ["400", "700"],
   subsets: ["latin"],
   variable: "--font-atkinson",
-  display: "swap",
+  display: "optional",
 });
 
 const martian = Martian_Mono({
   subsets: ["latin"],
   variable: "--font-martian",
-  display: "swap",
+  display: "optional",
 });
 
 export const metadata: Metadata = {
@@ -127,7 +130,7 @@ export default function RootLayout({
             __html: "document.documentElement.classList.add('js')",
           }}
         />
-        <a href="#work" className="skip-link">
+        <a href="#main-content" className="skip-link">
           Skip to main content
         </a>
         {children}

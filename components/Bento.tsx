@@ -1,7 +1,6 @@
 import Link from "next/link";
 import { bento, nowBuilding, type BentoItem } from "@/data/projects";
 import GitHubCard from "./GitHubCard";
-import InView from "./InView";
 
 function CardBody({ item }: { item: BentoItem }) {
   return (
@@ -87,8 +86,11 @@ function Card({ item }: { item: BentoItem }) {
 }
 
 export default function Bento() {
+  // No reveal animation here on purpose: the work grid can intersect the
+  // initial viewport, and late-fading near-fold content re-fires LCP
+  // (measured: 2.9s vs 0.9s FCP). The recruiter exit ramp renders instantly.
   return (
-    <InView className="reveal">
+    <div>
       <div className="grid gap-4 sm:grid-cols-2 md:grid-cols-3">
         {bento.map((item) => (
           <Card key={item.id} item={item} />
@@ -106,6 +108,6 @@ export default function Bento() {
         </div>
         <GitHubCard />
       </div>
-    </InView>
+    </div>
   );
 }

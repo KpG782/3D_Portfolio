@@ -14,7 +14,7 @@ export default function EvalBoard() {
       </figcaption>
       <div
         aria-hidden="true"
-        className="mt-5 grid grid-cols-20 gap-1 sm:gap-1.5"
+        className="mt-5 grid gap-1 sm:gap-1.5"
         style={{ gridTemplateColumns: "repeat(20, minmax(0, 1fr))" }}
       >
         {Array.from({ length: 100 }, (_, i) => (

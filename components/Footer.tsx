@@ -10,7 +10,7 @@ export default function Footer() {
             href="https://github.com/KpG782/3D_Portfolio"
             target="_blank"
             rel="noopener noreferrer"
-            className="text-pulse hover:underline"
+            className="text-pulse underline underline-offset-4"
           >
             README
           </a>

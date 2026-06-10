@@ -6,13 +6,15 @@ export default function Talks() {
   return (
     <InView className="reveal">
       <div className="grid gap-6 md:grid-cols-[3fr_2fr]">
-        <article className="panel-card overflow-hidden">
-          <div className="relative aspect-video">
+        <article className="panel-card overflow-hidden md:flex">
+          {/* The stage photo is portrait (750×1000) — render it at its
+              natural ratio instead of cropping to 16:9. */}
+          <div className="relative aspect-[3/4] md:aspect-auto md:w-2/5 md:shrink-0">
             <Image
               src={talk.photo}
               alt={`Ken speaking at ${talk.event}`}
               fill
-              sizes="(min-width: 768px) 60vw, 100vw"
+              sizes="(min-width: 768px) 25vw, 100vw"
               className="object-cover"
             />
           </div>

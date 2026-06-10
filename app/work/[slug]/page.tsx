@@ -31,10 +31,21 @@ export async function generateMetadata({
 function StudySection({
   label,
   children,
+  reveal = true,
 }: {
   label: string;
   children: React.ReactNode;
+  /** First section sits in the initial viewport — revealing it late re-fires LCP. */
+  reveal?: boolean;
 }) {
+  if (!reveal) {
+    return (
+      <div className="mt-14 md:mt-20">
+        <h2 className="station-label">{label}</h2>
+        <div className="mt-5">{children}</div>
+      </div>
+    );
+  }
   return (
     <InView className="reveal mt-14 md:mt-20">
       <h2 className="station-label">{label}</h2>
@@ -58,7 +69,10 @@ export default async function CaseStudyPage({
   return (
     <>
       <Nav />
-      <main className="mx-auto max-w-[1152px] px-5 pt-32 pb-10 md:px-8 md:pt-40">
+      <main
+        id="main-content"
+        className="mx-auto max-w-[1152px] px-5 pt-32 pb-10 md:px-8 md:pt-40"
+      >
         <div className="request-rail pl-6 md:pl-10">
           <p className="station-label">[ TRACE · {cs.name.toUpperCase()} ]</p>
           <h1 className="mt-4 max-w-3xl text-3xl leading-tight font-bold md:text-5xl">
@@ -70,7 +84,7 @@ export default async function CaseStudyPage({
             {cs.status}
           </p>
 
-          <StudySection label="[ THE PROBLEM ]">
+          <StudySection label="[ THE PROBLEM ]" reveal={false}>
             {cs.problem.map((p) => (
               <p key={p.slice(0, 24)} className="mt-4 leading-relaxed text-signal/90">
                 {p}
