@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" fill="none">
+  <!-- Portfolio mark (no public repo/logo exists). Trace family: panel
+       square, pulse glyph. Glyph = shield ("ligtas" = safe) + signal dot. -->
+  <rect width="32" height="32" rx="7" fill="#111F38"/>
+  <rect x="0.5" y="0.5" width="31" height="31" rx="6.5" stroke="#FFFFFF" stroke-opacity="0.12"/>
+  <path d="M16 7 L24 10 V16.5 C24 21 20.5 24 16 25.5 C11.5 24 8 21 8 16.5 V10 Z"
+        stroke="#54B9FF" stroke-width="1.6" stroke-linejoin="round" stroke-opacity="0.8"/>
+  <circle cx="16" cy="16" r="3" fill="#54B9FF"/>
+</svg>

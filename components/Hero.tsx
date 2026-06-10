@@ -23,7 +23,11 @@ export default function Hero() {
             Ken Patrick <span className="text-brass">Garcia</span>
           </h1>
 
-          <p className="mt-5 max-w-xl text-lg leading-relaxed text-signal sm:text-xl">
+          {/* Role next to the name in crawlable text — the ornament that
+              carried it is hidden on mobile (7-second test + entity SEO). */}
+          <p className="station-label mt-4">{site.role}</p>
+
+          <p className="mt-4 max-w-xl text-lg leading-relaxed text-signal sm:text-xl">
             {site.positioning}
           </p>
 

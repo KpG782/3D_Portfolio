@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" fill="none">
+  <!-- Portfolio mark (no official logo — internal system). Trace family:
+       panel square, pulse glyph. Glyph = four modules, one hub. -->
+  <rect width="32" height="32" rx="7" fill="#111F38"/>
+  <rect x="0.5" y="0.5" width="31" height="31" rx="6.5" stroke="#FFFFFF" stroke-opacity="0.12"/>
+  <rect x="7" y="7" width="8" height="8" rx="2" fill="#54B9FF"/>
+  <rect x="17.5" y="7.5" width="7" height="7" rx="1.5" stroke="#54B9FF" stroke-opacity="0.65"/>
+  <rect x="7.5" y="17.5" width="7" height="7" rx="1.5" stroke="#54B9FF" stroke-opacity="0.65"/>
+  <rect x="17.5" y="17.5" width="7" height="7" rx="1.5" stroke="#54B9FF" stroke-opacity="0.65"/>
+</svg>

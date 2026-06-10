@@ -14,6 +14,8 @@ export type CaseStudy = {
   lead: string;
   role: string;
   status: string;
+  /** Project brand icon, pulled from the project's own repo assets. */
+  icon: string;
   /** Real product screenshot (from the project's own assets). */
   image: { src: string; alt: string; width: number; height: number };
   problem: string[];
@@ -43,6 +45,7 @@ export const caseStudies: CaseStudy[] = [
     lead: "Legal RAG over Philippine law — dual-mode chat, live in beta.",
     role: "Full-stack — RAG core, realtime chat, database architecture",
     status: "In progress (beta)",
+    icon: "/images/icons/lexinsight.webp",
     // Image association comes from Ken's original site data (this file was
     // LexInSight's project image there) — caption describes only what's visible.
     image: {
@@ -113,6 +116,7 @@ export const caseStudies: CaseStudy[] = [
     lead: "Research that compounds — an agent with persistent memory, shipped solo.",
     role: "Solo build — agent, memory layer, full stack",
     status: "Live · built for Vercel Zero to Agent Hackathon 2026",
+    icon: "/images/icons/beacon.svg",
     image: {
       src: "/images/projects/beacon.webp",
       alt: "Beacon's landing page — durable research agent, built for Vercel Zero to Agent 2026",
@@ -173,6 +177,7 @@ export const caseStudies: CaseStudy[] = [
     lead: "1st Runner-Up — InfoTech Olympics 2025 (University of Makati), Android App Development: Productivity.",
     role: "Lead — WearOS app, recommendation engine, architecture",
     status: "Shipped · team of 4",
+    icon: "/images/icons/pacebeats.svg",
     image: {
       src: "/images/hero/pacebeats.webp",
       alt: "The Pacebeats team taking 1st Runner-Up at InfoTech Olympics 2025",

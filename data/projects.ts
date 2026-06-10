@@ -6,6 +6,9 @@ export type LogItem = {
   /** What the system actually does — sourced from the repo's own README/
       description, never invented. Omit when no public artifact exists. */
   body?: string;
+  /** Brand icon. Real repo asset where one exists; otherwise a Trace-family
+      mark we drew ourselves (teamos, ligtas) — never a faked "official" logo. */
+  icon: string;
   stack: string[];
   repo?: string;
   live?: string;
@@ -23,6 +26,7 @@ export const shipLog: LogItem[] = [
     id: "kudlit",
     title: "Kudlit",
     lead: "Top 13 of 500+ — DEVAKDA · Baybayin scanner shipped as Android v1.0.0.",
+    icon: "/images/icons/kudlit.webp",
     body: "Camera-first Baybayin glyph scanner, two-way translation between Filipino text and Baybayin Unicode, lessons and quiz practice, and Butty — an AI learning companion for explanations. Shipped as a public Android APK with its own bundled design system and Baybayin display font.",
     stack: ["Flutter", "YOLO → TFLite", "Local Gemma", "Gemini"],
     repo: "https://github.com/KpG782/kudlit-app",
@@ -41,6 +45,7 @@ export const shipLog: LogItem[] = [
     id: "teamos",
     title: "TeamOS",
     lead: "Internal ops hub, shipped solo in ~3 months — 46 pages, 56 API routes, 31-table schema.",
+    icon: "/images/icons/teamos.svg",
     body: "All-in-one operations platform for a distributed digital services team, replacing 4+ separate SaaS tools: project management with kanban and sprints, attendance with live presence and a policy-driven overtime approval queue, a recruiting ATS with automated resume parsing and a consent-gated talent pool, a full LMS with server-graded quizzes and PDF certificates, and AI-drafted executive briefings gated behind human review. Led the migration off a third-party PM SaaS — SQLite → Supabase Postgres, custom JWT → Supabase Auth + Google OAuth.",
     stack: ["Next.js 16", "Supabase", "Drizzle", "n8n", "LLM APIs"],
   },
@@ -48,6 +53,7 @@ export const shipLog: LogItem[] = [
     id: "ligtas",
     title: "LigTAS",
     lead: "Agent on Cloud Run — built at Google Gen AI Academy APAC.",
+    icon: "/images/icons/ligtas.svg",
     stack: ["Cloud Run", "Agents"],
   },
   // SagipAI (offline emergency AI, on-device LiteRT-LM) parked per Ken
@@ -56,6 +62,7 @@ export const shipLog: LogItem[] = [
     id: "herbalens",
     title: "HerbaLens",
     lead: "Top 10 of 53 — DOST-TAPI 2025 · medicinal-plant recognition.",
+    icon: "/images/icons/herbalens.webp",
     body: "AI medicinal-plant recognition bridging Filipino herbal knowledge with computer vision — TensorFlow models in an Android app, with a public project site.",
     stack: ["Android", "TensorFlow", "Computer vision"],
     live: "https://theherbalenswebsite.web.app/",
@@ -70,6 +77,7 @@ export const shipLog: LogItem[] = [
     id: "ars",
     title: "ARS",
     lead: "Best Paper, 97% — roadside emergencies matched to nearby mechanics.",
+    icon: "/images/icons/ars.webp",
     body: "Connects vehicle owners with mechanics for on-demand repairs: booking, live ETA over a self-hosted OSRM routing server built for the Philippine road network, in-app chat, AI diagnostics via a Rasa + RAG + Gemini chatbot with Taglish support, and a real-time mechanic dashboard — Firebase backend, feature-first clean architecture.",
     stack: ["Flutter", "Riverpod", "Firebase", "Self-hosted OSRM", "Rasa + RAG"],
     repo: "https://github.com/KpG782/ars",
@@ -94,6 +102,7 @@ export const featuredBuild: LogItem = {
   id: "flowfit",
   title: "FlowFit",
   lead: "Champion — C(Old) St.art 2025 · kids' fitness with on-device AI.",
+  icon: "/images/icons/flowfit.svg",
   body: "Dual-platform fitness tracking: a Galaxy Watch (Wear OS) app streams real-time heart rate and inter-beat intervals from the Samsung Health Sensor SDK, syncing to an Android companion over the Wearable Data Layer — with activity, sleep, nutrition, and mood tracking on a Supabase backend.",
   stack: ["Flutter", "WearOS", "Samsung Health SDK", "Supabase"],
   repo: "https://github.com/KpG782/flowfit",

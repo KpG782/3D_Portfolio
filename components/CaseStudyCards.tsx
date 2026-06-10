@@ -38,7 +38,16 @@ export default function CaseStudyCards() {
           <CardImage src={cs.image.src} alt="" />
           <div className="flex flex-1 flex-col justify-between p-5">
             <div>
-              <p className="station-label">[ TRACE · {cs.name.toUpperCase()} ]</p>
+              <p className="station-label flex items-center gap-2">
+                <img
+                  src={cs.icon}
+                  alt=""
+                  width={18}
+                  height={18}
+                  className="h-[18px] w-[18px] rounded-[4px]"
+                />
+                [ TRACE · {cs.name.toUpperCase()} ]
+              </p>
               <p className="mt-3 text-[15px] leading-snug font-semibold text-signal md:text-base">
                 {cs.lead}
               </p>
@@ -61,7 +70,14 @@ export default function CaseStudyCards() {
         <CardImage src={featuredBuild.image!.src} alt="" />
         <div className="flex flex-1 flex-col justify-between p-5">
           <div>
-            <p className="station-label">
+            <p className="station-label flex items-center gap-2">
+              <img
+                src={featuredBuild.icon}
+                alt=""
+                width={18}
+                height={18}
+                className="h-[18px] w-[18px] rounded-[4px]"
+              />
               [ BUILD · {featuredBuild.title.toUpperCase()} ]
             </p>
             <p className="mt-3 text-[15px] leading-snug font-semibold text-signal md:text-base">

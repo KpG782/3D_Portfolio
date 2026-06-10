@@ -77,18 +77,26 @@ export default async function ShipLog() {
                 data-track-id={item.id}
                 className="flex cursor-pointer list-none flex-col gap-1 rounded-sm py-4 transition-colors duration-200 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-pulse sm:flex-row sm:items-baseline sm:gap-3 [&::-webkit-details-marker]:hidden"
               >
-                <span className="flex items-baseline gap-3 sm:w-36 sm:shrink-0">
+                <span className="flex items-center gap-2.5 sm:w-40 sm:shrink-0">
                   <span
                     aria-hidden="true"
                     className="font-mono text-xs text-pulse transition-transform duration-200 group-open:rotate-90"
                   >
                     ▸
                   </span>
+                  {/* Plain <img>: tiny local svg/webp marks, no optimizer pass. */}
+                  <img
+                    src={item.icon}
+                    alt=""
+                    width={20}
+                    height={20}
+                    className="h-5 w-5 rounded-[5px]"
+                  />
                   <span className="font-mono text-sm font-semibold tracking-wide text-signal uppercase">
                     {item.title}
                   </span>
                 </span>
-                <span className="pl-6 text-sm leading-snug text-telemetry transition-colors duration-200 group-hover:text-signal sm:min-w-0 sm:flex-1 sm:pl-0">
+                <span className="pl-12 text-sm leading-snug text-telemetry transition-colors duration-200 group-hover:text-signal sm:min-w-0 sm:flex-1 sm:pl-0">
                   {item.lead}
                 </span>
               </summary>
