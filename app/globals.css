@@ -178,52 +178,58 @@
   }
 }
 
-/* ── Motion (DESIGN.md §4) — transform/opacity only, JS-gated ───────── */
+/* ── Motion (DESIGN.md §4) — transform/opacity only ─────────────────────
+   Hidden-until-revealed styles apply only when scripting is available
+   (`@media (scripting: enabled)`), so content is never invisible for
+   no-JS visitors, crawlers, or pre-scripting paints — without mutating
+   <html> from an inline script (which causes a hydration mismatch). */
 @media (prefers-reduced-motion: no-preference) {
-  html.js .reveal {
-    opacity: 0;
-    transform: translateY(10px);
-    transition:
-      opacity 0.25s var(--ease-trace),
-      transform 0.25s var(--ease-trace);
-    transition-delay: var(--reveal-delay, 0s);
-  }
-  html.js .reveal.in {
-    opacity: 1;
-    transform: none;
-  }
-
-  /* Trace stages: node fill + connector draw, staggered via --stage-delay. */
-  html.js .trace .stage-node {
-    opacity: 0.35;
-    transform: scale(0.9);
-    transition:
-      opacity 0.6s var(--ease-trace),
-      transform 0.6s var(--ease-trace),
-      border-color 0.6s var(--ease-trace),
-      background-color 0.6s var(--ease-trace);
-    transition-delay: var(--stage-delay, 0s);
-  }
-  html.js .trace .stage-link {
-    transform: scaleX(0);
-    transform-origin: left;
-    transition: transform 0.6s var(--ease-trace);
-    transition-delay: var(--stage-delay, 0s);
-  }
-  html.js .trace.in .stage-node {
-    opacity: 1;
-    transform: none;
-  }
-  html.js .trace.in .stage-link {
-    transform: none;
-  }
-  @media (max-width: 767px) {
-    html.js .trace .stage-link {
-      transform: scaleY(0);
-      transform-origin: top;
+  @media (scripting: enabled) {
+    .reveal {
+      opacity: 0;
+      transform: translateY(10px);
+      transition:
+        opacity 0.25s var(--ease-trace),
+        transform 0.25s var(--ease-trace);
+      transition-delay: var(--reveal-delay, 0s);
     }
-    html.js .trace.in .stage-link {
+    .reveal.in {
+      opacity: 1;
       transform: none;
+    }
+
+    /* Trace stages: node fill + connector draw, staggered via --stage-delay. */
+    .trace .stage-node {
+      opacity: 0.35;
+      transform: scale(0.9);
+      transition:
+        opacity 0.6s var(--ease-trace),
+        transform 0.6s var(--ease-trace),
+        border-color 0.6s var(--ease-trace),
+        background-color 0.6s var(--ease-trace);
+      transition-delay: var(--stage-delay, 0s);
+    }
+    .trace .stage-link {
+      transform: scaleX(0);
+      transform-origin: left;
+      transition: transform 0.6s var(--ease-trace);
+      transition-delay: var(--stage-delay, 0s);
+    }
+    .trace.in .stage-node {
+      opacity: 1;
+      transform: none;
+    }
+    .trace.in .stage-link {
+      transform: none;
+    }
+    @media (max-width: 767px) {
+      .trace .stage-link {
+        transform: scaleY(0);
+        transform-origin: top;
+      }
+      .trace.in .stage-link {
+        transform: none;
+      }
     }
   }
 }

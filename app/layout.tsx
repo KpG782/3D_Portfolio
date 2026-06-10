@@ -123,13 +123,6 @@ export default function RootLayout({
       className={`${bricolage.variable} ${atkinson.variable} ${martian.variable}`}
     >
       <body>
-        {/* Gates hidden-until-revealed styles behind JS availability so
-            content is never invisible for no-JS visitors or crawlers. */}
-        <script
-          dangerouslySetInnerHTML={{
-            __html: "document.documentElement.classList.add('js')",
-          }}
-        />
         <a href="#main-content" className="skip-link">
           Skip to main content
         </a>
