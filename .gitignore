@@ -30,3 +30,8 @@ dist-ssr
 # Local design scratch / mockups (not shipped)
 design/
 .vercel
+
+# next.js
+.next/
+out/
+next-env.d.ts

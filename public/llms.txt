@@ -1,67 +1,28 @@
-# Ken Patrick Garcia — AI Full Stack Engineer
+# kenbuilds.tech — Ken Patrick Garcia, AI Full-Stack Engineer
 
-> Ken Patrick Garcia is an award-winning AI Full Stack Engineer from the
-> Philippines who designs and ships AI-powered web and mobile products —
-> combining LLM/RAG systems, React/Next.js frontends, Flutter mobile apps,
-> and Node.js backends into reliable, performant, real-world software.
+> I ship production AI systems — RAG, agents, and the full stack around them.
+> Metro Manila, PH · open to AI engineering roles · kenpatrickgarcia123@gmail.com
 
-## Summary
+Proof: Champion — C(Old) St.art Hackathon 2025 (FlowFit) · Top 13 of 500+ —
+DEVAKDA, shipped Android v1.0.0 (Kudlit) · Legal RAG with a 100-question
+golden eval set (LexInSight) · 1st Runner-Up — InfoTech Olympics 2025
+(Pacebeats) · Top 5 of 105 — Stellar PH Hackathon 2026 (DAMAY).
 
-Ken builds end-to-end intelligent products: from prompt-engineered LLM and
-RAG pipelines to polished, accessible interfaces and scalable backends. His
-work spans production engineering at Romega Solutions and award-winning
-academic and hackathon projects. This site showcases selected projects,
-professional experience, certifications, the tech stack he works with,
-peer testimonials, and contact details.
+## Pages
 
-## Primary URL
+- [Home](https://kenbuilds.tech/): hero, shipped work, the lab, talks, contact
+- [LexInSight case study](https://kenbuilds.tech/work/lexinsight): legal RAG — pgvector retrieval, RLS isolation, golden eval gate
+- [Beacon case study](https://kenbuilds.tech/work/beacon): research agent with persistent memory (Vercel AI SDK)
+- [Pacebeats case study](https://kenbuilds.tech/work/pacebeats): WearOS biometric music — hybrid rule+ML recommender
+- [Résumé](https://kenbuilds.tech/resume): PII-free recruiter résumé (PDF at /Ken-Patrick-Garcia-Resume.pdf)
 
-- https://kenbuilds.tech/
+## Facts
 
-## Role & Positioning
-
-- Title: AI Full Stack Engineer
-- Open to: full-time engineering roles, freelance, and contract work
-- Strengths: AI/LLM integration, RAG, frontend performance, cross-platform
-  mobile, clean architecture, and shipping production software
-- Location: Philippines (remote-ready, global collaboration)
-
-## Key Topics
-
-- AI full-stack engineering (LLM APIs: OpenAI, Claude, Gemini)
-- RAG (Retrieval-Augmented Generation) and vector databases
-- AI automation workflows (n8n) and intelligent agents
-- React, Next.js, and modern frontend performance
-- Flutter and cross-platform mobile development
-- Node.js, REST/GraphQL APIs, PostgreSQL/MongoDB
-- Three.js / WebGL and interactive 3D web experiences
-- Award-winning academic and hackathon products
-
-## Selected Projects
-
-- ARS — Auto Repair Response Network Service (Best Paper, 8th Research
-  Congress; Flutter + Firebase civic-tech emergency assistance)
-- FlowFit — AI-powered kids' fitness companion (Hackathon Champions 2025;
-  Flutter + WearOS + local AI inference)
-- Pacebeats — Smart music recommender (1st Runner-Up, InfoTech Olympics
-  2025; Kotlin + Jetpack Compose + Samsung Health SDK)
-
-## Why Hire Ken
-
-He pairs strong frontend execution and mobile experience with real AI
-integration and a track record of delivery across production, academic,
-and competition settings. He cares about accessibility, performance, and
-clean, maintainable architecture.
-
-## Profiles
-
-- GitHub: https://github.com/KpG782
-- LinkedIn: https://www.linkedin.com/in/ken-patrick-garcia-ba5430285/
-- DEV: https://dev.to/kpg782
-- Instagram: https://www.instagram.com/sinpayken/
-- Facebook: https://www.facebook.com/kenpatrickgarcia123/
-- Medium: https://medium.com/@kenpatrickgarcia/about
-
-## Contact
-
-- Email: mailto:kenpatrickgarcia123@gmail.com
+- Current: AI Full-Stack Engineer at Romega Solutions (Jul 2025–present, remote)
+- Homelab: MacBook Air M4 16GB (dev) · ASUS 40GB RAM Ubuntu 24.04 running
+  Ollama (Gemma, Qwen Coder) + Open WebUI (local inference) · ThinkVision
+  T27h-30 27" QHD · Galaxy A26 (Android test device)
+- Stack: Next.js, TypeScript, Supabase (PostgreSQL + pgvector), FastAPI,
+  Redis, n8n (self-hosted), Claude API, Docker
+- Speaker: Qwen Meetup Manila #2 (Alibaba Cloud PH), 2026
+- Education: BS Computer Science, University of Makati, expected 2026

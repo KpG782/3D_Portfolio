@@ -1,0 +1,232 @@
+@import "tailwindcss";
+
+/* ── THE TRACE · Trace Navy tokens (DESIGN.md §1–2) ─────────────────── */
+@theme {
+  --color-substrate: #0a1424;
+  --color-panel: #111f38;
+  --color-signal: #e9f0fa;
+  --color-telemetry: #92a7c5;
+  --color-pulse: #54b9ff;
+  --color-brass: #d9a848;
+  /* data-only signals — diagrams, eval UI, status rows. Never decoration. */
+  --color-pass: #43d9a3;
+  --color-warn: #ff9f40;
+  --color-fault: #f0564a;
+
+  --font-display: var(--font-bricolage), ui-sans-serif, system-ui, sans-serif;
+  --font-body: var(--font-atkinson), ui-sans-serif, system-ui, sans-serif;
+  --font-mono: var(--font-martian), ui-monospace, "SF Mono", Menlo, monospace;
+
+  --ease-trace: cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+@layer base {
+  html {
+    color-scheme: dark;
+    scroll-behavior: smooth;
+  }
+  @media (prefers-reduced-motion: reduce) {
+    html {
+      scroll-behavior: auto;
+    }
+  }
+  body {
+    background: var(--color-substrate);
+    color: var(--color-signal);
+    font-family: var(--font-body);
+    font-size: 17px;
+    line-height: 1.65;
+    -webkit-font-smoothing: antialiased;
+  }
+  ::selection {
+    background: var(--color-pulse);
+    color: var(--color-substrate);
+  }
+  :focus-visible {
+    outline: 2px solid var(--color-pulse);
+    outline-offset: 2px;
+    border-radius: 2px;
+  }
+  h1,
+  h2,
+  h3 {
+    font-family: var(--font-display);
+    letter-spacing: -0.02em;
+    line-height: 1.1;
+    text-wrap: balance;
+  }
+  p {
+    max-width: 68ch;
+  }
+}
+
+@layer components {
+  /* Numbered station label sitting on the request line. */
+  .station-label {
+    font-family: var(--font-mono);
+    font-size: 12px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--color-telemetry);
+  }
+
+  /* The only permitted glass recipe (DESIGN.md §1). */
+  .glass {
+    background: rgba(255, 255, 255, 0.06);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(14px) saturate(160%);
+    -webkit-backdrop-filter: blur(14px) saturate(160%);
+    border-radius: 18px;
+  }
+
+  .panel-card {
+    background: var(--color-panel);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 16px;
+    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.04);
+  }
+
+  .chip {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-family: var(--font-mono);
+    font-size: 13px;
+    line-height: 1.4;
+    color: var(--color-signal);
+    background: var(--color-panel);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 10px;
+    padding: 0.5rem 0.75rem;
+  }
+  .chip-mini {
+    font-family: var(--font-mono);
+    font-size: 11px;
+    color: var(--color-telemetry);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 6px;
+    padding: 0.15rem 0.45rem;
+    white-space: nowrap;
+  }
+
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    min-height: 48px;
+    padding: 0 1.25rem;
+    border-radius: 12px;
+    font-weight: 600;
+    font-size: 15px;
+    cursor: pointer;
+    transition:
+      background-color 0.2s var(--ease-trace),
+      border-color 0.2s var(--ease-trace),
+      color 0.2s var(--ease-trace);
+  }
+  .btn-primary {
+    background: var(--color-pulse);
+    color: var(--color-substrate);
+  }
+  .btn-primary:hover {
+    background: #7cc8ff;
+  }
+  .btn-ghost {
+    border: 1px solid rgba(255, 255, 255, 0.16);
+    color: var(--color-signal);
+  }
+  .btn-ghost:hover {
+    border-color: var(--color-pulse);
+    color: var(--color-pulse);
+  }
+
+  .skip-link {
+    position: absolute;
+    left: -9999px;
+    z-index: 60;
+    background: var(--color-pulse);
+    color: var(--color-substrate);
+    padding: 0.6rem 1rem;
+    border-radius: 0 0 10px 0;
+    font-weight: 700;
+  }
+  .skip-link:focus {
+    left: 0;
+    top: 0;
+  }
+
+  /* Left request-rail per section (the line the stations sit on). */
+  .request-rail {
+    position: relative;
+  }
+  .request-rail::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    width: 2px;
+    background: linear-gradient(
+      to bottom,
+      rgba(84, 185, 255, 0.45),
+      rgba(84, 185, 255, 0.08)
+    );
+  }
+}
+
+/* ── Motion (DESIGN.md §4) — transform/opacity only, JS-gated ───────── */
+@media (prefers-reduced-motion: no-preference) {
+  html.js .reveal {
+    opacity: 0;
+    transform: translateY(10px);
+    transition:
+      opacity 0.25s var(--ease-trace),
+      transform 0.25s var(--ease-trace);
+    transition-delay: var(--reveal-delay, 0s);
+  }
+  html.js .reveal.in {
+    opacity: 1;
+    transform: none;
+  }
+
+  /* Trace stages: node fill + connector draw, staggered via --stage-delay. */
+  html.js .trace .stage-node {
+    opacity: 0.35;
+    transform: scale(0.9);
+    transition:
+      opacity 0.6s var(--ease-trace),
+      transform 0.6s var(--ease-trace),
+      border-color 0.6s var(--ease-trace),
+      background-color 0.6s var(--ease-trace);
+    transition-delay: var(--stage-delay, 0s);
+  }
+  html.js .trace .stage-link {
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 0.6s var(--ease-trace);
+    transition-delay: var(--stage-delay, 0s);
+  }
+  html.js .trace.in .stage-node {
+    opacity: 1;
+    transform: none;
+  }
+  html.js .trace.in .stage-link {
+    transform: none;
+  }
+  @media (max-width: 767px) {
+    html.js .trace .stage-link {
+      transform: scaleY(0);
+      transform-origin: top;
+    }
+    html.js .trace.in .stage-link {
+      transform: none;
+    }
+  }
+}
+
+/* Lit state applies regardless of motion preference (InView adds .in
+   immediately under reduced motion; without JS nodes simply stay visible). */
+.trace.in .stage-node {
+  border-color: var(--color-pulse);
+}
