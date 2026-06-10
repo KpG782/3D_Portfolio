@@ -20,7 +20,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     {
       url: `${site.url}/resume`,
       // Git date of public/resume.html — bump when the résumé changes.
-      lastModified: new Date("2026-06-10"),
+      lastModified: new Date("2026-06-11"),
       changeFrequency: "monthly",
       priority: 0.6,
     },
