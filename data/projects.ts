@@ -47,14 +47,16 @@ export const shipLog: LogItem[] = [
       height: 2048,
     },
   },
-  // Copy confirmed public-safe by Ken, pending his lead's verbal OK before
-  // production promotion. Preview-only until then.
+  // Internal ops hub presented under a portfolio codename per Ken's
+  // anonymization write-up (2026-06-11): never name the company on the
+  // project, no links, no screenshots with real data. Copy below is from
+  // that write-up verbatim where possible. Replaces the "Romega ATS" row.
   {
-    id: "romega-ats",
-    title: "Romega ATS",
-    lead: "Sole engineer on Romega's internal ATS — orchestrated by a self-hosted n8n server I operate.",
-    body: "Candidate intake, parsing, pipeline stages, and automated notifications orchestrated through a self-hosted n8n instance I deployed and operate in production. Internal system — architecture walkthrough on request.",
-    stack: ["n8n", "LLM APIs", "Node.js"],
+    id: "teamos",
+    title: "TeamOS",
+    lead: "Internal ops hub, shipped solo in ~3 months — 46 pages, 56 API routes, 31-table schema.",
+    body: "All-in-one operations platform for a distributed digital services team, replacing 4+ separate SaaS tools: project management with kanban and sprints, attendance with live presence and a policy-driven overtime approval queue, a recruiting ATS with automated resume parsing and a consent-gated talent pool, a full LMS with server-graded quizzes and PDF certificates, and AI-drafted executive briefings gated behind human review. Led the migration off a third-party PM SaaS — SQLite → Supabase Postgres, custom JWT → Supabase Auth + Google OAuth.",
+    stack: ["Next.js 16", "Supabase", "Drizzle", "n8n", "LLM APIs"],
   },
   {
     id: "ligtas",

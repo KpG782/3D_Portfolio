@@ -28,9 +28,9 @@ function buildCorpus(): Chunk[] {
     "Ken works at Romega Solutions as an AI Full-Stack Engineer (Jul 2025–present, remote, part-time). Past roles: Software Engineer at CodeVF (real-time collaboration, WebSockets), AI Workflow Automation Engineer at University of Makati (n8n), Lead Software Engineer on Pacebeats, freelance full-stack web (8+ client sites), Flutter developer (5+ cross-platform apps), and technical support at Concentrix. Education: BS Computer Science at University of Makati, expected 2026.",
   );
   add(
-    "romega-ats",
-    "Romega ATS",
-    "At Romega Solutions Ken pitched and shipped the internal ATS — candidate intake, parsing, pipeline stages, and automated notifications orchestrated through a self-hosted n8n instance he deployed and operates in production, built end-to-end as the sole engineer. The system is internal; an architecture walkthrough is available on request.",
+    "teamos",
+    "TeamOS (internal ops hub)",
+    "TeamOS is the portfolio codename for an internal operations platform Ken built solo in about 3 months for a distributed digital services team — the client is not named publicly. It replaced 4+ separate SaaS tools with one hub: project management and ticketing (kanban, sprints, comments, activity feeds), attendance with live presence and a policy-driven weekly overtime cap with admin approval, a recruiting ATS with a public application form, automated resume parsing via n8n, and a consent-gated (double opt-in) public talent pool, a full LMS with server-graded quizzes, cohort assignments, and auto-generated PDF certificates, plus LLM-powered daily executive briefings and AI status-report drafting that land in human review queues. Scale: 46 pages, 56 API route handlers, 31 Postgres tables, ~42K lines of TypeScript. He led the migration off a third-party PM SaaS — SQLite to Supabase Postgres with Drizzle ORM, custom JWT to Supabase Auth + Google OAuth — and shipped four-tier RBAC with middleware route guards. The system is internal; an architecture walkthrough is available on request.",
   );
 
   for (const item of shipLog) {
