@@ -1,10 +1,29 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" fill="none">
-  <!-- Portfolio mark (no official logo — internal system). Trace family:
-       panel square, pulse glyph. Glyph = four modules, one hub. -->
-  <rect width="32" height="32" rx="7" fill="#111F38"/>
-  <rect x="0.5" y="0.5" width="31" height="31" rx="6.5" stroke="#FFFFFF" stroke-opacity="0.12"/>
-  <rect x="7" y="7" width="8" height="8" rx="2" fill="#54B9FF"/>
-  <rect x="17.5" y="7.5" width="7" height="7" rx="1.5" stroke="#54B9FF" stroke-opacity="0.65"/>
-  <rect x="7.5" y="17.5" width="7" height="7" rx="1.5" stroke="#54B9FF" stroke-opacity="0.65"/>
-  <rect x="17.5" y="17.5" width="7" height="7" rx="1.5" stroke="#54B9FF" stroke-opacity="0.65"/>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" fill="none">
+  <!-- Portfolio mark (no official logo — internal system). Trace family v2:
+       gradient panel, glow, hub-and-spoke glyph = one hub, many modules. -->
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#1C2F55"/>
+      <stop offset="1" stop-color="#0C1729"/>
+    </linearGradient>
+    <linearGradient id="glyph" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#8AD2FF"/>
+      <stop offset="1" stop-color="#3D9BE9"/>
+    </linearGradient>
+    <radialGradient id="glow" cx="0.5" cy="0.46" r="0.55">
+      <stop offset="0" stop-color="#54B9FF" stop-opacity="0.30"/>
+      <stop offset="1" stop-color="#54B9FF" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+  <rect width="64" height="64" rx="14" fill="url(#bg)"/>
+  <rect width="64" height="64" rx="14" fill="url(#glow)"/>
+  <rect x="0.75" y="0.75" width="62.5" height="62.5" rx="13.25" stroke="#9CC8FF" stroke-opacity="0.22" stroke-width="1.5"/>
+  <path d="M32 32 L19.5 19.5 M32 32 L44.5 19.5 M32 32 L19.5 44.5 M32 32 L44.5 44.5"
+        stroke="#54B9FF" stroke-opacity="0.55" stroke-width="2.5"/>
+  <circle cx="19.5" cy="19.5" r="5" fill="url(#glyph)"/>
+  <circle cx="44.5" cy="19.5" r="5" fill="url(#glyph)"/>
+  <circle cx="19.5" cy="44.5" r="5" fill="url(#glyph)"/>
+  <circle cx="44.5" cy="44.5" r="5" fill="url(#glyph)"/>
+  <rect x="24" y="24" width="16" height="16" rx="5" fill="url(#glyph)"/>
+  <rect x="24" y="24" width="16" height="16" rx="5" stroke="#0C1729" stroke-opacity="0.55" stroke-width="1.5"/>
 </svg>
