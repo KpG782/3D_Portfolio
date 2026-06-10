@@ -7,6 +7,7 @@ import {
 import { Analytics } from "@vercel/analytics/react";
 import { SpeedInsights } from "@vercel/speed-insights/next";
 import { site } from "@/data/site";
+import { awards } from "@/data/awards";
 import "./globals.css";
 
 // display:"optional" — the LCP gate (<1s) beats the brand font on cold slow
@@ -57,7 +58,7 @@ export const metadata: Metadata = {
     images: ["/og-image.png"],
   },
   robots: { index: true, follow: true },
-  icons: { icon: "/favicon.png" },
+  icons: { icon: "/favicon.png", apple: "/apple-touch-icon.png" },
   manifest: "/site.webmanifest",
 };
 
@@ -75,9 +76,17 @@ const personJsonLd = {
       "@id": `${site.url}/#person`,
       name: site.name,
       url: site.url,
+      image: `${site.url}/images/2x2.webp`,
       jobTitle: site.role,
       email: `mailto:${site.email}`,
       description: site.positioning,
+      // Certificate truth only — derived from the awards data layer.
+      award: awards.map((a) => `${a.place} — ${a.event} (${a.project})`),
+      worksFor: { "@type": "Organization", name: "Romega Solutions" },
+      alumniOf: {
+        "@type": "CollegeOrUniversity",
+        name: "University of Makati",
+      },
       sameAs: [
         "https://github.com/KpG782",
         "https://www.linkedin.com/in/ken-patrick-garcia-ba5430285/",

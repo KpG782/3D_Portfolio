@@ -38,6 +38,13 @@ export type CaseStudy = {
   evalBoard?: boolean;
 };
 
+/** Case-study content dates (git-derived) — bump `modified` when editing copy.
+    Feeds TechArticle JSON-LD and sitemap lastModified. */
+export const caseStudyDates = {
+  published: "2026-06-10",
+  modified: "2026-06-11",
+} as const;
+
 export const caseStudies: CaseStudy[] = [
   {
     slug: "lexinsight",

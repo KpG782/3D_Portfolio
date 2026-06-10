@@ -11,9 +11,24 @@ import Footer from "@/components/Footer";
 import FunnelEvents from "@/components/FunnelEvents";
 import ChatLauncher from "@/components/chat/ChatLauncher";
 import { lab } from "@/data/lab";
+import { site } from "@/data/site";
+import { caseStudyDates } from "@/data/case-studies";
 
 /** Static page, revalidated hourly so the ship-log status line stays fresh. */
 export const revalidate = 3600;
+
+// Homepage-only: marks this URL as the profile page for the Person entity
+// declared in the root layout's graph (Google ProfilePage rich result).
+const profilePageJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "ProfilePage",
+  "@id": `${site.url}/#profilepage`,
+  url: `${site.url}/`,
+  name: `${site.name} — ${site.role}`,
+  dateModified: caseStudyDates.modified,
+  mainEntity: { "@id": `${site.url}/#person` },
+  isPartOf: { "@id": `${site.url}/#website` },
+};
 
 export default function Home() {
   return (
@@ -65,6 +80,10 @@ export default function Home() {
         </Section>
       </main>
       <Footer />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(profilePageJsonLd) }}
+      />
       <FunnelEvents />
       <ChatLauncher />
     </>

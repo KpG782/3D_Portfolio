@@ -9,7 +9,8 @@ import EvalBoard from "@/components/EvalBoard";
 import ScrollDepth from "@/components/ScrollDepth";
 import InView from "@/components/InView";
 import ChatLauncher from "@/components/chat/ChatLauncher";
-import { caseStudies, getCaseStudy } from "@/data/case-studies";
+import { caseStudies, caseStudyDates, getCaseStudy } from "@/data/case-studies";
+import { site } from "@/data/site";
 
 export function generateStaticParams() {
   return caseStudies.map((cs) => ({ slug: cs.slug }));
@@ -22,10 +23,26 @@ export async function generateMetadata({
 }): Promise<Metadata> {
   const cs = getCaseStudy((await params).slug);
   if (!cs) return {};
+  // openGraph/twitter must be overridden per page — Next merges metadata
+  // per top-level field, so without these every share card carried the
+  // homepage title. og:image comes from the opengraph-image file convention.
+  const shareTitle = `${cs.name} — case study · ${site.name}`;
   return {
     title: `${cs.name} — case study`,
     description: cs.lead,
     alternates: { canonical: `/work/${cs.slug}` },
+    openGraph: {
+      type: "article",
+      url: `/work/${cs.slug}`,
+      siteName: site.brand,
+      title: shareTitle,
+      description: cs.lead,
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: shareTitle,
+      description: cs.lead,
+    },
   };
 }
 
@@ -66,6 +83,42 @@ export default async function CaseStudyPage({
 
   const index = caseStudies.findIndex((c) => c.slug === cs.slug);
   const next = caseStudies[(index + 1) % caseStudies.length];
+
+  // Server-rendered so AI crawlers (no JS execution) see it in initial HTML.
+  // author/publisher resolve to the Person node in the root layout's graph.
+  const caseStudyJsonLd = {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "TechArticle",
+        "@id": `${site.url}/work/${cs.slug}#article`,
+        headline: `${cs.name} — case study`,
+        description: cs.lead,
+        url: `${site.url}/work/${cs.slug}`,
+        image: `${site.url}${cs.image.src}`,
+        datePublished: caseStudyDates.published,
+        dateModified: caseStudyDates.modified,
+        author: { "@id": `${site.url}/#person` },
+        publisher: { "@id": `${site.url}/#person` },
+        isPartOf: { "@id": `${site.url}/#website` },
+        keywords: cs.stack.join(", "),
+        inLanguage: "en",
+      },
+      {
+        "@type": "BreadcrumbList",
+        "@id": `${site.url}/work/${cs.slug}#breadcrumbs`,
+        itemListElement: [
+          {
+            "@type": "ListItem",
+            position: 1,
+            name: "Home",
+            item: `${site.url}/`,
+          },
+          { "@type": "ListItem", position: 2, name: cs.name },
+        ],
+      },
+    ],
+  };
 
   return (
     <>
@@ -237,6 +290,10 @@ export default async function CaseStudyPage({
         </div>
       </main>
       <Footer />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(caseStudyJsonLd) }}
+      />
       <ScrollDepth slug={cs.slug} />
       <ChatLauncher />
     </>
