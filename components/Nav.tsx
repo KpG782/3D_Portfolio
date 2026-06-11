@@ -22,9 +22,20 @@ export default function Nav() {
             </Link>
           ))}
         </nav>
-        <Link href={site.resumePage} className="btn btn-ghost !min-h-10 !px-4 text-sm">
-          Résumé
-        </Link>
+        <div className="flex items-center gap-2">
+          <Link
+            href={site.resumePage}
+            className="btn btn-ghost hidden !min-h-10 !px-4 text-sm whitespace-nowrap sm:inline-flex"
+          >
+            Résumé
+          </Link>
+          <a
+            href={`mailto:${site.email}`}
+            className="btn btn-primary !min-h-10 !px-4 text-sm whitespace-nowrap"
+          >
+            Email
+          </a>
+        </div>
       </div>
     </header>
   );

@@ -101,6 +101,8 @@ const personJsonLd = {
         "n8n Automation",
         "Next.js",
         "TypeScript",
+        "Java",
+        "Spring Boot",
         "Supabase",
         "pgvector",
         "Kotlin",

@@ -140,10 +140,10 @@ in this room first.
 
 ## Stack
 
-- Languages: Python, TypeScript, JavaScript, Kotlin, SQL
+- Languages: Python, TypeScript, JavaScript, Java, Kotlin, SQL
 - AI/ML: RAG pipelines (pgvector · ChromaDB · sentence-transformers), AI agents (LangGraph · Vercel AI SDK · durable workflows), LLM APIs (Claude · Gemini · OpenAI · Groq · OpenRouter), local inference (Ollama · Gemma · YOLO→TFLite), Rasa, n8n automation, TensorFlow, Scikit-learn, computer vision, NLP, recommendation systems
 - Frontend & mobile: React, Next.js, React Native (Expo), Flutter, Astro, Three.js, Tailwind CSS
-- Backend & DB: Node.js, FastAPI, PostgreSQL (pgvector · RLS), Supabase, Firebase, Drizzle ORM, Prisma ORM, Redis, Socket.io
+- Backend & DB: Node.js, Spring Boot, FastAPI, PostgreSQL (pgvector · RLS), Supabase, Firebase, Drizzle ORM, Prisma ORM, Redis, Socket.io
 - DevOps & cloud: AWS (EC2 · S3 · VPC · EBS), GCP (Cloud Run · Gemini API), Docker, GitHub Actions, CI/CD, Vercel
 - AI workflow: AI-native development — Claude Code on Claude Max (daily agentic coding, custom skills and automation), ChatGPT Pro (research and prototyping), self-hosted Ollama + Open WebUI for local models
 

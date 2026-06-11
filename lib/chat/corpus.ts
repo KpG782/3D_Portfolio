@@ -32,6 +32,11 @@ function buildCorpus(): Chunk[] {
     "TeamOS (internal ops hub)",
     "TeamOS is the portfolio codename for an internal operations platform Ken built solo in about 3 months for a distributed digital services team — the client is not named publicly. It replaced 4+ separate SaaS tools with one hub: project management and ticketing (kanban, sprints, comments, activity feeds), attendance with live presence and a policy-driven weekly overtime cap with admin approval, a recruiting ATS with a public application form, automated resume parsing via n8n, and a consent-gated (double opt-in) public talent pool, a full LMS with server-graded quizzes, cohort assignments, and auto-generated PDF certificates, plus LLM-powered daily executive briefings and AI status-report drafting that land in human review queues. Scale: 46 pages, 56 API route handlers, 31 Postgres tables, ~42K lines of TypeScript. He led the migration off a third-party PM SaaS — SQLite to Supabase Postgres with Drizzle ORM, custom JWT to Supabase Auth + Google OAuth — and shipped four-tier RBAC with middleware route guards. The system is internal; an architecture walkthrough is available on request.",
   );
+  add(
+    "stack",
+    "Tech stack",
+    "Languages: Python, TypeScript, JavaScript, Java, Kotlin, SQL. AI/ML: RAG pipelines, AI agents, LLM APIs, local inference, Rasa, n8n automation, TensorFlow, Scikit-learn, computer vision, NLP, recommendation systems. Frontend and mobile: React, Next.js, React Native (Expo), Flutter, Astro, Three.js, Tailwind CSS. Backend and DB: Node.js, Spring Boot, FastAPI, PostgreSQL with pgvector and RLS, Supabase, Firebase, Drizzle ORM, Prisma ORM, Redis, Socket.io. DevOps and cloud: AWS, GCP, Docker, GitHub Actions, CI/CD, Vercel.",
+  );
 
   for (const item of [featuredBuild, ...shipLog]) {
     add(
