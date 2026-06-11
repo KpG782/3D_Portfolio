@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { heroChips, site } from "@/data/site";
+import CopyEmailButton from "./CopyEmailButton";
 
 /**
  * The 7-second test lives here: status → name → positioning → proof chips →
@@ -47,6 +48,16 @@ export default function Hero() {
               Résumé
             </Link>
           </div>
+
+          {/* Contact path inside the 7-second window — without it the only
+              route to reach Ken is scrolling to the footer. */}
+          <p className="mt-4 font-mono text-xs text-telemetry">
+            <CopyEmailButton
+              className="cursor-pointer break-all text-pulse underline-offset-4 hover:underline"
+              label={`${site.email} — click to copy`}
+              copiedLabel="copied to clipboard ✓"
+            />
+          </p>
 
           <p className="mt-10 font-mono text-xs text-telemetry">
             {site.proofLine}

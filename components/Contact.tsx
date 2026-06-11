@@ -1,5 +1,6 @@
 import Image from "next/image";
 import { site } from "@/data/site";
+import CopyEmailButton from "./CopyEmailButton";
 import InView from "./InView";
 import OpenChatButton from "./OpenChatButton";
 
@@ -22,9 +23,9 @@ export default function Contact() {
             {site.email}
           </a>
           <div className="mt-6 flex flex-col gap-3 sm:flex-row sm:flex-wrap">
-            <a href={`mailto:${site.email}`} className="btn btn-primary">
-              Email Ken
-            </a>
+            {/* Copy is the primary path — mailto stays on the address above
+                for visitors whose mail client actually works. */}
+            <CopyEmailButton className="btn btn-primary" />
             <a
               href={site.resumePdf}
               data-track="resume_download"
