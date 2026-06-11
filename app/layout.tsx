@@ -6,6 +6,7 @@ import {
 } from "next/font/google";
 import { Analytics } from "@vercel/analytics/react";
 import { SpeedInsights } from "@vercel/speed-insights/next";
+import { GoogleAnalytics } from "@next/third-parties/google";
 import { site } from "@/data/site";
 import { awards } from "@/data/awards";
 import "./globals.css";
@@ -142,6 +143,9 @@ export default function RootLayout({
         />
         <Analytics />
         <SpeedInsights />
+        {process.env.NEXT_PUBLIC_GA_ID ? (
+          <GoogleAnalytics gaId={process.env.NEXT_PUBLIC_GA_ID} />
+        ) : null}
       </body>
     </html>
   );

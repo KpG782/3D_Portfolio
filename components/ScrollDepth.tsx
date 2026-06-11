@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect } from "react";
-import { track } from "@vercel/analytics";
+import { track } from "@/lib/analytics";
 
 /** Fires case_study_scroll_depth at 25/50/75/100 — once each (ship gate). */
 export default function ScrollDepth({ slug }: { slug: string }) {

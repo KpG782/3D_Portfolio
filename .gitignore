@@ -26,6 +26,7 @@ dist-ssr
 # Environment files
 .env
 .env.*.local
+.env.local
 
 # Local design scratch / mockups (not shipped)
 design/

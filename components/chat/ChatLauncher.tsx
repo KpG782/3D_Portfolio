@@ -2,7 +2,7 @@
 
 import dynamic from "next/dynamic";
 import { useEffect, useState } from "react";
-import { track } from "@vercel/analytics";
+import { track } from "@/lib/analytics";
 
 // Panel code loads only on first open — nothing in the initial bundle.
 const ChatPanel = dynamic(() => import("./ChatPanel"), { ssr: false });

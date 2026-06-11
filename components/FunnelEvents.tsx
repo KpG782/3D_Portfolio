@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect } from "react";
-import { track } from "@vercel/analytics";
+import { track } from "@/lib/analytics";
 
 /**
  * Funnel instrumentation (ship gate): hero_view, project_card_click,
