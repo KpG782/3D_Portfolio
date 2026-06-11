@@ -1,28 +1,164 @@
 # kenbuilds.tech — Ken Patrick Garcia, AI Full-Stack Engineer
 
 > I ship production AI systems — RAG, agents, and the full stack around them.
-> Metro Manila, PH · open to AI engineering roles · kenpatrickgarcia123@gmail.com
+> Mandaluyong City, Metro Manila, PH · remote-ready · open to AI engineering
+> roles · kenpatrickgarcia123@gmail.com
 
-Proof: Champion — C(Old) St.art Hackathon 2025 (FlowFit) · Top 13 of 500+ —
-DEVAKDA, shipped Android v1.0.0 (Kudlit) · 1st Runner-Up — InfoTech
-Olympics 2025 (Pacebeats) · Beacon — persistent-memory research agent,
-shipped solo.
+Ken Patrick Garcia (brand: kenbuilds) is an AI full-stack engineer —
+production AI since 2025, 15+ shipped projects. Currently AI Full-Stack
+Engineer at Romega Solutions (Jul 2025–present, remote). BS Computer Science,
+University of Makati, expected 2026. Speaker at Qwen Meetup Manila #2
+(Alibaba Cloud Philippines). 4.9K+ LinkedIn followers.
+
+Proof: Champion — C(Old) St.art Hackathon 2025 (FlowFit) · 1st Runner-Up —
+InfoTech Olympics 2025, Android App Development: Productivity (Pacebeats) ·
+Top 13 of 500+ — DEVAKDA Hackathon 2026, shipped Android v1.0.0 (Kudlit) ·
+Top 10 of 53 — DOST-TAPI ClustRICE 2025 (HerbaLens) · Best Paper, 97% — 8th
+Research Congress, University of Makati (ARS) · Beacon — persistent-memory
+research agent, shipped solo.
 
 ## Pages
 
-- [Home](https://kenbuilds.tech/): hero, shipped work, the lab, talks, contact
-- [LexInSight case study](https://kenbuilds.tech/work/lexinsight): legal RAG — pgvector retrieval, RLS isolation, dual-mode compliance checks
-- [Beacon case study](https://kenbuilds.tech/work/beacon): research agent with persistent memory (Vercel AI SDK)
-- [Pacebeats case study](https://kenbuilds.tech/work/pacebeats): WearOS biometric music — hybrid rule+ML recommender
-- [Résumé](https://kenbuilds.tech/resume): PII-free recruiter résumé (PDF at /Ken-Patrick-Garcia-Resume.pdf)
+- [Home](https://kenbuilds.tech/): hero, the three case-study traces, featured build, ship log, the lab, talks, contact
+- [LexInSight case study](https://kenbuilds.tech/work/lexinsight): legal RAG over Philippine law — pgvector retrieval, RLS tenant isolation, dual-mode compliance chat
+- [Beacon case study](https://kenbuilds.tech/work/beacon): research agent with persistent memory — Vercel AI SDK, shipped solo
+- [Pacebeats case study](https://kenbuilds.tech/work/pacebeats): WearOS biometric music — hybrid rule+ML recommender, 1st Runner-Up InfoTech Olympics 2025
+- [Résumé (HTML)](https://kenbuilds.tech/resume): PII-free recruiter résumé — phone and street address withheld by design
+- [Résumé (PDF)](https://kenbuilds.tech/Ken-Patrick-Garcia-Resume.pdf): downloadable PDF version
 
-## Facts
+## Case studies — the traces
 
-- Current: AI Full-Stack Engineer at Romega Solutions (Jul 2025–present, remote)
-- Homelab: MacBook Air M4 16GB (dev) · ASUS 40GB RAM Ubuntu 24.04 running
-  Ollama (Gemma, Qwen Coder) + Open WebUI (local inference) · ThinkVision
-  T27h-30 27" QHD · Galaxy A26 (Android test device)
-- Stack: Next.js, TypeScript, Supabase (PostgreSQL + pgvector), FastAPI,
-  Redis, n8n (self-hosted), LangGraph, Vercel AI SDK, Claude API, Docker
-- Speaker: Qwen Meetup Manila #2 (Alibaba Cloud PH), 2026
-- Education: BS Computer Science, University of Makati, expected 2026
+### LexInSight — legal RAG over Philippine law
+- Live in public beta: https://lexinsights.vercel.app · repo: https://github.com/KpG782/Lexinsights
+- Role: full-stack — RAG core, realtime chat, database architecture. Status: in progress (beta).
+- What it is: ask Philippine legal questions in plain language, get answers grounded in retrieved statute text. Two chat modes: general legal Q&A and a compliance mode that checks up to three uploaded documents (5MB each) against retrieved Philippine legal requirements.
+- How it works: Next.js App Router in TypeScript; Supabase provides Postgres, auth, and realtime. Documents are chunked and embedded into pgvector — rows, vectors, and access policies live in one database. Every retrieval is scoped by Postgres Row Level Security, so tenant isolation lives in the database, not application code. Answers stream over a realtime channel.
+- Key trade-offs: pgvector inside Postgres instead of a dedicated vector DB (RLS covers retrieval; one backup, one source of truth); tenant isolation in the database, not the app layer; one retrieval pipeline shared by both chat modes.
+- Stack: Next.js, TypeScript, Supabase, PostgreSQL, pgvector, RLS, Realtime, Zustand, Tailwind CSS.
+
+### Beacon — research agent with persistent memory
+- Live: https://beacon-mu-murex.vercel.app/ · repo: https://github.com/KpG782/Beacon
+- Role: solo build — agent design, memory layer, full stack. Built for the Vercel Zero to Agent Hackathon 2026.
+- What it is: a research agent whose memory persists across sessions — findings from one session are retrievable in the next, so research compounds instead of resetting to zero.
+- How it works: Next.js and the Vercel AI SDK drive the agent loop (intent → plan → recall → research → commit). Research follows structured frameworks rather than freeform prompting; every session's findings are written to a vector memory store that future sessions retrieve from.
+- Key trade-offs: persistent memory over stateless chat (the premise is continuity); structured frameworks over a freeform agent (repeatable validation paths, retrievable memory entries).
+- Stack: Next.js, TypeScript, Vercel AI SDK, RAG, vector memory, Tailwind CSS.
+
+### Pacebeats — biometric music for runners (WearOS)
+- 1st Runner-Up — InfoTech Olympics 2025 (University of Makati), Android App Development: Productivity.
+- Live: https://www.pacebeats.top/ · repo: https://github.com/KpG782/pacebeats-release-files
+- Role: lead — WearOS app, recommendation engine, architecture. Team of 4.
+- What it is: reads live heart rate and inter-beat intervals from a Galaxy Watch 6 and adapts the playlist to the runner's actual physiological state in real time.
+- How it works: WearOS app in Kotlin against the Health Services API streams HR/IBI; GPS tracks pace. The companion Android app receives the stream over the Data Layer API and drives playback through the Spotify SDK. Recommendations are hybrid: deterministic pace-to-BPM mapping picks the tempo band, then content-based ML scoring ranks tracks inside it. React/TypeScript dashboard + Supabase backend. MVVM throughout. 8+ hours of watch battery with live sensing.
+- Key trade-offs: rules pick the tempo band, ML only ranks within it (tempo errors are impossible); sense on the watch, decide on the phone (battery); Spotify SDK over a custom player (real catalog on day one).
+- Stack: Kotlin, WearOS, Health Services API, Data Layer API, Spotify SDK, React, TypeScript, Supabase, MVVM.
+
+## Featured build
+
+### FlowFit — kids' fitness with on-device AI
+- Champion — C(Old) St.art Hackathon 2025 (by Old St. Labs). Repo: https://github.com/KpG782/flowfit
+- Dual-platform fitness tracking: a Galaxy Watch (Wear OS) app streams real-time heart rate and inter-beat intervals from the Samsung Health Sensor SDK, syncing to an Android companion over the Wearable Data Layer — activity, sleep, nutrition, and mood tracking on a Supabase backend.
+- Stack: Flutter, WearOS, Samsung Health SDK, Supabase.
+
+## Ship log — other shipped systems
+
+### Kudlit — Baybayin scanner and learning companion
+- Top 13 of 500+ — DEVAKDA Hackathon 2026 · shipped as public Android v1.0.0. Repo: https://github.com/KpG782/kudlit-app
+- Camera-first Baybayin glyph scanner, two-way translation between Filipino text and Baybayin Unicode, lessons and quiz practice, and Butty — an AI learning companion for explanations. Bundled design system and Baybayin display font.
+- Stack: Flutter, YOLO → TFLite, local Gemma, Gemini.
+
+### TeamOS — internal ops hub (company anonymized by design; no public links)
+- Shipped solo in ~3 months — 46 pages, 56 API routes, 31-table Postgres schema.
+- All-in-one operations platform for a distributed digital services team, replacing 4+ separate SaaS tools: project management with kanban and sprints, attendance with live presence and a policy-driven overtime approval queue, a recruiting ATS with automated resume parsing and a consent-gated talent pool, a full LMS with server-graded quizzes and PDF certificates, and AI-drafted executive briefings gated behind human review.
+- Led the migration off a third-party PM SaaS — SQLite → Supabase Postgres, custom JWT → Supabase Auth + Google OAuth.
+- Stack: Next.js 16, Supabase, Drizzle, n8n, LLM APIs.
+
+### LigTAS — agent on Cloud Run
+- Built at Google Gen AI Academy APAC. Stack: Cloud Run, agents.
+
+### HerbaLens — medicinal-plant recognition
+- Top 10 of 53 — DOST-TAPI ClustRICE 2025. Site: https://theherbalenswebsite.web.app/
+- AI medicinal-plant recognition bridging Filipino herbal knowledge with computer vision — TensorFlow models in an Android app.
+- Stack: Android, TensorFlow, computer vision.
+
+### ARS — roadside emergencies matched to nearby mechanics
+- Best Paper Presentation, 97% — 8th Research Congress, University of Makati. Repo: https://github.com/KpG782/ars · site: https://ars-website-chi.vercel.app
+- Booking, live ETA over a self-hosted OSRM routing server built for the Philippine road network, in-app chat, AI diagnostics via a Rasa + RAG + Gemini chatbot with Taglish support, and a real-time mechanic dashboard — Firebase backend, feature-first clean architecture.
+- Stack: Flutter, Riverpod, Firebase, self-hosted OSRM, Rasa + RAG.
+
+Now building: THE TRACE — this portfolio as a documented system.
+
+## Experience
+
+- Romega Solutions — AI Full-Stack Engineer (Part-Time) · Jul 2025–Present · El Segundo, CA (Remote). Built an all-in-one internal operations platform (PM/ticketing, attendance, recruiting ATS, LMS, AI reporting) — 46 pages, 56 API routes, 31-table Postgres schema in ~42K lines of TypeScript, shipped solo in ~3 months. Led a zero-downtime migration off a third-party PM SaaS. Shipped production RAG chatbots (ChromaDB · sentence-transformers · Gemini). LLM features and n8n automations land in human review queues, never auto-publish.
+- CodeVF — Software Engineer (Contract) · Feb 2026–Apr 2026 · US (Remote). Real-time collaboration platform with WebSocket architecture for live debugging sessions between customers and engineers.
+- University of Makati — AI Workflow Automation Engineer (Part-Time) · Jan 2026–Apr 2026 · Makati (Remote). n8n automation workflows for university administrative processes and data management.
+- Pacebeats — Lead Software Engineer (Full-Time) · Aug 2025–Mar 2026 · Makati (Remote). Architected the biometric music platform described above.
+- Commission on Elections (COMELEC) — Technical DESO Support Staff (Contract) · Jul 2025–Oct 2025 · Makati. Vote Counting Machine hardware for Final Testing & Sealing and Election Day operations.
+- Concentrix — Technical Support Representative · Feb 2024–Sep 2024 · Mandaluyong. Technical support for a major enterprise SaaS productivity platform (client under NDA).
+
+## Education
+
+- BS Computer Science, Major in Application Development — University of Makati, expected 2026. Coursework: Machine Learning, AI, Data Structures & Algorithms, Database Systems, Software Engineering, Mobile Development, IoT Systems.
+- BS Computer Science — Technological Institute of the Philippines, 2020–2021.
+
+## Awards
+
+- Champion — C(Old) St.art Hackathon 2025 by Old St. Labs (FlowFit)
+- 1st Runner-Up — InfoTech Olympics 2025 (University of Makati), Android App Development: Productivity (Pacebeats)
+- Top 13 of 500+ — DEVAKDA Hackathon 2026 (Kudlit)
+- Top 10 of 53 — DOST-TAPI ClustRICE 2025 (HerbaLens)
+- Best Paper · 97% — 8th Research Congress, University of Makati (ARS)
+
+## Certifications (verifiable)
+
+- [Scrimba — AI Engineer Path](https://scrimba.com/certificate-cert2JbLs3qgBCXNPMJMyUCMeiG1Ft81LygPuCWDut)
+- [Scrimba — Full-Stack Path](https://scrimba.com/certificate-cert23wfboWopPzYzuFmUUR7kB1jDSDa25GMh8Ex46bTFWreYVC4)
+- [Scrimba — Frontend Path](https://scrimba.com/certificate-cert24zAwPPowRMvnPizmWidNYfzcSAtUH6QyAC7A)
+- [IBM — AI Essentials](https://www.credly.com/badges/eac8e9b1-6405-4b6a-97e9-60c198d4a3d5/linked_in_profile)
+- [Cisco — Intro to Modern AI](https://www.credly.com/badges/01b1a9ae-89bf-4e9a-997c-c162ff683893/linked_in_profile)
+- [Cisco — AI Fundamentals with IBM](https://www.credly.com/earner/earned/share/04de403f-0b7d-4023-b862-b182e52d898d)
+- [Cisco — Intro to Cybersecurity](https://www.credly.com/badges/3b043db7-830f-42ce-9e00-3fe380fa77a9/linked_in_profile)
+
+## Talks & community
+
+- Speaker — "From Creative Brief to Campaign", Qwen Meetup Manila #2 (Alibaba Cloud Philippines), Common Ground Rockwell, 2026. Qwen as a creative director delegating to specialist models — live, with no written brief: from a single photo of a Filipino café it pitched a rival brand, wrote the video prompt, and wired the campaign end-to-end through n8n + Wan Video. Takeaway: AI amplifies the creative — it doesn't replace them.
+- AWS User Group PH — Community Officer (Community Day 2026)
+- Data Engineering Pilipinas — DataCamp Scholar (Nov 2025–present)
+- Google Gen AI Academy APAC · GDG Manila · Python PH · n8n · Vercel · OpenAI Codex communities
+- Technical Committee — UMak Computer Society, 15+ campus events
+
+## Homelab
+
+Local inference on hardware Ken runs himself — the models on the résumé run
+in this room first.
+
+- ASUS laptop — 40GB RAM, Ubuntu 24.04 · runs Ollama (Gemma, Qwen Coder) + Open WebUI · local inference server
+- MacBook Air M4 — 16GB · dev machine: builds, agents, this site
+- ThinkVision T27h-30 — 27" QHD · n8n canvases and dashboards
+- Galaxy A26 — Android test device for Kudlit builds on real hardware
+
+## Stack
+
+- Languages: Python, TypeScript, JavaScript, Kotlin, SQL
+- AI/ML: RAG pipelines (pgvector · ChromaDB · sentence-transformers), AI agents (LangGraph · Vercel AI SDK · durable workflows), LLM APIs (Claude · Gemini · OpenAI · Groq · OpenRouter), local inference (Ollama · Gemma · YOLO→TFLite), Rasa, n8n automation, TensorFlow, Scikit-learn, computer vision, NLP, recommendation systems
+- Frontend & mobile: React, Next.js, React Native (Expo), Flutter, Astro, Three.js, Tailwind CSS
+- Backend & DB: Node.js, FastAPI, PostgreSQL (pgvector · RLS), Supabase, Firebase, Drizzle ORM, Prisma ORM, Redis, Socket.io
+- DevOps & cloud: AWS (EC2 · S3 · VPC · EBS), GCP (Cloud Run · Gemini API), Docker, GitHub Actions, CI/CD, Vercel
+- AI workflow: AI-native development — Claude Code on Claude Max (daily agentic coding, custom skills and automation), ChatGPT Pro (research and prototyping), self-hosted Ollama + Open WebUI for local models
+
+## Profiles & links
+
+- [GitHub](https://github.com/KpG782)
+- [LinkedIn](https://www.linkedin.com/in/ken-patrick-garcia-ba5430285/) — 4.9K+ followers
+- [dev.to](https://dev.to/kpg782)
+- [Intro video](https://www.youtube.com/watch?v=nze_7ezndes)
+- Email: kenpatrickgarcia123@gmail.com
+
+## Quick answers
+
+- Who is Ken Patrick Garcia? An AI full-stack engineer in Metro Manila, Philippines (brand: kenbuilds) who ships production AI systems — RAG pipelines, AI agents, and the full stack around them.
+- Is he available for hire? Yes — open to AI engineering roles, Metro Manila or remote. Contact: kenpatrickgarcia123@gmail.com or LinkedIn.
+- What's his strongest proof of work? Champion at C(Old) St.art Hackathon 2025 (FlowFit); 1st Runner-Up at InfoTech Olympics 2025 (Pacebeats); Top 13 of 500+ at DEVAKDA Hackathon 2026 with a shipped Android v1.0.0 (Kudlit); Beacon, a persistent-memory research agent built solo; and a 46-page internal ops platform shipped solo in ~3 months at Romega Solutions.
+- What makes his RAG work distinctive? Retrieval scoped by Postgres Row Level Security — tenant isolation lives in the database, not application code (LexInSight).
+- Does he work with local/self-hosted models? Yes — self-hosted Ollama (Gemma, Qwen Coder) with Open WebUI on his own homelab hardware, plus on-device models in shipped apps (YOLO→TFLite, local Gemma in Kudlit).
