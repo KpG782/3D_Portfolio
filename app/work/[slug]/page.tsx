@@ -128,7 +128,16 @@ export default async function CaseStudyPage({
         className="mx-auto max-w-[1152px] px-5 pt-32 pb-10 md:px-8 md:pt-40"
       >
         <div className="request-rail pl-6 md:pl-10">
-          <p className="station-label">[ TRACE · {cs.name.toUpperCase()} ]</p>
+          <p className="station-label flex items-center gap-2">
+            <img
+              src={cs.icon}
+              alt=""
+              width={20}
+              height={20}
+              className="h-5 w-5 rounded-[4px]"
+            />
+            [ TRACE · {cs.name.toUpperCase()} ]
+          </p>
           <h1 className="mt-4 max-w-3xl text-3xl leading-tight font-bold md:text-5xl">
             {cs.lead}
           </h1>
