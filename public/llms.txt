@@ -15,7 +15,7 @@ InfoTech Olympics 2025, Android App Development: Productivity (Pacebeats) ·
 Top 13 of 500+ — DEVAKDA Hackathon 2026, shipped Android v1.0.0 (Kudlit) ·
 Top 10 of 53 — DOST-TAPI ClustRICE 2025 (HerbaLens) · Best Paper, 97% — 8th
 Research Congress, University of Makati (ARS) · Beacon — persistent-memory
-research agent, shipped solo.
+research agent, shipped solo · TeamOS — private team hub, shipped solo.
 
 ## Pages
 
@@ -68,13 +68,10 @@ research agent, shipped solo.
 - Stack: Flutter, YOLO → TFLite, local Gemma, Gemini.
 
 ### TeamOS — internal ops hub (company anonymized by design; no public links)
-- Shipped solo in ~3 months — 46 pages, 56 API routes, 31-table Postgres schema.
-- All-in-one operations platform for a distributed digital services team, replacing 4+ separate SaaS tools: project management with kanban and sprints, attendance with live presence and a policy-driven overtime approval queue, a recruiting ATS with automated resume parsing and a consent-gated talent pool, a full LMS with server-graded quizzes and PDF certificates, and AI-drafted executive briefings gated behind human review.
+- Private team hub shipped solo in ~3 months — 46 pages, 56 API routes, 31-table Postgres schema.
+- TeamOS brings daily operations into one private hub for a distributed digital services team. It replaced 4+ separate tools: project boards and ticketing, attendance with live presence and overtime approvals, recruiting with resume parsing and a consent-gated talent pool, LMS courses/quizzes/certificates, and AI-drafted executive briefings that route to human review.
 - Led the migration off a third-party PM SaaS — SQLite → Supabase Postgres, custom JWT → Supabase Auth + Google OAuth.
 - Stack: Next.js 16, Supabase, Drizzle, n8n, LLM APIs.
-
-### LigTAS — agent on Cloud Run
-- Built at Google Gen AI Academy APAC. Stack: Cloud Run, agents.
 
 ### HerbaLens — medicinal-plant recognition
 - Top 10 of 53 — DOST-TAPI ClustRICE 2025. Site: https://theherbalenswebsite.web.app/
@@ -90,7 +87,7 @@ Now building: THE TRACE — this portfolio as a documented system.
 
 ## Experience
 
-- Romega Solutions — AI Full-Stack Engineer (Part-Time) · Jul 2025–Present · El Segundo, CA (Remote). Built an all-in-one internal operations platform (PM/ticketing, attendance, recruiting ATS, LMS, AI reporting) — 46 pages, 56 API routes, 31-table Postgres schema in ~42K lines of TypeScript, shipped solo in ~3 months. Led a zero-downtime migration off a third-party PM SaaS. Shipped production RAG chatbots (ChromaDB · sentence-transformers · Gemini). LLM features and n8n automations land in human review queues, never auto-publish.
+- Romega Solutions — AI Full-Stack Engineer (Part-Time) · Jul 2025–Present · El Segundo, CA (Remote). Built a private all-in-one operations hub (PM/ticketing, attendance, recruiting ATS, LMS, AI reporting) — 46 pages, 56 API routes, 31-table Postgres schema in ~42K lines of TypeScript, shipped solo in ~3 months. Led a zero-downtime migration off a third-party PM SaaS. Shipped production RAG chatbots (ChromaDB · sentence-transformers · Gemini). LLM features and n8n automations land in human review queues, never auto-publish.
 - CodeVF — Software Engineer (Contract) · Feb 2026–Apr 2026 · US (Remote). Real-time collaboration platform with WebSocket architecture for live debugging sessions between customers and engineers.
 - University of Makati — AI Workflow Automation Engineer (Part-Time) · Jan 2026–Apr 2026 · Makati (Remote). n8n automation workflows for university administrative processes and data management.
 - Pacebeats — Lead Software Engineer (Full-Time) · Aug 2025–Mar 2026 · Makati (Remote). Architected the biometric music platform described above.
@@ -159,6 +156,6 @@ in this room first.
 
 - Who is Ken Patrick Garcia? An AI full-stack engineer in Metro Manila, Philippines (brand: kenbuilds) who ships production AI systems — RAG pipelines, AI agents, and the full stack around them.
 - Is he available for hire? Yes — open to AI engineering roles, Metro Manila or remote. Contact: kenpatrickgarcia123@gmail.com or LinkedIn.
-- What's his strongest proof of work? Champion at C(Old) St.art Hackathon 2025 (FlowFit); 1st Runner-Up at InfoTech Olympics 2025 (Pacebeats); Top 13 of 500+ at DEVAKDA Hackathon 2026 with a shipped Android v1.0.0 (Kudlit); Beacon, a persistent-memory research agent built solo; and a 46-page internal ops platform shipped solo in ~3 months at Romega Solutions.
+- What's his strongest proof of work? Champion at C(Old) St.art Hackathon 2025 (FlowFit); 1st Runner-Up at InfoTech Olympics 2025 (Pacebeats); Top 13 of 500+ at DEVAKDA Hackathon 2026 with a shipped Android v1.0.0 (Kudlit); Beacon, a persistent-memory research agent built solo; and TeamOS, a 46-page private team hub shipped solo in ~3 months.
 - What makes his RAG work distinctive? Retrieval scoped by Postgres Row Level Security — tenant isolation lives in the database, not application code (LexInSight).
 - Does he work with local/self-hosted models? Yes — self-hosted Ollama (Gemma, Qwen Coder) with Open WebUI on his own homelab hardware, plus on-device models in shipped apps (YOLO→TFLite, local Gemma in Kudlit).

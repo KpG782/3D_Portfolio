@@ -7,7 +7,7 @@ export type LogItem = {
       description, never invented. Omit when no public artifact exists. */
   body?: string;
   /** Brand icon. Real repo asset where one exists; otherwise a Trace-family
-      mark we drew ourselves (teamos, ligtas) — never a faked "official" logo. */
+      mark we drew ourselves (teamos) — never a faked "official" logo. */
   icon: string;
   stack: string[];
   repo?: string;
@@ -44,17 +44,10 @@ export const shipLog: LogItem[] = [
   {
     id: "teamos",
     title: "TeamOS",
-    lead: "Internal ops hub, shipped solo in ~3 months — 46 pages, 56 API routes, 31-table schema.",
+    lead: "Private team hub, shipped solo in ~3 months — 46 pages, 56 API routes, 31-table schema.",
     icon: "/images/icons/teamos.svg",
-    body: "All-in-one operations platform for a distributed digital services team, replacing 4+ separate SaaS tools: project management with kanban and sprints, attendance with live presence and a policy-driven overtime approval queue, a recruiting ATS with automated resume parsing and a consent-gated talent pool, a full LMS with server-graded quizzes and PDF certificates, and AI-drafted executive briefings gated behind human review. Led the migration off a third-party PM SaaS — SQLite → Supabase Postgres, custom JWT → Supabase Auth + Google OAuth.",
+    body: "TeamOS brings daily operations into one private hub for a distributed digital services team. It replaced 4+ separate tools: project boards and ticketing, attendance with live presence and overtime approvals, recruiting with resume parsing and a consent-gated talent pool, LMS courses/quizzes/certificates, and AI-drafted executive briefings that route to human review. Led the migration off a third-party PM SaaS — SQLite → Supabase Postgres, custom JWT → Supabase Auth + Google OAuth.",
     stack: ["Next.js 16", "Supabase", "Drizzle", "n8n", "LLM APIs"],
-  },
-  {
-    id: "ligtas",
-    title: "LigTAS",
-    lead: "Agent on Cloud Run — built at Google Gen AI Academy APAC.",
-    icon: "/images/icons/ligtas.svg",
-    stack: ["Cloud Run", "Agents"],
   },
   // SagipAI (offline emergency AI, on-device LiteRT-LM) parked per Ken
   // (2026-06-11); restore as a log row when he wants it back.

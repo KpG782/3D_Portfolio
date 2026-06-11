@@ -1,0 +1,640 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>TeamOS Team Hub Brand</title>
+    <style>
+      :root {
+        color-scheme: light;
+        --ink: #172033;
+        --muted: #56657a;
+        --line: #dbe3ef;
+        --panel: #ffffff;
+        --wash: #f6f9ff;
+        --indigo: #4f46e5;
+        --emerald: #10b981;
+        --orange: #f97316;
+        --cyan: #0891b2;
+        --navy: #172554;
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      body {
+        margin: 0;
+        min-width: 320px;
+        background:
+          linear-gradient(180deg, #f6f9ff 0%, #ffffff 46%, #f8fafc 100%);
+        color: var(--ink);
+        font-family:
+          "Plus Jakarta Sans",
+          Inter,
+          ui-sans-serif,
+          system-ui,
+          -apple-system,
+          BlinkMacSystemFont,
+          "Segoe UI",
+          sans-serif;
+        line-height: 1.55;
+      }
+
+      main {
+        width: min(1180px, calc(100% - 32px));
+        margin: 0 auto;
+        padding: 44px 0 58px;
+      }
+
+      .eyebrow {
+        margin: 0 0 10px;
+        color: var(--indigo);
+        font-size: 0.78rem;
+        font-weight: 800;
+        letter-spacing: 0;
+        text-transform: uppercase;
+      }
+
+      .hero {
+        display: grid;
+        grid-template-columns: minmax(0, 1.18fr) minmax(280px, 0.82fr);
+        gap: 28px;
+        align-items: end;
+        border-bottom: 1px solid var(--line);
+        padding-bottom: 30px;
+      }
+
+      h1 {
+        max-width: 760px;
+        margin: 0;
+        font-size: clamp(2.1rem, 5vw, 5.1rem);
+        line-height: 0.98;
+        letter-spacing: 0;
+      }
+
+      .hero-copy {
+        max-width: 620px;
+        margin: 16px 0 0;
+        color: var(--muted);
+        font-size: 1rem;
+      }
+
+      .facts {
+        display: grid;
+        gap: 10px;
+        margin: 0;
+        padding: 0;
+        list-style: none;
+      }
+
+      .facts li {
+        display: grid;
+        grid-template-columns: 44px 1fr;
+        gap: 12px;
+        align-items: center;
+        min-height: 58px;
+        border: 1px solid var(--line);
+        border-radius: 8px;
+        background: rgba(255, 255, 255, 0.82);
+        padding: 10px 12px;
+        color: var(--muted);
+        font-size: 0.93rem;
+      }
+
+      .fact-icon,
+      .module-icon {
+        display: grid;
+        place-items: center;
+        width: 44px;
+        height: 44px;
+        border-radius: 8px;
+        background: #eef2ff;
+      }
+
+      .fact-icon svg,
+      .module-icon svg {
+        display: block;
+      }
+
+      .logos {
+        display: grid;
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: 18px;
+        margin-top: 26px;
+      }
+
+      .logo-card,
+      .details-panel,
+      .recommendation {
+        border: 1px solid var(--line);
+        border-radius: 8px;
+        background: var(--panel);
+        box-shadow: 0 18px 50px rgba(15, 23, 42, 0.08);
+      }
+
+      .logo-card {
+        display: grid;
+        min-width: 0;
+        overflow: hidden;
+      }
+
+      .logo-stage {
+        display: grid;
+        min-height: 292px;
+        place-items: center;
+        padding: 28px 22px;
+        background:
+          linear-gradient(135deg, rgba(79, 70, 229, 0.11), rgba(16, 185, 129, 0.12)),
+          #fbfdff;
+      }
+
+      .brand-lockup {
+        display: grid;
+        justify-items: center;
+        gap: 18px;
+        width: 100%;
+      }
+
+      .mark-shell {
+        display: grid;
+        place-items: center;
+        width: min(190px, 64vw);
+        aspect-ratio: 1;
+        border-radius: 8px;
+        border: 1px solid rgba(79, 70, 229, 0.16);
+        background: #ffffff;
+      }
+
+      .logo-mark {
+        display: block;
+        width: 150px;
+        height: 150px;
+      }
+
+      .wordmark {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        color: var(--ink);
+        font-size: 1.75rem;
+        font-weight: 850;
+        letter-spacing: 0;
+      }
+
+      .wordmark span {
+        color: var(--indigo);
+      }
+
+      .card-body {
+        display: grid;
+        gap: 14px;
+        padding: 18px;
+      }
+
+      .card-top {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 12px;
+      }
+
+      h2,
+      h3 {
+        margin: 0;
+        color: var(--ink);
+        letter-spacing: 0;
+      }
+
+      h2 {
+        font-size: 1.12rem;
+        line-height: 1.25;
+      }
+
+      h3 {
+        font-size: 1rem;
+      }
+
+      .rank {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        min-width: 44px;
+        min-height: 32px;
+        border-radius: 999px;
+        background: #eef2ff;
+        color: var(--indigo);
+        font-size: 0.78rem;
+        font-weight: 850;
+        white-space: nowrap;
+      }
+
+      .note,
+      .details-panel p,
+      .recommendation p {
+        margin: 0;
+        color: var(--muted);
+        font-size: 0.95rem;
+      }
+
+      .tags {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 8px;
+        margin: 0;
+        padding: 0;
+        list-style: none;
+      }
+
+      .tags li {
+        border: 1px solid var(--line);
+        border-radius: 999px;
+        padding: 5px 9px;
+        color: #334155;
+        font-size: 0.78rem;
+        font-weight: 750;
+        white-space: nowrap;
+      }
+
+      .section-title {
+        display: flex;
+        align-items: end;
+        justify-content: space-between;
+        gap: 20px;
+        margin: 34px 0 14px;
+      }
+
+      .section-title p {
+        max-width: 610px;
+        margin: 0;
+        color: var(--muted);
+        font-size: 0.95rem;
+      }
+
+      .details-grid {
+        display: grid;
+        grid-template-columns: repeat(5, minmax(0, 1fr));
+        gap: 12px;
+      }
+
+      .details-panel {
+        display: grid;
+        gap: 12px;
+        min-width: 0;
+        padding: 16px;
+      }
+
+      .details-panel strong {
+        color: var(--ink);
+      }
+
+      .recommendation {
+        display: grid;
+        grid-template-columns: 1fr auto;
+        gap: 18px;
+        align-items: center;
+        margin-top: 18px;
+        padding: 18px;
+      }
+
+      .recommended-logo {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        color: var(--ink);
+        font-weight: 850;
+      }
+
+      @media (max-width: 980px) {
+        .hero,
+        .logos,
+        .details-grid,
+        .recommendation {
+          grid-template-columns: 1fr;
+        }
+
+        .hero {
+          align-items: start;
+        }
+
+        .section-title {
+          display: grid;
+        }
+      }
+
+      @media (max-width: 540px) {
+        main {
+          width: min(100% - 22px, 1180px);
+          padding-top: 30px;
+        }
+
+        .logo-stage {
+          min-height: 246px;
+          padding: 22px 14px;
+        }
+
+        .wordmark {
+          font-size: 1.45rem;
+        }
+
+        .card-body,
+        .recommendation,
+        .details-panel {
+          padding: 15px;
+        }
+      }
+
+      @media (prefers-reduced-motion: reduce) {
+        *,
+        *::before,
+        *::after {
+          scroll-behavior: auto !important;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <main>
+      <section class="hero" aria-labelledby="page-title">
+        <div>
+          <p class="eyebrow">Selected Team Hub direction</p>
+          <h1 id="page-title">TeamOS as one private team hub</h1>
+          <p class="hero-copy">
+            TeamOS is an internal operations hub. The selected Team Hub mark uses
+            simple solid blocks so the icon reads quickly, then the page explains
+            what the product actually does.
+          </p>
+        </div>
+
+        <ul class="facts" aria-label="TeamOS quick facts">
+          <li>
+            <span class="fact-icon" aria-hidden="true">
+              <svg width="28" height="28" viewBox="0 0 28 28" fill="none">
+                <rect x="4" y="5" width="20" height="18" rx="5" fill="#4F46E5" />
+                <rect x="8" y="10" width="12" height="3" rx="1.5" fill="#FFFFFF" />
+                <rect x="8" y="16" width="8" height="3" rx="1.5" fill="#C7D2FE" />
+              </svg>
+            </span>
+            Replaced 4+ separate SaaS tools with one private hub.
+          </li>
+          <li>
+            <span class="fact-icon" aria-hidden="true">
+              <svg width="28" height="28" viewBox="0 0 28 28" fill="none">
+                <rect x="4" y="4" width="8" height="8" rx="2" fill="#10B981" />
+                <rect x="16" y="4" width="8" height="8" rx="2" fill="#0891B2" />
+                <rect x="4" y="16" width="8" height="8" rx="2" fill="#F97316" />
+                <rect x="16" y="16" width="8" height="8" rx="2" fill="#4F46E5" />
+              </svg>
+            </span>
+            Covers projects, attendance, hiring, learning, and AI review queues.
+          </li>
+          <li>
+            <span class="fact-icon" aria-hidden="true">
+              <svg width="28" height="28" viewBox="0 0 28 28" fill="none">
+                <rect x="5" y="6" width="18" height="4" rx="2" fill="#172554" />
+                <rect x="5" y="12" width="18" height="4" rx="2" fill="#4F46E5" />
+                <rect x="5" y="18" width="12" height="4" rx="2" fill="#10B981" />
+              </svg>
+            </span>
+            Built solo in about 3 months: 46 pages, 56 API routes, 31 tables.
+          </li>
+        </ul>
+      </section>
+
+      <section class="logos" aria-label="TeamOS logo options">
+        <article class="logo-card">
+          <div class="logo-stage">
+            <div class="brand-lockup">
+              <div class="mark-shell">
+                <svg
+                  class="logo-mark"
+                  width="150"
+                  height="150"
+                  viewBox="0 0 150 150"
+                  fill="none"
+                  role="img"
+                  aria-labelledby="hub-title hub-desc"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <title id="hub-title">Team Hub logo</title>
+                  <desc id="hub-desc">A solid TeamOS mark with four product modules around a central T.</desc>
+                  <rect x="18" y="18" width="114" height="114" rx="28" fill="#172554" />
+                  <rect x="35" y="35" width="30" height="30" rx="9" fill="#10B981" />
+                  <rect x="85" y="35" width="30" height="30" rx="9" fill="#0891B2" />
+                  <rect x="35" y="85" width="30" height="30" rx="9" fill="#F97316" />
+                  <rect x="85" y="85" width="30" height="30" rx="9" fill="#4F46E5" />
+                  <rect x="60" y="50" width="30" height="65" rx="10" fill="#FFFFFF" />
+                  <rect x="46" y="50" width="58" height="18" rx="9" fill="#FFFFFF" />
+                  <circle cx="75" cy="82" r="12" fill="#C7D2FE" />
+                </svg>
+              </div>
+              <div class="wordmark" aria-hidden="true">Team<span>OS</span></div>
+            </div>
+          </div>
+          <div class="card-body">
+            <div class="card-top">
+              <h2>Team Hub</h2>
+              <span class="rank">#1</span>
+            </div>
+            <p class="note">
+              Best pick. The T is obvious, and the four blocks make the product
+              feel like one hub that brings multiple work tools together.
+            </p>
+            <ul class="tags" aria-label="Team Hub strengths">
+              <li>Easy to read</li>
+              <li>Best app icon</li>
+              <li>Shows one hub</li>
+            </ul>
+          </div>
+        </article>
+
+        <article class="logo-card">
+          <div class="logo-stage">
+            <div class="brand-lockup">
+              <div class="mark-shell">
+                <svg
+                  class="logo-mark"
+                  width="150"
+                  height="150"
+                  viewBox="0 0 150 150"
+                  fill="none"
+                  role="img"
+                  aria-labelledby="stack-title stack-desc"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <title id="stack-title">Ops Stack logo</title>
+                  <desc id="stack-desc">A solid stacked dashboard mark for TeamOS workflows.</desc>
+                  <rect x="22" y="22" width="106" height="106" rx="26" fill="#EEF2FF" />
+                  <rect x="38" y="36" width="74" height="21" rx="10.5" fill="#4F46E5" />
+                  <rect x="38" y="65" width="54" height="21" rx="10.5" fill="#0891B2" />
+                  <rect x="38" y="94" width="74" height="21" rx="10.5" fill="#10B981" />
+                  <circle cx="105" cy="75" r="19" fill="#F97316" />
+                  <rect x="65" y="49" width="20" height="56" rx="8" fill="#172554" />
+                  <rect x="54" y="49" width="42" height="16" rx="8" fill="#172554" />
+                </svg>
+              </div>
+              <div class="wordmark" aria-hidden="true">Team<span>OS</span></div>
+            </div>
+          </div>
+          <div class="card-body">
+            <div class="card-top">
+              <h2>Ops Stack</h2>
+              <span class="rank">#2</span>
+            </div>
+            <p class="note">
+              Strong when you want TeamOS to feel like stacked workflows:
+              tickets, attendance, hiring, lessons, and approvals in order.
+            </p>
+            <ul class="tags" aria-label="Ops Stack strengths">
+              <li>Workflow feel</li>
+              <li>Clean dashboard cue</li>
+              <li>Friendly shape</li>
+            </ul>
+          </div>
+        </article>
+
+        <article class="logo-card">
+          <div class="logo-stage">
+            <div class="brand-lockup">
+              <div class="mark-shell">
+                <svg
+                  class="logo-mark"
+                  width="150"
+                  height="150"
+                  viewBox="0 0 150 150"
+                  fill="none"
+                  role="img"
+                  aria-labelledby="control-title control-desc"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <title id="control-title">Control Tile logo</title>
+                  <desc id="control-desc">A solid dashboard tile mark with a central TeamOS T.</desc>
+                  <rect x="18" y="18" width="114" height="114" rx="28" fill="#F8FAFC" />
+                  <rect x="31" y="31" width="38" height="38" rx="12" fill="#4F46E5" />
+                  <rect x="81" y="31" width="38" height="38" rx="12" fill="#10B981" />
+                  <rect x="31" y="81" width="38" height="38" rx="12" fill="#0891B2" />
+                  <rect x="81" y="81" width="38" height="38" rx="12" fill="#F97316" />
+                  <rect x="60" y="40" width="30" height="76" rx="11" fill="#172554" />
+                  <rect x="46" y="40" width="58" height="20" rx="10" fill="#172554" />
+                  <rect x="65" y="69" width="20" height="20" rx="7" fill="#FFFFFF" />
+                </svg>
+              </div>
+              <div class="wordmark" aria-hidden="true">Team<span>OS</span></div>
+            </div>
+          </div>
+          <div class="card-body">
+            <div class="card-top">
+              <h2>Control Tile</h2>
+              <span class="rank">#3</span>
+            </div>
+            <p class="note">
+              The most admin-tool direction. It feels precise and structured,
+              but it is a little more generic than the Team Hub option.
+            </p>
+            <ul class="tags" aria-label="Control Tile strengths">
+              <li>Admin feel</li>
+              <li>Structured</li>
+              <li>Good for dashboards</li>
+            </ul>
+          </div>
+        </article>
+      </section>
+
+      <section class="section-title" aria-labelledby="details-title">
+        <div>
+          <p class="eyebrow">What the mark should communicate</p>
+          <h2 id="details-title">TeamOS is one private system for daily operations.</h2>
+        </div>
+        <p>
+          The logo should not only look technical. It should help someone
+          quickly understand that TeamOS combines the work that used to be split
+          across several tools.
+        </p>
+      </section>
+
+      <section class="details-grid" aria-label="TeamOS product modules">
+        <article class="details-panel">
+          <span class="module-icon" aria-hidden="true">
+            <svg width="28" height="28" viewBox="0 0 28 28" fill="none">
+              <rect x="4" y="5" width="20" height="18" rx="5" fill="#4F46E5" />
+              <rect x="8" y="9" width="12" height="3" rx="1.5" fill="#FFFFFF" />
+              <rect x="8" y="15" width="8" height="3" rx="1.5" fill="#C7D2FE" />
+            </svg>
+          </span>
+          <h3>Projects</h3>
+          <p><strong>Kanban, sprints, comments,</strong> and activity feeds.</p>
+        </article>
+
+        <article class="details-panel">
+          <span class="module-icon" aria-hidden="true">
+            <svg width="28" height="28" viewBox="0 0 28 28" fill="none">
+              <circle cx="14" cy="14" r="10" fill="#10B981" />
+              <rect x="13" y="7" width="3" height="8" rx="1.5" fill="#FFFFFF" />
+              <rect x="14" y="13" width="7" height="3" rx="1.5" fill="#D1FAE5" />
+            </svg>
+          </span>
+          <h3>Attendance</h3>
+          <p><strong>Live presence</strong> and overtime approvals.</p>
+        </article>
+
+        <article class="details-panel">
+          <span class="module-icon" aria-hidden="true">
+            <svg width="28" height="28" viewBox="0 0 28 28" fill="none">
+              <rect x="5" y="4" width="18" height="20" rx="5" fill="#0891B2" />
+              <circle cx="14" cy="11" r="4" fill="#FFFFFF" />
+              <rect x="9" y="17" width="10" height="3" rx="1.5" fill="#CFFAFE" />
+            </svg>
+          </span>
+          <h3>Hiring</h3>
+          <p><strong>ATS, resume parsing,</strong> and talent pool consent.</p>
+        </article>
+
+        <article class="details-panel">
+          <span class="module-icon" aria-hidden="true">
+            <svg width="28" height="28" viewBox="0 0 28 28" fill="none">
+              <rect x="5" y="6" width="18" height="16" rx="4" fill="#F97316" />
+              <rect x="9" y="10" width="10" height="3" rx="1.5" fill="#FFFFFF" />
+              <rect x="9" y="15" width="7" height="3" rx="1.5" fill="#FFEDD5" />
+            </svg>
+          </span>
+          <h3>Learning</h3>
+          <p><strong>Courses, quizzes, cohorts,</strong> and PDF certificates.</p>
+        </article>
+
+        <article class="details-panel">
+          <span class="module-icon" aria-hidden="true">
+            <svg width="28" height="28" viewBox="0 0 28 28" fill="none">
+              <rect x="4" y="5" width="20" height="18" rx="5" fill="#172554" />
+              <rect x="8" y="9" width="12" height="3" rx="1.5" fill="#FFFFFF" />
+              <rect x="8" y="15" width="6" height="3" rx="1.5" fill="#A5B4FC" />
+              <circle cx="19" cy="17" r="3" fill="#10B981" />
+            </svg>
+          </span>
+          <h3>AI review</h3>
+          <p><strong>Executive briefings</strong> and drafts sent to human queues.</p>
+        </article>
+      </section>
+
+      <aside class="recommendation" aria-label="Recommendation">
+        <p>
+          Recommended direction: <strong>Team Hub</strong>. It is the easiest to
+          understand because the center reads as TeamOS and the surrounding
+          blocks represent the separate tools it replaced.
+        </p>
+        <div class="recommended-logo" aria-hidden="true">
+          <svg width="36" height="36" viewBox="0 0 150 150" fill="none">
+            <rect x="18" y="18" width="114" height="114" rx="28" fill="#172554" />
+            <rect x="35" y="35" width="30" height="30" rx="9" fill="#10B981" />
+            <rect x="85" y="35" width="30" height="30" rx="9" fill="#0891B2" />
+            <rect x="35" y="85" width="30" height="30" rx="9" fill="#F97316" />
+            <rect x="85" y="85" width="30" height="30" rx="9" fill="#4F46E5" />
+            <rect x="60" y="50" width="30" height="65" rx="10" fill="#FFFFFF" />
+            <rect x="46" y="50" width="58" height="18" rx="9" fill="#FFFFFF" />
+            <circle cx="75" cy="82" r="12" fill="#C7D2FE" />
+          </svg>
+          Team<span style="color: #4f46e5">OS</span>
+        </div>
+      </aside>
+    </main>
+  </body>
+</html>
