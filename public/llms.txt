@@ -6,9 +6,8 @@
 
 Ken Patrick Garcia (brand: kenbuilds) is an AI full-stack engineer —
 production AI since 2025, 15+ shipped projects. Currently AI Full-Stack
-Engineer at Romega Solutions (Jul 2025–present, remote). BS Computer Science,
-University of Makati, expected 2026. Speaker at Qwen Meetup Manila #2
-(Alibaba Cloud Philippines). 4.9K+ LinkedIn followers.
+Engineer at Romega Solutions (Jul 2025–present, remote). Speaker at Qwen
+Meetup Manila #2 (Alibaba Cloud Philippines). 4.9K+ LinkedIn followers.
 
 Proof: Champion — C(Old) St.art Hackathon 2025 (FlowFit) · 1st Runner-Up —
 InfoTech Olympics 2025, Android App Development: Productivity (Pacebeats) ·
@@ -96,7 +95,7 @@ Now building: THE TRACE — this portfolio as a documented system.
 
 ## Education
 
-- BS Computer Science, Major in Application Development — University of Makati, expected 2026. Coursework: Machine Learning, AI, Data Structures & Algorithms, Database Systems, Software Engineering, Mobile Development, IoT Systems.
+- BS Computer Science, Major in Application Development — University of Makati.
 - BS Computer Science — Technological Institute of the Philippines, 2020–2021.
 
 ## Awards

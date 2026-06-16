@@ -25,7 +25,7 @@ function buildCorpus(): Chunk[] {
   add(
     "experience",
     "Experience",
-    "Ken works at Romega Solutions as an AI Full-Stack Engineer (Jul 2025–present, remote, part-time). Past roles: Software Engineer at CodeVF (real-time collaboration, WebSockets), AI Workflow Automation Engineer at University of Makati (n8n), Lead Software Engineer on Pacebeats, freelance full-stack web (8+ client sites), Flutter developer (5+ cross-platform apps), and technical support at Concentrix. Education: BS Computer Science at University of Makati, expected 2026.",
+    "Ken works at Romega Solutions as an AI Full-Stack Engineer (Jul 2025–present, remote, part-time). Past roles: Software Engineer at CodeVF (real-time collaboration, WebSockets), AI Workflow Automation Engineer at University of Makati (n8n), Lead Software Engineer on Pacebeats, freelance full-stack web (8+ client sites), Flutter developer (5+ cross-platform apps), and technical support at Concentrix. Education: BS Computer Science at University of Makati.",
   );
   add(
     "teamos",
