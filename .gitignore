@@ -36,3 +36,6 @@ design/
 .next/
 out/
 next-env.d.ts
+
+# typescript build cache
+*.tsbuildinfo
