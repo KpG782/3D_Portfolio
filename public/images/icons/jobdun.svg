@@ -1,0 +1,29 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" fill="none">
+  <!-- Portfolio mark (no public logo asset in this repo). Trace family v2:
+       gradient panel, glow, hard-hat over a two-sided marketplace bar. -->
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#2A2210"/>
+      <stop offset="1" stop-color="#12172B"/>
+    </linearGradient>
+    <linearGradient id="glyph" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#FFD98A"/>
+      <stop offset="1" stop-color="#F09B2E"/>
+    </linearGradient>
+    <radialGradient id="glow" cx="0.5" cy="0.42" r="0.55">
+      <stop offset="0" stop-color="#FFB347" stop-opacity="0.28"/>
+      <stop offset="1" stop-color="#FFB347" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+  <rect width="64" height="64" rx="14" fill="url(#bg)"/>
+  <rect width="64" height="64" rx="14" fill="url(#glow)"/>
+  <rect x="0.75" y="0.75" width="62.5" height="62.5" rx="13.25" stroke="#FFCE8A" stroke-opacity="0.22" stroke-width="1.5"/>
+  <path d="M16 34 C16 24.6 23.2 17 32 17 C40.8 17 48 24.6 48 34 Z"
+        fill="#FFB347" fill-opacity="0.14"/>
+  <path d="M16 34 C16 24.6 23.2 17 32 17 C40.8 17 48 24.6 48 34"
+        stroke="url(#glyph)" stroke-width="3" stroke-linecap="round"/>
+  <path d="M26 33 V21.5 M38 33 V21.5" stroke="url(#glyph)" stroke-width="2.6" stroke-linecap="round"/>
+  <rect x="12" y="34" width="40" height="5.5" rx="2.75" fill="url(#glyph)"/>
+  <rect x="15" y="44" width="14" height="5" rx="2.5" fill="#FFD98A" fill-opacity="0.55"/>
+  <rect x="35" y="44" width="14" height="5" rx="2.5" fill="#FFD98A" fill-opacity="0.55"/>
+</svg>

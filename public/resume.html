@@ -36,7 +36,7 @@
   "@id": "https://kenbuilds.tech/resume#profilepage",
   "url": "https://kenbuilds.tech/resume",
   "name": "Ken Patrick Garcia — Résumé (AI Full-Stack Engineer)",
-  "dateModified": "2026-06-16",
+  "dateModified": "2026-08-19",
   "mainEntity": {
     "@type": "Person",
     "@id": "https://kenbuilds.tech/#person",
@@ -46,7 +46,10 @@
     "jobTitle": "AI Full-Stack Engineer",
     "email": "mailto:kenpatrickgarcia123@gmail.com",
     "description": "I ship production AI systems — RAG, agents, and the full stack around them.",
-    "worksFor": { "@type": "Organization", "name": "Romega Solutions" },
+    "worksFor": [
+      { "@type": "Organization", "name": "Jobdun Pty Ltd" },
+      { "@type": "Organization", "name": "Romega Solutions" }
+    ],
     "alumniOf": { "@type": "CollegeOrUniversity", "name": "University of Makati" },
     "sameAs": [
       "https://github.com/KpG782",
@@ -184,13 +187,13 @@
         <dt>AI / ML</dt>
         <dd>RAG pipelines (pgvector · ChromaDB · sentence-transformers), AI agents (LangGraph · Vercel AI SDK · durable workflows), LLM APIs (Claude · Gemini · OpenAI · Groq · OpenRouter), local inference (Ollama · Gemma · YOLO→TFLite), Rasa, n8n Automation, TensorFlow, Scikit-learn, Computer Vision, NLP, Recommendation Systems</dd>
         <dt>Frontend &amp; Mobile</dt>
-        <dd>React.js, Next.js, React Native (Expo), Flutter, Astro, Three.js, TailwindCSS, Responsive Design</dd>
+        <dd>React.js, Next.js, React Native (Expo), Flutter, Riverpod, GoRouter, Astro, Three.js, TailwindCSS, Responsive Design</dd>
         <dt>Backend &amp; DB</dt>
-        <dd>Node.js, Spring Boot, FastAPI, PostgreSQL (pgvector · RLS), Supabase, Firebase (Auth · Firestore · Hosting), Drizzle ORM, Prisma ORM, Redis, RESTful APIs, Socket.io</dd>
+        <dd>Node.js, Spring Boot, FastAPI, PostgreSQL (pgvector · RLS), Supabase, Supabase Edge Functions (Deno), Firebase (Auth · Firestore · Hosting · Cloud Messaging), Drizzle ORM, Prisma ORM, Redis, Upstash Redis, RESTful APIs, Socket.io</dd>
         <dt>DevOps &amp; Cloud</dt>
-        <dd>AWS (EC2 · S3 · VPC · EBS), GCP (Cloud Run · Gemini API — Google Gen AI Academy APAC), Docker, Kubernetes (learning), GitHub Actions, CI/CD Pipelines, Vercel</dd>
+        <dd>AWS (EC2 · S3 · VPC · EBS), GCP (Cloud Run · Gemini API — Google Gen AI Academy APAC), Docker, Kubernetes (learning), GitHub Actions, CI/CD Pipelines, Vercel, Sentry</dd>
         <dt>Specialized</dt>
-        <dd>IoT Integration, Real-time Data Processing, WebSockets, Performance Optimization, GDPR Compliance</dd>
+        <dd>IoT Integration, Real-time Data Processing, WebSockets, Performance Optimization, Offline-first Caching, App Store &amp; Google Play Release Management, GDPR Compliance</dd>
         <dt>AI Workflow</dt>
         <dd>AI-native development — Claude Code on Claude Max (daily agentic coding, custom skills &amp; automation), ChatGPT Pro (research &amp; prototyping), self-hosted Ollama + Open WebUI for local models</dd>
       </dl>
@@ -198,6 +201,19 @@
 
     <section>
       <h2>Experience</h2>
+
+      <div class="entry">
+        <div class="top">
+          <span><span class="org">Jobdun Pty Ltd</span> · <span class="role">Lead Full-Stack &amp; Mobile Engineer (Contract)</span></span>
+          <span class="meta mono">May 2026 – Present · Sydney, Australia (Remote)</span>
+        </div>
+        <ul>
+          <li>Built and shipped Jobdun, a two-sided job marketplace for the Australian construction trades, from empty repo to live on the Apple App Store (AU) and Google Play — ~70K lines of Dart across 566 files, one Flutter codebase serving iOS, Android, and web.</li>
+          <li>Designed the Supabase backend end to end: 32 Postgres tables under row-level security, 88 migrations, and 5 Deno edge functions covering the jobs feed, push delivery, and ABN / trade-licence verification against Australian regulator APIs.</li>
+          <li>Cut jobs-feed latency with an Upstash Redis read-through cache (45s TTL, write invalidation, kill switch) in front of the feed edge function, backed by an encrypted on-device Hive cache for stale-while-revalidate reads and offline browsing.</li>
+          <li>Shipped the platform around the app: a Next.js admin console on Vercel with an SSR admin-role gate (verification queue, user/job moderation, audit feed, broadcast), the marketing site at jobdun.com.au, FCM push on both platforms, Twilio SMS OTP, Google/Apple sign-in, Sentry, and a GitHub Actions + pre-push gate enforcing format, lint, tests, and Clean Architecture boundaries.</li>
+        </ul>
+      </div>
 
       <div class="entry">
         <div class="top">

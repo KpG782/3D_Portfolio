@@ -23,6 +23,25 @@ export type LogItem = {
  */
 export const shipLog: LogItem[] = [
   {
+    id: "jobdun",
+    title: "Jobdun",
+    lead: "Live on the Apple App Store (AU) and Google Play — ~70K lines of Dart across 566 files, one Flutter codebase on iOS, Android, and web.",
+    icon: "/images/icons/jobdun.svg",
+    body: "Job marketplace for the Australian construction trades. One Flutter codebase across iOS, Android and web, on a Supabase backend with a Next.js admin console. 32 Postgres tables under row-level security, 88 migrations, and 5 Deno edge functions covering the jobs feed, push delivery, and ABN / trade-licence verification against Australian regulator APIs. The jobs feed sits behind an Upstash Redis read-through cache (45s TTL, write invalidation, kill switch) with an encrypted on-device Hive cache for stale-while-revalidate reads and offline browsing.",
+    stack: [
+      "Flutter",
+      "Dart",
+      "Riverpod",
+      "Supabase",
+      "PostgreSQL (RLS)",
+      "Deno Edge Functions",
+      "Next.js",
+      "Redis",
+      "Firebase",
+    ],
+    live: "https://jobdun.com.au",
+  },
+  {
     id: "kudlit",
     title: "Kudlit",
     lead: "Top 13 of 500+ — DEVAKDA · Baybayin scanner shipped as Android v1.0.0.",
