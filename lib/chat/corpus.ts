@@ -25,7 +25,7 @@ function buildCorpus(): Chunk[] {
   add(
     "experience",
     "Experience",
-    "Ken is Lead Full-Stack & Mobile Engineer at Jobdun Pty Ltd on contract (May 2026–present, Sydney, Australia, remote), where he built and shipped Jobdun — a two-sided job marketplace for the Australian construction trades — from empty repo to live on the Apple App Store (AU) and Google Play. He also works at Romega Solutions as an AI Full-Stack Engineer (Jul 2025–present, remote, part-time). Past roles: Software Engineer at CodeVF (real-time collaboration, WebSockets), AI Workflow Automation Engineer at University of Makati (n8n), Lead Software Engineer on Pacebeats, freelance full-stack web (8+ client sites), Flutter developer (5+ cross-platform apps), and technical support at Concentrix. Education: BS Computer Science at University of Makati.",
+    "Ken is Lead Full-Stack & Mobile Engineer at Jobdun Pty Ltd on contract (May 2026–present, Sydney, Australia, remote), where he built and shipped Jobdun — a two-sided job marketplace for the Australian construction trades — from empty repo to live on the Apple App Store (AU) and Google Play. Past roles: AI Full-Stack Engineer at Romega Solutions (Jul 2025–Jul 2026, remote, part-time), Software Engineer at CodeVF (real-time collaboration, WebSockets), AI Workflow Automation Engineer at University of Makati (n8n), Lead Software Engineer on Pacebeats, freelance full-stack web (8+ client sites), Flutter developer (5+ cross-platform apps), and technical support at Concentrix. Education: BS Computer Science at University of Makati.",
   );
   add(
     "teamos",
