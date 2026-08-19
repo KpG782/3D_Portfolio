@@ -5,10 +5,11 @@
 > roles · kenpatrickgarcia123@gmail.com
 
 Ken Patrick Garcia (brand: kenbuilds) is an AI full-stack engineer —
-production AI since 2025, 15+ shipped projects. Most recently Lead Full-Stack
-& Mobile Engineer (contract) at Jobdun Pty Ltd (May 2026–Aug 2026, Sydney,
-remote), and before that AI Full-Stack Engineer at Romega Solutions (Jul
-2025–Jul 2026, remote). Available now. Speaker at Qwen
+production AI since 2025, 15+ shipped projects. Currently AI Automation
+Engineer (contract) at Mufti Finance (Jul 2026–present, Australia, remote);
+before that Lead Full-Stack & Mobile Engineer (contract) at Jobdun Pty Ltd
+(May 2026–Aug 2026, Sydney, remote) and AI Full-Stack Engineer at Romega
+Solutions (Jul 2025–Jul 2026, remote). Speaker at Qwen
 Meetup Manila #2 (Alibaba Cloud Philippines). 4.9K+ LinkedIn followers.
 
 Proof: Champion — C(Old) St.art Hackathon 2025 (FlowFit) · 1st Runner-Up —
@@ -95,6 +96,7 @@ Now building: THE TRACE — this portfolio as a documented system.
 
 ## Experience
 
+- Mufti Finance — AI Automation Engineer (Contract) · Jul 2026–Present · Australia (Remote). Built the AI automation layer for an Australian mortgage brokerage: 30 browser-agent workflows across six major Australian lender portals that log in, complete multi-step valuation and pricing wizards, and stop at a human approval gate — ~18K lines of Python plus n8n orchestrators and two Next.js operator consoles. Designed an email-triggered n8n pipeline — LLM classification, conversational field gathering over reply threads, PDF attachments mapped to form fields, dispatch to a browser agent — with all 9 request types proven end-to-end, email to live lender portal in ~70–95s. Cut per-run LLM cost 96% ($0.98 → $0.04) with a cheap-first model router, and replaced agent-driven logins with Playwright-over-CDP scripted logins (87s, zero tokens). Shipped the safety architecture: human approval gates on every irreversible step, AU residential proxy pinning, claim-before-dispatch, and a verifier reading each workflow's live definition, which caught 10 of 19 workflows whose safety flags contradicted their own code.
 - Jobdun Pty Ltd — Lead Full-Stack & Mobile Engineer (Contract) · May 2026–Aug 2026 · Sydney, Australia (Remote). Built and shipped Jobdun, a two-sided job marketplace for the Australian construction trades, from empty repo to live on the Apple App Store (AU) and Google Play — ~70K lines of Dart across 566 files, one Flutter codebase serving iOS, Android, and web. Designed the Supabase backend end to end: 32 Postgres tables under RLS, 88 migrations, 5 Deno edge functions (jobs feed, push delivery, ABN / trade-licence verification against Australian regulator APIs). Cut jobs-feed latency with an Upstash Redis read-through cache backed by an encrypted on-device Hive cache. Shipped the platform around the app: Next.js admin console on Vercel with an SSR admin-role gate, the marketing site, FCM push, Twilio SMS OTP, Google/Apple sign-in, Sentry, and a GitHub Actions + pre-push gate enforcing format, lint, tests, and Clean Architecture boundaries.
 - Romega Solutions — AI Full-Stack Engineer (Part-Time) · Jul 2025–Jul 2026 · El Segundo, CA (Remote). Built a private all-in-one operations hub (PM/ticketing, attendance, recruiting ATS, LMS, AI reporting) — 46 pages, 56 API routes, 31-table Postgres schema in ~42K lines of TypeScript, shipped solo in ~3 months. Led a zero-downtime migration off a third-party PM SaaS. Shipped production RAG chatbots (ChromaDB · sentence-transformers · Gemini). LLM features and n8n automations land in human review queues, never auto-publish.
 - CodeVF — Software Engineer (Contract) · Feb 2026–Apr 2026 · US (Remote). Real-time collaboration platform with WebSocket architecture for live debugging sessions between customers and engineers.
@@ -147,7 +149,7 @@ in this room first.
 ## Stack
 
 - Languages: Python, TypeScript, JavaScript, Java, Kotlin, SQL
-- AI/ML: RAG pipelines (pgvector · ChromaDB · sentence-transformers), AI agents (LangGraph · Vercel AI SDK · durable workflows), LLM APIs (Claude · Gemini · OpenAI · Groq · OpenRouter), local inference (Ollama · Gemma · YOLO→TFLite), Rasa, n8n automation, TensorFlow, Scikit-learn, computer vision, NLP, recommendation systems
+- AI/ML: RAG pipelines (pgvector · ChromaDB · sentence-transformers), AI agents (LangGraph · Vercel AI SDK · durable workflows), browser agents (Browser Use · Skyvern · Playwright-over-CDP), human-in-the-loop approval gates, LLM cost engineering and model routing, LLM APIs (Claude · Gemini · OpenAI · Groq · OpenRouter), local inference (Ollama · Gemma · YOLO→TFLite), Rasa, n8n automation, TensorFlow, Scikit-learn, computer vision, NLP, recommendation systems
 - Frontend & mobile: React, Next.js, React Native (Expo), Flutter, Riverpod, GoRouter, Astro, Three.js, Tailwind CSS
 - Backend & DB: Node.js, Spring Boot, FastAPI, PostgreSQL (pgvector · RLS), Supabase, Supabase edge functions (Deno), Firebase (Auth · Firestore · Hosting · Cloud Messaging), Drizzle ORM, Prisma ORM, Redis, Upstash Redis, Socket.io
 - DevOps & cloud: AWS (EC2 · S3 · VPC · EBS), GCP (Cloud Run · Gemini API), Docker, GitHub Actions, CI/CD, Vercel, Sentry

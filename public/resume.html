@@ -46,6 +46,7 @@
     "jobTitle": "AI Full-Stack Engineer",
     "email": "mailto:kenpatrickgarcia123@gmail.com",
     "description": "I ship production AI systems — RAG, agents, and the full stack around them.",
+    "worksFor": { "@type": "Organization", "name": "Mufti Finance" },
     "alumniOf": { "@type": "CollegeOrUniversity", "name": "University of Makati" },
     "sameAs": [
       "https://github.com/KpG782",
@@ -181,15 +182,17 @@
         <dt>Languages</dt>
         <dd>Python, TypeScript, JavaScript, Java, Kotlin, SQL, HTML5, CSS3</dd>
         <dt>AI / ML</dt>
-        <dd>RAG pipelines (pgvector · ChromaDB · sentence-transformers), AI agents (LangGraph · Vercel AI SDK · durable workflows), LLM APIs (Claude · Gemini · OpenAI · Groq · OpenRouter), local inference (Ollama · Gemma · YOLO→TFLite), Rasa, n8n Automation, TensorFlow, Scikit-learn, Computer Vision, NLP, Recommendation Systems</dd>
+        <dd>RAG pipelines (pgvector · ChromaDB · sentence-transformers), AI agents (LangGraph · Vercel AI SDK · durable workflows), LLM APIs (Claude · Gemini · OpenAI · Groq · OpenRouter), local inference (Ollama · Gemma · YOLO→TFLite), Rasa, n8n Automation (AI Agent orchestrators · tool calling), browser agents (Browser Use · Skyvern · Playwright-over-CDP), agentic workflows with human-in-the-loop gates, LLM cost engineering &amp; model routing, multi-model benchmarking, structured output (JSON Schema), TensorFlow, Scikit-learn, Computer Vision, NLP, Recommendation Systems</dd>
         <dt>Frontend &amp; Mobile</dt>
-        <dd>React.js, Next.js, React Native (Expo), Flutter, Riverpod, GoRouter, Astro, Three.js, TailwindCSS, Responsive Design</dd>
+        <dd>React.js, Next.js, React Native (Expo), Flutter, Riverpod, GoRouter, Astro, Three.js, TailwindCSS, Zustand, Recharts, Motion, Responsive Design</dd>
         <dt>Backend &amp; DB</dt>
-        <dd>Node.js, Spring Boot, FastAPI, PostgreSQL (pgvector · RLS), Supabase, Supabase Edge Functions (Deno), Firebase (Auth · Firestore · Hosting · Cloud Messaging), Drizzle ORM, Prisma ORM, Redis, Upstash Redis, RESTful APIs, Socket.io</dd>
+        <dd>Node.js, Spring Boot, FastAPI, PostgreSQL (pgvector · RLS), Supabase (RLS · column grants · SECURITY DEFINER RPCs · Realtime · Storage), Supabase Edge Functions (Deno), PostgREST, Firebase (Auth · Firestore · Hosting · Cloud Messaging), Drizzle ORM, Prisma ORM, Redis, Upstash Redis, RESTful APIs, Socket.io</dd>
         <dt>DevOps &amp; Cloud</dt>
-        <dd>AWS (EC2 · S3 · VPC · EBS), GCP (Cloud Run · Gemini API — Google Gen AI Academy APAC), Docker, Kubernetes (learning), GitHub Actions, CI/CD Pipelines, Vercel, Sentry</dd>
+        <dd>AWS (EC2 · S3 · VPC · EBS), GCP (Cloud Run · Gemini API — Google Gen AI Academy APAC), Docker, Kubernetes (learning), GitHub Actions, CI/CD Pipelines, Vercel, Coolify, Cloudflare Tunnel, Sentry, Browserbase, Browser Use Cloud, Steel (self-hosted), residential proxy pinning</dd>
+        <dt>Testing &amp; QA</dt>
+        <dd>Vitest, Playwright E2E, live-database audit pipelines, mutation testing, static checkers as CI gates</dd>
         <dt>Specialized</dt>
-        <dd>IoT Integration, Real-time Data Processing, WebSockets, Performance Optimization, Offline-first Caching, App Store &amp; Google Play Release Management, GDPR Compliance</dd>
+        <dd>IoT Integration, Real-time Data Processing, WebSockets, Performance Optimization, Human-in-the-loop Approval Architecture, Irreversible-action Safety Design, IMAP / TOTP 2FA Automation, Audit Trails for Regulated Financial Workflows, Offline-first Caching, App Store &amp; Google Play Release Management, GDPR Compliance</dd>
         <dt>AI Workflow</dt>
         <dd>AI-native development — Claude Code on Claude Max (daily agentic coding, custom skills &amp; automation), ChatGPT Pro (research &amp; prototyping), self-hosted Ollama + Open WebUI for local models</dd>
       </dl>
@@ -197,6 +200,19 @@
 
     <section>
       <h2>Experience</h2>
+
+      <div class="entry">
+        <div class="top">
+          <span><span class="org">Mufti Finance</span> · <span class="role">AI Automation Engineer (Contract)</span></span>
+          <span class="meta mono">Jul 2026 – Present · Australia (Remote)</span>
+        </div>
+        <ul>
+          <li>Built the AI automation layer for an Australian mortgage brokerage: 30 browser-agent workflows across six major Australian lender portals that log in, complete multi-step valuation and pricing wizards, and stop at a human approval gate — ~18K lines of Python plus n8n orchestrators and two Next.js operator consoles.</li>
+          <li>Designed an email-triggered orchestration pipeline in n8n: an inbound broker email is classified by an LLM agent, missing fields are gathered conversationally over reply threads, PDF attachments are uploaded to object storage and mapped to the correct form fields, and the run is dispatched to a browser agent — all 9 request types proven end-to-end, email to live lender portal in ~70–95s.</li>
+          <li>Cut per-run LLM cost 96% ($0.98 → $0.04) with a cheap-first model router that escalates only on flow-specific completion markers, and replaced agent-driven logins with Playwright-over-CDP scripted logins (87s, $0.00, zero tokens) — measured against a token-accounting harness built into every run.</li>
+          <li>Shipped the safety architecture the automation runs behind: human approval gates on every irreversible step, AU residential proxy pinning, claim-before-dispatch to prevent duplicate orders, and a verifier that reads each workflow&rsquo;s live definition rather than its description — which caught 10 of 19 workflows whose safety flags contradicted their own code.</li>
+        </ul>
+      </div>
 
       <div class="entry">
         <div class="top">

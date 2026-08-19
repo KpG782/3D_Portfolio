@@ -83,6 +83,7 @@ const personJsonLd = {
       description: site.positioning,
       // Certificate truth only — derived from the awards data layer.
       award: awards.map((a) => `${a.place} — ${a.event} (${a.project})`),
+      worksFor: { "@type": "Organization", name: "Mufti Finance" },
       alumniOf: {
         "@type": "CollegeOrUniversity",
         name: "University of Makati",
